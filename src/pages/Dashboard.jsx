@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
@@ -33,9 +33,8 @@ export default function Dashboard() {
   const [uploadingGallery, setUploadingGallery] = useState(false);
   const [sortBy, setSortBy] = useState('custom'); 
   const [searchTerm, setSearchTerm] = useState('');
-  const [draggedIndex, setDraggedIndex] = useState(null);
-  const dragItemRef = useRef(null);
-  const dragOverItemRef = useRef(null);
+  const [dragState, setDragState] = useState({ active: false, fromIndex: null, hoverIndex: null });
+  const contentsRef = useRef([]);
   const navigate = useNavigate();
   const { t } = useLanguage();
 
@@ -222,23 +221,23 @@ export default function Dashboard() {
     }
   };
 
-  // Drag and Drop Handlers (ref-based to avoid stale closures)
+  // Keep a ref in sync with contents for use in async save
+  useEffect(() => { contentsRef.current = contents; }, [contents]);
+
+  // Drag and Drop Handlers
   const handleDragStart = useCallback((e, index) => {
-    dragItemRef.current = index;
-    setDraggedIndex(index);
+    setDragState({ active: true, fromIndex: index, hoverIndex: index });
     e.dataTransfer.effectAllowed = 'move';
-    // Make drag image semi-transparent
-    if (e.target && e.target.closest) {
-      const row = e.target.closest('[data-drag-row]');
-      if (row) {
-        e.dataTransfer.setDragImage(row, 20, 20);
-      }
+    // Use the row as drag image
+    const row = e.target.closest?.('[data-drag-row]');
+    if (row) {
+      e.dataTransfer.setDragImage(row, 40, 24);
     }
   }, []);
 
   const handleDragEnter = useCallback((e, index) => {
     e.preventDefault();
-    dragOverItemRef.current = index;
+    setDragState(prev => prev.active ? { ...prev, hoverIndex: index } : prev);
   }, []);
 
   const handleDragOver = useCallback((e) => {
@@ -247,55 +246,36 @@ export default function Dashboard() {
   }, []);
 
   const handleDragEnd = useCallback(async () => {
-    const from = dragItemRef.current;
-    const to = dragOverItemRef.current;
-    setDraggedIndex(null);
-    dragItemRef.current = null;
-    dragOverItemRef.current = null;
-
-    if (from === null || to === null || from === to) return;
-
-    // Reorder contents array
-    setContents(prev => {
-      const newList = [...prev];
-      const [draggedItem] = newList.splice(from, 1);
-      newList.splice(to, 0, draggedItem);
-      return newList;
+    setDragState(prev => {
+      const { fromIndex, hoverIndex } = prev;
+      // Apply reorder to contents before resetting drag state
+      if (fromIndex !== null && hoverIndex !== null && fromIndex !== hoverIndex) {
+        setContents(currentContents => {
+          const newList = [...currentContents];
+          const [draggedItem] = newList.splice(fromIndex, 1);
+          newList.splice(hoverIndex, 0, draggedItem);
+          return newList;
+        });
+      }
+      return { active: false, fromIndex: null, hoverIndex: null };
     });
 
-    // Save the new sort_order to Supabase
+    // Save sort_order to Supabase after a micro-delay for state to settle
     setActionLoading(true);
     try {
-      // We need to use the latest contents after reorder
-      // Use a small timeout to let state settle, then read from state
-      await new Promise(r => setTimeout(r, 50));
-    } catch(e) { /* noop */ }
-
-    // Save using current contents order (we'll use a ref-based approach)
-    try {
-      const reordered = [];
-      setContents(current => {
-        current.forEach((item, idx) => {
-          reordered.push({ id: item.id, sort_order: idx });
-        });
-        return current; // don't change state, just read it
-      });
-
-      // Wait for the setState callback
-      await new Promise(r => setTimeout(r, 10));
-
-      if (reordered.length > 0) {
-        // Update sort_order for each item individually (batch)
-        const promises = reordered.map(({ id, sort_order }) =>
-          supabase.from('contents').update({ sort_order }).eq('id', id)
+      await new Promise(r => setTimeout(r, 100));
+      const currentList = contentsRef.current;
+      if (currentList.length > 0) {
+        const promises = currentList.map((item, idx) =>
+          supabase.from('contents').update({ sort_order: idx }).eq('id', item.id)
         );
         const results = await Promise.all(promises);
         const failed = results.find(r => r.error);
-        if (failed && failed.error) {
+        if (failed?.error) {
           if (failed.error.message.includes('sort_order')) {
             alert("⚠️ Sıralamayı kalıcı kaydetmek için lütfen Supabase SQL Editor'de şu komutu çalıştırın:\n\nALTER TABLE public.contents ADD COLUMN sort_order integer DEFAULT 0;");
           } else {
-            console.error("Sorting save error:", failed.error);
+            console.error('Sort save error:', failed.error);
           }
         }
       }
@@ -305,6 +285,22 @@ export default function Dashboard() {
       setActionLoading(false);
     }
   }, []);
+
+  const handleDragCancel = useCallback(() => {
+    setDragState({ active: false, fromIndex: null, hoverIndex: null });
+  }, []);
+
+  // Compute a live-preview display list that reorders in real-time during drag
+  const displayContents = useMemo(() => {
+    const { active, fromIndex, hoverIndex } = dragState;
+    if (!active || fromIndex === null || hoverIndex === null || fromIndex === hoverIndex) {
+      return sortedContents;
+    }
+    const items = [...sortedContents];
+    const [draggedItem] = items.splice(fromIndex, 1);
+    items.splice(hoverIndex, 0, draggedItem);
+    return items;
+  }, [sortedContents, dragState]);
 
   // Calculate dynamic stats
   const totalVehicles = contents.length;
@@ -748,115 +744,142 @@ export default function Dashboard() {
                 </div>
               </div>
               
-              <div className="divide-y divide-white/5">
-                {sortedContents.map((item, index) => (
-                  <div 
-                    key={item.id}
-                    data-drag-row
-                    onDragOver={handleDragOver}
-                    onDragEnter={(e) => handleDragEnter(e, index)}
-                    className={`p-6 flex flex-col md:flex-row gap-6 hover:bg-white/[0.03] transition-all group relative ${!item.status ? 'opacity-70' : ''} ${draggedIndex === index ? 'border-2 border-primary border-dashed bg-primary/10 select-none opacity-40' : ''}`}
-                  >
-                    {/* Image Block */}
-                    <div className={`w-full md:w-48 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 shadow-lg ${!item.status ? 'grayscale' : ''}`}>
-                      {item.image_url ? (
-                        <img 
-                          alt={item.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                          src={item.image_url} 
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-zinc-950 flex items-center justify-center text-[10px] font-bold text-text-muted uppercase">
-                          {t('dash_no_img')}
+              <div className="divide-y divide-white/5" onDragLeave={handleDragCancel}>
+                {displayContents.map((item, index) => {
+                  const isDragSource = dragState.active && sortedContents[dragState.fromIndex]?.id === item.id;
+                  const isHoverTarget = dragState.active && index === dragState.hoverIndex && !isDragSource;
+                  return (
+                    <div key={item.id} className="relative">
+                      {/* Drop indicator line — appears ABOVE the hovered item */}
+                      {isHoverTarget && dragState.hoverIndex <= dragState.fromIndex && (
+                        <div className="absolute top-0 left-4 right-4 z-20 flex items-center pointer-events-none" style={{transform: 'translateY(-50%)'}}>
+                          <div className="w-3 h-3 rounded-full bg-primary border-2 border-primary shadow-lg shadow-primary/50 flex-shrink-0" />
+                          <div className="flex-grow h-[3px] bg-gradient-to-r from-primary to-primary/40 rounded-full shadow-lg shadow-primary/30" />
                         </div>
                       )}
-                      {item.category && (
-                        <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest">
-                          {item.category}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content Details Block */}
-                    <div className="flex-grow flex flex-col justify-between">
-                      <div>
-                        <div className="flex justify-between items-start gap-4">
-                          <h3 className="font-sora font-bold text-white text-lg leading-tight group-hover:text-primary transition-colors">{item.title}</h3>
-                          {item.status ? (
-                            <span className="px-2 py-1 text-[10px] font-black rounded bg-green-500/10 border border-green-500/30 text-green-400 uppercase tracking-tighter">
-                              {t('dash_active')}
-                            </span>
+                      <div 
+                        data-drag-row
+                        onDragOver={handleDragOver}
+                        onDragEnter={(e) => handleDragEnter(e, index)}
+                        className={`p-6 flex flex-col md:flex-row gap-6 hover:bg-white/[0.03] group relative
+                          ${!item.status ? 'opacity-70' : ''}
+                          ${isDragSource ? 'opacity-20 scale-[0.98] bg-primary/5 border-l-2 border-l-primary' : ''}
+                          ${isHoverTarget ? 'bg-white/[0.04]' : ''}
+                          transition-all duration-200 ease-out`}
+                      >
+                        {/* Image Block */}
+                        <div className={`w-full md:w-48 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 shadow-lg ${!item.status ? 'grayscale' : ''}`}>
+                          {item.image_url ? (
+                            <img 
+                              alt={item.title} 
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                              src={item.image_url} 
+                            />
                           ) : (
-                            <span className="px-2 py-1 text-[10px] font-black rounded bg-white/10 border border-white/20 text-white/50 uppercase tracking-tighter">
-                              {t('dash_passive')}
-                            </span>
+                            <div className="w-full h-full bg-zinc-950 flex items-center justify-center text-[10px] font-bold text-text-muted uppercase">
+                              {t('dash_no_img')}
+                            </div>
                           )}
-                        </div>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-text-muted font-medium">
-                          {item.year && (
-                            <span className="flex items-center gap-1">
-                              <span className="material-symbols-outlined text-[14px]">calendar_today</span> 
-                              {item.year}
-                            </span>
-                          )}
-                          {item.mileage !== null && item.mileage !== undefined && (
-                            <span className="flex items-center gap-1">
-                              <span className="material-symbols-outlined text-[14px]">speed</span> 
-                              {parseFloat(item.mileage).toLocaleString('de-DE')} km
-                            </span>
-                          )}
-                          {item.price && (
-                            <span className="flex items-center gap-1 font-bold text-white">
-                              €{parseFloat(item.price).toLocaleString('de-DE')}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Bottom row actions & finance */}
-                      <div className="mt-4 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          {item.status ? (
-                            item.monthly_rate && (
-                              <div className="bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/10">
-                                <span className="text-[10px] text-primary font-bold">€{parseFloat(item.monthly_rate).toLocaleString('de-DE')} / Ay</span>
-                              </div>
-                            )
-                          ) : (
-                            <span className="text-[10px] text-text-muted italic">Satıldı / Stokta Yok</span>
-                          )}
-                        </div>
-                        <div className="flex gap-2 items-center">
-                          <button 
-                            onClick={() => handleEdit(item)}
-                            className="p-2.5 glass rounded-xl text-primary hover:bg-primary hover:text-white transition-all border border-white/5"
-                            title="Düzenle"
-                          >
-                            <span className="material-symbols-outlined text-sm leading-none block">edit</span>
-                          </button>
-                          <button 
-                            onClick={() => handleDelete(item.id)}
-                            className="p-2.5 glass rounded-xl text-text-muted hover:text-error hover:bg-error/10 transition-all border border-white/5"
-                            title="Sil"
-                          >
-                            <span className="material-symbols-outlined text-sm leading-none block">delete</span>
-                          </button>
-                          {sortBy === 'custom' && !searchTerm && (
-                            <div 
-                              draggable
-                              onDragStart={(e) => handleDragStart(e, index)}
-                              onDragEnd={handleDragEnd}
-                              className="p-2.5 glass rounded-xl text-text-muted hover:text-primary transition-all border border-white/5 cursor-grab active:cursor-grabbing select-none ml-1"
-                              title="Sıralamak için tut ve sürükle"
-                            >
-                              <span className="material-symbols-outlined text-sm leading-none block">drag_indicator</span>
+                          {item.category && (
+                            <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest">
+                              {item.category}
                             </div>
                           )}
                         </div>
+
+                        {/* Content Details Block */}
+                        <div className="flex-grow flex flex-col justify-between">
+                          <div>
+                            <div className="flex justify-between items-start gap-4">
+                              <h3 className="font-sora font-bold text-white text-lg leading-tight group-hover:text-primary transition-colors">{item.title}</h3>
+                              {item.status ? (
+                                <span className="px-2 py-1 text-[10px] font-black rounded bg-green-500/10 border border-green-500/30 text-green-400 uppercase tracking-tighter">
+                                  {t('dash_active')}
+                                </span>
+                              ) : (
+                                <span className="px-2 py-1 text-[10px] font-black rounded bg-white/10 border border-white/20 text-white/50 uppercase tracking-tighter">
+                                  {t('dash_passive')}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-text-muted font-medium">
+                              {item.year && (
+                                <span className="flex items-center gap-1">
+                                  <span className="material-symbols-outlined text-[14px]">calendar_today</span> 
+                                  {item.year}
+                                </span>
+                              )}
+                              {item.mileage !== null && item.mileage !== undefined && (
+                                <span className="flex items-center gap-1">
+                                  <span className="material-symbols-outlined text-[14px]">speed</span> 
+                                  {parseFloat(item.mileage).toLocaleString('de-DE')} km
+                                </span>
+                              )}
+                              {item.price && (
+                                <span className="flex items-center gap-1 font-bold text-white">
+                                  €{parseFloat(item.price).toLocaleString('de-DE')}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Bottom row actions & finance */}
+                          <div className="mt-4 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              {item.status ? (
+                                item.monthly_rate && (
+                                  <div className="bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/10">
+                                    <span className="text-[10px] text-primary font-bold">€{parseFloat(item.monthly_rate).toLocaleString('de-DE')} / Ay</span>
+                                  </div>
+                                )
+                              ) : (
+                                <span className="text-[10px] text-text-muted italic">Satıldı / Stokta Yok</span>
+                              )}
+                            </div>
+                            <div className="flex gap-2 items-center">
+                              <button 
+                                onClick={() => handleEdit(item)}
+                                className="p-2.5 glass rounded-xl text-primary hover:bg-primary hover:text-white transition-all border border-white/5"
+                                title="Düzenle"
+                              >
+                                <span className="material-symbols-outlined text-sm leading-none block">edit</span>
+                              </button>
+                              <button 
+                                onClick={() => handleDelete(item.id)}
+                                className="p-2.5 glass rounded-xl text-text-muted hover:text-error hover:bg-error/10 transition-all border border-white/5"
+                                title="Sil"
+                              >
+                                <span className="material-symbols-outlined text-sm leading-none block">delete</span>
+                              </button>
+                              {sortBy === 'custom' && !searchTerm && (
+                                <div 
+                                  draggable
+                                  onDragStart={(e) => handleDragStart(e, index)}
+                                  onDragEnd={handleDragEnd}
+                                  className={`p-2.5 rounded-xl transition-all border select-none ml-1
+                                    ${dragState.active 
+                                      ? 'bg-primary/10 text-primary border-primary/30 cursor-grabbing' 
+                                      : 'glass text-text-muted hover:text-primary border-white/5 cursor-grab'}
+                                  `}
+                                  title="Sıralamak için tut ve sürükle"
+                                >
+                                  <span className="material-symbols-outlined text-sm leading-none block">drag_indicator</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                      {/* Drop indicator line — appears BELOW the hovered item */}
+                      {isHoverTarget && dragState.hoverIndex > dragState.fromIndex && (
+                        <div className="absolute bottom-0 left-4 right-4 z-20 flex items-center pointer-events-none" style={{transform: 'translateY(50%)'}}>
+                          <div className="w-3 h-3 rounded-full bg-primary border-2 border-primary shadow-lg shadow-primary/50 flex-shrink-0" />
+                          <div className="flex-grow h-[3px] bg-gradient-to-r from-primary to-primary/40 rounded-full shadow-lg shadow-primary/30" />
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
 
                 {sortedContents.length === 0 && (
                   <div className="p-12 text-center text-text-muted italic text-sm">
