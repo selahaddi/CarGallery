@@ -31,7 +31,8 @@ export default function Dashboard() {
   const [actionLoading, setActionLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
-  const [sortBy, setSortBy] = useState('newest'); // 'newest', 'price_desc', 'price_asc'
+  const [sortBy, setSortBy] = useState('newest'); 
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const { t } = useLanguage();
 
@@ -221,12 +222,31 @@ export default function Dashboard() {
     ? `${(activePortfolioVal / 1000000).toFixed(1)}M` 
     : `${(activePortfolioVal / 1000).toFixed(0)}K`;
 
-  // Sort logic
-  const sortedContents = [...contents].sort((a, b) => {
+  // Filter and Sort logic
+  const filteredContents = contents.filter(item => 
+    item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (item.category && item.category.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
+  const sortedContents = [...filteredContents].sort((a, b) => {
     if (sortBy === 'price_desc') {
       return (b.price || 0) - (a.price || 0);
     } else if (sortBy === 'price_asc') {
       return (a.price || 0) - (b.price || 0);
+    } else if (sortBy === 'oldest') {
+      return new Date(a.created_at) - new Date(b.created_at);
+    } else if (sortBy === 'year_desc') {
+      return (b.year || 0) - (a.year || 0);
+    } else if (sortBy === 'year_asc') {
+      return (a.year || 0) - (b.year || 0);
+    } else if (sortBy === 'mileage_asc') {
+      return (a.mileage || 0) - (b.mileage || 0);
+    } else if (sortBy === 'mileage_desc') {
+      return (b.mileage || 0) - (a.mileage || 0);
+    } else if (sortBy === 'name_asc') {
+      return (a.title || '').localeCompare(b.title || '', 'tr');
+    } else if (sortBy === 'name_desc') {
+      return (b.title || '').localeCompare(a.title || '', 'tr');
     } else {
       return new Date(b.created_at) - new Date(a.created_at);
     }
@@ -573,19 +593,41 @@ export default function Dashboard() {
           {/* List Section Column (lg:col-span-7) */}
           <div className="lg:col-span-7">
             <div className="glass-card rounded-3xl overflow-hidden">
-              <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+              <div className="p-8 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/[0.02]">
                 <h2 className="text-xl font-sora font-bold text-white" data-t="dash_list_title">{t('dash_list_title')}</h2>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-text-muted font-bold">FİLTRELE:</span>
-                  <select 
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1 font-bold text-on-surface outline-none cursor-pointer focus:ring-0"
-                  >
-                    <option value="newest">En Yeni</option>
-                    <option value="price_desc">Fiyat: Azalan</option>
-                    <option value="price_asc">Fiyat: Artan</option>
-                  </select>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Search Input */}
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Araç ara..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="bg-zinc-900/80 border border-white/10 text-xs rounded-lg pl-8 pr-3 py-1.5 font-medium text-white placeholder:text-text-muted outline-none w-40 focus:border-primary focus:ring-0 transition-all"
+                    />
+                    <span className="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted text-xs leading-none">search</span>
+                  </div>
+
+                  {/* Sort Select */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-text-muted font-bold">SIRALA:</span>
+                    <select 
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1.5 font-bold text-on-surface outline-none cursor-pointer focus:ring-0"
+                    >
+                      <option value="newest">En Yeni (Tarih)</option>
+                      <option value="oldest">En Eski (Tarih)</option>
+                      <option value="price_desc">Fiyat: Azalan</option>
+                      <option value="price_asc">Fiyat: Artan</option>
+                      <option value="year_desc">Yıl: En Yeni</option>
+                      <option value="year_asc">Yıl: En Eski</option>
+                      <option value="mileage_asc">Kilometre: En Düşük</option>
+                      <option value="mileage_desc">Kilometre: En Yüksek</option>
+                      <option value="name_asc">İsim: A-Z</option>
+                      <option value="name_desc">İsim: Z-A</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               
