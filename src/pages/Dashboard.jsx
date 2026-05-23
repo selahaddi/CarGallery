@@ -290,17 +290,7 @@ export default function Dashboard() {
     setDragState({ active: false, fromIndex: null, hoverIndex: null });
   }, []);
 
-  // Compute a live-preview display list that reorders in real-time during drag
-  const displayContents = useMemo(() => {
-    const { active, fromIndex, hoverIndex } = dragState;
-    if (!active || fromIndex === null || hoverIndex === null || fromIndex === hoverIndex) {
-      return sortedContents;
-    }
-    const items = [...sortedContents];
-    const [draggedItem] = items.splice(fromIndex, 1);
-    items.splice(hoverIndex, 0, draggedItem);
-    return items;
-  }, [sortedContents, dragState]);
+
 
   // Calculate dynamic stats
   const totalVehicles = contents.length;
@@ -342,6 +332,18 @@ export default function Dashboard() {
       return new Date(b.created_at) - new Date(a.created_at);
     }
   });
+
+  // Compute a live-preview display list that reorders in real-time during drag
+  const displayContents = useMemo(() => {
+    const { active, fromIndex, hoverIndex } = dragState;
+    if (!active || fromIndex === null || hoverIndex === null || fromIndex === hoverIndex) {
+      return sortedContents;
+    }
+    const items = [...sortedContents];
+    const [draggedItem] = items.splice(fromIndex, 1);
+    items.splice(hoverIndex, 0, draggedItem);
+    return items;
+  }, [sortedContents, dragState]);
 
   if (loading && contents.length === 0) {
     return (
@@ -477,7 +479,7 @@ export default function Dashboard() {
                 {/* Section: Pricing */}
                 <div className="space-y-4">
                   <p className="text-xs font-bold text-primary/80 uppercase tracking-widest pb-1 border-b border-white/5">Finansal Veriler</p>
-                  <div class="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="label-high-contrast" data-t="dash_label_price">{t('dash_label_price')}</label>
                       <input 
@@ -501,7 +503,7 @@ export default function Dashboard() {
                       />
                     </div>
                   </div>
-                  <div class="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <div>
                       <label className="label-high-contrast" data-t="dash_label_rate">{t('dash_label_rate')}</label>
                       <input 
