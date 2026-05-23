@@ -27,7 +27,15 @@ export default function Home() {
         console.error('Veri çekme hatası:', error);
         setFetchError(`Supabase Hatası (${error.code}): ${error.message}`);
       } else {
-        setContents(data || []);
+        const sortedData = (data || []).sort((a, b) => {
+          const orderA = a.sort_order !== null && a.sort_order !== undefined ? a.sort_order : 999999;
+          const orderB = b.sort_order !== null && b.sort_order !== undefined ? b.sort_order : 999999;
+          if (orderA !== orderB) {
+            return orderA - orderB;
+          }
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+        setContents(sortedData);
       }
     } catch (err) {
       console.error('Beklenmeyen hata:', err);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
@@ -31,8 +31,11 @@ export default function Dashboard() {
   const [actionLoading, setActionLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
-  const [sortBy, setSortBy] = useState('newest'); 
+  const [sortBy, setSortBy] = useState('custom'); 
   const [searchTerm, setSearchTerm] = useState('');
+  const [draggedIndex, setDraggedIndex] = useState(null);
+  const dragItemRef = useRef(null);
+  const dragOverItemRef = useRef(null);
   const navigate = useNavigate();
   const { t } = useLanguage();
 
@@ -56,7 +59,13 @@ export default function Dashboard() {
       .order('created_at', { ascending: false });
 
     if (!error) {
-      setContents(data || []);
+      const sortedData = (data || []).sort((a, b) => {
+        const orderA = a.sort_order !== null && a.sort_order !== undefined ? a.sort_order : 999999;
+        const orderB = b.sort_order !== null && b.sort_order !== undefined ? b.sort_order : 999999;
+        if (orderA !== orderB) return orderA - orderB;
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+      setContents(sortedData);
     }
     setLoading(false);
   };
@@ -213,6 +222,90 @@ export default function Dashboard() {
     }
   };
 
+  // Drag and Drop Handlers (ref-based to avoid stale closures)
+  const handleDragStart = useCallback((e, index) => {
+    dragItemRef.current = index;
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+    // Make drag image semi-transparent
+    if (e.target && e.target.closest) {
+      const row = e.target.closest('[data-drag-row]');
+      if (row) {
+        e.dataTransfer.setDragImage(row, 20, 20);
+      }
+    }
+  }, []);
+
+  const handleDragEnter = useCallback((e, index) => {
+    e.preventDefault();
+    dragOverItemRef.current = index;
+  }, []);
+
+  const handleDragOver = useCallback((e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  }, []);
+
+  const handleDragEnd = useCallback(async () => {
+    const from = dragItemRef.current;
+    const to = dragOverItemRef.current;
+    setDraggedIndex(null);
+    dragItemRef.current = null;
+    dragOverItemRef.current = null;
+
+    if (from === null || to === null || from === to) return;
+
+    // Reorder contents array
+    setContents(prev => {
+      const newList = [...prev];
+      const [draggedItem] = newList.splice(from, 1);
+      newList.splice(to, 0, draggedItem);
+      return newList;
+    });
+
+    // Save the new sort_order to Supabase
+    setActionLoading(true);
+    try {
+      // We need to use the latest contents after reorder
+      // Use a small timeout to let state settle, then read from state
+      await new Promise(r => setTimeout(r, 50));
+    } catch(e) { /* noop */ }
+
+    // Save using current contents order (we'll use a ref-based approach)
+    try {
+      const reordered = [];
+      setContents(current => {
+        current.forEach((item, idx) => {
+          reordered.push({ id: item.id, sort_order: idx });
+        });
+        return current; // don't change state, just read it
+      });
+
+      // Wait for the setState callback
+      await new Promise(r => setTimeout(r, 10));
+
+      if (reordered.length > 0) {
+        // Update sort_order for each item individually (batch)
+        const promises = reordered.map(({ id, sort_order }) =>
+          supabase.from('contents').update({ sort_order }).eq('id', id)
+        );
+        const results = await Promise.all(promises);
+        const failed = results.find(r => r.error);
+        if (failed && failed.error) {
+          if (failed.error.message.includes('sort_order')) {
+            alert("⚠️ Sıralamayı kalıcı kaydetmek için lütfen Supabase SQL Editor'de şu komutu çalıştırın:\n\nALTER TABLE public.contents ADD COLUMN sort_order integer DEFAULT 0;");
+          } else {
+            console.error("Sorting save error:", failed.error);
+          }
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
+  }, []);
+
   // Calculate dynamic stats
   const totalVehicles = contents.length;
   const activePortfolioVal = contents
@@ -229,7 +322,9 @@ export default function Dashboard() {
   );
 
   const sortedContents = [...filteredContents].sort((a, b) => {
-    if (sortBy === 'price_desc') {
+    if (sortBy === 'custom') {
+      return 0; // maintain original array order from contents
+    } else if (sortBy === 'price_desc') {
       return (b.price || 0) - (a.price || 0);
     } else if (sortBy === 'price_asc') {
       return (a.price || 0) - (b.price || 0);
@@ -596,6 +691,27 @@ export default function Dashboard() {
               <div className="p-8 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/[0.02]">
                 <h2 className="text-xl font-sora font-bold text-white" data-t="dash_list_title">{t('dash_list_title')}</h2>
                 <div className="flex flex-wrap items-center gap-3">
+                  {/* Manual Sort Button */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (sortBy === 'custom') {
+                        setSortBy('newest');
+                      } else {
+                        setSortBy('custom');
+                        setSearchTerm(''); // Clear search to enable drag-and-drop
+                      }
+                    }}
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+                      sortBy === 'custom'
+                        ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20'
+                        : 'bg-zinc-900/80 text-text-muted border-white/10 hover:text-white hover:border-white/20'
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-[16px] leading-none">drag_indicator</span>
+                    <span>Tut Sürükle Sırala</span>
+                  </button>
+
                   {/* Search Input */}
                   <div className="relative">
                     <input
@@ -616,6 +732,7 @@ export default function Dashboard() {
                       onChange={(e) => setSortBy(e.target.value)}
                       className="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1.5 font-bold text-on-surface outline-none cursor-pointer focus:ring-0"
                     >
+                      <option value="custom">Özel Sıralama (Sürükle)</option>
                       <option value="newest">En Yeni (Tarih)</option>
                       <option value="oldest">En Eski (Tarih)</option>
                       <option value="price_desc">Fiyat: Azalan</option>
@@ -632,10 +749,13 @@ export default function Dashboard() {
               </div>
               
               <div className="divide-y divide-white/5">
-                {sortedContents.map((item) => (
+                {sortedContents.map((item, index) => (
                   <div 
-                    key={item.id} 
-                    className={`p-6 flex flex-col md:flex-row gap-6 hover:bg-white/[0.03] transition-colors group ${!item.status ? 'opacity-70' : ''}`}
+                    key={item.id}
+                    data-drag-row
+                    onDragOver={handleDragOver}
+                    onDragEnter={(e) => handleDragEnter(e, index)}
+                    className={`p-6 flex flex-col md:flex-row gap-6 hover:bg-white/[0.03] transition-all group relative ${!item.status ? 'opacity-70' : ''} ${draggedIndex === index ? 'border-2 border-primary border-dashed bg-primary/10 select-none opacity-40' : ''}`}
                   >
                     {/* Image Block */}
                     <div className={`w-full md:w-48 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 shadow-lg ${!item.status ? 'grayscale' : ''}`}>
@@ -706,7 +826,7 @@ export default function Dashboard() {
                             <span className="text-[10px] text-text-muted italic">Satıldı / Stokta Yok</span>
                           )}
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 items-center">
                           <button 
                             onClick={() => handleEdit(item)}
                             className="p-2.5 glass rounded-xl text-primary hover:bg-primary hover:text-white transition-all border border-white/5"
@@ -721,6 +841,17 @@ export default function Dashboard() {
                           >
                             <span className="material-symbols-outlined text-sm leading-none block">delete</span>
                           </button>
+                          {sortBy === 'custom' && !searchTerm && (
+                            <div 
+                              draggable
+                              onDragStart={(e) => handleDragStart(e, index)}
+                              onDragEnd={handleDragEnd}
+                              className="p-2.5 glass rounded-xl text-text-muted hover:text-primary transition-all border border-white/5 cursor-grab active:cursor-grabbing select-none ml-1"
+                              title="Sıralamak için tut ve sürükle"
+                            >
+                              <span className="material-symbols-outlined text-sm leading-none block">drag_indicator</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

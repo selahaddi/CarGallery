@@ -23,8 +23,16 @@ async function run() {
   try {
     const { data, error } = await supabase.from('contents').select('*').order('created_at', { ascending: false });
     if (error) throw error;
-    contents = data || [];
-    console.log(`Fetched ${contents.length} contents.`);
+    const sortedData = (data || []).sort((a, b) => {
+      const orderA = a.sort_order !== null && a.sort_order !== undefined ? a.sort_order : 999999;
+      const orderB = b.sort_order !== null && b.sort_order !== undefined ? b.sort_order : 999999;
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
+    contents = sortedData;
+    console.log(`Fetched and sorted ${contents.length} contents.`);
   } catch (err) {
     console.error("Error fetching from Supabase, using mock data:", err.message);
     contents = [
@@ -1246,14 +1254,24 @@ async function run() {
           {/* List Section Column (lg:col-span-7) */}
           <div class="lg:col-span-7">
             <div class="glass-card rounded-3xl overflow-hidden">
-              <div class="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+              <div class="p-8 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/[0.02]">
                 <h2 class="text-xl font-sora font-bold text-white" data-t="dash_list_title">Mevcut Envanter</h2>
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] text-text-muted font-bold">FİLTRELE:</span>
-                  <select class="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1 font-bold text-on-surface outline-none cursor-pointer focus:ring-0">
-                    <option>En Yeni</option>
-                    <option>Fiyat: Azalan</option>
-                  </select>
+                <div class="flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onclick="alert('Sürükle-bırak sıralama sadece aktif React uygulamasında çalışmaktadır.');"
+                    class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border bg-zinc-900/80 text-text-muted border-white/10 hover:text-white hover:border-white/20"
+                  >
+                    <span class="material-symbols-outlined text-[16px] leading-none">drag_indicator</span>
+                    <span>Tut Sürükle Sırala</span>
+                  </button>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[10px] text-text-muted font-bold">SIRALA:</span>
+                    <select class="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1.5 font-bold text-on-surface outline-none cursor-pointer focus:ring-0">
+                      <option>En Yeni</option>
+                      <option>Fiyat: Azalan</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               
