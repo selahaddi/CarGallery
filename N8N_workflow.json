@@ -1,0 +1,109 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "tableId": "contents",
+        "dataToSend": "autoMapInputData"
+      },
+      "id": "47f5d30d-9965-4d51-936a-db2ef39d4f34",
+      "name": "Supabase'e Ekle (Contents)",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        832,
+        128
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "QxsxlFoPxNHnqEfa",
+          "name": "WebSitem"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a14d3443-3280-485b-8cdc-6d148cffcf9e",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        128
+      ],
+      "id": "653f33fe-bcb3-4f50-a024-fb2943b02816",
+      "name": "Webhook",
+      "webhookId": "a14d3443-3280-485b-8cdc-6d148cffcf9e"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1040,
+        128
+      ],
+      "id": "fab8552e-15b0-4590-b336-87b3ecfb3f10",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      \"title\": \"Golf 8 GTI Clubsport\",\n      \"slug\": \"golf-8-gti-clubsport-2025\",\n      \"summary\": \"Mega Ausstattung!\",\n      \"body\": \"Mega Ausstattung!\",\n      \"image_url\": \"https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1200&auto=format&fit=crop\",\n      \"category\": \"Volkswagen\",\n      \"status\": true,\n      \"tags\": [\"gti\", \"clubsport\"],\n      \"year\": 2025,\n      \"mileage\": 25000,\n      \"price\": 44800,\n      \"down_payment\": 5000,\n      \"monthly_rate\": 286,\n      \"interest_rate\": 1.99,\n      \"term_months\": 48,\n      \"phone\": \"015737641145\",\n      \"features\": [\"Mega Ausstattung\"],\n      \"images\": [\"https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1200&auto=format&fit=crop\", \"https://images.unsplash.com/photo-1555353540-64fd1b6218d7?q=80&w=1200&auto=format&fit=crop\"]\n    }\n  }\n];"
+      },
+      "id": "794818c8-52e4-4c55-b72e-1bb8658e6ab6",
+      "name": "Code ile JSON Hazırlama",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        320
+      ],
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "Supabase'e Ekle (Contents)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase'e Ekle (Contents)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Code ile JSON Hazırlama": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bb484873a837353bffa3a32022a6b8896a37e13624e55efaee3c44867c39fa1e"
+  }
+}

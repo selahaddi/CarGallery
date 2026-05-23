@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vitrin | Dortmund Fleet Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Use exact Tailwind Config provided -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e4e1e6",
+                    "on-secondary-fixed": "#0d1c2d",
+                    "tertiary-fixed": "#dbe1ff",
+                    "on-primary-fixed-variant": "#920028",
+                    "surface-container-lowest": "#0e0e11",
+                    "secondary-fixed": "#d4e4fa",
+                    "text-muted": "#94A3B8",
+                    "surface-dim": "#131316",
+                    "on-surface": "#e4e1e6",
+                    "tertiary-container": "#2f6af2",
+                    "on-primary-fixed": "#40000c",
+                    "background-deep": "#000000",
+                    "surface-bright": "#39393c",
+                    "on-tertiary-container": "#fdfaff",
+                    "surface-container-highest": "#353438",
+                    "on-background": "#e4e1e6",
+                    "on-tertiary": "#002a78",
+                    "on-error": "#690005",
+                    "surface-tint": "#ffb3b6",
+                    "surface-container-low": "#1b1b1e",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "inverse-on-surface": "#303033",
+                    "primary-fixed-dim": "#ffb3b6",
+                    "on-error-container": "#ffdad6",
+                    "secondary-container": "#39485a",
+                    "surface-container-high": "#2a2a2d",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "tertiary": "#b4c5ff",
+                    "on-tertiary-fixed": "#00174b",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "inverse-primary": "#be0037",
+                    "outline-variant": "#5c3f40",
+                    "primary-fixed": "#ffdada",
+                    "secondary": "#b9c8de",
+                    "on-secondary": "#233143",
+                    "surface-zinc": "#18181B",
+                    "background": "#131316",
+                    "primary-container": "#e11d48",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "on-primary": "#68001a",
+                    "on-primary-container": "#fffaf9",
+                    "error": "#ffb4ab",
+                    "accent-red-bright": "#F43F5E",
+                    "error-container": "#93000a",
+                    "surface-variant": "#353438",
+                    "on-secondary-container": "#a7b6cc",
+                    "on-surface-variant": "#e5bdbe",
+                    "surface-container": "#1f1f22",
+                    "primary": "#ffb3b6",
+                    "outline": "#ac8889",
+                    "surface": "#131316"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "80px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "component-padding": "1.5rem",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-hero": ["Sora"],
+                    "headline-lg-mobile": ["Sora"],
+                    "headline-lg": ["Sora"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Sora"],
+                    "label-bold": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "display-hero": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(24, 24, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .active-red-glow:hover {
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-deep text-on-background selection:bg-primary-container selection:text-white">
+<!-- TopNavBar Implementation from JSON -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md dark:bg-surface/70 border-b border-outline-variant/10 flex justify-between items-center px-gutter h-20 max-w-container-max mx-auto left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-8">
+<span class="text-headline-md font-headline-md font-black tracking-tighter text-primary dark:text-primary">DORTMUND FLEET FINANCE</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Leasing</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Financing</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Inventory</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex bg-surface-container-high rounded-lg px-4 py-2 items-center gap-2 border border-outline-variant/20">
+<span class="material-symbols-outlined text-text-muted">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-bold font-label-bold text-on-surface placeholder:text-text-muted w-32 lg:w-48" placeholder="Search fleet..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">settings</button>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-bold text-label-bold hover:opacity-80 active:scale-95 transition-all">Login</button>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="fixed left-0 top-0 h-full z-40 hidden lg:flex flex-col py-6 bg-surface-zinc dark:bg-surface-zinc w-64 shadow-xl border-r border-outline-variant/10">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-label-bold text-on-surface">Fleet Manager</h3>
+<p class="text-label-sm text-text-muted">Dortmund Logistics Gmbh</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-98 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                New Application
+            </button>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold" href="#">
+<span class="material-symbols-outlined">directions_car</span> Inventory
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold" href="#">
+<span class="material-symbols-outlined">calculate</span> Calculators
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold" href="#">
+<span class="material-symbols-outlined">description</span> Applications
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold" href="#">
+<span class="material-symbols-outlined">history</span> History
+            </a>
+</nav>
+<div class="px-2 pt-6 border-t border-outline-variant/10">
+<a class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-4 py-3 flex items-center gap-3 font-label-bold" href="#">
+<span class="material-symbols-outlined">help</span> Support
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-4 py-3 flex items-center gap-3 font-label-bold" href="#">
+<span class="material-symbols-outlined">logout</span> Sign Out
+            </a>
+</div>
+</aside>
+<main class="lg:ml-64 pt-32 pb-20 px-gutter min-h-screen">
+<!-- Header Section -->
+<header class="max-w-container-max mx-auto mb-12">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div class="space-y-4">
+<span class="text-primary-container font-label-bold text-label-bold tracking-widest uppercase">Premium Fleet Selection</span>
+<h1 class="text-display-hero font-display-hero text-on-surface">Digital <span class="text-primary-container">Showroom</span></h1>
+<p class="text-body-lg font-body-lg text-text-muted max-w-2xl">High-performance financing for professional fleets. Aggressive rates, industrial precision, and instant approvals for corporate partners.</p>
+</div>
+<div class="flex gap-4">
+<div class="glass-card p-4 rounded-xl text-center min-w-[140px]">
+<p class="text-label-sm text-text-muted uppercase">Avg Rate</p>
+<p class="text-headline-md font-headline-md text-primary-container">3.8%</p>
+</div>
+<div class="glass-card p-4 rounded-xl text-center min-w-[140px]">
+<p class="text-label-sm text-text-muted uppercase">Fleet Value</p>
+<p class="text-headline-md font-headline-md text-on-surface">€2.4M</p>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="mt-12 flex flex-wrap gap-4 items-center">
+<button class="glass-card px-6 py-2 rounded-full border-primary-container/50 text-primary-container font-label-bold text-label-bold">All Vehicles</button>
+<button class="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">EV / Hybrid</button>
+<button class="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">Performance</button>
+<button class="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">SUVs</button>
+<button class="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">Logistics</button>
+<div class="ml-auto glass-card flex items-center rounded-lg px-4 py-2 gap-2">
+<span class="text-label-bold font-label-bold text-text-muted">Sort by:</span>
+<select class="bg-transparent border-none text-on-surface font-label-bold text-label-bold focus:ring-0 cursor-pointer">
+<option>Monthly Rate: Low to High</option>
+<option>Power: High to Low</option>
+<option>Availability</option>
+</select>
+</div>
+</div>
+</header>
+<!-- Inventory Grid -->
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- ContentCard 1: Mercedes G-Class -->
+<div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A side-profile shot of a menacing matte black Mercedes-Benz G-Class parked in a dimly lit industrial warehouse. The lighting is cinematic with sharp highlights on the vehicle's boxy edges, emphasizing its aggressive stance. The environment is cold and professional, utilizing deep blacks and subtle gray tones. A sense of luxury and raw power permeates the image, perfectly matching the high-contrast B2B aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxkiyf0__4uI6byxUuVn6QciFSkaemfMXt9GJkikVHJlrgrWmDFrs28MWNXnI03GLccEdR4Mg4dcwOVmPopU0vEOceDs_5UD6SbUfmfgCDORpQ9peLtwdVfxU4Ab4m9ZW3uAnHZ6vFggsSC48gj0mXb4RvFEct0GJ_OIlDtYB1DPgg4DfaNMDQpvyeXOMJ6cESVrisUBp-xrUwLQ7sQdRvpzStphUIatYaMxRgjYMtLhYPqmNvTqMNpgC9SQ5Q9Slp4aURTbzoR2Ax"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<div class="bg-primary-container text-white px-4 py-1 rounded-full text-label-bold font-label-bold shadow-lg">
+                            Rate: 462€ <span class="text-[10px]">/mo</span>
+</div>
+<div class="bg-black/80 backdrop-blur-md text-on-surface px-4 py-1 rounded-full text-label-bold font-label-bold border border-outline-variant/20">
+                            Down: 10.000€
+                        </div>
+</div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-white/10 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded">Immediate Delivery</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors">G 400d AMG Line</h2>
+<p class="text-label-sm text-text-muted uppercase tracking-wider">Luxury SUV • Diesel • 330 HP</p>
+</div>
+<button class="material-symbols-outlined text-text-muted hover:text-primary-container">favorite</button>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/10">
+<div>
+<p class="text-[10px] text-text-muted uppercase">Loan Term</p>
+<p class="text-on-surface font-label-bold">48 Months</p>
+</div>
+<div>
+<p class="text-[10px] text-text-muted uppercase">Interest Rate</p>
+<p class="text-on-surface font-label-bold">3.99% Fixed</p>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-primary-container text-white py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-colors">Configure Deal</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ContentCard 2: Porsche Taycan -->
+<div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A sleek white Porsche Taycan electric sports car parked in a futuristic, high-key garage with neon red lighting accents. The car's aerodynamic lines are highlighted by soft overhead studio lights. The atmosphere is tech-forward and clean, with a dark slate floor reflecting the vibrant red neon tubes. The image exudes speed, innovation, and premium automotive engineering within a high-contrast digital setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPy02TYnF92TDTKghEAdkifVdr1nMBAvqzCNvSnyMf7EsqCrw-H9l5tQ3KVFPnQ_zkyDAGZCgH4icDFP6IMhJrk-zOK3mnkEsBtVjvGxxdSwTbV4J9MSul8NCTC9lWoy_AlfYi1Ktf48EeiqEZ9_P09Lp9cFFNHooyPUEIEdsBmyQ0CP0IOZR5JTBKOqQfkI2naymbnOTkONuHTIQtxBXKn6ikoTTWh3cbh0J_byzz4mS-5Tu0jq_r2QAJQ4tkjK0NCqY0Hn-W128y"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<div class="bg-primary-container text-white px-4 py-1 rounded-full text-label-bold font-label-bold shadow-lg">
+                            Rate: 885€ <span class="text-[10px]">/mo</span>
+</div>
+<div class="bg-black/80 backdrop-blur-md text-on-surface px-4 py-1 rounded-full text-label-bold font-label-bold border border-outline-variant/20">
+                            Down: 15.000€
+                        </div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors">Taycan Turbo S</h2>
+<p class="text-label-sm text-text-muted uppercase tracking-wider">Electric • AWD • 761 HP</p>
+</div>
+<button class="material-symbols-outlined text-text-muted hover:text-primary-container">favorite</button>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/10">
+<div>
+<p class="text-[10px] text-text-muted uppercase">Loan Term</p>
+<p class="text-on-surface font-label-bold">36 Months</p>
+</div>
+<div>
+<p class="text-[10px] text-text-muted uppercase">Price</p>
+<p class="text-on-surface font-label-bold">€182,300</p>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-primary-container text-white py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-colors">Configure Deal</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ContentCard 3: Audi RS6 -->
+<div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A front-view perspective of a grey Audi RS6 Avant speeding along a high-speed motorway at dusk. The motion blur on the background creates an intense sense of velocity, while the car's headlights pierce through the dark. Dramatic lighting emphasizes the wide body kit and large air intakes. The overall palette is moody and dark, with the red taillights of distant cars adding sharp color contrast in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCmtyWpyxH3jQMVZqAqczqIWslQM-h2lYwmB0WKFiCBQK6gVkaRM2N_-P2vL6RNO9dZ7s_SimKr2fhalACUCJ9T5H9CClgR0uBbQN9Lhx4ILwb1gd5RIalJieCEdJ8FO3plO6lG1pH75C0UJpnXzqrBE1cES7VwzO4nmGaLKmA7ZGyeAXz1V64GdA2TMceZrmE18UECSwHLnL0Vnjth6Xxl6uUO5jAoOrkSr49k3suPUIN1OXxQjo1qRGvZAnPS1jyhLEQUdZkJ706"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<div class="bg-primary-container text-white px-4 py-1 rounded-full text-label-bold font-label-bold shadow-lg">
+                            Rate: 615€ <span class="text-[10px]">/mo</span>
+</div>
+<div class="bg-black/80 backdrop-blur-md text-on-surface px-4 py-1 rounded-full text-label-bold font-label-bold border border-outline-variant/20">
+                            Down: 12.500€
+                        </div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors">RS6 Avant Performance</h2>
+<p class="text-label-sm text-text-muted uppercase tracking-wider">Estate • Petrol • 630 HP</p>
+</div>
+<button class="material-symbols-outlined text-text-muted hover:text-primary-container">favorite</button>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/10">
+<div>
+<p class="text-[10px] text-text-muted uppercase">Loan Term</p>
+<p class="text-on-surface font-label-bold">60 Months</p>
+</div>
+<div>
+<p class="text-[10px] text-text-muted uppercase">Interest Rate</p>
+<p class="text-on-surface font-label-bold">4.2% Fixed</p>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-primary-container text-white py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-colors">Configure Deal</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ContentCard 4: BMW M4 -->
+<div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up detail of the front grille and aggressive headlights of a sapphire black BMW M4 Competition. The car is positioned in a rain-slicked modern city alleyway at night. Reflections of vibrant red neon signs glisten on the wet asphalt and the car's mirror-like finish. The lighting is low-key, focusing on the intricate carbon fiber details. The mood is predatory and high-end, aligning with an elite corporate brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHVIyyjg-IVGXpfnRTiYJaCiftWUDaI6Kzi1MHQ1w8vWOzanmSpl9iM6o0WoIwW950dzj51q7BFkgCd-mJjFf31-EkbT2zq1tt7lnG4jOqaGB6WN2C6GVTmxMEQMs5BWiAqmMSD2PZyWxj868cK_Ii7BFRpQGkLUK_bSHkO959n8ZFiT0zjVoaVAnxaSaYJu4Au3ZXYgi8x56qXDWjFcTCHgLtWqymJv3gQe-duaeW0WprsK6XFPjdR5IOIlEh_vLVJNDdAzp54Fsx"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<div class="bg-primary-container text-white px-4 py-1 rounded-full text-label-bold font-label-bold shadow-lg">
+                            Rate: 535€ <span class="text-[10px]">/mo</span>
+</div>
+<div class="bg-black/80 backdrop-blur-md text-on-surface px-4 py-1 rounded-full text-label-bold font-label-bold border border-outline-variant/20">
+                            Down: 8.000€
+                        </div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors">M4 Competition xDrive</h2>
+<p class="text-label-sm text-text-muted uppercase tracking-wider">Coupe • Petrol • 510 HP</p>
+</div>
+<button class="material-symbols-outlined text-text-muted hover:text-primary-container">favorite</button>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/10">
+<div>
+<p class="text-[10px] text-text-muted uppercase">Loan Term</p>
+<p class="text-on-surface font-label-bold">48 Months</p>
+</div>
+<div>
+<p class="text-[10px] text-text-muted uppercase">Price</p>
+<p class="text-on-surface font-label-bold">€105,400</p>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-primary-container text-white py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-colors">Configure Deal</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ContentCard 5: Range Rover -->
+<div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A wide-angle landscape shot of a silver Range Rover SV Autobiography parked on a cliffside overlooking a modern, illuminated coastal city at twilight. The car's metallic finish catches the cooling blue tones of the dusk light, while the city's red and white lights twinkle in the far background. The scene represents ultimate corporate achievement and prestige. The visual style is crisp, clean, and extremely high-definition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnpHq87bpoiFFr3CI_4PGUgJk2ShmDtPhiuSkK6tCwD12pfhmdmpktfy87f1iFExz8vygxzSTi-QkSmUdWtHlsPOS1xqNQhE_sj89Dl7P4M4MVcXRkPFLKa39pC081jchgf-hSDpx0MLGhw7ahDSlrCf8z7YZOAJqJ7gcpUWaPfSznoW8u--mFPlf2JY19YFTi0uiIjGU_inzNcyJFtFdMh7BZ5ZgXDfkZUIvUA6F9nbXP90dwtDt77WJCNtxIkIAnKzMtaggMv_2L"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<div class="bg-primary-container text-white px-4 py-1 rounded-full text-label-bold font-label-bold shadow-lg">
+                            Rate: 742€ <span class="text-[10px]">/mo</span>
+</div>
+<div class="bg-black/80 backdrop-blur-md text-on-surface px-4 py-1 rounded-full text-label-bold font-label-bold border border-outline-variant/20">
+                            Down: 20.000€
+                        </div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors">Range Rover LWB</h2>
+<p class="text-label-sm text-text-muted uppercase tracking-wider">Luxury SUV • Diesel • 350 HP</p>
+</div>
+<button class="material-symbols-outlined text-text-muted hover:text-primary-container">favorite</button>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/10">
+<div>
+<p class="text-[10px] text-text-muted uppercase">Loan Term</p>
+<p class="text-on-surface font-label-bold">48 Months</p>
+</div>
+<div>
+<p class="text-[10px] text-text-muted uppercase">Interest Rate</p>
+<p class="text-on-surface font-label-bold">3.5% Promo</p>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-primary-container text-white py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-colors">Configure Deal</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ContentCard 6: Tesla Model S Plaid -->
+<div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A side-view action shot of a deep red Tesla Model S Plaid charging at a high-tech Supercharger station at night. The charging cable features a glowing white light ring, and the car's chrome-deleted trim looks sharp against its glossy red paint. The station's canopy provides soft, diffused white lighting, while the dark surroundings create a minimalist, high-contrast atmosphere. The image emphasizes the blend of performance and sustainable technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWznLfBpbzMBhr1nUujMsRLFc2NwVDgwJG1y6LkjKDC7Iba-2Cbv24D2rb_lLQtO0Qq62anzG8COQV_wR8U3W7aiDChFlTsUsBbcRVoNBdNNGD1MMzKCg_LG98taYxszd2eSlcyacShumu0K6ODqfiVdwMQswlBlwBA90Ow_TO8kME2IgJNwYiB8PuMbB_e2n_mKNfot1LJtn3M6Q12rTw77JQCsD1s3ohKrFzXRkwbMlBqHGdMidPJ8dBi0A4F-PG1PK8xT4IuB0w"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<div class="bg-primary-container text-white px-4 py-1 rounded-full text-label-bold font-label-bold shadow-lg">
+                            Rate: 488€ <span class="text-[10px]">/mo</span>
+</div>
+<div class="bg-black/80 backdrop-blur-md text-on-surface px-4 py-1 rounded-full text-label-bold font-label-bold border border-outline-variant/20">
+                            Down: 5.000€
+                        </div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors">Model S Plaid</h2>
+<p class="text-label-sm text-text-muted uppercase tracking-wider">Electric • AWD • 1020 HP</p>
+</div>
+<button class="material-symbols-outlined text-text-muted hover:text-primary-container">favorite</button>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/10">
+<div>
+<p class="text-[10px] text-text-muted uppercase">Loan Term</p>
+<p class="text-on-surface font-label-bold">48 Months</p>
+</div>
+<div>
+<p class="text-[10px] text-text-muted uppercase">Interest Rate</p>
+<p class="text-on-surface font-label-bold">0.9% EV Rate</p>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-primary-container text-white py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-colors">Configure Deal</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</div>
+</div>
+</div><!-- Hizmetlerimiz Section -->
+<section class="max-w-container-max mx-auto mt-24 mb-24">
+<div class="flex flex-col items-center mb-12">
+<span class="text-primary-container font-label-bold text-label-bold tracking-widest uppercase mb-2">Our Expertise</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Hizmetlerimiz</h2>
+<div class="h-1 w-24 bg-primary-container mt-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Finansman -->
+<div class="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary-container group-hover:text-white">payments</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-3">Finansman</h3>
+<p class="text-body-md text-text-muted">Size özel düşük faizli ve esnek ödeme planlı finansman çözümleri sunuyoruz.</p>
+</div>
+<!-- Garanti -->
+<div class="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary-container group-hover:text-white">verified_user</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-3">Garanti</h3>
+<p class="text-body-md text-text-muted">Tüm araçlarımız için kapsamlı teknik garanti ve yol yardım paketleri mevcuttur.</p>
+</div>
+<!-- Kayıt Hizmeti -->
+<div class="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary-container group-hover:text-white">article</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-3">Kayıt Hizmeti</h3>
+<p class="text-body-md text-text-muted">Ruhsat, plaka ve tescil işlemlerinizi profesyonel ekibimizle hızla tamamlıyoruz.</p>
+</div>
+<!-- Araç Satın Alımı -->
+<div class="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary-container group-hover:text-white">shopping_cart</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-3">Araç Satın Alımı</h3>
+<p class="text-body-md text-text-muted">Mevcut aracınızı en iyi piyasa değerinden takas veya nakit olarak alıyoruz.</p>
+</div>
+</div>
+</section>
+<!-- Süreç Section -->
+<section class="max-w-container-max mx-auto mb-24">
+<div class="bg-surface-zinc/50 border border-outline-variant/10 rounded-3xl p-12 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 blur-[120px] rounded-full"></div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 relative z-10">
+<div class="max-w-sm">
+<span class="text-primary-container font-label-bold text-label-bold tracking-widest uppercase">How it works</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface mt-2 mb-6">Süreç</h2>
+<p class="text-body-lg text-text-muted">Sadece 5 adımda hayalinizdeki araca profesyonel finansmanla sahip olun.</p>
+<button class="mt-8 bg-primary-container text-white px-8 py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-all">Başvuruyu Başlat</button>
+</div>
+<div class="flex-1 w-full space-y-8">
+<div class="flex gap-6 items-start">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full border-2 border-primary-container flex items-center justify-center text-primary-container font-bold">1</div>
+<div class="w-0.5 h-12 bg-outline-variant/20"></div>
+</div>
+<div>
+<h4 class="text-on-surface font-label-bold">Araç Seçimi</h4>
+<p class="text-label-sm text-text-muted">Envanterimizden size en uygun aracı belirleyin.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full border-2 border-primary-container flex items-center justify-center text-primary-container font-bold">2</div>
+<div class="w-0.5 h-12 bg-outline-variant/20"></div>
+</div>
+<div>
+<h4 class="text-on-surface font-label-bold">Başvuru Formu</h4>
+<p class="text-label-sm text-text-muted">Online başvuru formunu 2 dakikada doldurun.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full border-2 border-primary-container flex items-center justify-center text-primary-container font-bold">3</div>
+<div class="w-0.5 h-12 bg-outline-variant/20"></div>
+</div>
+<div>
+<h4 class="text-on-surface font-label-bold">Değerlendirme</h4>
+<p class="text-label-sm text-text-muted">Uzman ekibimiz başvurunuzu anında incelesin.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full border-2 border-primary-container flex items-center justify-center text-primary-container font-bold">4</div>
+<div class="w-0.5 h-12 bg-outline-variant/20"></div>
+</div>
+<div>
+<h4 class="text-on-surface font-label-bold">Evrak Teslimi</h4>
+<p class="text-label-sm text-text-muted">Gerekli belgeleri dijital olarak güvenle gönderin.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</div>
+<div>
+<h4 class="text-on-surface font-label-bold">Teslimat</h4>
+<p class="text-label-sm text-text-muted">Tebrikler! Aracınız kullanıma hazır ve teslim ediliyor.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pagination -->
+<div class="max-w-container-max mx-auto mt-16 flex justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg glass-card text-on-surface hover:bg-primary-container hover:text-white transition-all">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container text-white font-bold">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg glass-card text-on-surface hover:bg-primary-container hover:text-white transition-all">3</button>
+<span class="text-text-muted flex items-center px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg glass-card text-on-surface hover:bg-primary-container hover:text-white transition-all">12</button>
+</div>
+</main>
+<!-- Footer Implementation from JSON -->
+<footer class="w-full py-12 px-gutter flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto mt-section-gap bg-background-deep border-t border-outline-variant/20">
+<div class="mb-8 md:mb-0">
+<span class="text-label-bold font-label-bold text-primary block mb-2">DORTMUND FLEET FINANCE</span>
+<p class="text-label-sm font-label-sm text-text-muted max-w-xs">© 2024 DORTMUND FLEET FINANCE. ALL RIGHTS RESERVED. PRECISION LEASING SOLUTIONS.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-text-muted dark:text-text-muted font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Legal Notice</a>
+<a class="text-text-muted dark:text-text-muted font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Data Privacy</a>
+<a class="text-text-muted dark:text-text-muted font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-text-muted dark:text-text-muted font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Imprint</a>
+</div>
+<div class="flex gap-4 mt-8 md:mt-0">
+<a class="w-10 h-10 rounded-full border border-outline-variant/20 flex items-center justify-center hover:border-primary-container transition-all group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary-container">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant/20 flex items-center justify-center hover:border-primary-container transition-all group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary-container">mail</span>
+</a>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass {
+    @apply bg-zinc-950/80 backdrop-blur-xl border border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)];
+  }
+  .glass-light {
+    @apply bg-zinc-900/60 backdrop-blur-lg border border-white/5;
+  }
+}
+
+body {
+  @apply bg-zinc-950 text-gray-100 antialiased min-h-screen relative overflow-x-hidden;
+}
+
+/* Background Pattern */
+body::before {
+  content: '';
+  @apply absolute inset-0 -z-10 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:16px_16px] opacity-30;
+}
+
+.glass-card {
+    background: rgba(24, 24, 27, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+.active-red-glow:hover {
+    box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
+}
+.text-glow {
+    text-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+}
+.text-gradient {
+    background: linear-gradient(to right, #ffffff, #ffb3b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-gradient {
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+}
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

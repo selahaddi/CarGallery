@@ -1,0 +1,693 @@
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercedes-AMG G 63 | Dortmund Fleet Finance</title>
+    <link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
+    <!-- Google Fonts & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#e4e1e6",
+              "on-secondary-fixed": "#0d1c2d",
+              "tertiary-fixed": "#dbe1ff",
+              "on-primary-fixed-variant": "#920028",
+              "surface-container-lowest": "#0e0e11",
+              "secondary-fixed": "#d4e4fa",
+              "text-muted": "#94A3B8",
+              "surface-dim": "#131316",
+              "on-surface": "#e4e1e6",
+              "tertiary-container": "#2f6af2",
+              "on-primary-fixed": "#40000c",
+              "background-deep": "#000000",
+              "surface-bright": "#39393c",
+              "on-tertiary-container": "#fdfaff",
+              "surface-container-highest": "#353438",
+              "on-background": "#e4e1e6",
+              "on-tertiary": "#002a78",
+              "on-error": "#690005",
+              "surface-tint": "#ffb3b6",
+              "surface-container-low": "#1b1b1e",
+              "tertiary-fixed-dim": "#b4c5ff",
+              "inverse-on-surface": "#303033",
+              "primary-fixed-dim": "#ffb3b6",
+              "on-error-container": "#ffdad6",
+              "secondary-container": "#39485a",
+              "surface-container-high": "#2a2a2d",
+              "on-secondary-fixed-variant": "#39485a",
+              "tertiary": "#b4c5ff",
+              "on-tertiary-fixed": "#00174b",
+              "on-tertiary-fixed-variant": "#003ea8",
+              "inverse-primary": "#be0037",
+              "outline-variant": "#5c3f40",
+              "primary-fixed": "#ffdada",
+              "secondary": "#b9c8de",
+              "on-secondary": "#233143",
+              "surface-zinc": "#18181B",
+              "background": "#131316",
+              "primary-container": "#e11d48",
+              "secondary-fixed-dim": "#b9c8de",
+              "on-primary": "#68001a",
+              "on-primary-container": "#fffaf9",
+              "error": "#ffb4ab",
+              "accent-red-bright": "#F43F5E",
+              "error-container": "#93000a",
+              "surface-variant": "#353438",
+              "on-secondary-container": "#a7b6cc",
+              "on-surface-variant": "#e5bdbe",
+              "surface-container": "#1f1f22",
+              "primary": "#ffb3b6",
+              "outline": "#ac8889",
+              "surface": "#131316"
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            spacing: {
+              "section-gap": "80px",
+              "gutter": "24px",
+              "margin-mobile": "16px",
+              "component-padding": "1.5rem",
+              "container-max": "1280px"
+            },
+            fontFamily: {
+              "body-lg": ["Inter", "sans-serif"],
+              "label-sm": ["Inter", "sans-serif"],
+              "display-hero": ["Sora", "sans-serif"],
+              "headline-lg-mobile": ["Sora", "sans-serif"],
+              "headline-lg": ["Sora", "sans-serif"],
+              "body-md": ["Inter", "sans-serif"],
+              "headline-md": ["Sora", "sans-serif"],
+              "label-bold": ["Inter", "sans-serif"]
+            },
+            fontSize: {
+              "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+              "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+              "display-hero": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+              "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+              "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+              "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+              "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+              "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #0e0e11;
+        color: #e4e1e6;
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -10;
+        background-image: radial-gradient(#3f3f46 1px, transparent 1px);
+        background-size: 16px 16px;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+      .glass {
+        background: rgba(9, 9, 11, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+      }
+      .glass-light {
+        background: rgba(24, 24, 27, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .glass-card {
+        background: rgba(24, 24, 27, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+      }
+      .active-red-glow:hover {
+        box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
+      }
+      .text-glow {
+        text-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+      }
+      .text-gradient {
+        background: linear-gradient(to right, #ffffff, #ffb3b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero-gradient {
+        background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+  
+    <!-- Sidebar Backdrop -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 transition-opacity hidden" onclick="toggleSidebar()"></div>
+    
+    <!-- Sidebar Menu -->
+    <aside id="sidebar-menu" class="fixed left-0 top-0 h-full z-40 flex flex-col py-6 bg-surface-zinc w-64 shadow-xl border-r border-outline-variant/10 transition-transform duration-300 ease-in-out -translate-x-full">
+      <div class="px-6 mb-10 mt-20 flex justify-between items-start">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-white">person</span>
+          </div>
+          <div>
+            <h3 class="font-headline-md text-label-bold text-on-surface" data-t="side_fleet_manager">Filo Yöneticisi</h3>
+            <p class="text-label-sm text-text-muted" data-t="side_company">Dortmund Logistics Gmbh</p>
+          </div>
+        </div>
+        <button onclick="toggleSidebar()" class="material-symbols-outlined text-text-muted hover:text-white mt-2 lg:hidden">close</button>
+      </div>
+      
+      <nav class="flex-1 space-y-1">
+        <a href="dashboard.html" class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold transition-colors">
+          <span class="material-symbols-outlined">dashboard</span> <span data-t="side_dashboard">Dashboard</span>
+        </a>
+        <a href="index.html" class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold transition-colors">
+          <span class="material-symbols-outlined">directions_car</span> <span data-t="side_inventory">Envanter</span>
+        </a>
+        <a href="#" class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold transition-colors">
+          <span class="material-symbols-outlined">description</span> <span data-t="side_applications">Başvurular</span>
+        </a>
+        <a href="#" class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-bold transition-colors">
+          <span class="material-symbols-outlined">history</span> <span data-t="side_history">Geçmiş</span>
+        </a>
+      </nav>
+      
+      <div class="px-2 pt-6 border-t border-outline-variant/10">
+        <a href="#" class="text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-4 py-3 flex items-center gap-3 font-label-bold transition-colors">
+          <span class="material-symbols-outlined">help</span> <span data-t="side_support">Destek</span>
+        </a>
+        <button class="w-full text-left text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-4 py-3 flex items-center gap-3 font-label-bold transition-colors">
+          <span class="material-symbols-outlined">logout</span> <span data-t="btn_signout">Çıkış Yap</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md border-b border-outline-variant/10 flex justify-between items-center px-6 h-20 max-w-container-max mx-auto left-1/2 -translate-x-1/2">
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-4">
+          <button onclick="toggleSidebar()" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors text-2xl">
+            menu
+          </button>
+          <a href="index.html" class="text-headline-md font-headline-md font-black tracking-tighter text-primary hover:opacity-80 transition-opacity hidden sm:block" data-t="brand_name">
+            DORTMUND FLEET FINANCE
+          </a>
+        </div>
+        <div class="hidden md:flex gap-6">
+          <a href="services.html" class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" data-t="services_title">
+            Hizmetlerimiz
+          </a>
+          <a href="index.html" class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" data-t="nav_showroom">
+            Vitrin
+          </a>
+          <a href="dashboard.html" class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" data-t="nav_panel">
+            Panel
+          </a>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex bg-surface-container-high rounded-lg px-4 py-2 items-center gap-2 border border-outline-variant/20">
+          <span class="material-symbols-outlined text-text-muted">search</span>
+          <input 
+            id="search-input-nav"
+            class="bg-transparent border-none focus:ring-0 text-label-bold font-label-bold text-on-surface placeholder:text-text-muted w-32 lg:w-48 outline-none" 
+            placeholder="Filoda ara..." 
+            data-t-placeholder="search_placeholder"
+            type="text"
+            oninput="if(typeof handleSearch === 'function') handleSearch(this.value)"
+          />
+        </div>
+
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all hidden md:block">notifications</button>
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all hidden md:block">settings</button>
+
+        <!-- Language Switcher -->
+        <div class="relative">
+          <button 
+            id="lang-btn"
+            onclick="toggleLangDropdown()"
+            class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/15 text-label-bold font-label-bold text-on-surface hover:bg-surface-container-high/70 active:scale-95 transition-all outline-none"
+          >
+            <span class="material-symbols-outlined text-text-muted text-lg">language</span>
+            <span id="active-lang" class="uppercase text-sm">TR</span>
+            <span class="material-symbols-outlined text-xs text-text-muted">keyboard_arrow_down</span>
+          </button>
+          
+          <div id="lang-dropdown" class="absolute right-0 mt-2 w-28 rounded-xl bg-surface/90 backdrop-blur-xl border border-outline-variant/20 shadow-xl overflow-hidden z-50 hidden">
+            <button onclick="setLanguage('tr')" class="w-full text-left px-4 py-2 text-sm hover:bg-primary-container/20 text-on-surface-variant transition-colors">
+              Türkçe
+            </button>
+            <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-primary-container/20 text-on-surface-variant transition-colors">
+              English
+            </button>
+            <button onclick="setLanguage('de')" class="w-full text-left px-4 py-2 text-sm hover:bg-primary-container/20 text-on-surface-variant transition-colors">
+              Deutsch
+            </button>
+          </div>
+        </div>
+
+        <a href="login.html" id="nav-login-btn" class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-bold text-label-bold hover:opacity-80 active:scale-95 transition-all">
+          <span data-t="btn_signin">Giriş</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="min-h-screen flex flex-col">
+      <div class="flex-grow pt-20">
+        
+      <main class="bg-background-deep text-on-surface font-body-md selection:bg-primary-container pb-20">
+        <!-- Hero Gallery Section -->
+        <section class="relative w-full h-[60vh] bg-background-deep overflow-hidden group flex items-center justify-center">
+          <img 
+            id="blur-bg"
+            src="https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1080" 
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none z-0"
+          />
+          <img 
+            id="main-car-img"
+            src="https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1080" 
+            alt="Mercedes-AMG G 63"
+            class="relative max-w-full max-h-full object-contain z-10 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 hero-gradient z-20 pointer-events-none"></div>
+          <div class="absolute bottom-12 left-6 z-30">
+            <p class="text-primary font-label-bold mb-2 tracking-widest" data-t="showroom_subtitle">PREMIUM FİLO SEÇİMİ</p>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-md">Mercedes-AMG G 63</h1>
+            <div class="flex flex-wrap gap-4">
+              
+                <div class="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-sm">category</span>
+                  <span class="text-label-bold text-white text-xs">Lüks SUV</span>
+                </div>
+              
+              
+                <div class="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-sm">stars</span>
+                  <span class="text-label-bold text-white text-xs">AMG Gece Paketi</span>
+                </div>
+              
+            </div>
+          </div>
+          
+          <!-- Thumbnail Navigation -->
+          <div class="absolute right-6 bottom-12 flex flex-col gap-2 z-30">
+            
+              <div 
+                onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549741418-89x9cc.jpeg', 0)"
+                class="thumb-item w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all border-primary opacity-100"
+              >
+                <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549741418-89x9cc.jpeg" alt="Gallery 1" class="w-full h-full object-cover" />
+              </div>
+            
+              <div 
+                onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743034-fln81.jpeg', 1)"
+                class="thumb-item w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all border-white/20 opacity-60 hover:opacity-100"
+              >
+                <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743034-fln81.jpeg" alt="Gallery 2" class="w-full h-full object-cover" />
+              </div>
+            
+              <div 
+                onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743841-dmawx7.jpeg', 2)"
+                class="thumb-item w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all border-white/20 opacity-60 hover:opacity-100"
+              >
+                <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743841-dmawx7.jpeg" alt="Gallery 3" class="w-full h-full object-cover" />
+              </div>
+            
+          </div>
+        </section>
+
+        <!-- Content Grid -->
+        <div class="max-w-container-max mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 mt-12">
+          
+          <!-- Left: Technical Specs -->
+          <div class="lg:col-span-7 space-y-6">
+            <a href="index.html" class="inline-flex items-center text-text-muted hover:text-primary transition font-medium mb-4">
+              <span class="material-symbols-outlined mr-2">arrow_back</span>
+              <span data-t="detail_back">Vitrine Dön</span>
+            </a>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2">calendar_today</span>
+                <p class="text-text-muted text-xs" data-t="detail_first_reg">İlk Tescil</p>
+                <p class="text-xl font-bold text-white mt-1">2023</p>
+              </div>
+              <div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2">distance</span>
+                <p class="text-text-muted text-xs" data-t="detail_mileage">Kilometre</p>
+                <p class="text-xl font-bold text-white mt-1">12.500 km</p>
+              </div>
+              <div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2">settings_input_component</span>
+                <p class="text-text-muted text-xs" data-t="detail_gear">Şanzıman</p>
+                <p class="text-xl font-bold text-white mt-1" data-t="detail_automatic">Otomatik</p>
+              </div>
+            </div>
+            
+            <div class="glass-card p-8 rounded-xl">
+              <h2 class="text-xl font-bold text-white mb-6 border-l-4 border-primary pl-4" data-t="detail_description">Araç Açıklaması</h2>
+              <p class="text-base text-text-muted leading-relaxed whitespace-pre-wrap">Aracımız "G Manufaktur" özel serisidir. Özel renk, Nappa deri koltuklar, karbon fiber detaylar ve AMG Gece Paketi (Night Package) mevcuttur. Tüm bakımları yetkili servisinde yapılmıştır. Çiziksiz, kazasız ve masrafsızdır. Arka eğlence paketi ve 360 derece kamera sistemi bulunur.</p>
+              
+              
+                <ul class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 border-t border-outline-variant/15 pt-6">
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> AMG Gece Paketi
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> Burmester 3D Ses
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> Masajlı Koltuklar
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> 360 Kamera
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> Arka Eğlence Sistemi
+                    </li>
+                  
+                </ul>
+              
+            </div>
+
+            <!-- Bildergalerie -->
+            
+              <div class="glass-card p-8 rounded-xl">
+                <h2 class="text-xl font-bold text-white mb-6 border-l-4 border-primary pl-4" data-t="detail_gallery_tr">Resim Galerisi</h2>
+                <div class="grid grid-cols-2 gap-4">
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549741418-89x9cc.jpeg', 0)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549741418-89x9cc.jpeg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 1" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743034-fln81.jpeg', 1)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743034-fln81.jpeg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 2" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743841-dmawx7.jpeg', 2)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743841-dmawx7.jpeg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 3" />
+                    </div>
+                  
+                </div>
+              </div>
+            
+          </div>
+          
+          <!-- Right: Finanzierungsdetails -->
+          <div class="lg:col-span-5">
+            <div class="glass-card p-8 rounded-xl sticky top-28 space-y-6">
+              <h3 class="text-xl font-bold text-white border-b border-outline-variant/20 pb-4" data-t="detail_fin_details">Finansman Detayları</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-end border-b border-outline-variant/20 pb-4">
+                  <span class="text-text-muted text-sm font-semibold" data-t="detail_price">Araç Fiyatı</span>
+                  <span class="text-2xl font-bold text-white">€215.000</span>
+                </div>
+                
+                <!-- Calculator sliders for premium dynamic feel! -->
+                <div class="space-y-4 pt-2">
+                  <div>
+                    <div class="flex justify-between text-xs text-text-muted mb-1">
+                      <span data-t="detail_down_payment">Peşinat</span>
+                      <span id="slider-down-val">€60.000</span>
+                    </div>
+                    <input 
+                      type="range" 
+                      id="down-payment-slider" 
+                      min="0" 
+                      max="215000" 
+                      step="5000"
+                      value="60000"
+                      class="w-full accent-primary-container"
+                      oninput="recalculateFinance(215000, 1.95)"
+                    />
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-xs text-text-muted mb-1">
+                      <span data-t="detail_term">Vade</span>
+                      <span id="slider-term-val">48 Ay</span>
+                    </div>
+                    <input 
+                      type="range" 
+                      id="term-slider" 
+                      min="12" 
+                      max="84" 
+                      step="12"
+                      value="48"
+                      class="w-full accent-primary-container"
+                      oninput="recalculateFinance(215000, 1.95)"
+                    />
+                  </div>
+                </div>
+
+                <div class="bg-primary-container/10 p-6 rounded-xl border border-primary/20 mt-6">
+                  <p class="text-primary font-label-bold text-xs uppercase" data-t="detail_monthly_rate">AYLIK TAKSİT</p>
+                  <div class="flex items-baseline mt-1">
+                    <span id="monthly-rate-display" class="text-5xl font-extrabold text-white">€3.650</span>
+                    <span class="text-sm text-white/70 ml-1">/Ay</span>
+                  </div>
+                  <p class="text-text-muted text-xs mt-2"><span data-t="detail_interest_rate">Faiz Oranı</span>: %1.95</p>
+                </div>
+
+                <button 
+                  onclick="openModal()"
+                  class="w-full bg-primary-container hover:bg-accent-red-bright text-white py-4 rounded-xl font-bold transition shadow-lg mt-6"
+                  data-t="detail_request_btn"
+                >
+                  Kişisel Teklif Alın
+                </button>
+                <p class="text-center text-xs text-text-muted" data-t="detail_included_services">GAP Koruması & Ücretsiz Teslimat Dahil</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Request Offer Modal -->
+        <div id="offer-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+          <div class="glass-card max-w-md w-full p-8 rounded-2xl border-primary border shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-text-muted hover:text-white transition material-symbols-outlined">
+              close
+            </button>
+            <h2 class="text-2xl font-bold text-white mb-2" data-t="form_title">Kişisel Teklifinizi Oluşturun</h2>
+            <p class="text-text-muted text-xs mb-6" data-t="form_desc">Bilgilerinizi bırakın, size özel PDF teklifinizi hemen iletelim.</p>
+            
+            <form onsubmit="event.preventDefault(); handleSubmitOffer();" class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-text-muted mb-1" data-t="form_name">Adınız Soyadınız</label>
+                <input required type="text" class="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-text-muted mb-1" data-t="form_email">E-posta Adresi</label>
+                <input required type="email" class="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-text-muted mb-1" data-t="form_phone">Telefon Numarası</label>
+                <input required type="tel" class="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary text-sm" />
+              </div>
+              
+              <div class="pt-4 flex gap-3">
+                <button type="button" onclick="closeModal()" class="flex-1 px-4 py-3 rounded-lg border border-outline-variant/30 text-white hover:bg-surface-variant font-label-bold text-sm" data-t="form_cancel">
+                  İptal
+                </button>
+                <button type="submit" class="flex-1 bg-primary-container text-white px-4 py-3 rounded-lg hover:bg-accent-red-bright transition font-label-bold text-sm" data-t="form_submit">
+                  Teklifi İste
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <script>
+        function changeActiveImage(url, idx) {
+          document.getElementById('main-car-img').src = url;
+          document.getElementById('blur-bg').src = url;
+          
+          document.querySelectorAll('.thumb-item').forEach((item, index) => {
+            if (index === idx) {
+              item.classList.add('border-primary', 'opacity-100');
+              item.classList.remove('border-white/20', 'opacity-60');
+            } else {
+              item.classList.remove('border-primary', 'opacity-100');
+              item.classList.add('border-white/20', 'opacity-60');
+            }
+          });
+        }
+
+        function openModal() {
+          document.getElementById('offer-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+          document.getElementById('offer-modal').classList.add('hidden');
+        }
+
+        function handleSubmitOffer() {
+          const lang = localStorage.getItem('lang') || 'tr';
+          alert(translations[lang]['detail_success_alert'] || 'Talebiniz başarıyla iletildi!');
+          closeModal();
+        }
+
+        // Live calculation logic in slider!
+        function recalculateFinance(price, interestRate) {
+          const downVal = parseFloat(document.getElementById('down-payment-slider').value);
+          const termVal = parseInt(document.getElementById('term-slider').value);
+          
+          document.getElementById('slider-down-val').textContent = '€' + downVal.toLocaleString('de-DE');
+          document.getElementById('slider-term-val').textContent = termVal + ' Ay';
+          
+          const principal = price - downVal;
+          if (principal <= 0) {
+            document.getElementById('monthly-rate-display').textContent = '€0';
+            return;
+          }
+          
+          // Simple monthly payment formula with interest rate
+          const monthlyInt = (interestRate / 100) / 12;
+          let payment = 0;
+          if (monthlyInt > 0) {
+            payment = (principal * monthlyInt * Math.pow(1 + monthlyInt, termVal)) / (Math.pow(1 + monthlyInt, termVal) - 1);
+          } else {
+            payment = principal / termVal;
+          }
+          
+          document.getElementById('monthly-rate-display').textContent = '€' + Math.round(payment).toLocaleString('de-DE');
+        }
+      </script>
+    
+      </div>
+
+      <!-- Footer Section -->
+      <footer class="w-full py-12 px-6 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto mt-20 border-t border-outline-variant/20 bg-background-deep z-10 relative">
+        <div class="mb-8 md:mb-0 text-center md:text-left">
+          <div class="text-label-bold font-label-bold text-primary mb-2" data-t="brand_name">
+            DORTMUND FLEET FINANCE
+          </div>
+          <p class="text-text-muted text-xs max-w-xs mx-auto md:mx-0 uppercase" data-t="footer_rights">
+            © 2024 DORTMUND FLEET FINANCE. TÜM HAKLARI SAKLIDIR. HASSAS LEASİNG ÇÖZÜMLERİ.
+          </p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+          <a href="#" class="text-text-muted hover:text-primary transition-colors text-label-sm font-label-sm uppercase" data-t="legal_notice">
+            Yasal Uyarı
+          </a>
+          <a href="#" class="text-text-muted hover:text-primary transition-colors text-label-sm font-label-sm uppercase" data-t="privacy_policy">
+            Veri Gizliliği
+          </a>
+          <a href="#" class="text-text-muted hover:text-primary transition-colors text-label-sm font-label-sm uppercase" data-t="terms_of_use">
+            Hizmet Şartları
+          </a>
+          <a href="#" class="text-text-muted hover:text-primary transition-colors text-label-sm font-label-sm uppercase" data-t="imprint">
+            Künye
+          </a>
+        </div>
+
+        <div class="mt-8 md:mt-0 flex gap-4">
+          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-primary-container transition-all cursor-pointer group">
+            <span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">language</span>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-primary-container transition-all cursor-pointer group">
+            <span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">share</span>
+          </a>
+        </div>
+      </footer>
+    </div>
+  
+    <script>
+      const translations = {"tr":{"brand_name":"DORTMUND FLEET FINANCE","nav_showroom":"Vitrin","nav_panel":"Panel","nav_n8n":"n8n Ekleme","nav_leasing":"Leasing","nav_financing":"Finansman","nav_contact":"İletişim","search_placeholder":"Filoda ara...","btn_signout":"Çıkış Yap","btn_signin":"Giriş","side_fleet_manager":"Filo Yöneticisi","side_company":"Dortmund Logistics Gmbh","side_new_app":"Yeni Başvuru","side_dashboard":"Dashboard","side_inventory":"Envanter","side_calculators":"Hesaplayıcılar","side_applications":"Başvurular","side_history":"Geçmiş","side_support":"Destek","avg_interest":"Ort. Faiz","vehicle_count":"Filo Değeri","showroom_subtitle":"Premium Filo Seçimi","showroom_title_part1":"Dijital","showroom_title_part2":"Showroom","showroom_desc":"Profesyonel filolar için yüksek performanslı finansman. Agresif oranlar, endüstriyel hassasiyet ve kurumsal ortaklar için anında onay.","all_vehicles":"Tüm Araçlar","electric_hybrid":"EV / Hibrit","performance":"Performans","suv":"SUV","logistics":"Lojistik","sort_by":"Sırala:","sort_monthly_asc":"Aylık Taksit: Düşükten Yükseğe","sort_power_desc":"Güç: Yüksekten Düşüğe","sort_availability":"Uygunluk Durumu","no_vehicles":"Henüz bir araç bulunmuyor.","loading_vehicles":"Araçlar Yükleniyor...","supabase_failed":"Supabase Bağlantı Başarısız","footer_rights":"© 2024 DORTMUND FLEET FINANCE. TÜM HAKLARI SAKLIDIR. HASSAS LEASİNG ÇÖZÜMLERİ.","legal_notice":"Yasal Uyarı","privacy_policy":"Veri Gizliliği","terms_of_use":"Hizmet Şartları","imprint":"Künye","services_subtitle":"Uzmanlığımız","services_title":"Hizmetlerimiz","services_desc":"Filo yönetiminden bireysel lüks leasing'e kadar, her aşamada en yüksek kalite standartlarını sunuyoruz.","srv1_title":"Profesyonel Finansman","srv1_desc":"Hızlandırılmış onay süreçleri ve size özel faiz oranları ile finansal yükünüzü hafifletiyoruz. B2B ve kurumsal çözümler.","srv2_title":"Araç Alımı","srv2_desc":"Mevcut aracınızı en iyi piyasa değerinden takas yapın veya nakit olarak satın.","srv3_title":"Teslimat & Kayıt","srv3_desc":"Türkiye genelinde kapıya teslimat ve tüm tescil işlemlerinin anahtar teslim yönetimi.","srv4_title":"Araç Kaplama","srv4_desc":"Boya koruma (PPF) ve estetik değişimler için premium malzeme kalitesi.","srv5_title":"Hazırlık & Garanti","srv5_desc":"Tüm araçlar 100+ nokta kontrolünden geçer ve güvence altına alınır.","srv_details_link":"DETAYLARI GÖR","hero_services_subtitle":"Velocity Performance","hero_services_title":"Premium Araç Hizmetleri","hero_services_desc":"Kurumsal filo yönetimi ve lüks araç leasing çözümlerinde Alman hassasiyeti. Hız, güven ve profesyonel finansman tek bir çatı altında.","hero_services_btn1":"HEMEN BAŞVUR","hero_services_btn2":"HİZMETLERİ KEŞFET","why_us_title":"Neden Biz?","why1_title":"Maksimum İşlem Süresi","why1_desc":"Evrak tesliminden sonra 48 saat içinde sonuçlanan finansman süreçleri.","why2_title":"Müşteri Odaklı Hizmet","why2_desc":"Her müşteriye atanan özel filo danışmanı ile kişiselleştirilmiş deneyim.","why3_title":"Geniş Araç Seçimi","why3_desc":"Premium markaların en yeni modelleri ve özel donanım paketli araçlar.","stat1_val":"12+","stat1_lbl":"YILLIK DENEYİM","stat2_val":"500+","stat2_lbl":"AKTİF FİLO","stat3_val":"%98","stat3_lbl":"MEMNUNİYET","stat4_val":"GLOBAL","stat4_lbl":"STANDART","process_subtitle":"Nasıl Çalışır","process_title":"Süreç","process_desc":"Sadece 5 adımda hayalinizdeki araca profesyonel finansmanla sahip olun.","process_btn":"Başvuruyu Başlat","step1_title":"Araç Seçimi","step1_desc":"Envanterimizden size en uygun aracı belirleyin.","step2_title":"Başvuru Formu","step2_desc":"Online başvuru formunu 2 dakikada doldurun.","step3_title":"Değerlendirme","step3_desc":"Uzman ekibimiz başvurunuzu anında incelesin.","step4_title":"Evrak Teslimi","step4_desc":"Gerekli belgeleri dijital olarak güvenle gönderin.","step5_title":"Teslimat","step5_desc":"Tebrikler! Aracınız kullanıma hazır ve teslim ediliyor.","track_status_title":"Mevcut Durumunuzu Takip Edin","track_status_desc":"Portalımız üzerinden başvurunuzun her aşamasını canlı olarak izleyebilirsiniz.","card_rate":"Oran","card_down":"Peşinat","card_sold":"Satıldı / Pasif","card_term":"Vade","card_interest":"Faiz","card_months":"Ay","card_fixed":"Sabit","card_promo":"Promo","card_ev_rate":"EV Oranı","card_ask":"Sorunuz","card_configure":"Teklifi Yapılandır","card_immediate":"Hemen Teslim","detail_back":"Vitrine Dön","detail_first_reg":"İlk Tescil","detail_mileage":"Kilometre","detail_gear":"Şanzıman","detail_automatic":"Otomatik","detail_description":"Araç Açıklaması","detail_no_desc":"Bu araç için henüz detaylı bir açıklama girilmemiştir.","detail_gallery":"Bildergalerie","detail_gallery_tr":"Resim Galerisi","detail_preview":"Önizleme","form_name":"Adınız Soyadınız","form_email":"E-posta Adresi","form_phone":"Telefon Numarası","form_cancel":"İptal","form_submit":"Teklifi İste","form_title":"Kişisel Teklifinizi Oluşturun","form_desc":"Bilgilerinizi bırakın, size özel PDF teklifinizi hemen iletelim.","detail_fin_details":"Finansman Detayları","detail_price":"Araç Fiyatı","detail_down_payment":"Peşinat","detail_interest_rate":"Faiz Oranı (eff.)","detail_monthly_rate":"Aylık Taksit","detail_term":"Vade","detail_request_btn":"Kişisel Teklif Alın","detail_sending":"Gönderiliyor...","detail_success_alert":"Talebiniz başarıyla iletildi! Filo yöneticimiz sizinle iletişime geçecektir.","detail_error_alert":"Bir hata oluştu.","detail_included_services":"GAP Koruması & Ücretsiz Teslimat Dahil","detail_loading":"İçerik Yükleniyor...","detail_not_found":"İçerik bulunamadı veya yüklenirken bir hata oluştu.","detail_invalid_link":"Geçersiz bağlantı (ID veya Slug eksik).","login_title":"Admin Girişi","login_subtitle":"İçerikleri yönetmek için oturum açın","login_email_label":"E-posta Adresi","login_password_label":"Şifre","login_btn":"Giriş Yap","login_loading":"Giriş Yapılıyor...","dash_title":"Yönetim Paneli","dash_subtitle":"İçeriklerinizi ekleyin, düzenleyin veya silin.","dash_form_add":"Yeni İçerik Ekle","dash_form_edit":"İçerik Düzenle","dash_label_title":"Başlık","dash_label_slug":"Slug (URL)","dash_label_category":"Kategori","dash_label_year":"Yıl","dash_label_mileage":"Kilometre (km)","dash_label_price":"Fiyat (€)","dash_label_down":"Peşinat (€)","dash_label_rate":"Aylık Taksit (€)","dash_label_term":"Vade (Ay)","dash_label_interest":"Faiz Oranı (%)","dash_label_summary":"Özet (Kısa Açıklama)","dash_label_body":"Açıklama","dash_label_tags":"Etiketler (Virgülle ayırın)","dash_label_image":"Ana Resim URL","dash_label_gallery":"Galeri Resimleri (Her satıra bir link)","dash_gallery_hint":"Araç detay sayfasında ızgara olarak gösterilir.","dash_label_features":"Araç Özellikleri (Virgülle ayırın)","dash_label_phone":"İletişim Tel No","dash_label_status":"Aktif (Yayında)","dash_btn_save":"Kaydet","dash_btn_cancel":"İptal","dash_list_title":"Mevcut İçerikler","dash_no_img":"Resim Yok","dash_active":"Aktif","dash_passive":"Pasif","dash_empty_list":"Henüz veri bulunmuyor. Sol taraftan ekleme yapabilirsiniz.","dash_confirm_delete":"Bu içeriği silmek istediğinize emin misiniz?","dash_save_error":"Kaydetme hatası: ","dash_add_error":"Ekleme hatası: "},"en":{"brand_name":"DORTMUND FLEET FINANCE","nav_showroom":"Showroom","nav_panel":"Dashboard","nav_n8n":"n8n Integration","nav_leasing":"Leasing","nav_financing":"Financing","nav_contact":"Contact","search_placeholder":"Search fleet...","btn_signout":"Sign Out","btn_signin":"Login","side_fleet_manager":"Fleet Manager","side_company":"Dortmund Logistics Gmbh","side_new_app":"New Application","side_dashboard":"Dashboard","side_inventory":"Inventory","side_calculators":"Calculators","side_applications":"Applications","side_history":"History","side_support":"Support","avg_interest":"Avg Rate","vehicle_count":"Fleet Value","showroom_subtitle":"Premium Fleet Selection","showroom_title_part1":"Digital","showroom_title_part2":"Showroom","showroom_desc":"High-performance financing for professional fleets. Aggressive rates, industrial precision, and instant approvals for corporate partners.","all_vehicles":"All Vehicles","electric_hybrid":"EV / Hybrid","performance":"Performance","suv":"SUVs","logistics":"Logistics","sort_by":"Sort by:","sort_monthly_asc":"Monthly Rate: Low to High","sort_power_desc":"Power: High to Low","sort_availability":"Availability","no_vehicles":"No vehicles available yet.","loading_vehicles":"Loading Vehicles...","supabase_failed":"Supabase Connection Failed","footer_rights":"© 2024 DORTMUND FLEET FINANCE. ALL RIGHTS RESERVED. PRECISION LEASING SOLUTIONS.","legal_notice":"Legal Notice","privacy_policy":"Data Privacy","terms_of_use":"Terms of Service","imprint":"Imprint","services_subtitle":"Our Expertise","services_title":"Services","services_desc":"From fleet management to individual luxury leasing, we provide the highest quality standards at every stage.","srv1_title":"Professional Financing","srv1_desc":"Accelerated approval processes and customized interest rates to lighten your financial load. B2B and corporate solutions.","srv2_title":"Vehicle Acquisition","srv2_desc":"Trade in your current vehicle for the best market value or sell it for cash.","srv3_title":"Delivery & Registration","srv3_desc":"Nationwide door-to-door delivery and turnkey management of all registration procedures.","srv4_title":"Car Wrapping","srv4_desc":"Premium material quality for paint protection (PPF) and aesthetic changes.","srv5_title":"Preparation & Warranty","srv5_desc":"All vehicles pass a 100+ point inspection and are guaranteed.","srv_details_link":"SEE DETAILS","hero_services_subtitle":"Velocity Performance","hero_services_title":"Premium Vehicle Services","hero_services_desc":"German precision in corporate fleet management and luxury car leasing solutions. Speed, trust, and professional financing under one roof.","hero_services_btn1":"APPLY NOW","hero_services_btn2":"EXPLORE SERVICES","why_us_title":"Why Us?","why1_title":"Maximum Processing Speed","why1_desc":"Financing processes finalized within 48 hours after document delivery.","why2_title":"Customer-Oriented Service","why2_desc":"Personalized experience with a dedicated fleet consultant assigned to each customer.","why3_title":"Wide Vehicle Selection","why3_desc":"The latest models from premium brands and special trim packages.","stat1_val":"12+","stat1_lbl":"YEARS EXP","stat2_val":"500+","stat2_lbl":"ACTIVE FLEET","stat3_val":"98%","stat3_lbl":"SATISFACTION","stat4_val":"GLOBAL","stat4_lbl":"STANDARD","process_subtitle":"How it works","process_title":"Process","process_desc":"Get your dream car with professional financing in just 5 steps.","process_btn":"Start Application","step1_title":"Vehicle Selection","step1_desc":"Choose the most suitable vehicle from our inventory.","step2_title":"Application Form","step2_desc":"Fill out the online application form in 2 minutes.","step3_title":"Evaluation","step3_desc":"Our expert team reviews your application instantly.","step4_title":"Document Submission","step4_desc":"Send the necessary documents securely digitally.","step5_title":"Delivery","step5_desc":"Congratulations! Your vehicle is ready to use and being delivered.","track_status_title":"Track Your Current Status","track_status_desc":"You can watch every stage of your application live via our portal.","card_rate":"Rate","card_down":"Down","card_sold":"Sold / Inactive","card_term":"Loan Term","card_interest":"Interest Rate","card_months":"Months","card_fixed":"Fixed","card_promo":"Promo","card_ev_rate":"EV Rate","card_ask":"Ask Us","card_configure":"Configure Deal","card_immediate":"Immediate Delivery","detail_back":"Back to Showroom","detail_first_reg":"First Registration","detail_mileage":"Mileage","detail_gear":"Transmission","detail_automatic":"Automatic","detail_description":"Vehicle Description","detail_no_desc":"No detailed description has been entered for this vehicle yet.","detail_gallery":"Image Gallery","detail_gallery_tr":"Image Gallery","detail_preview":"Preview","form_name":"Full Name","form_email":"Email Address","form_phone":"Phone Number","form_cancel":"Cancel","form_submit":"Request Offer","form_title":"Get Your Personal Offer","form_desc":"Leave your details and we'll send you a custom PDF offer immediately.","detail_fin_details":"Financing Details","detail_price":"Vehicle Price","detail_down_payment":"Down Payment","detail_interest_rate":"Interest Rate (eff.)","detail_monthly_rate":"Monthly Rate","detail_term":"Term","detail_request_btn":"Request Personal Offer","detail_sending":"Sending...","detail_success_alert":"Your request was successfully submitted! Our fleet manager will contact you.","detail_error_alert":"An error occurred.","detail_included_services":"GAP Protection & Free Delivery Included","detail_loading":"Loading Content...","detail_not_found":"Content not found or an error occurred while loading.","detail_invalid_link":"Invalid link (ID or Slug missing).","login_title":"Admin Sign In","login_subtitle":"Sign in to manage contents","login_email_label":"Email Address","login_password_label":"Password","login_btn":"Sign In","login_loading":"Signing In...","dash_title":"Dashboard","dash_subtitle":"Add, edit or delete your contents.","dash_form_add":"Add New Content","dash_form_edit":"Edit Content","dash_label_title":"Title","dash_label_slug":"Slug (URL)","dash_label_category":"Category","dash_label_year":"Year","dash_label_mileage":"Mileage (km)","dash_label_price":"Price (€)","dash_label_down":"Down Payment (€)","dash_label_rate":"Monthly Rate (€)","dash_label_term":"Term (Months)","dash_label_interest":"Interest Rate (%)","dash_label_summary":"Summary (Short description)","dash_label_body":"Description","dash_label_tags":"Tags (Comma separated)","dash_label_image":"Main Image URL","dash_label_gallery":"Gallery Images (One link per line)","dash_gallery_hint":"Shown as a grid on the vehicle details page.","dash_label_features":"Vehicle Features (Comma separated)","dash_label_phone":"Contact Phone Number","dash_label_status":"Active (Published)","dash_btn_save":"Save","dash_btn_cancel":"Cancel","dash_list_title":"Current Contents","dash_no_img":"No Image","dash_active":"Active","dash_passive":"Inactive","dash_empty_list":"No data available yet. You can add elements using the form on the left.","dash_confirm_delete":"Are you sure you want to delete this content?","dash_save_error":"Save error: ","dash_add_error":"Add error: "},"de":{"brand_name":"DORTMUND FLEET FINANCE","nav_showroom":"Showroom","nav_panel":"Dashboard","nav_n8n":"n8n Integration","nav_leasing":"Leasing","nav_financing":"Finanzierung","nav_contact":"Kontakt","search_placeholder":"Flotte suchen...","btn_signout":"Abmelden","btn_signin":"Anmelden","side_fleet_manager":"Flottenmanager","side_company":"Dortmund Logistics Gmbh","side_new_app":"Neuer Antrag","side_dashboard":"Dashboard","side_inventory":"Inventar","side_calculators":"Rechner","side_applications":"Anträge","side_history":"Verlauf","side_support":"Support","avg_interest":"Durchschn. Zins","vehicle_count":"Flottenwert","showroom_subtitle":"Premium-Flottenauswahl","showroom_title_part1":"Digitaler","showroom_title_part2":"Showroom","showroom_desc":"Leistungsstarke Finanzierung für professionelle Flotten. Aggressive Raten, industrielle Präzision und sofortige Zusagen für Unternehmenspartner.","all_vehicles":"Alle Fahrzeuge","electric_hybrid":"EV / Hybrid","performance":"Performance","suv":"SUVs","logistics":"Logistik","sort_by":"Sortieren nach:","sort_monthly_asc":"Monatliche Rate: Niedrig bis Hoch","sort_power_desc":"Leistung: Hoch bis Niedrig","sort_availability":"Verfügbarkeit","no_vehicles":"Noch keine Fahrzeuge vorhanden.","loading_vehicles":"Fahrzeuge werden geladen...","supabase_failed":"Supabase-Verbindung fehlgeschlagen","footer_rights":"© 2024 DORTMUND FLEET FINANCE. ALLE RECHTE VORBEHALTEN. PRÄZISIONS-LEASINGLÖSUNGEN.","legal_notice":"Impressum","privacy_policy":"Datenschutz","terms_of_use":"Nutzungsbedingungen","imprint":"Impressum","services_subtitle":"Unsere Expertise","services_title":"Dienstleistungen","services_desc":"Vom Flottenmanagement bis zum individuellen Luxus-Leasing bieten wir auf jeder Stufe höchste Qualitätsstandards.","srv1_title":"Professionelle Finanzierung","srv1_desc":"Beschleunigte Genehmigungsverfahren und maßgeschneiderte Zinssätze zur Entlastung Ihrer Finanzen. B2B und Unternehmenslösungen.","srv2_title":"Fahrzeugbeschaffung","srv2_desc":"Tauschen Sie Ihr aktuelles Fahrzeug zum besten Marktwert ein oder verkaufen Sie es gegen Bargeld.","srv3_title":"Lieferung & Registrierung","srv3_desc":"Bundesweite Tür-zu-Tür-Lieferung und schlüsselfertige Abwicklung aller Registrierungsprozesse.","srv4_title":"Fahrzeugfolierung","srv4_desc":"Premium-Materialqualität für Lackschutz (PPF) und ästhetische Veränderungen.","srv5_title":"Vorbereitung & Garantie","srv5_desc":"Alle Fahrzeuge durchlaufen eine 100+ Punkte-Inspektion und haben Garantie.","srv_details_link":"DETAILS ANSEHEN","hero_services_subtitle":"Velocity Performance","hero_services_title":"Premium-Fahrzeugdienste","hero_services_desc":"Deutsche Präzision im Corporate Fleet Management und bei Luxusauto-Leasinglösungen. Geschwindigkeit, Vertrauen und professionelle Finanzierung unter einem Dach.","hero_services_btn1":"JETZT BEWERBEN","hero_services_btn2":"DIENSTLEISTUNGEN ENTDECKEN","why_us_title":"Warum Wir?","why1_title":"Maximale Bearbeitungsgeschwindigkeit","why1_desc":"Finanzierungsprozesse werden innerhalb von 48 Stunden nach Dokumentenabgabe abgeschlossen.","why2_title":"Kundenorientierter Service","why2_desc":"Personalisierte Erfahrung mit einem engagierten Flottenberater für jeden Kunden.","why3_title":"Große Fahrzeugauswahl","why3_desc":"Die neuesten Modelle von Premium-Marken und speziellen Ausstattungspaketen.","stat1_val":"12+","stat1_lbl":"JAHRE ERFAHRUNG","stat2_val":"500+","stat2_lbl":"AKTIVE FLOTTE","stat3_val":"98%","stat3_lbl":"ZUFRIEDENHEIT","stat4_val":"GLOBAL","stat4_lbl":"STANDARD","process_subtitle":"Wie es funktioniert","process_title":"Prozess","process_desc":"Erhalten Sie Ihr Traumauto mit professioneller Finanzierung in nur 5 Schritten.","process_btn":"Antrag Starten","step1_title":"Fahrzeugauswahl","step1_desc":"Wählen Sie das passendste Fahrzeug aus unserem Inventar.","step2_title":"Antragsformular","step2_desc":"Füllen Sie das Online-Antragsformular in 2 Minuten aus.","step3_title":"Auswertung","step3_desc":"Unser Expertenteam prüft Ihren Antrag sofort.","step4_title":"Dokumenteneinreichung","step4_desc":"Senden Sie die notwendigen Dokumente sicher digital.","step5_title":"Lieferung","step5_desc":"Glückwunsch! Ihr Fahrzeug ist einsatzbereit und wird geliefert.","track_status_title":"Verfolgen Sie Ihren aktuellen Status","track_status_desc":"Sie können jede Phase Ihres Antrags live über unser Portal beobachten.","card_rate":"Rate","card_down":"Anz.","card_sold":"Verkauft / Inaktiv","card_term":"Laufzeit","card_interest":"Zinssatz","card_months":"Monate","card_fixed":"Fest","card_promo":"Promo","card_ev_rate":"EV Rate","card_ask":"Anfragen","card_configure":"Deal konfigurieren","card_immediate":"Sofortige Lieferung","detail_back":"Zurück zur Vitrine","detail_first_reg":"Erstzulassung","detail_mileage":"Kilometerstand","detail_gear":"Getriebe","detail_automatic":"Automatik","detail_description":"Fahrzeugbeschreibung","detail_no_desc":"Für dieses Fahrzeug wurde noch keine detaillierte Beschreibung eingegeben.","detail_gallery":"Bildergalerie","detail_gallery_tr":"Bildergalerie","detail_preview":"Vorschau","form_name":"Vollständiger Name","form_email":"E-Mail Adresse","form_phone":"Telefonnummer","form_cancel":"Abbrechen","form_submit":"Angebot anfordern","form_title":"Ihr persönliches Angebot","form_desc":"Hinterlassen Sie Ihre Daten und wir senden Ihnen umgehend ein individuelles PDF-Angebot.","detail_fin_details":"Finanzierungsdetails","detail_price":"Fahrzeugpreis","detail_down_payment":"Anzahlung","detail_interest_rate":"Zinssatz (eff.)","detail_monthly_rate":"Monatliche Rate","detail_term":"Laufzeit","detail_request_btn":"Individuelles Angebot anfordern","detail_sending":"Wird gesendet...","detail_success_alert":"Ihre Anfrage wurde erfolgreich übermittelt! Unser Fuhrparkleiter wird sich mit Ihnen in Verbindung setzen.","detail_error_alert":"Ein Fehler ist aufgetreten.","detail_included_services":"Inklusive GAP-Schutz & Kostenfreier Lieferung","detail_loading":"Inhalt wird geladen...","detail_not_found":"Inhalt nicht gefunden oder beim Laden ist ein Fehler aufgetreten.","detail_invalid_link":"Ungültiger Link (ID oder Slug fehlt).","login_title":"Admin-Anmeldung","login_subtitle":"Melden Sie sich an, um Inhalte zu verwalten","login_email_label":"E-Mail-Adresse","login_password_label":"Kennwort","login_btn":"Anmelden","login_loading":"Anmeldung...","dash_title":"Verwaltungspanel","dash_subtitle":"Inhalte hinzufügen, bearbeiten oder löschen.","dash_form_add":"Neuen Inhalt hinzufügen","dash_form_edit":"Inhalt bearbeiten","dash_label_title":"Titel","dash_label_slug":"Slug (URL)","dash_label_category":"Kategorie","dash_label_year":"Jahr","dash_label_mileage":"Kilometerstand (km)","dash_label_price":"Preis (€)","dash_label_down":"Anzahlung (€)","dash_label_rate":"Monatliche Rate (€)","dash_label_term":"Laufzeit (Monate)","dash_label_interest":"Zinssatz (%)","dash_label_summary":"Zusammenfassung (Kurzbeschreibung)","dash_label_body":"Beschreibung","dash_label_tags":"Tags (Kommagetrennt)","dash_label_image":"Hauptbild-URL","dash_label_gallery":"Galeriebilder (Ein Link pro Zeile)","dash_gallery_hint":"Wird als Raster auf der Fahrzeugdetailseite angezeigt.","dash_label_features":"Fahrzeugmerkmale (Kommagetrennt)","dash_label_phone":"Kontakt-Telefonnummer","dash_label_status":"Aktiv (Veröffentlicht)","dash_btn_save":"Speichern","dash_btn_cancel":"Abbrechen","dash_list_title":"Vorhandene Inhalte","dash_no_img":"Kein Bild","dash_active":"Aktiv","dash_passive":"Inaktiv","dash_empty_list":"Noch keine Daten vorhanden. Sie können auf der linken Seite Elemente hinzufügen.","dash_confirm_delete":"Sind Sie sicher, dass Sie diesen Inhalt löschen möchten?","dash_save_error":"Fehler beim Speichern: ","dash_add_error":"Fehler beim Hinzufügen: "}};
+      
+      function translatePage() {
+        const lang = localStorage.getItem('lang') || 'tr';
+        document.documentElement.lang = lang;
+        
+        // Update language active indicator
+        const langIndicator = document.getElementById('active-lang');
+        if (langIndicator) langIndicator.textContent = lang.toUpperCase();
+        
+        // Translate normal text
+        document.querySelectorAll('[data-t]').forEach(el => {
+          const key = el.getAttribute('data-t');
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.innerHTML = translations[lang][key];
+          }
+        });
+
+        // Translate placeholders
+        document.querySelectorAll('[data-t-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-t-placeholder');
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.setAttribute('placeholder', translations[lang][key]);
+          }
+        });
+      }
+
+      function setLanguage(lang) {
+        localStorage.setItem('lang', lang);
+        translatePage();
+        const dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+      }
+
+      function toggleLangDropdown() {
+        const dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+      }
+
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar-menu');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        if (sidebar && backdrop) {
+          sidebar.classList.toggle('-translate-x-full');
+          backdrop.classList.toggle('hidden');
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        translatePage();
+        
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (e) => {
+          const langBtn = document.getElementById('lang-btn');
+          const dropdown = document.getElementById('lang-dropdown');
+          if (langBtn && dropdown && !langBtn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.add('hidden');
+          }
+        });
+      });
+    </script>
+  </html>

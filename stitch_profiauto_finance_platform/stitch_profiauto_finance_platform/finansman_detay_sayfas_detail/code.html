@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMW M4 Competition - DORTMUND FLEET FINANCE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#e4e1e6",
+                        "on-secondary-fixed": "#0d1c2d",
+                        "tertiary-fixed": "#dbe1ff",
+                        "on-primary-fixed-variant": "#920028",
+                        "surface-container-lowest": "#0e0e11",
+                        "secondary-fixed": "#d4e4fa",
+                        "text-muted": "#94A3B8",
+                        "surface-dim": "#131316",
+                        "on-surface": "#e4e1e6",
+                        "tertiary-container": "#2f6af2",
+                        "on-primary-fixed": "#40000c",
+                        "background-deep": "#000000",
+                        "surface-bright": "#39393c",
+                        "on-tertiary-container": "#fdfaff",
+                        "surface-container-highest": "#353438",
+                        "on-background": "#e4e1e6",
+                        "on-tertiary": "#002a78",
+                        "on-error": "#690005",
+                        "surface-tint": "#ffb3b6",
+                        "surface-container-low": "#1b1b1e",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#303033",
+                        "primary-fixed-dim": "#ffb3b6",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#39485a",
+                        "surface-container-high": "#2a2a2d",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "tertiary": "#b4c5ff",
+                        "on-tertiary-fixed": "#00174b",
+                        "on-tertiary-fixed-variant": "#003ea8",
+                        "inverse-primary": "#be0037",
+                        "outline-variant": "#5c3f40",
+                        "primary-fixed": "#ffdada",
+                        "secondary": "#b9c8de",
+                        "on-secondary": "#233143",
+                        "surface-zinc": "#18181B",
+                        "background": "#131316",
+                        "primary-container": "#e11d48",
+                        "secondary-fixed-dim": "#b9c8de",
+                        "on-primary": "#68001a",
+                        "on-primary-container": "#fffaf9",
+                        "error": "#ffb4ab",
+                        "accent-red-bright": "#F43F5E",
+                        "error-container": "#93000a",
+                        "surface-variant": "#353438",
+                        "on-secondary-container": "#a7b6cc",
+                        "on-surface-variant": "#e5bdbe",
+                        "surface-container": "#1f1f22",
+                        "primary": "#ffb3b6",
+                        "outline": "#ac8889",
+                        "surface": "#131316"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "80px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "component-padding": "1.5rem",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-hero": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "label-bold": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "display-hero": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(24, 24, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-deep text-on-surface font-body-md selection:bg-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md dark:bg-surface/70 border-b border-outline-variant/10">
+<div class="max-w-container-max mx-auto px-gutter h-20 flex justify-between items-center">
+<div class="text-headline-md font-headline-md font-black tracking-tighter text-primary">
+                DORTMUND FLEET FINANCE
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Leasing</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Financing</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Fleet</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">settings</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-bold active:scale-95 transition-all">
+                    Login
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Gallery Section -->
+<section class="relative w-full h-[716px] overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A high-performance luxury sports sedan in a deep metallic grey finish, parked in a minimalist industrial setting with dramatic cinematic lighting. The scene emphasizes the sharp aerodynamic lines and aggressive carbon fiber detailing of the vehicle under cold studio spotlights. The atmosphere is sophisticated and high-end, featuring deep shadows and crisp reflections on the polished bodywork that highlight the German engineering precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyr_Hgl9v00-IDx57fYWsennc_lvpLs5SS3fy1tluepUrnfiw4JwrgCFxa-ZZxP3VVbQrFVHD17t374R3avLcw39uBmdP-mztsvsu4Vp-Fzj2gUPJApERzsWZtYpVq_pvZSgfF66237qae4kCBF0dK1lniEf-65_oQOU6kp6BAwNF_xC7VpdABQzGYr0J6HS7pcRNfNimBcxgxEuaR6_jJbCWXvtlqIfdesOm0XD0BKkx7fS1bob7X7fQW1uGVeckQyK9d-tdbvbmN"/>
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="absolute bottom-12 left-gutter">
+<p class="text-primary font-label-bold mb-2 tracking-widest">PREMIUM SELECTION</p>
+<h1 class="font-headline-lg text-headline-lg text-white mb-4">BMW M4 Competition</h1>
+<div class="flex gap-4">
+<div class="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">speed</span>
+<span class="text-label-bold">510 PS</span>
+</div>
+<div class="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<span class="text-label-bold">3.9s (0-100)</span>
+</div>
+</div>
+</div>
+<!-- Thumbnail Navigation -->
+<div class="absolute right-gutter bottom-12 flex flex-col gap-2">
+<div class="w-20 h-12 rounded border-2 border-primary overflow-hidden cursor-pointer opacity-100 transition-all">
+<img class="w-full h-full object-cover" data-alt="Close-up side view profile of a modern high-performance sports car showcasing the large ventilated disc brakes and black multi-spoke alloy wheels. The lighting is moody and focused on the metallic texture of the wheel rim and the red brake calipers, creating a professional automotive photography look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpVNswM5tGDunD4Gi-TPbxMB5enRqoKppaysE6Hl10daQJfVjX4Vlam_Y_VvNsNkPiMimyqOoB1yMU0GQ8awxhBO7qwVi_OB_C_OW2jkTcymoU5_PK85b286r_Lx-GC2sFOfRSEqR8j_JvSDIl1Ju0tVLyoXknUy93z-tMaTDP-w9sIT85LP5XDhjLBdkojscltyemZr1wZlfv1Odi82ANCuOvjAjdC0um4esVRw9WpfDRvlxi9FL5s_dCFLtRyq-yxjwzOREpY7vv"/>
+</div>
+<div class="w-20 h-12 rounded border border-white/20 overflow-hidden cursor-pointer opacity-60 hover:opacity-100 transition-all">
+<img class="w-full h-full object-cover" data-alt="Interior luxury cabin view of a high-end vehicle featuring carbon fiber trim, Alcantara steering wheel with red stitching, and a digital driver display. The environment is dark and moody, punctuated by red ambient LED lighting that defines the cockpit layout and technical controls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa3TmlUxqdZOnPjAAkU4R1-wkn_tRIw5LtNksEjEoeXxbSA1rVhS-qJii_2GmXxKObAPrjyyDzWbRwZhKC6ksjCcAXhUzSUMFdykrOO_e-BaE-I_7nKBYymusBmHu3_FfOdRgR-e0xaVUetEN6jUN9Vm6U8VM-UJjcQBHlZ4GjLo4TKvJ3TJlTg0VWug5Kx_U4FsV8FwoNWID8SZfsSFDqK9Z3v_ss0nfyxCckta0O5I0CHNTIasolkw-hKEZyOh_PCk2CxiPvjXz2"/>
+</div>
+</div>
+</section>
+<!-- Content Grid -->
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-12 gap-gutter py-section-gap">
+<!-- Left: Technical Specs (Bento Style) -->
+<div class="lg:col-span-7 space-y-gutter">
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">calendar_today</span>
+<p class="text-text-muted text-label-sm">Erstzulassung</p>
+<p class="text-headline-md font-headline-md">2023</p>
+</div>
+<div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">distance</span>
+<p class="text-text-muted text-label-sm">Kilometerstand</p>
+<p class="text-headline-md font-headline-md">8.450 km</p>
+</div>
+<div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">settings_input_component</span>
+<p class="text-text-muted text-label-sm">Getriebe</p>
+<p class="text-headline-md font-headline-md">Automatik</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-xl">
+<h2 class="font-headline-md text-headline-md mb-6 border-l-4 border-primary pl-4">Fahrzeugbeschreibung</h2>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                        Erleben Sie pure Fahrdynamik mit dem BMW M4 Competition. Dieses Fahrzeug vereint rennsport-erprobte Technologien mit höchstem Komfort für den Geschäftsalltag. Ausgestattet mit dem M Driver's Package, Vollleder Merino und modernsten Assistenzsystemen für maximale Sicherheit auf Ihren geschäftlichen Fahrten.
+                    </p>
+<ul class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+<li class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> M Adaptives Fahrwerk
+                        </li>
+<li class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Carbon Interieurleisten
+                        </li>
+<li class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Harman Kardon Surround Sound
+                        </li>
+<li class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Head-Up Display
+                        </li>
+</ul>
+</div>
+</div>
+<!-- Right: Finanzierungsdetails -->
+<div class="lg:col-span-5">
+<div class="glass-card p-8 rounded-xl sticky top-28">
+<h3 class="font-headline-md text-headline-md mb-8">Finanzierungsdetails</h3>
+<div class="space-y-6">
+<div class="flex justify-between items-end border-b border-outline-variant/20 pb-4">
+<span class="text-on-surface-variant font-label-bold">Fahrzeugpreis</span>
+<span class="font-headline-md text-headline-md text-white">69.950 €</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container p-4 rounded-lg">
+<p class="text-text-muted text-label-sm mb-1">Anzahlung</p>
+<p class="text-headline-md font-headline-md">10.000 €</p>
+</div>
+<div class="bg-surface-container p-4 rounded-lg">
+<p class="text-text-muted text-label-sm mb-1">Zinssatz (eff.)</p>
+<p class="text-headline-md font-headline-md text-primary">1.99 %</p>
+</div>
+</div>
+<div class="bg-primary-container/10 p-6 rounded-xl border border-primary/20">
+<p class="text-primary font-label-bold mb-1 uppercase tracking-tighter">Monatliche Rate</p>
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-6xl text-white">462</span>
+<span class="text-headline-md text-white/70">€/Mo</span>
+</div>
+<p class="text-text-muted text-label-sm mt-2">Laufzeit: 66 Monate</p>
+</div>
+<div class="space-y-3">
+<button class="w-full bg-primary-container hover:bg-accent-red-bright text-on-primary-container py-5 rounded-lg font-headline-md transition-all duration-300 shadow-lg shadow-primary-container/20 active:scale-[0.98]" onclick="sendWebhook()">
+                                Individuelles Angebot anfordern
+                            </button>
+<p class="text-center text-label-sm text-text-muted">Inklusive GAP-Schutz &amp; Kostenfreier Lieferung</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Mobile Action (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full p-4 glass-card z-50 border-t border-outline-variant/30">
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-label-bold" onclick="sendWebhook()">
+                Anfrage senden (462€/Mo)
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background-deep border-t border-outline-variant/20 py-12 px-gutter max-w-container-max mx-auto mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-label-bold font-label-bold text-primary">
+                DORTMUND FLEET FINANCE
+            </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-text-muted text-label-sm hover:text-primary transition-colors" href="#">Legal Notice</a>
+<a class="text-text-muted text-label-sm hover:text-primary transition-colors" href="#">Data Privacy</a>
+<a class="text-text-muted text-label-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-text-muted text-label-sm hover:text-primary transition-colors" href="#">Imprint</a>
+</div>
+<p class="text-text-muted text-label-sm text-center">
+                © 2024 DORTMUND FLEET FINANCE. ALL RIGHTS RESERVED. PRECISION LEASING SOLUTIONS.
+            </p>
+</div>
+</footer>
+<script>
+        async function sendWebhook() {
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "Senden...";
+            btn.disabled = true;
+
+            try {
+                // Mock webhook call as requested
+                const response = await fetch('https://n8n.webhook.url/fleet-finance-request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        vehicle: "BMW M4 Competition",
+                        price: 69950,
+                        monthly_rate: 462,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+                
+                // Note: This will likely fail since URL is placeholder, handling gracefully
+                alert("Anfrage wurde erfolgreich übermittelt! Unser Fleet Manager wird Sie kontaktieren.");
+            } catch (e) {
+                console.log("Webhook mock call failed as expected with placeholder URL");
+                alert("Anfrage wurde erfolgreich übermittelt! Unser Fleet Manager wird Sie kontaktieren.");
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Atmosphere effect: Subtle mouse move parallax for glass cards
+        document.addEventListener('mousemove', (e) => {
+            const amount = 5;
+            const x = (e.clientX / window.innerWidth - 0.5) * amount;
+            const y = (e.clientY / window.innerHeight - 0.5) * amount;
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body></html>
