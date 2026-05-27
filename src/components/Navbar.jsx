@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { useSidebar } from '../SidebarContext';
 
@@ -11,6 +11,24 @@ export default function Navbar() {
   const { toggleSidebar } = useSidebar();
   const navigate = useNavigate();
   const location = useLocation();
+  const langDropdownRef = useRef(null);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(e.target)) {
+        setLangDropdownOpen(false);
+      }
+    };
+    if (langDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [langDropdownOpen]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -32,9 +50,9 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md dark:bg-surface/70 border-b border-outline-variant/10 flex justify-between items-center px-gutter h-20 max-w-container-max mx-auto left-1/2 -translate-x-1/2">
-      <div className="flex items-center gap-8">
-        <div className="flex items-center gap-4">
+    <nav className="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md dark:bg-surface/70 border-b border-outline-variant/10 flex justify-between items-center px-4 sm:px-gutter h-16 sm:h-20">
+      <div className="flex items-center gap-3 sm:gap-8">
+        <div className="flex items-center gap-2 sm:gap-4">
           <button onClick={toggleSidebar} className="material-symbols-outlined text-on-surface hover:text-primary transition-colors text-2xl">
             menu
           </button>
@@ -54,7 +72,7 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <div className="hidden sm:flex bg-surface-container-high rounded-lg px-4 py-2 items-center gap-2 border border-outline-variant/20">
           <span className="material-symbols-outlined text-text-muted">search</span>
           <input 
@@ -68,7 +86,7 @@ export default function Navbar() {
         <button className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all hidden md:block">settings</button>
 
         {/* Language Switcher */}
-        <div className="relative">
+        <div className="relative" ref={langDropdownRef}>
           <button 
             onClick={() => setLangDropdownOpen(!langDropdownOpen)}
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-high/40 border border-outline-variant/15 text-label-bold font-label-bold text-on-surface hover:bg-surface-container-high/70 active:scale-95 transition-all outline-none"
@@ -103,12 +121,12 @@ export default function Navbar() {
         </div>
 
         {session ? (
-          <button onClick={handleSignOut} className="bg-surface-variant text-on-surface-variant px-6 py-2 rounded-lg font-label-bold text-label-bold hover:opacity-80 active:scale-95 transition-all">
+          <button onClick={handleSignOut} className="bg-surface-variant text-on-surface-variant px-3 sm:px-6 py-2 rounded-lg font-label-bold text-label-bold hover:opacity-80 active:scale-95 transition-all text-xs sm:text-sm">
             {t('btn_signout')}
           </button>
         ) : (
           <Link to="/login">
-            <button className="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-bold text-label-bold hover:opacity-80 active:scale-95 transition-all">
+            <button className="bg-primary-container text-on-primary-container px-3 sm:px-6 py-2 rounded-lg font-label-bold text-label-bold hover:opacity-80 active:scale-95 transition-all text-xs sm:text-sm">
               {t('btn_signin')}
             </button>
           </Link>

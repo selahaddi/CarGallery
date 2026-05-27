@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import ContentCard from '../components/ContentCard';
 import { Loader2 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import ScrollVideoTest from '../components/ScrollVideoTest';
 
 export default function Home() {
   const [contents, setContents] = useState([]);
@@ -71,27 +72,29 @@ export default function Home() {
 
   return (
     <>
-      <main className="pt-32 pb-20 px-gutter min-h-screen">
+      <ScrollVideoTest />
+      <main className="pt-12 sm:pt-16 pb-20 px-4 sm:px-gutter min-h-screen">
         {/* Header Section */}
-        <header className="max-w-container-max mx-auto mb-12">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+        <header className="max-w-container-max mx-auto mb-12 relative">
+          
+          <div className="flex flex-col gap-6">
             <div className="space-y-4">
               <span className="text-primary-container font-label-bold text-label-bold tracking-widest uppercase">
                 {t('showroom_subtitle')}
               </span>
-              <h1 className="text-display-hero font-display-hero text-on-surface">
+              <h1 className="text-3xl sm:text-4xl md:text-display-hero font-display-hero text-on-surface leading-tight">
                 {t('showroom_title_part1')} <span className="text-primary-container">{t('showroom_title_part2')}</span>
               </h1>
               <p className="text-body-lg font-body-lg text-text-muted max-w-2xl">
                 {t('showroom_desc')}
               </p>
             </div>
-            <div className="flex gap-4">
-              <div className="glass-card p-4 rounded-xl text-center min-w-[140px]">
+            <div className="flex gap-3 sm:gap-4 w-full sm:w-auto">
+              <div className="glass-card p-3 sm:p-4 rounded-xl text-center flex-1 sm:flex-initial sm:min-w-[140px]">
                 <p className="text-label-sm text-text-muted uppercase">{t('avg_interest')}</p>
                 <p className="text-headline-md font-headline-md text-primary-container">3.8%</p>
               </div>
-              <div className="glass-card p-4 rounded-xl text-center min-w-[140px]">
+              <div className="glass-card p-3 sm:p-4 rounded-xl text-center flex-1 sm:flex-initial sm:min-w-[140px]">
                 <p className="text-label-sm text-text-muted uppercase">{t('vehicle_count')}</p>
                 <p className="text-headline-md font-headline-md text-on-surface">{formattedFleetValue}</p>
               </div>
@@ -99,14 +102,14 @@ export default function Home() {
           </div>
           
           {/* Filters */}
-          <div className="mt-12 flex flex-wrap gap-4 items-center">
-            <button className="glass-card px-6 py-2 rounded-full border border-primary-container/50 text-primary-container font-label-bold text-label-bold">{t('all_vehicles')}</button>
-            <button className="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">{t('electric_hybrid')}</button>
-            <button className="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">{t('performance')}</button>
-            <button className="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">{t('suv')}</button>
-            <button className="glass-card px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold">{t('logistics')}</button>
+          <div className="mt-8 sm:mt-12 flex flex-nowrap gap-2 sm:gap-4 items-center overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:overflow-x-visible scrollbar-hide">
+            <button className="glass-card px-4 sm:px-6 py-2 rounded-full border border-primary-container/50 text-primary-container font-label-bold text-label-bold whitespace-nowrap flex-shrink-0">{t('all_vehicles')}</button>
+            <button className="glass-card px-4 sm:px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold whitespace-nowrap flex-shrink-0">{t('electric_hybrid')}</button>
+            <button className="glass-card px-4 sm:px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold whitespace-nowrap flex-shrink-0">{t('performance')}</button>
+            <button className="glass-card px-4 sm:px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold whitespace-nowrap flex-shrink-0">{t('suv')}</button>
+            <button className="glass-card px-4 sm:px-6 py-2 rounded-full text-text-muted hover:text-on-surface transition-all font-label-bold text-label-bold whitespace-nowrap flex-shrink-0">{t('logistics')}</button>
             
-            <div className="ml-auto glass-card flex items-center rounded-lg px-4 py-2 gap-2">
+            <div className="w-full sm:w-auto sm:ml-auto glass-card flex items-center rounded-lg px-3 sm:px-4 py-2 gap-2 mt-2 sm:mt-0">
               <span className="text-label-bold font-label-bold text-text-muted">{t('sort_by')}</span>
               <select className="bg-transparent border-none text-on-surface font-label-bold text-label-bold focus:ring-0 cursor-pointer outline-none">
                 <option className="bg-surface">{t('sort_monthly_asc')}</option>
@@ -133,14 +136,14 @@ export default function Home() {
         </div>
 
         {/* Hizmetlerimiz Section */}
-        <section className="max-w-container-max mx-auto mt-24 mb-24">
+        <section className="max-w-container-max mx-auto mt-16 sm:mt-24 mb-16 sm:mb-24">
           <div className="flex flex-col items-center mb-12">
             <span className="text-primary-container font-label-bold text-label-bold tracking-widest uppercase mb-2">{t('services_subtitle')}</span>
-            <h2 className="text-headline-lg font-headline-lg text-on-surface">{t('services_title')}</h2>
+            <h2 className="text-2xl sm:text-headline-lg font-headline-lg text-on-surface">{t('services_title')}</h2>
             <div className="h-1 w-24 bg-primary-container mt-4"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
                 <span className="material-symbols-outlined text-primary-container group-hover:text-white">payments</span>
               </div>
@@ -148,7 +151,7 @@ export default function Home() {
               <p className="text-body-md text-text-muted">{t('srv1_desc')}</p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
                 <span className="material-symbols-outlined text-primary-container group-hover:text-white">verified_user</span>
               </div>
@@ -156,7 +159,7 @@ export default function Home() {
               <p className="text-body-md text-text-muted">{t('srv5_desc')}</p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
                 <span className="material-symbols-outlined text-primary-container group-hover:text-white">article</span>
               </div>
@@ -164,7 +167,7 @@ export default function Home() {
               <p className="text-body-md text-text-muted">{t('srv3_desc')}</p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl hover:border-primary-container/50 transition-all duration-300 group">
               <div className="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-6 group-hover:bg-primary-container transition-colors">
                 <span className="material-symbols-outlined text-primary-container group-hover:text-white">shopping_cart</span>
               </div>
@@ -176,12 +179,12 @@ export default function Home() {
 
         {/* Süreç Section */}
         <section className="max-w-container-max mx-auto mb-24">
-          <div className="bg-surface-zinc/50 border border-outline-variant/10 rounded-3xl p-12 overflow-hidden relative">
+          <div className="bg-surface-zinc/50 border border-outline-variant/10 rounded-2xl sm:rounded-3xl p-6 sm:p-12 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 blur-[120px] rounded-full"></div>
             <div className="flex flex-col md:flex-row justify-between items-start gap-12 relative z-10">
               <div className="max-w-sm">
                 <span className="text-primary-container font-label-bold text-label-bold tracking-widest uppercase">{t('process_subtitle')}</span>
-                <h2 className="text-headline-lg font-headline-lg text-on-surface mt-2 mb-6">{t('process_title')}</h2>
+                <h2 className="text-2xl sm:text-headline-lg font-headline-lg text-on-surface mt-2 mb-4 sm:mb-6">{t('process_title')}</h2>
                 <p className="text-body-lg text-text-muted">{t('process_desc')}</p>
                 <button className="mt-8 bg-primary-container text-white px-8 py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-all">{t('process_btn')}</button>
               </div>

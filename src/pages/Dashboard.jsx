@@ -3,6 +3,22 @@ import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
+import DashboardRow from '../components/DashboardRow';
 
 export default function Dashboard() {
   const [contents, setContents] = useState([]);
@@ -33,10 +49,20 @@ export default function Dashboard() {
   const [uploadingGallery, setUploadingGallery] = useState(false);
   const [sortBy, setSortBy] = useState('custom'); 
   const [searchTerm, setSearchTerm] = useState('');
-  const [dragState, setDragState] = useState({ active: false, fromIndex: null, hoverIndex: null });
   const contentsRef = useRef([]);
   const navigate = useNavigate();
   const { t } = useLanguage();
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   useEffect(() => {
     checkUser();
@@ -224,71 +250,38 @@ export default function Dashboard() {
   // Keep a ref in sync with contents for use in async save
   useEffect(() => { contentsRef.current = contents; }, [contents]);
 
-  // Drag and Drop Handlers
-  const handleDragStart = useCallback((e, index) => {
-    setDragState({ active: true, fromIndex: index, hoverIndex: index });
-    e.dataTransfer.effectAllowed = 'move';
-    // Use the row as drag image
-    const row = e.target.closest?.('[data-drag-row]');
-    if (row) {
-      e.dataTransfer.setDragImage(row, 40, 24);
-    }
-  }, []);
+  const handleDragEnd = async (event) => {
+    const { active, over } = event;
 
-  const handleDragEnter = useCallback((e, index) => {
-    e.preventDefault();
-    setDragState(prev => prev.active ? { ...prev, hoverIndex: index } : prev);
-  }, []);
+    if (active.id !== over?.id && over !== null) {
+      let newOrder = [];
+      setContents((items) => {
+        const oldIndex = items.findIndex((i) => i.id === active.id);
+        const newIndex = items.findIndex((i) => i.id === over.id);
+        const reordered = arrayMove(items, oldIndex, newIndex);
+        newOrder = reordered;
+        return reordered;
+      });
 
-  const handleDragOver = useCallback((e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  }, []);
-
-  const handleDragEnd = useCallback(async () => {
-    setDragState(prev => {
-      const { fromIndex, hoverIndex } = prev;
-      // Apply reorder to contents before resetting drag state
-      if (fromIndex !== null && hoverIndex !== null && fromIndex !== hoverIndex) {
-        setContents(currentContents => {
-          const newList = [...currentContents];
-          const [draggedItem] = newList.splice(fromIndex, 1);
-          newList.splice(hoverIndex, 0, draggedItem);
-          return newList;
-        });
-      }
-      return { active: false, fromIndex: null, hoverIndex: null };
-    });
-
-    // Save sort_order to Supabase after a micro-delay for state to settle
-    setActionLoading(true);
-    try {
-      await new Promise(r => setTimeout(r, 100));
-      const currentList = contentsRef.current;
-      if (currentList.length > 0) {
-        const promises = currentList.map((item, idx) =>
-          supabase.from('contents').update({ sort_order: idx }).eq('id', item.id)
-        );
-        const results = await Promise.all(promises);
-        const failed = results.find(r => r.error);
-        if (failed?.error) {
-          if (failed.error.message.includes('sort_order')) {
-            alert("⚠️ Sıralamayı kalıcı kaydetmek için lütfen Supabase SQL Editor'de şu komutu çalıştırın:\n\nALTER TABLE public.contents ADD COLUMN sort_order integer DEFAULT 0;");
-          } else {
+      if (newOrder.length > 0) {
+        setActionLoading(true);
+        try {
+          const promises = newOrder.map((item, idx) =>
+            supabase.from('contents').update({ sort_order: idx }).eq('id', item.id)
+          );
+          const results = await Promise.all(promises);
+          const failed = results.find(r => r.error);
+          if (failed?.error) {
             console.error('Sort save error:', failed.error);
           }
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setActionLoading(false);
         }
       }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setActionLoading(false);
     }
-  }, []);
-
-  const handleDragCancel = useCallback(() => {
-    setDragState({ active: false, fromIndex: null, hoverIndex: null });
-  }, []);
+  };
 
 
 
@@ -333,17 +326,7 @@ export default function Dashboard() {
     }
   });
 
-  // Compute a live-preview display list that reorders in real-time during drag
-  const displayContents = useMemo(() => {
-    const { active, fromIndex, hoverIndex } = dragState;
-    if (!active || fromIndex === null || hoverIndex === null || fromIndex === hoverIndex) {
-      return sortedContents;
-    }
-    const items = [...sortedContents];
-    const [draggedItem] = items.splice(fromIndex, 1);
-    items.splice(hoverIndex, 0, draggedItem);
-    return items;
-  }, [sortedContents, dragState]);
+
 
   if (loading && contents.length === 0) {
     return (
@@ -354,22 +337,22 @@ export default function Dashboard() {
   }
 
   return (
-    <main className="pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
+    <main className="pt-20 sm:pt-24 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header Stats Panel */}
-        <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="mb-6 sm:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-4xl font-sora font-extrabold text-white tracking-tight" data-t="dash_title">{t('dash_title')}</h1>
+            <h1 className="text-2xl sm:text-4xl font-sora font-extrabold text-white tracking-tight" data-t="dash_title">{t('dash_title')}</h1>
             <p className="text-text-muted mt-2 max-w-md" data-t="dash_subtitle">Velocity Performance standartlarında araç ve içerik yönetimi.</p>
           </div>
-          <div className="flex gap-3">
-            <div className="glass-card px-4 py-3 rounded-2xl border-white/5 flex flex-col">
+          <div className="flex flex-wrap gap-3">
+            <div className="glass-card px-3 sm:px-4 py-3 rounded-2xl border-white/5 flex flex-col flex-1 min-w-[120px]">
               <span className="text-[10px] text-text-muted uppercase font-bold tracking-widest">Toplam Araç</span>
-              <span className="text-xl font-sora font-bold text-white">{totalVehicles}</span>
+              <span className="text-lg sm:text-xl font-sora font-bold text-white">{totalVehicles}</span>
             </div>
-            <div className="glass-card px-4 py-3 rounded-2xl border-white/5 flex flex-col border-l-primary/30">
+            <div className="glass-card px-3 sm:px-4 py-3 rounded-2xl border-white/5 flex flex-col border-l-primary/30 flex-1 min-w-[120px]">
               <span className="text-[10px] text-text-muted uppercase font-bold tracking-widest">Aktif Portföy</span>
-              <span className="text-xl font-sora font-bold text-primary">€{activePortfolio}</span>
+              <span className="text-lg sm:text-xl font-sora font-bold text-primary">€{activePortfolio}</span>
             </div>
           </div>
         </div>
@@ -378,7 +361,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Add / Edit Form Column (lg:col-span-5) */}
           <div className="lg:col-span-5">
-            <div className="glass-card rounded-3xl p-8 sticky top-24 border-primary/10">
+            <div className="glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:sticky lg:top-24 border-primary/10">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <span className="material-symbols-outlined text-primary">
@@ -503,7 +486,7 @@ export default function Dashboard() {
                       />
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                       <label className="label-high-contrast" data-t="dash_label_rate">{t('dash_label_rate')}</label>
                       <input 
@@ -685,10 +668,10 @@ export default function Dashboard() {
 
           {/* List Section Column (lg:col-span-7) */}
           <div className="lg:col-span-7">
-            <div className="glass-card rounded-3xl overflow-hidden">
-              <div className="p-8 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/[0.02]">
+            <div className="glass-card rounded-2xl sm:rounded-3xl overflow-hidden">
+              <div className="p-4 sm:p-8 border-b border-white/5 flex flex-col gap-4 bg-white/[0.02]">
                 <h2 className="text-xl font-sora font-bold text-white" data-t="dash_list_title">{t('dash_list_title')}</h2>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2">
                   {/* Manual Sort Button */}
                   <button
                     type="button"
@@ -697,17 +680,18 @@ export default function Dashboard() {
                         setSortBy('newest');
                       } else {
                         setSortBy('custom');
-                        setSearchTerm(''); // Clear search to enable drag-and-drop
+                        setSearchTerm('');
                       }
                     }}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border flex-shrink-0 ${
                       sortBy === 'custom'
                         ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20'
                         : 'bg-zinc-900/80 text-text-muted border-white/10 hover:text-white hover:border-white/20'
                     }`}
                   >
                     <span className="material-symbols-outlined text-[16px] leading-none">drag_indicator</span>
-                    <span>Tut Sürükle Sırala</span>
+                    <span className="hidden sm:inline">Tut Sürükle Sırala</span>
+                    <span className="sm:hidden">Sırala</span>
                   </button>
 
                   {/* Search Input */}
@@ -717,18 +701,18 @@ export default function Dashboard() {
                       placeholder="Araç ara..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="bg-zinc-900/80 border border-white/10 text-xs rounded-lg pl-8 pr-3 py-1.5 font-medium text-white placeholder:text-text-muted outline-none w-40 focus:border-primary focus:ring-0 transition-all"
+                      className="bg-zinc-900/80 border border-white/10 text-xs rounded-lg pl-8 pr-3 py-1.5 font-medium text-white placeholder:text-text-muted outline-none w-full sm:w-40 focus:border-primary focus:ring-0 transition-all min-w-0"
                     />
                     <span className="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted text-xs leading-none">search</span>
                   </div>
 
                   {/* Sort Select */}
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-text-muted font-bold">SIRALA:</span>
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <span className="text-[10px] text-text-muted font-bold flex-shrink-0">SIRALA:</span>
                     <select 
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1.5 font-bold text-on-surface outline-none cursor-pointer focus:ring-0"
+                      className="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1.5 font-bold text-on-surface outline-none cursor-pointer focus:ring-0 w-full sm:w-auto min-w-0"
                     >
                       <option value="custom">Özel Sıralama (Sürükle)</option>
                       <option value="newest">En Yeni (Tarih)</option>
@@ -746,149 +730,37 @@ export default function Dashboard() {
                 </div>
               </div>
               
-              <div className="divide-y divide-white/5" onDragLeave={handleDragCancel}>
-                {displayContents.map((item, index) => {
-                  const isDragSource = dragState.active && sortedContents[dragState.fromIndex]?.id === item.id;
-                  const isHoverTarget = dragState.active && index === dragState.hoverIndex && !isDragSource;
-                  return (
-                    <div key={item.id} className="relative">
-                      {/* Drop indicator line — appears ABOVE the hovered item */}
-                      {isHoverTarget && dragState.hoverIndex <= dragState.fromIndex && (
-                        <div className="absolute top-0 left-4 right-4 z-20 flex items-center pointer-events-none" style={{transform: 'translateY(-50%)'}}>
-                          <div className="w-3 h-3 rounded-full bg-primary border-2 border-primary shadow-lg shadow-primary/50 flex-shrink-0" />
-                          <div className="flex-grow h-[3px] bg-gradient-to-r from-primary to-primary/40 rounded-full shadow-lg shadow-primary/30" />
-                        </div>
-                      )}
-                      <div 
-                        data-drag-row
-                        onDragOver={handleDragOver}
-                        onDragEnter={(e) => handleDragEnter(e, index)}
-                        className={`p-6 flex flex-col md:flex-row gap-6 hover:bg-white/[0.03] group relative
-                          ${!item.status ? 'opacity-70' : ''}
-                          ${isDragSource ? 'opacity-20 scale-[0.98] bg-primary/5 border-l-2 border-l-primary' : ''}
-                          ${isHoverTarget ? 'bg-white/[0.04]' : ''}
-                          transition-all duration-200 ease-out`}
-                      >
-                        {/* Image Block */}
-                        <div className={`w-full md:w-48 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 shadow-lg ${!item.status ? 'grayscale' : ''}`}>
-                          {item.image_url ? (
-                            <img 
-                              alt={item.title} 
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                              src={item.image_url} 
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-zinc-950 flex items-center justify-center text-[10px] font-bold text-text-muted uppercase">
-                              {t('dash_no_img')}
-                            </div>
-                          )}
-                          {item.category && (
-                            <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest">
-                              {item.category}
-                            </div>
-                          )}
-                        </div>
+              <DndContext 
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
+              >
+                <div className="divide-y divide-white/5">
+                  <SortableContext 
+                    items={sortedContents.map(item => item.id)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {sortedContents.map((item) => (
+                      <DashboardRow 
+                        key={item.id} 
+                        item={item} 
+                        handleEdit={handleEdit} 
+                        handleDelete={handleDelete}
+                        t={t}
+                        sortBy={sortBy}
+                        searchTerm={searchTerm}
+                      />
+                    ))}
+                  </SortableContext>
 
-                        {/* Content Details Block */}
-                        <div className="flex-grow flex flex-col justify-between">
-                          <div>
-                            <div className="flex justify-between items-start gap-4">
-                              <h3 className="font-sora font-bold text-white text-lg leading-tight group-hover:text-primary transition-colors">{item.title}</h3>
-                              {item.status ? (
-                                <span className="px-2 py-1 text-[10px] font-black rounded bg-green-500/10 border border-green-500/30 text-green-400 uppercase tracking-tighter">
-                                  {t('dash_active')}
-                                </span>
-                              ) : (
-                                <span className="px-2 py-1 text-[10px] font-black rounded bg-white/10 border border-white/20 text-white/50 uppercase tracking-tighter">
-                                  {t('dash_passive')}
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-text-muted font-medium">
-                              {item.year && (
-                                <span className="flex items-center gap-1">
-                                  <span className="material-symbols-outlined text-[14px]">calendar_today</span> 
-                                  {item.year}
-                                </span>
-                              )}
-                              {item.mileage !== null && item.mileage !== undefined && (
-                                <span className="flex items-center gap-1">
-                                  <span className="material-symbols-outlined text-[14px]">speed</span> 
-                                  {parseFloat(item.mileage).toLocaleString('de-DE')} km
-                                </span>
-                              )}
-                              {item.price && (
-                                <span className="flex items-center gap-1 font-bold text-white">
-                                  €{parseFloat(item.price).toLocaleString('de-DE')}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Bottom row actions & finance */}
-                          <div className="mt-4 flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              {item.status ? (
-                                item.monthly_rate && (
-                                  <div className="bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/10">
-                                    <span className="text-[10px] text-primary font-bold">€{parseFloat(item.monthly_rate).toLocaleString('de-DE')} / Ay</span>
-                                  </div>
-                                )
-                              ) : (
-                                <span className="text-[10px] text-text-muted italic">Satıldı / Stokta Yok</span>
-                              )}
-                            </div>
-                            <div className="flex gap-2 items-center">
-                              <button 
-                                onClick={() => handleEdit(item)}
-                                className="p-2.5 glass rounded-xl text-primary hover:bg-primary hover:text-white transition-all border border-white/5"
-                                title="Düzenle"
-                              >
-                                <span className="material-symbols-outlined text-sm leading-none block">edit</span>
-                              </button>
-                              <button 
-                                onClick={() => handleDelete(item.id)}
-                                className="p-2.5 glass rounded-xl text-text-muted hover:text-error hover:bg-error/10 transition-all border border-white/5"
-                                title="Sil"
-                              >
-                                <span className="material-symbols-outlined text-sm leading-none block">delete</span>
-                              </button>
-                              {sortBy === 'custom' && !searchTerm && (
-                                <div 
-                                  draggable
-                                  onDragStart={(e) => handleDragStart(e, index)}
-                                  onDragEnd={handleDragEnd}
-                                  className={`p-2.5 rounded-xl transition-all border select-none ml-1
-                                    ${dragState.active 
-                                      ? 'bg-primary/10 text-primary border-primary/30 cursor-grabbing' 
-                                      : 'glass text-text-muted hover:text-primary border-white/5 cursor-grab'}
-                                  `}
-                                  title="Sıralamak için tut ve sürükle"
-                                >
-                                  <span className="material-symbols-outlined text-sm leading-none block">drag_indicator</span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      {/* Drop indicator line — appears BELOW the hovered item */}
-                      {isHoverTarget && dragState.hoverIndex > dragState.fromIndex && (
-                        <div className="absolute bottom-0 left-4 right-4 z-20 flex items-center pointer-events-none" style={{transform: 'translateY(50%)'}}>
-                          <div className="w-3 h-3 rounded-full bg-primary border-2 border-primary shadow-lg shadow-primary/50 flex-shrink-0" />
-                          <div className="flex-grow h-[3px] bg-gradient-to-r from-primary to-primary/40 rounded-full shadow-lg shadow-primary/30" />
-                        </div>
-                      )}
+                  {sortedContents.length === 0 && (
+                    <div className="p-12 text-center text-text-muted italic text-sm">
+                      {t('dash_empty_list')}
                     </div>
-                  );
-                })}
-
-                {sortedContents.length === 0 && (
-                  <div className="p-12 text-center text-text-muted italic text-sm">
-                    {t('dash_empty_list')}
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              </DndContext>
             </div>
           </div>
         </div>

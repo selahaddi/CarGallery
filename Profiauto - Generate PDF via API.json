@@ -1,0 +1,119 @@
+{
+  "name": "Profiauto - Generate PDF via API",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/webhook/generate-pdf",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "pdf"
+            }
+          }
+        }
+      },
+      "id": "45e958b2-3a30-4fb7-83de-45e0c20fc7d2",
+      "name": "Python API Tetikle",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        432,
+        496
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-offer",
+        "options": {}
+      },
+      "id": "c345d547-39c5-4e41-a93d-4ddd9098dcd2",
+      "name": "Webhook (React)1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        176,
+        496
+      ],
+      "webhookId": "generate-offer-api-webhook"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.customer.email }}",
+        "subject": "=Hello  {{ $json.body.customer.name }} ",
+        "message": "Merhaba",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "pdf"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        496
+      ],
+      "id": "9325dca3-bc7f-4713-b85a-49deefc57546",
+      "name": "Send a message",
+      "webhookId": "4ad4c640-22ef-40b0-9b6d-a4ee6e90d0a1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "R6nOWWA6dVeRfNtp",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Python API Tetikle": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook (React)1": {
+      "main": [
+        [
+          {
+            "node": "Python API Tetikle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "6f3a0135-312c-444e-bfca-ac187c4c0c64",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0df5cc9e4f2a78ae3311b22f0bc97ac39b5b570284aba31178aaf76c10676e65"
+  },
+  "id": "aqMUvLqFba0bkMN2",
+  "tags": []
+}

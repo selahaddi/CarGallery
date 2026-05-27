@@ -16,7 +16,7 @@ export default function ContentCard({ content }) {
 
   return (
     <div className="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-48 sm:h-64 overflow-hidden">
         <Link to={itemUrl} className="block w-full h-full">
           <img 
             src={imageUrl} 
@@ -26,12 +26,12 @@ export default function ContentCard({ content }) {
         </Link>
         <div className="absolute top-4 right-4 flex flex-col gap-2 pointer-events-none">
           {content.monthly_rate && (
-            <div className="bg-primary-container text-white px-4 py-1 rounded-full text-label-bold font-label-bold shadow-lg">
+            <div className="bg-primary-container text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-label-bold font-label-bold shadow-lg whitespace-nowrap">
               {t('card_rate')}: {formatNumber(content.monthly_rate)}€ <span className="text-[10px]">/ {t('card_months').toLowerCase()}</span>
             </div>
           )}
           {content.down_payment && (
-            <div className="bg-black/80 backdrop-blur-md text-on-surface px-4 py-1 rounded-full text-label-bold font-label-bold border border-outline-variant/20">
+            <div className="bg-black/80 backdrop-blur-md text-on-surface px-3 sm:px-4 py-1 rounded-full text-xs sm:text-label-bold font-label-bold border border-outline-variant/20 whitespace-nowrap">
               {t('card_down')}: {formatNumber(content.down_payment)}€
             </div>
           )}
@@ -51,13 +51,13 @@ export default function ContentCard({ content }) {
         )}
       </div>
       
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h2 className="text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors line-clamp-1">
+            <h2 className="text-lg sm:text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors line-clamp-1">
               <Link to={itemUrl}>{content.title}</Link>
             </h2>
-            <p className="text-label-sm text-text-muted uppercase tracking-wider">
+            <p className="text-label-sm text-text-muted uppercase tracking-wider truncate">
               {content.category} {content.year && `• ${content.year}`} {content.mileage && `• ${formatNumber(content.mileage)} km`}
             </p>
           </div>

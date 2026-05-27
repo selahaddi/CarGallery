@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
 import { useSidebar } from '../SidebarContext';
@@ -10,6 +10,21 @@ export default function SideNavBar() {
 
   const isActive = (path) => location.pathname === path;
 
+  // Lock body scroll when sidebar is open
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isSidebarOpen]);
+
+  // Close sidebar on route change
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [location.pathname]);
+
   return (
     <>
       {/* Backdrop */}
@@ -20,7 +35,7 @@ export default function SideNavBar() {
         />
       )}
       
-      <aside className={`fixed left-0 top-0 h-full z-40 flex flex-col py-6 bg-surface-zinc dark:bg-surface-zinc w-64 shadow-xl border-r border-outline-variant/10 transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed left-0 top-0 h-full z-40 flex flex-col py-6 bg-surface-zinc dark:bg-surface-zinc w-64 shadow-xl border-r border-outline-variant/10 transition-transform duration-300 ease-in-out overflow-y-auto overscroll-contain ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="px-6 mb-10 mt-20 flex justify-between items-start">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center">

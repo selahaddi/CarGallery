@@ -5,7 +5,7 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="w-full py-12 px-gutter flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto mt-section-gap border-t border-outline-variant/20 bg-background-deep z-10 relative">
+    <footer className="w-full py-8 sm:py-12 px-4 sm:px-gutter flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto mt-12 sm:mt-section-gap border-t border-outline-variant/20 bg-background-deep z-10 relative gap-6">
       <div className="mb-8 md:mb-0 text-center md:text-left">
         <div className="text-label-bold font-label-bold text-primary mb-2">
           {t('brand_name')}

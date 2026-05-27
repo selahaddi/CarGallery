@@ -112,18 +112,26 @@ export default function ContentDetail() {
       };
       
       // Webhook isteği
-      const response = await fetch('http://localhost:5678/webhook/generate-offer', {
+      // Ortam değişkeninden (env) URL al, yoksa varsayılanı kullan
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'http://localhost:5678/webhook-test/generate-offer';
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
       
-      // Şimdilik başarılı kabul et
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Webhook Error:", response.status, errorText);
+        throw new Error(`Webhook failed: ${response.status}`);
+      }
+      
       alert(t('detail_success_alert'));
       setIsModalOpen(false);
       setFormData({ name: '', email: '', phone: '' });
     } catch (e) {
-      alert(t('detail_error_alert'));
+      console.error("Form Submit Error:", e);
+      alert(t('detail_error_alert') + " Lütfen konsolu (F12) kontrol edin.");
     } finally {
       setIsSubmitting(false);
     }
@@ -132,8 +140,8 @@ export default function ContentDetail() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-12 h-12 animate-spin text-indigo-600 mb-4" />
-        <p className="text-gray-500 font-medium">{t('detail_loading')}</p>
+        <Loader2 className="w-12 h-12 animate-spin text-primary mb-4" />
+        <p className="text-text-muted font-medium">{t('detail_loading')}</p>
       </div>
     );
   }
@@ -141,8 +149,8 @@ export default function ContentDetail() {
   if (error || !content) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">{error || t('detail_not_found')}</h2>
-        <Link to="/" className="text-indigo-600 hover:underline flex items-center justify-center">
+        <h2 className="text-2xl font-bold text-on-surface mb-4">{error || t('detail_not_found')}</h2>
+        <Link to="/" className="text-primary hover:underline flex items-center justify-center">
           <ArrowLeft className="w-4 h-4 mr-2" />
           {t('detail_back')}
         </Link>
@@ -155,9 +163,9 @@ export default function ContentDetail() {
   const mainImage = galleryImages[activeImageIdx] || imageUrl;
 
   return (
-    <main className="pt-20 bg-background-deep text-on-surface font-body-md selection:bg-primary-container">
+    <main className="pt-20 pb-24 md:pb-0 bg-background-deep text-on-surface font-body-md selection:bg-primary-container">
       {/* Hero Gallery Section */}
-      <section className="relative w-full h-[716px] bg-background-deep overflow-hidden group flex items-center justify-center">
+      <section className="relative w-full h-[40vh] sm:h-[716px] bg-background-deep overflow-hidden group flex items-center justify-center">
         {/* Arkada bulanık arka plan görseli (boşlukları doldurmak için) */}
         <img 
           src={mainImage} 
@@ -171,9 +179,9 @@ export default function ContentDetail() {
           className="relative max-w-full max-h-full object-contain z-10 transition-transform duration-500"
         />
         <div className="absolute inset-0 hero-gradient z-20 pointer-events-none"></div>
-        <div className="absolute bottom-12 left-gutter z-30">
+        <div className="absolute bottom-6 sm:bottom-12 left-4 sm:left-gutter z-30">
           <p className="text-primary font-label-bold mb-2 tracking-widest">{t('showroom_subtitle').toUpperCase()}</p>
-          <h1 className="font-headline-lg text-headline-lg text-white mb-4 drop-shadow-md">{content.title}</h1>
+          <h1 className="font-headline-lg text-2xl sm:text-headline-lg text-white mb-4 drop-shadow-md">{content.title}</h1>
           <div className="flex flex-wrap gap-4">
             {content.category && (
               <div className="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
@@ -191,12 +199,12 @@ export default function ContentDetail() {
         </div>
         
         {/* Thumbnail Navigation */}
-        <div className="absolute right-gutter bottom-12 flex flex-col gap-2 z-30">
+        <div className="absolute right-4 sm:right-gutter bottom-6 sm:bottom-12 flex flex-row sm:flex-col gap-2 z-30">
           {galleryImages.slice(0, 4).map((img, idx) => (
             <div 
               key={idx} 
               onClick={() => setActiveImageIdx(idx)}
-              className={`w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all ${idx === activeImageIdx ? 'border-primary opacity-100' : 'border-white/20 opacity-60 hover:opacity-100'}`}
+              className={`w-14 h-10 sm:w-20 sm:h-12 rounded border-2 overflow-hidden cursor-pointer transition-all ${idx === activeImageIdx ? 'border-primary opacity-100' : 'border-white/20 opacity-60 hover:opacity-100'}`}
             >
               <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
             </div>
@@ -205,7 +213,7 @@ export default function ContentDetail() {
       </section>
 
       {/* Content Grid */}
-      <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-12 gap-gutter py-section-gap">
+      <div className="max-w-container-max mx-auto px-4 sm:px-gutter grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-gutter py-12 sm:py-section-gap">
         
         {/* Left: Technical Specs (Bento Style) */}
         <div className="lg:col-span-7 space-y-gutter">
@@ -350,10 +358,10 @@ export default function ContentDetail() {
               <div className="bg-primary-container/10 p-6 rounded-xl border border-primary/20">
                 <p className="text-primary font-label-bold mb-1 uppercase tracking-tighter">{t('detail_monthly_rate')}</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="font-display-hero text-6xl text-white">{formatNumber(monthlyRate)}</span>
+                  <span className="font-display-hero text-3xl sm:text-4xl md:text-6xl text-white">{formatNumber(monthlyRate)}</span>
                   <span className="text-headline-md text-white/70">€/{t('card_months')}</span>
                 </div>
-                <div className="flex justify-between text-text-muted text-label-sm mt-3 pt-3 border-t border-outline-variant/10">
+                <div className="flex flex-col sm:flex-row justify-between text-text-muted text-label-sm mt-3 pt-3 border-t border-outline-variant/10 gap-1">
                   <span>{t('detail_interest_rate')}: %{content.interest_rate || '3.8'}</span>
                   <span>{t('detail_term')}: {termMonths} {t('card_months')}</span>
                 </div>

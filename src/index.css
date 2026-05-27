@@ -15,7 +15,7 @@
 }
 
 body {
-  @apply bg-zinc-950 text-gray-100 antialiased min-h-screen relative overflow-x-hidden;
+  @apply bg-zinc-950 text-gray-100 antialiased min-h-screen relative overflow-x-clip;
 }
 
 /* Background Pattern */
@@ -45,4 +45,91 @@ body::before {
 }
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Disable pointer-events on row descendants during active drag to eliminate all flickering */
+.dragging-active [data-drag-row] * {
+  pointer-events: none !important;
+}
+
+/* Mobile-specific improvements */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Safe area padding for notched phones (iPhone X+) */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .fixed.bottom-0 {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Better touch targets on mobile */
+@media (max-width: 640px) {
+  button, a, input, select, textarea {
+    min-height: 44px;
+  }
+  
+  select {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  input, textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* Dashboard label style */
+.label-high-contrast {
+  @apply block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5;
+}
+
+/* Custom range slider styling for mobile */
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e11d48;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 6px rgba(225, 29, 72, 0.4);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e11d48;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 6px rgba(225, 29, 72, 0.4);
+}
+
+/* Prevent horizontal overflow globally */
+body {
+  overflow-x: clip;
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Better tap highlight on mobile */
+@media (max-width: 640px) {
+  * {
+    -webkit-tap-highlight-color: rgba(225, 29, 72, 0.15);
+  }
 }

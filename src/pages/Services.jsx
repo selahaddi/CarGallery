@@ -23,9 +23,9 @@ export default function Services() {
   }, []);
 
   return (
-    <div className="bg-background text-on-background font-body-md overflow-x-hidden pt-20">
+    <div className="bg-background text-on-background font-body-md overflow-x-hidden pt-16 sm:pt-20">
       {/* Hero Section */}
-      <section className="relative h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-background-deep via-transparent to-background-deep z-10"></div>
           <img 
@@ -34,21 +34,21 @@ export default function Services() {
             src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80"
           />
         </div>
-        <div className="relative z-20 text-center px-4 max-w-4xl">
+        <div className="relative z-20 text-center px-4 max-w-4xl w-full">
           <span className="text-primary font-label-bold uppercase tracking-[0.3em] mb-4 block">
             {t('hero_services_subtitle')}
           </span>
-          <h1 className="font-display-hero text-headline-lg-mobile md:text-display-hero mb-6 text-gradient leading-none">
+          <h1 className="font-display-hero text-headline-lg-mobile md:text-display-hero mb-6 text-gradient leading-none break-words">
             {t('hero_services_title')}
           </h1>
           <p className="font-body-lg text-text-muted mb-10 max-w-2xl mx-auto">
             {t('hero_services_desc')}
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button className="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-label-bold active-red-glow hover:bg-red-500 transition-all flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button className="bg-primary-container text-on-primary-container px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-label-bold active-red-glow hover:bg-red-500 transition-all flex items-center justify-center gap-2">
               {t('hero_services_btn1')} <span className="material-symbols-outlined">arrow_forward</span>
             </button>
-            <button className="glass-card text-white border border-outline-variant/30 px-8 py-4 rounded-lg font-label-bold hover:bg-surface-variant transition-all">
+            <button className="glass-card text-white border border-outline-variant/30 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-label-bold hover:bg-surface-variant transition-all">
               {t('hero_services_btn2')}
             </button>
           </div>
@@ -56,10 +56,10 @@ export default function Services() {
       </section>
 
       {/* Services Grid (Bento Style) */}
-      <section className="max-w-container-max mx-auto px-gutter py-section-gap">
+      <section className="max-w-container-max mx-auto px-4 sm:px-gutter py-12 sm:py-section-gap">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div>
-            <h2 className="font-headline-lg text-white mb-4">{t('services_title')}</h2>
+            <h2 className="font-headline-lg text-2xl sm:text-headline-lg text-white mb-4">{t('services_title')}</h2>
             <div className="w-24 h-1 bg-primary-container"></div>
           </div>
           <p className="text-text-muted font-body-md max-w-md">
@@ -67,7 +67,7 @@ export default function Services() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          <div className="md:col-span-8 glass-card glass-card-hover rounded-xl p-8 group hover:border-primary/50 transition-all relative overflow-hidden h-[400px] flex flex-col justify-end">
+          <div className="md:col-span-8 glass-card glass-card-hover rounded-xl p-6 sm:p-8 group hover:border-primary/50 transition-all relative overflow-hidden h-[240px] sm:h-[400px] flex flex-col justify-end">
             <div className="absolute inset-0 z-0">
               <img 
                 className="w-full h-full object-cover opacity-10 group-hover:opacity-20 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0" 
@@ -88,13 +88,13 @@ export default function Services() {
             <div className="absolute inset-0 bg-gradient-to-t from-background-deep via-transparent to-transparent opacity-60 z-0"></div>
           </div>
           
-          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl p-8 group hover:border-primary/50 transition-all flex flex-col items-center text-center justify-center border-l-4 border-l-primary-container">
+          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl p-6 sm:p-8 group hover:border-primary/50 transition-all flex flex-col items-center text-center justify-center border-l-4 border-l-primary-container min-h-[200px]">
             <span className="material-symbols-outlined text-primary text-6xl mb-4">shopping_cart</span>
             <h3 className="font-headline-md text-white mb-2">{t('srv2_title')}</h3>
             <p className="text-text-muted font-body-md">{t('srv2_desc')}</p>
           </div>
           
-          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl p-8 group hover:border-primary/50 transition-all flex flex-col justify-between">
+          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl p-6 sm:p-8 group hover:border-primary/50 transition-all flex flex-col justify-between min-h-[200px]">
             <span className="material-symbols-outlined text-primary text-4xl">local_shipping</span>
             <div>
               <h3 className="font-headline-md text-white mb-2">{t('srv3_title')}</h3>
@@ -102,7 +102,7 @@ export default function Services() {
             </div>
           </div>
           
-          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl overflow-hidden group hover:border-primary/50 transition-all relative">
+          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl overflow-hidden group hover:border-primary/50 transition-all relative min-h-[200px]">
             <div className="absolute inset-0">
               <img 
                 className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
@@ -116,7 +116,7 @@ export default function Services() {
             </div>
           </div>
           
-          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl p-8 group hover:border-primary/50 transition-all flex flex-col justify-between bg-surface-zinc">
+          <div className="md:col-span-4 glass-card glass-card-hover rounded-xl p-6 sm:p-8 group hover:border-primary/50 transition-all flex flex-col justify-between bg-surface-zinc min-h-[200px]">
             <div className="flex justify-between items-start">
               <span className="material-symbols-outlined text-primary text-4xl">verified_user</span>
               <span className="material-symbols-outlined text-on-surface-variant/30 text-4xl">auto_fix_high</span>
@@ -130,10 +130,10 @@ export default function Services() {
       </section>
 
       {/* How it Works (Süreç) */}
-      <section className="bg-surface-container-low py-section-gap relative overflow-hidden">
-        <div className="max-w-container-max mx-auto px-gutter relative z-10">
+      <section className="bg-surface-container-low py-12 sm:py-section-gap relative overflow-hidden">
+        <div className="max-w-container-max mx-auto px-4 sm:px-gutter relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-headline-lg text-white mb-4">{t('process_title')}</h2>
+            <h2 className="font-headline-lg text-2xl sm:text-headline-lg text-white mb-4">{t('process_title')}</h2>
             <p className="text-text-muted font-body-md max-w-xl mx-auto">{t('process_desc')}</p>
           </div>
           
@@ -209,10 +209,10 @@ export default function Services() {
       </section>
 
       {/* Why Us Section */}
-      <section className="max-w-container-max mx-auto px-gutter py-section-gap mb-20">
+      <section className="max-w-container-max mx-auto px-4 sm:px-gutter py-12 sm:py-section-gap mb-10 sm:mb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <h2 className="font-headline-lg text-white mb-8">{t('why_us_title')}</h2>
+            <h2 className="font-headline-lg text-2xl sm:text-headline-lg text-white mb-8">{t('why_us_title')}</h2>
             <div className="space-y-8">
               <div className="flex gap-6 group">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary-container/10 border border-primary-container/30 flex items-center justify-center rounded-lg group-hover:bg-primary-container transition-all">
@@ -248,21 +248,21 @@ export default function Services() {
           
           <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
             <div className="space-y-4 pt-12">
-              <div className="glass-card aspect-square rounded-2xl flex flex-col items-center justify-center p-6 border-b-4 border-b-primary-container">
-                <span className="text-display-hero text-primary leading-none mb-2">{t('stat1_val')}</span>
+              <div className="glass-card aspect-auto sm:aspect-square rounded-2xl flex flex-col items-center justify-center p-6 border-b-4 border-b-primary-container">
+                <span className="text-3xl sm:text-4xl md:text-display-hero text-primary leading-none mb-2">{t('stat1_val')}</span>
                 <span className="text-on-surface-variant font-label-bold text-center">{t('stat1_lbl')}</span>
               </div>
-              <div className="glass-card aspect-square rounded-2xl flex flex-col items-center justify-center p-6 bg-surface-zinc">
+              <div className="glass-card aspect-auto sm:aspect-square rounded-2xl flex flex-col items-center justify-center p-6 bg-surface-zinc">
                 <span className="text-headline-lg text-white leading-none mb-2">{t('stat2_val')}</span>
                 <span className="text-on-surface-variant font-label-bold text-center">{t('stat2_lbl')}</span>
               </div>
             </div>
             <div className="space-y-4">
-              <div className="glass-card aspect-square rounded-2xl flex flex-col items-center justify-center p-6">
+              <div className="glass-card aspect-auto sm:aspect-square rounded-2xl flex flex-col items-center justify-center p-6">
                 <span className="text-headline-lg text-white leading-none mb-2">{t('stat3_val')}</span>
                 <span className="text-on-surface-variant font-label-bold text-center">{t('stat3_lbl')}</span>
               </div>
-              <div className="glass-card aspect-square rounded-2xl flex flex-col items-center justify-center p-6 border-t-4 border-t-primary-container">
+              <div className="glass-card aspect-auto sm:aspect-square rounded-2xl flex flex-col items-center justify-center p-6 border-t-4 border-t-primary-container">
                 <span className="material-symbols-outlined text-primary text-6xl">public</span>
                 <span className="text-on-surface-variant font-label-bold text-center mt-2">{t('stat4_lbl')}</span>
               </div>
