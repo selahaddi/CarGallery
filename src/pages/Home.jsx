@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import ContentCard from '../components/ContentCard';
 import { Loader2 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import ScrollVideoTest from '../components/ScrollVideoTest';
 
 export default function Home() {
   const [contents, setContents] = useState([]);
@@ -70,6 +71,7 @@ export default function Home() {
 
   return (
     <>
+      <ScrollVideoTest />
       <div className="orb orb-1"></div>
       <div className="orb orb-2"></div>
       <div className="pt-nav-height min-h-screen">

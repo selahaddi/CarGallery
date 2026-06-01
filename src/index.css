@@ -7,7 +7,7 @@
 
 @layer base {
   body {
-    @apply bg-page-bg text-on-surface font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-white;
+    @apply bg-page-bg text-on-surface font-body-md antialiased overflow-x-clip selection:bg-primary-container selection:text-white;
   }
 }
 
