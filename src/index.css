@@ -1,55 +1,112 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-page-bg text-on-surface font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-white;
+  }
+}
+
 @layer utilities {
-  .glass {
-    @apply bg-zinc-950/80 backdrop-blur-xl border border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)];
+  .bg-card-auralis {
+      background: rgba(252, 252, 251, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid #E7E7E4;
   }
-  .glass-light {
-    @apply bg-zinc-900/60 backdrop-blur-lg border border-white/5;
+  .glass-card {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(16px) saturate(180%);
+      border: 0.5px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  }
+  .glass-card-dark {
+      background: rgba(27, 27, 27, 0.7);
+      backdrop-filter: blur(20px) saturate(150%);
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+  }
+  .glass-panel {
+      background: rgba(252, 252, 251, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid #E7E7E4;
+  }
+  .rail-system {
+      position: relative;
+      padding-left: 120px;
+  }
+  @media (max-width: 1024px) {
+      .rail-system { padding-left: 40px; }
+  }
+  @media (max-width: 768px) {
+      .rail-system { padding-left: 0; }
+  }
+  .rail-vertical {
+      position: absolute;
+      left: 60px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.05) 10%, rgba(0,0,0,0.05) 90%, transparent);
+      z-index: 5;
+  }
+  .asymmetrical-rail {
+      border-left: 0.5px solid #E7E7E4;
+      padding-left: 2rem;
+  }
+  .orb {
+      position: fixed;
+      border-radius: 100%;
+      filter: blur(140px);
+      z-index: -1;
+      opacity: 0.25;
+      pointer-events: none;
+  }
+  .atmospheric-orb {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      opacity: 0.4;
+      pointer-events: none;
+  }
+  .orb-1 { top: -200px; right: -200px; background: radial-gradient(circle, #e2e2e2 0%, transparent 70%); }
+  .orb-2 { bottom: -200px; left: -200px; background: radial-gradient(circle, #f3f3f3 0%, transparent 70%); }
+  
+  .density-wave-grid, .density-wave-container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+  }
+  .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+  }
+  .workstation-shadow {
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 20px 40px -10px rgba(0,0,0,0.05);
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 
-body {
-  @apply bg-zinc-950 text-gray-100 antialiased min-h-screen relative overflow-x-clip;
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
 }
-
-/* Background Pattern */
-body::before {
-  content: '';
-  @apply absolute inset-0 -z-10 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:16px_16px] opacity-30;
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
 }
-
-.glass-card {
-    background: rgba(24, 24, 27, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(148, 163, 184, 0.1);
-}
-.active-red-glow:hover {
-    box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
-}
-.text-glow {
-    text-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
-}
-.text-gradient {
-    background: linear-gradient(to right, #ffffff, #ffb3b6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.hero-gradient {
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
-}
-.material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
-/* Disable pointer-events on row descendants during active drag to eliminate all flickering */
-.dragging-active [data-drag-row] * {
-  pointer-events: none !important;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #E7E7E4;
+    border-radius: 10px;
 }
 
 /* Mobile-specific improvements */
@@ -58,78 +115,20 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Safe area padding for notched phones (iPhone X+) */
-@supports (padding: env(safe-area-inset-bottom)) {
-  .fixed.bottom-0 {
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-  }
-}
-
-/* Better touch targets on mobile */
-@media (max-width: 640px) {
-  button, a, input, select, textarea {
-    min-height: 44px;
-  }
-  
-  select {
-    font-size: 16px; /* Prevents iOS zoom on focus */
-  }
-  
-  input, textarea {
-    font-size: 16px; /* Prevents iOS zoom on focus */
-  }
-}
-
-/* Dashboard label style */
-.label-high-contrast {
-  @apply block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5;
-}
-
-/* Custom range slider styling for mobile */
+/* Custom range slider styling */
 input[type="range"] {
   -webkit-appearance: none;
-  height: 6px;
-  border-radius: 3px;
+  width: 100%;
+  background: #e2e2e2;
+  height: 2px;
+  border-radius: 2px;
 }
-
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
-  background: #e11d48;
+  background: #000;
   cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 0 6px rgba(225, 29, 72, 0.4);
 }
 
-input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #e11d48;
-  cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 0 6px rgba(225, 29, 72, 0.4);
-}
-
-/* Prevent horizontal overflow globally */
-body {
-  overflow-x: clip;
-}
-
-/* Hide scrollbar for horizontal scroll areas */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* Better tap highlight on mobile */
-@media (max-width: 640px) {
-  * {
-    -webkit-tap-highlight-color: rgba(225, 29, 72, 0.15);
-  }
-}

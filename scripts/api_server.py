@@ -7,7 +7,6 @@ from PIL import Image, ImageDraw, ImageFont
 app = Flask(__name__)
 
 def create_offer_pdf_stream(data):
-    # n8n'den gelen ham veri 'body' objesi içinde olabilir, bunu kontrol edelim
     if "body" in data and isinstance(data["body"], dict) and ("customer" in data["body"] or "car" in data["body"]):
         payload = data["body"]
     else:
@@ -16,120 +15,150 @@ def create_offer_pdf_stream(data):
     customer = payload.get("customer", {})
     car = payload.get("car", {})
     
-    # 2. Create A4 Canvas (High Res for Print - 300 DPI - 2480x3508 Pixels)
+    # Create A4 Canvas (300 DPI - 2480x3508)
     width, height = 2480, 3508
-    img = Image.new('RGB', (width, height), color='#0c0c0e') # Deep black background matching the HTML mockup
+    img = Image.new('RGB', (width, height), color='#ffffff')
     draw = ImageDraw.Draw(img)
     
-    scale = 2 # Scale factor for 300 DPI vs 150 DPI
-    
+    scale = 2
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    bold_font_path = os.path.join(script_dir, "Montserrat-Bold.ttf")
-    regular_font_path = os.path.join(script_dir, "Montserrat-Regular.ttf")
     
-    # Fonts loading with fallback to Montserrat (verified to exist in local scripts/)
-    try:
-        font_brand = ImageFont.truetype(os.path.join(script_dir, "Sora-SemiBold.ttf"), 32 * scale) 
-        font_title = ImageFont.truetype(os.path.join(script_dir, "Sora-Light.ttf"), 54 * scale) 
-        font_heading = ImageFont.truetype(os.path.join(script_dir, "Sora-SemiBold.ttf"), 22 * scale) 
-        font_body = ImageFont.truetype(os.path.join(script_dir, "Inter-Regular.ttf"), 18 * scale) 
-        font_value = ImageFont.truetype(os.path.join(script_dir, "Inter-Medium.ttf"), 18 * scale)
-        font_highlight_label = ImageFont.truetype(os.path.join(script_dir, "Sora-Regular.ttf"), 20 * scale)
-        font_highlight_value = ImageFont.truetype(os.path.join(script_dir, "Sora-SemiBold.ttf"), 44 * scale)
-        font_footer = ImageFont.truetype(os.path.join(script_dir, "Inter-Regular.ttf"), 14 * scale)
-    except IOError:
+    # Define fallback fonts
+    def load_font(primary, secondary, size):
         try:
-            # Montserrat fallbacks
-            font_brand = ImageFont.truetype(bold_font_path, 32 * scale)
-            font_title = ImageFont.truetype(regular_font_path, 54 * scale)
-            font_heading = ImageFont.truetype(bold_font_path, 22 * scale)
-            font_body = ImageFont.truetype(regular_font_path, 18 * scale)
-            font_value = ImageFont.truetype(bold_font_path, 18 * scale)
-            font_highlight_label = ImageFont.truetype(regular_font_path, 20 * scale)
-            font_highlight_value = ImageFont.truetype(bold_font_path, 44 * scale)
-            font_footer = ImageFont.truetype(regular_font_path, 14 * scale)
+            return ImageFont.truetype(os.path.join(script_dir, primary), int(size * scale))
         except IOError:
-            font_brand = font_title = font_heading = font_body = font_value = font_highlight_label = font_highlight_value = font_footer = ImageFont.load_default()
-            
-    # Color Palette - Modern Rose Red & Slate
-    brand_red = "#e11d48" # Rose-600
-    brand_dark = "#131316" # Header background
-    brand_surface = "#1c1c21" # Card background
-    text_white = "#ffffff"
-    text_gray = "#94a3b8" # gray-400
-    text_muted = "#71717a" # gray-500
-    divider_color = "#27272a"
+            try:
+                return ImageFont.truetype(os.path.join(script_dir, secondary), int(size * scale))
+            except IOError:
+                return ImageFont.load_default()
+
+    font_brand = load_font("Sora-Bold.ttf", "Montserrat-Bold.ttf", 44)
+    font_offer = load_font("Sora-SemiBold.ttf", "Montserrat-Bold.ttf", 30)
+    font_heading = load_font("Sora-SemiBold.ttf", "Montserrat-Bold.ttf", 36)
+    font_label_sm = load_font("Inter-Regular.ttf", "Montserrat-Regular.ttf", 22)
+    font_val_md = load_font("Inter-Medium.ttf", "Montserrat-Bold.ttf", 28)
+    font_val_lg = load_font("Inter-SemiBold.ttf", "Montserrat-Bold.ttf", 34)
+    font_table_lbl = load_font("Inter-Regular.ttf", "Montserrat-Regular.ttf", 32)
+    font_table_val = load_font("Inter-SemiBold.ttf", "Montserrat-Bold.ttf", 36)
+    font_rate_lbl = load_font("Sora-Bold.ttf", "Montserrat-Bold.ttf", 50)
+    font_rate_sub = load_font("Sora-Regular.ttf", "Montserrat-Regular.ttf", 32)
+    font_rate_val = load_font("Sora-Bold.ttf", "Montserrat-Bold.ttf", 80)
+    font_footer = load_font("Inter-Regular.ttf", "Montserrat-Regular.ttf", 20)
+
+    # Colors
+    brand_red = "#e11d48"
+    brand_black = "#111827"
+    brand_gray = "#6b7280"
+    brand_border = "#d1d5db"
     
-    # 3. Draw Main Glass Card Container (Centered A4 Card Layout)
-    card_x1, card_y1, card_x2, card_y2 = 200, 200, 2280, 3308
-    draw.rounded_rectangle([(card_x1, card_y1), (card_x2, card_y2)], radius=40, fill=brand_surface, outline="#27272a", width=3)
+    # 1. Header
+    y = 180
+    dort_text, fleet_text, fin_text = "DORTMUND ", "FLEET ", "FINANCE"
+    w_dort = draw.textlength(dort_text, font=font_brand)
+    w_fleet = draw.textlength(fleet_text, font=font_brand)
     
-    # Draw Header Section inside the Card
-    header_h = 450
-    draw.rounded_rectangle([(card_x1, card_y1), (card_x2, card_y1 + header_h)], radius=40, fill=brand_dark)
-    # Cover bottom rounded corners of the header to make it clean
-    draw.rectangle([(card_x1, card_y1 + header_h - 40), (card_x2, card_y1 + header_h)], fill=brand_dark)
-    # Header border divider
-    draw.line([(card_x1, card_y1 + header_h), (card_x2, card_y1 + header_h)], fill="#27272a", width=3)
+    draw.text((200, y), dort_text, font=font_brand, fill=brand_black)
+    draw.text((200 + w_dort, y), fleet_text, font=font_brand, fill=brand_red)
+    draw.text((200 + w_dort + w_fleet, y), fin_text, font=font_brand, fill=brand_black)
     
-    # --- HEADER CONTENT ---
-    y = 310
-    brand_dortmund = "DORTMUND "
-    brand_fleet = "FLEET "
-    brand_finance = "FINANCE"
+    offer_num = "OFFER #DF-2024-001"
+    w_off = draw.textlength(offer_num, font=font_offer)
+    draw.text((2280 - w_off, y + 20), offer_num, font=font_offer, fill=brand_black)
     
-    w_dort = draw.textlength(brand_dortmund, font=font_brand)
-    w_fleet = draw.textlength(brand_fleet, font=font_brand)
+    y += 100
+    draw.rectangle([(200, y), (2280, y + 16)], fill=brand_red)
+    y += 80
+
+    # 2. Grid (Customer & Vehicle)
+    box_h = 900
+    # Customer Box
+    draw.rounded_rectangle([(200, y), (1200, y + box_h)], radius=24, outline=brand_border, width=3)
     
-    draw.text((300, y), brand_dortmund, font=font_brand, fill=text_white)
-    draw.text((300 + w_dort, y), brand_fleet, font=font_brand, fill=brand_red)
-    draw.text((300 + w_dort + w_fleet, y), brand_finance, font=font_brand, fill=text_white)
+    cx, cy = 250, y + 50
+    draw.rectangle([(cx, cy + 10), (cx + 12, cy + 46)], fill=brand_red)
+    draw.text((cx + 30, cy), "Kunde (Müşteri)", font=font_heading, fill=brand_black)
     
-    y += 90 * scale
-    draw.text((300, y), "Finanzierungsangebot", font=font_title, fill=brand_red)
-    
-    # Start drawing content below Header
-    y = card_y1 + header_h + 80
-    
-    # Section Header Helper
-    def draw_section_header(title, pos_y):
-        # Draw small vertical rounded rectangle (bullet)
-        draw.rounded_rectangle([(300, pos_y + 4), (308, pos_y + 44)], radius=4, fill=brand_red)
-        draw.text((330, pos_y), title, font=font_heading, fill=text_white)
-        
-    # --- CUSTOMER INFO SECTION ---
-    draw_section_header("Kunde (Müşteri):", y)
-    y += 70 * scale
-    
-    customer_fields = [
-        ("Name:", customer.get('name', 'N/A').upper(), font_value),
-        ("E-Mail:", customer.get('email', 'N/A'), font_body),
-        ("Tel:", customer.get('phone', 'N/A'), font_body)
+    cy += 120
+    cust_fields = [
+        ("Name:", customer.get('name', 'N/A').upper()),
+        ("E-Mail:", customer.get('email', 'N/A')),
+        ("Tel:", customer.get('phone', 'N/A'))
     ]
+    for lbl, val in cust_fields:
+        draw.text((cx, cy), lbl, font=font_label_sm, fill=brand_gray)
+        cy += 50
+        draw.text((cx, cy), val, font=font_val_md, fill=brand_black)
+        cy += 100
+
+    # Vehicle Box
+    vx = 1280
+    draw.rounded_rectangle([(vx, y), (2280, y + box_h)], radius=24, outline=brand_border, width=3)
     
-    for label, val, font_style in customer_fields:
-        draw.text((330, y), label, font=font_body, fill=text_gray)
-        draw.text((550, y), val, font=font_style, fill=text_white)
-        y += 35 * scale
-        
-    y += 30 * scale
-    # Divider (rose-faded style simulation)
-    draw.line([(300, y), (2180, y)], fill=divider_color, width=2)
-    y += 50 * scale
+    vy = y + 50
+    draw.rectangle([(vx + 50, vy + 10), (vx + 62, vy + 46)], fill=brand_red)
+    draw.text((vx + 80, vy), "Fahrzeug (Araç)", font=font_heading, fill=brand_black)
     
-    # --- VEHICLE INFO SECTION ---
-    draw_section_header("Fahrzeug (Araç):", y)
-    y += 70 * scale
-    draw.text((330, y), "Modell:", font=font_body, fill=text_gray)
-    draw.text((550, y), car.get('title', 'N/A').upper(), font=font_brand, fill=brand_red)
+    vy += 100
+    draw.text((vx + 50, vy), "Modell: ", font=font_label_sm, fill=brand_gray)
+    mod_w = draw.textlength("Modell: ", font=font_label_sm)
+    draw.text((vx + 50 + mod_w + 10, vy - 6), car.get('title', 'N/A').upper(), font=font_val_lg, fill=brand_black)
     
-    y += 60 * scale
-    draw.line([(300, y), (2180, y)], fill=divider_color, width=2)
-    y += 50 * scale
+    vy += 80
+    # Image Area
+    img_box_x1, img_box_y1 = vx + 50, vy
+    img_box_x2, img_box_y2 = 2230, y + box_h - 50
+    img_w, img_h = img_box_x2 - img_box_x1, img_box_y2 - img_box_y1
     
-    # --- FINANCING DETAILS SECTION ---
-    draw_section_header("Ihre Finanzierungsdetails:", y)
-    y += 80 * scale
+    # Draw image border
+    draw.rounded_rectangle([(img_box_x1, img_box_y1), (img_box_x2, img_box_y2)], radius=16, fill="#f3f4f6", outline=brand_border, width=2)
+    
+    # Fetch and paste first image
+    image_urls = car.get("images", [])
+    if isinstance(image_urls, list) and len(image_urls) > 0:
+        first_img_url = image_urls[0]
+        try:
+            req = urllib.request.Request(first_img_url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=5) as response:
+                img_data = response.read()
+            pic = Image.open(io.BytesIO(img_data)).convert('RGB')
+            
+            # Cover mode resize
+            pic_ratio = pic.width / pic.height
+            box_ratio = img_w / img_h
+            if pic_ratio > box_ratio:
+                new_h = img_h
+                new_w = int(img_h * pic_ratio)
+            else:
+                new_w = img_w
+                new_h = int(img_w / pic_ratio)
+                
+            pic_resized = pic.resize((new_w, new_h), Image.Resampling.LANCZOS)
+            # Crop to center
+            left = (new_w - img_w) // 2
+            top = (new_h - img_h) // 2
+            pic_cropped = pic_resized.crop((left, top, left + img_w, top + img_h))
+            
+            # Create rounded mask
+            mask = Image.new("L", (img_w, img_h), 0)
+            mask_draw = ImageDraw.Draw(mask)
+            mask_draw.rounded_rectangle([(0, 0), (img_w, img_h)], radius=16, fill=255)
+            
+            img.paste(pic_cropped, (img_box_x1, img_box_y1), mask)
+        except Exception as e:
+            print(f"Resim indirilemedi: {first_img_url} Hata: {e}")
+            
+    y += box_h + 60
+    
+    # 3. Finance Details Box
+    fin_h = 1300
+    draw.rounded_rectangle([(200, y), (2280, y + fin_h)], radius=24, outline=brand_border, width=3)
+    
+    fy = y + 60
+    draw.rectangle([(250, fy + 10), (262, fy + 46)], fill=brand_red)
+    draw.text((280, fy), "Finanzierungsdetails", font=font_heading, fill=brand_black)
+    
+    fy += 120
     
     try:
         price = float(car.get('price', 0) or 0)
@@ -140,97 +169,50 @@ def create_offer_pdf_stream(data):
         
     net_loan = price - down_payment
     
-    details = [
-        ("Fahrzeugpreis", "Araç Fiyatı", f"{price:,.2f} EUR"),
-        ("Anzahlung", "Peşinat", f"{down_payment:,.2f} EUR"),
-        ("Nettodarlehensbetrag", "Net Kredi", f"{net_loan:,.2f} EUR"),
-        ("Laufzeit", "Vade", f"{car.get('term_months', 48)} Monate"),
-        ("Sollzins p.a.", "Yıllık Faiz", f"{car.get('interest_rate', 1.89)} %")
+    rows = [
+        ("Fahrzeugpreis (Araç Fiyatı):", f"{price:,.2f} EUR"),
+        ("Anzahlung (Peşinat):", f"{down_payment:,.2f} EUR"),
+        ("Nettodarlehensbetrag (Net Kredi):", f"{net_loan:,.2f} EUR"),
+        ("Laufzeit (Vade):", f"{car.get('term_months', 48)} Monate"),
+        ("Sollzins p.a. (Yıllık Faiz):", f"{car.get('interest_rate', 1.89)} %")
     ]
     
-    for de_label, tr_label, value in details:
-        draw.line([(300, y), (2180, y)], fill=divider_color, width=1)
-        y += 20 * scale
+    for lbl, val in rows:
+        draw.line([(250, fy), (2230, fy)], fill=brand_border, width=2)
+        fy += 40
+        draw.text((250, fy), lbl, font=font_table_lbl, fill=brand_black)
+        val_w = draw.textlength(val, font=font_table_val)
+        draw.text((2230 - val_w, fy), val, font=font_table_val, fill=brand_black)
+        fy += 100
         
-        # Bilingual Labels
-        draw.text((330, y), de_label, font=font_body, fill=text_white)
-        draw.text((330, y + 25 * scale), tr_label, font=font_footer, fill=text_muted)
-        
-        # Value aligned to the right
-        val_w = draw.textlength(value, font=font_value)
-        draw.text((2150 - val_w, y + 10 * scale), value, font=font_value, fill=text_white)
-        
-        y += 65 * scale
-        
-    y += 50 * scale
+    # Red Highlight Box
+    ry = y + fin_h - 350
+    draw.rounded_rectangle([(250, ry), (2230, ry + 280)], radius=24, fill=brand_red)
     
-    # --- MONATLICHE RATE HIGHLIGHT BOX ---
-    box_x1, box_y1, box_x2, box_y2 = 300, y, 2180, y + 200
-    # Red translucent box representation in PIL
-    draw.rounded_rectangle([(box_x1, box_y1), (box_x2, box_y2)], radius=20, fill="#2a171d", outline=brand_red, width=3)
+    draw.text((320, ry + 70), "MONATLICHE RATE", font=font_rate_lbl, fill="#ffffff")
+    draw.text((320, ry + 160), "(AYLIK TAKSİT)", font=font_rate_sub, fill="#fcd34d") # Soft yellow/white for subtitle
     
-    # Left Label in Box
-    lbl_de = "Monatliche Rate"
-    lbl_tr = "(Aylık Taksit)"
-    draw.text((box_x1 + 50, box_y1 + 40), lbl_de, font=font_heading, fill=brand_red)
-    draw.text((box_x1 + 50, box_y1 + 40 + 26 * scale), lbl_tr, font=font_body, fill=brand_red)
+    rate_val = f"{monthly_rate:,.2f}"
+    rate_currency = "EUR"
+    rv_w = draw.textlength(rate_val, font=font_rate_val)
+    rc_w = draw.textlength(rate_currency, font=font_rate_lbl)
     
-    # Right Value in Box
-    val_rate = f"{monthly_rate:,.2f} EUR"
-    val_rate_w = draw.textlength(val_rate, font=font_highlight_value)
-    draw.text((box_x2 - 50 - val_rate_w, box_y1 + 50), val_rate, font=font_highlight_value, fill=brand_red)
+    draw.text((2160 - rv_w, ry + 60), rate_val, font=font_rate_val, fill="#ffffff")
+    draw.text((2160 - rc_w, ry + 180), rate_currency, font=font_rate_lbl, fill="#ffffff")
     
-    # --- FOOTER SECTION ---
-    y_footer = card_y2 - 250
-    draw.line([(300, y_footer), (2180, y_footer)], fill=divider_color, width=2)
+    # 4. Footer
+    foot_y = y + fin_h + 60
+    f_text1 = "Alle Preisangaben inklusive Mehrwertsteuer. Dieses Angebot ist unverbindlich."
+    f_text2 = "Gültig bis zum Widerruf oder Änderung der Konditionen."
     
-    footer_text1 = "Alle Preisangaben inklusive Mehrwertsteuer. Dieses Angebot ist unverbindlich."
-    footer_text2 = "Gültig bis zum Widerruf oder Änderung der Konditionen."
+    fw1 = draw.textlength(f_text1, font=font_footer)
+    fw2 = draw.textlength(f_text2, font=font_footer)
     
-    w1 = draw.textlength(footer_text1, font=font_footer)
-    w2 = draw.textlength(footer_text2, font=font_footer)
+    draw.text(((width - fw1) // 2, foot_y), f_text1, font=font_footer, fill=brand_gray)
+    draw.text(((width - fw2) // 2, foot_y + 40), f_text2, font=font_footer, fill=brand_gray)
     
-    draw.text(((width - w1) // 2, y_footer + 50), footer_text1, font=font_footer, fill=text_muted)
-    draw.text(((width - w2) // 2, y_footer + 85), footer_text2, font=font_footer, fill=text_muted)
-    
-    # --- APPEND EXTRA VEHICLE IMAGES AS PAGES ---
-    extra_pages = []
-    image_urls = car.get("images", [])
-    if isinstance(image_urls, list):
-        for url in image_urls[:4]:  # Limit to 4 images
-            try:
-                req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req, timeout=5) as response:
-                    img_data = response.read()
-                
-                pic = Image.open(io.BytesIO(img_data)).convert('RGB')
-                
-                # New A4 black canvas at 300 DPI (2480x3508)
-                page = Image.new('RGB', (width, height), color='#0c0c0e')
-                
-                # Resize keeping aspect ratio
-                pic_w, pic_h = pic.size
-                ratio = min(2080 / pic_w, 3108 / pic_h)
-                new_w, new_h = int(pic_w * ratio), int(pic_h * ratio)
-                pic_resized = pic.resize((new_w, new_h), Image.Resampling.LANCZOS)
-                
-                # Center on the page
-                x_offset = (width - new_w) // 2
-                y_offset = (height - new_h) // 2
-                page.paste(pic_resized, (x_offset, y_offset))
-                
-                extra_pages.append(page)
-            except Exception as e:
-                print(f"Resim indirilemedi: {url} Hata: {e}")
-                
-    # 4. Save Multi-page PDF as bytes stream
     pdf_stream = io.BytesIO()
-    
-    if extra_pages:
-        img.save(pdf_stream, format="PDF", resolution=300.0, save_all=True, append_images=extra_pages)
-    else:
-        img.save(pdf_stream, format="PDF", resolution=300.0)
-        
+    img.save(pdf_stream, format="PDF", resolution=300.0)
     pdf_stream.seek(0)
     return pdf_stream
 
@@ -240,10 +222,8 @@ def generate_pdf_endpoint():
     if not data:
         return {"error": "Geçersiz JSON verisi"}, 400
         
-    # PDF'i hafızada üret
     pdf_stream = create_offer_pdf_stream(data)
     
-    # n8n'in bu dosyayı indirebilmesi için send_file ile dön
     return send_file(
         pdf_stream, 
         mimetype='application/pdf', 
@@ -252,6 +232,5 @@ def generate_pdf_endpoint():
     )
 
 if __name__ == '__main__':
-    # Serveri 8000 portunda başlat
     print("PDF API Server 8000 portunda çalışıyor...")
     app.run(host='0.0.0.0', port=8000)

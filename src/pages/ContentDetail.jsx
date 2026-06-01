@@ -75,10 +75,8 @@ export default function ContentDetail() {
     }
     try {
       setLoading(true);
-      // Slug ile arama yap (eğer slug yoksa, fallback olarak id de gelmiş olabilir)
       let query = supabase.from('contents').select('*');
 
-      // Eğer slug bir UUID ise veya sadece rakamlardan oluşuyorsa (integer ID) id olarak kullanıldıysa fallback için
       if (typeof slug === 'string' && (slug.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i) || /^\d+$/.test(slug))) {
         query = query.eq('id', slug);
       } else {
@@ -111,8 +109,6 @@ export default function ContentDetail() {
         }
       };
 
-      // Webhook isteği
-      // Ortam değişkeninden (env) URL al, yoksa varsayılanı kullan
       const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/generate-offer';
       const response = await fetch(webhookUrl, {
         method: 'POST',
@@ -139,18 +135,18 @@ export default function ContentDetail() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+      <div className="flex flex-col items-center justify-center min-h-[60vh] pt-20">
         <Loader2 className="w-12 h-12 animate-spin text-primary mb-4" />
-        <p className="text-text-muted font-medium">{t('detail_loading')}</p>
+        <p className="text-secondary font-medium">{t('detail_loading')}</p>
       </div>
     );
   }
 
   if (error || !content) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-12 text-center">
-        <h2 className="text-2xl font-bold text-on-surface mb-4">{error || t('detail_not_found')}</h2>
-        <Link to="/" className="text-primary hover:underline flex items-center justify-center">
+      <div className="max-w-4xl mx-auto px-4 py-32 text-center">
+        <h2 className="text-2xl font-bold text-primary mb-4">{error || t('detail_not_found')}</h2>
+        <Link to="/" className="text-accent-indigo hover:underline flex items-center justify-center font-label-caps">
           <ArrowLeft className="w-4 h-4 mr-2" />
           {t('detail_back')}
         </Link>
@@ -163,298 +159,314 @@ export default function ContentDetail() {
   const mainImage = galleryImages[activeImageIdx] || imageUrl;
 
   return (
-    <main className="pt-20 pb-24 md:pb-0 bg-background-deep text-on-surface font-body-md selection:bg-primary-container">
-      {/* Hero Gallery Section */}
-      <section className="relative w-full h-[40vh] sm:h-[716px] bg-background-deep overflow-hidden group flex items-center justify-center">
-        {/* Arkada bulanık arka plan görseli (boşlukları doldurmak için) */}
-        <img
-          src={mainImage}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none z-0"
-        />
-        {/* Önde orijinal oranlarında sıkıştırılmamış net görsel */}
-        <img
-          src={mainImage}
-          alt={content.title}
-          className="relative max-w-full max-h-full object-contain z-10 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 hero-gradient z-20 pointer-events-none"></div>
-        <div className="absolute bottom-6 sm:bottom-12 left-4 sm:left-gutter z-30">
-          <p className="text-primary font-label-bold mb-2 tracking-widest">{t('showroom_subtitle').toUpperCase()}</p>
-          <h1 className="font-headline-lg text-2xl sm:text-headline-lg text-white mb-4 drop-shadow-md">{content.title}</h1>
-          <div className="flex flex-wrap gap-4">
-            {content.category && (
-              <div className="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary">category</span>
-                <span className="text-label-bold text-white">{content.category}</span>
-              </div>
-            )}
-            {content.features && content.features[0] && (
-              <div className="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary">stars</span>
-                <span className="text-label-bold text-white">{content.features[0]}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Thumbnail Navigation */}
-        <div className="absolute right-4 sm:right-gutter bottom-6 sm:bottom-12 flex flex-row sm:flex-col gap-2 z-30">
-          {galleryImages.slice(0, 4).map((img, idx) => (
-            <div
-              key={idx}
-              onClick={() => setActiveImageIdx(idx)}
-              className={`w-14 h-10 sm:w-20 sm:h-12 rounded border-2 overflow-hidden cursor-pointer transition-all ${idx === activeImageIdx ? 'border-primary opacity-100' : 'border-white/20 opacity-60 hover:opacity-100'}`}
-            >
-              <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Content Grid */}
-      <div className="max-w-container-max mx-auto px-4 sm:px-gutter grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-gutter py-12 sm:py-section-gap">
-
-        {/* Left: Technical Specs (Bento Style) */}
-        <div className="lg:col-span-7 space-y-gutter">
-          <Link to="/" className="inline-flex items-center text-text-muted hover:text-primary transition font-medium mb-4">
-            <span className="material-symbols-outlined mr-2">arrow_back</span>
-            {t('detail_back')}
-          </Link>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div className="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
-              <span className="material-symbols-outlined text-primary text-4xl mb-2">calendar_today</span>
-              <p className="text-text-muted text-label-sm">{t('detail_first_reg')}</p>
-              <p className="text-headline-md font-headline-md">{content.year || '-'}</p>
-            </div>
-            <div className="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
-              <span className="material-symbols-outlined text-primary text-4xl mb-2">distance</span>
-              <p className="text-text-muted text-label-sm">{t('detail_mileage')}</p>
-              <p className="text-headline-md font-headline-md">{content.mileage ? `${formatNumber(content.mileage)} km` : '-'}</p>
-            </div>
-            <div className="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
-              <span className="material-symbols-outlined text-primary text-4xl mb-2">settings_input_component</span>
-              <p className="text-text-muted text-label-sm">{t('detail_gear')}</p>
-              <p className="text-headline-md font-headline-md">{t('detail_automatic')}</p>
-            </div>
-          </div>
-
-          <div className="glass-card p-8 rounded-xl">
-            <h2 className="font-headline-md text-headline-md mb-6 border-l-4 border-primary pl-4">{t('detail_description')}</h2>
-            <p className="text-body-lg text-on-surface-variant leading-relaxed whitespace-pre-wrap">
-              {content.body || content.summary || t('detail_no_desc')}
-            </p>
-
-            {content.features && Array.isArray(content.features) && content.features.length > 0 && (
-              <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
-                {content.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-2 text-on-surface-variant">
-                    <span className="material-symbols-outlined text-primary text-sm">check_circle</span> {feature}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          {/* Bildergalerie */}
-          {galleryImages.length > 1 && (
-            <div className="glass-card p-8 rounded-xl mt-6">
-              <h2 className="font-headline-md text-headline-md mb-6 border-l-4 border-primary pl-4">{t('detail_gallery_tr')}</h2>
-
-              {/* Main Preview Box */}
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 glass-card border-outline-variant/30 flex items-center justify-center bg-background-deep">
-                {/* Arkada bulanık arka plan görseli */}
-                <img
-                  src={galleryImages[activeImageIdx]}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none z-0"
-                />
-                {/* Önde orijinal oranında net görsel */}
-                <img
-                  src={galleryImages[activeImageIdx]}
-                  className="relative max-w-full max-h-full object-contain z-10 transition-all duration-500"
-                  alt={`${content.title || 'Araç'} ${t('detail_preview')}`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background-deep/40 to-transparent pointer-events-none z-20"></div>
-              </div>
-
-              {/* Gallery Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {galleryImages.map((img, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => setActiveImageIdx(idx)}
-                    className={`group overflow-hidden rounded-lg cursor-pointer border-2 transition-all ${activeImageIdx === idx ? 'border-primary' : 'border-transparent'}`}
-                  >
-                    <img
-                      src={img}
-                      className={`w-full h-24 object-cover transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 ${(idx > 2 && activeImageIdx !== idx) ? 'opacity-70' : ''}`}
-                      alt={`Gallery view ${idx + 1}`}
-                    />
+    <>
+      <div className="orb orb-1"></div>
+      <div className="orb orb-2"></div>
+      <div className="pt-nav-height min-h-screen pb-24 md:pb-0">
+        <div className="rail-system min-h-screen">
+          <div className="rail-vertical"></div>
+          
+          {/* Hero Gallery Section */}
+          <section className="relative w-full h-[40vh] sm:h-[600px] bg-surface-container overflow-hidden flex items-center justify-center z-10 border-b border-border-subtle">
+            <img
+              src={mainImage}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover opacity-10 blur-xl scale-110 pointer-events-none z-0"
+            />
+            <img
+              src={mainImage}
+              alt={content.title}
+              className="relative max-w-full max-h-full object-contain z-10 transition-transform duration-500 drop-shadow-xl p-8"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-20 pointer-events-none opacity-80"></div>
+            
+            <div className="absolute bottom-6 sm:bottom-12 left-4 sm:left-gutter z-30 max-w-container-max w-full">
+              <p className="text-accent-indigo font-label-caps text-label-caps mb-2 tracking-widest">{t('showroom_subtitle').toUpperCase()}</p>
+              <h1 className="font-h1-mobile sm:font-h1 text-3xl sm:text-h1 text-primary mb-4 drop-shadow-sm">{content.title}</h1>
+              <div className="flex flex-wrap gap-4">
+                {content.category && (
+                  <div className="glass-panel border-border-subtle px-4 py-2 rounded-lg flex items-center gap-2">
+                    <span className="material-symbols-outlined text-primary text-sm">category</span>
+                    <span className="font-label-caps text-label-caps text-primary">{content.category}</span>
                   </div>
-                ))}
+                )}
+                {content.features && content.features[0] && (
+                  <div className="glass-panel border-border-subtle px-4 py-2 rounded-lg flex items-center gap-2">
+                    <span className="material-symbols-outlined text-primary text-sm">stars</span>
+                    <span className="font-label-caps text-label-caps text-primary">{content.features[0]}</span>
+                  </div>
+                )}
               </div>
             </div>
-          )}
 
-          {/* Tags */}
-          {content.tags && Array.isArray(content.tags) && content.tags.length > 0 && (
-            <div className="glass-card p-6 rounded-xl flex flex-wrap gap-2 mt-6">
-              <span className="material-symbols-outlined text-text-muted mr-2">tag</span>
-              {content.tags.map((tag, idx) => (
-                <span key={idx} className="bg-surface-variant text-on-surface-variant text-sm px-3 py-1 rounded-full">
-                  #{tag}
-                </span>
+            {/* Thumbnail Navigation */}
+            <div className="absolute right-4 sm:right-gutter bottom-6 sm:bottom-12 flex flex-row sm:flex-col gap-2 z-30">
+              {galleryImages.slice(0, 4).map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setActiveImageIdx(idx)}
+                  className={`w-14 h-10 sm:w-20 sm:h-12 rounded border-2 overflow-hidden cursor-pointer transition-all ${idx === activeImageIdx ? 'border-primary opacity-100 shadow-md' : 'border-border-subtle opacity-60 hover:opacity-100 hover:border-primary/50'}`}
+                >
+                  <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                </div>
               ))}
             </div>
-          )}
-        </div>
+          </section>
 
-        {/* Right: Finanzierungsdetails */}
-        <div className="lg:col-span-5">
-          <div className="glass-card p-8 rounded-xl sticky top-28">
-            <h3 className="font-headline-md text-headline-md mb-8">{t('detail_fin_details')}</h3>
-            <div className="space-y-6">
-              <div className="flex justify-between items-end border-b border-outline-variant/20 pb-4">
-                <span className="text-on-surface-variant font-label-bold">{t('detail_price')}</span>
-                <span className="font-headline-md text-headline-md text-white">{content.price ? `${formatNumber(content.price)} €` : '-'}</span>
+          {/* Content Grid */}
+          <div className="max-w-container-max mx-auto px-4 sm:px-gutter grid grid-cols-1 lg:grid-cols-12 gap-8 py-12 relative z-10">
+
+            {/* Left: Technical Specs (Bento Style) */}
+            <div className="lg:col-span-7 space-y-8">
+              <Link to="/" className="inline-flex items-center text-secondary hover:text-primary transition-colors font-label-caps text-label-caps mb-2">
+                <span className="material-symbols-outlined text-sm mr-2">arrow_back</span>
+                {t('detail_back')}
+              </Link>
+              
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                  <span className="material-symbols-outlined text-accent-indigo text-4xl mb-3">calendar_today</span>
+                  <p className="text-secondary font-label-caps text-label-caps">{t('detail_first_reg')}</p>
+                  <p className="text-h3 font-h3 text-primary mt-1">{content.year || '-'}</p>
+                </div>
+                <div className="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                  <span className="material-symbols-outlined text-accent-indigo text-4xl mb-3">distance</span>
+                  <p className="text-secondary font-label-caps text-label-caps">{t('detail_mileage')}</p>
+                  <p className="text-h3 font-h3 text-primary mt-1">{content.mileage ? `${formatNumber(content.mileage)} km` : '-'}</p>
+                </div>
+                <div className="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                  <span className="material-symbols-outlined text-accent-indigo text-4xl mb-3">settings_input_component</span>
+                  <p className="text-secondary font-label-caps text-label-caps">{t('detail_gear')}</p>
+                  <p className="text-h3 font-h3 text-primary mt-1">{t('detail_automatic')}</p>
+                </div>
               </div>
-              {/* Calculator sliders for premium dynamic feel! */}
-              <div className="space-y-4 pt-2">
-                <div>
-                  <div className="flex justify-between text-label-sm text-text-muted mb-2">
-                    <span className="font-label-bold">{t('detail_down_payment')}</span>
-                    <span className="text-white font-bold">{formatNumber(downPayment)} €</span>
+
+              <div className="glass-panel p-8 rounded-2xl">
+                <h2 className="font-h3 text-h3 text-primary mb-6 flex items-center gap-3">
+                  <span className="w-1 h-6 bg-accent-indigo rounded-full"></span>
+                  {t('detail_description')}
+                </h2>
+                <p className="text-body-lg text-secondary leading-relaxed whitespace-pre-wrap">
+                  {content.body || content.summary || t('detail_no_desc')}
+                </p>
+
+                {content.features && Array.isArray(content.features) && content.features.length > 0 && (
+                  <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {content.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-3 text-secondary">
+                        <span className="material-symbols-outlined text-accent-emerald text-sm">check_circle</span> {feature}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              {/* Bildergalerie */}
+              {galleryImages.length > 1 && (
+                <div className="glass-panel p-8 rounded-2xl mt-6">
+                  <h2 className="font-h3 text-h3 text-primary mb-6 flex items-center gap-3">
+                    <span className="w-1 h-6 bg-accent-indigo rounded-full"></span>
+                    {t('detail_gallery_tr')}
+                  </h2>
+
+                  {/* Main Preview Box */}
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container flex items-center justify-center border border-border-subtle">
+                    <img
+                      src={galleryImages[activeImageIdx]}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover opacity-10 blur-xl scale-110 pointer-events-none z-0"
+                    />
+                    <img
+                      src={galleryImages[activeImageIdx]}
+                      className="relative max-w-full max-h-full object-contain z-10 transition-all duration-500"
+                      alt={`${content.title || 'Araç'} ${t('detail_preview')}`}
+                    />
                   </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={parseFloat(content.price) || 200000}
-                    step={1000}
-                    value={downPayment}
-                    onChange={(e) => handleDownPaymentChange(parseFloat(e.target.value))}
-                    className="w-full accent-primary-container h-1 bg-surface-variant rounded-lg appearance-none cursor-pointer"
-                  />
-                </div>
 
-                <div>
-                  <div className="flex justify-between text-label-sm text-text-muted mb-2">
-                    <span className="font-label-bold">{t('detail_term')}</span>
-                    <span className="text-white font-bold">{termMonths} {t('card_months')}</span>
+                  {/* Gallery Grid */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {galleryImages.map((img, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => setActiveImageIdx(idx)}
+                        className={`group overflow-hidden rounded-xl cursor-pointer border-2 transition-all ${activeImageIdx === idx ? 'border-primary shadow-sm' : 'border-transparent hover:border-primary/30'}`}
+                      >
+                        <img
+                          src={img}
+                          className={`w-full h-24 object-cover transition-all duration-300 group-hover:scale-110 ${(idx > 2 && activeImageIdx !== idx) ? 'opacity-70 group-hover:opacity-100' : ''}`}
+                          alt={`Gallery view ${idx + 1}`}
+                        />
+                      </div>
+                    ))}
                   </div>
-                  <input
-                    type="range"
-                    min={12}
-                    max={84}
-                    step={12}
-                    value={termMonths}
-                    onChange={(e) => handleTermChange(parseInt(e.target.value))}
-                    className="w-full accent-primary-container h-1 bg-surface-variant rounded-lg appearance-none cursor-pointer"
-                  />
                 </div>
-              </div>
+              )}
 
-              {/* Recalculated Monthly Rate Box */}
-              <div className="bg-primary-container/10 p-6 rounded-xl border border-primary/20">
-                <p className="text-primary font-label-bold mb-1 uppercase tracking-tighter">{t('detail_monthly_rate')}</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="font-display-hero text-3xl sm:text-4xl md:text-6xl text-white">{formatNumber(monthlyRate)}</span>
-                  <span className="text-headline-md text-white/70">€/{t('card_months')}</span>
+              {/* Tags */}
+              {content.tags && Array.isArray(content.tags) && content.tags.length > 0 && (
+                <div className="glass-panel p-6 rounded-2xl flex flex-wrap gap-2 mt-6">
+                  <span className="material-symbols-outlined text-secondary mr-2">tag</span>
+                  {content.tags.map((tag, idx) => (
+                    <span key={idx} className="bg-surface-container-low text-secondary border border-border-subtle text-sm px-4 py-1.5 rounded-full font-label-caps text-label-caps">
+                      #{tag}
+                    </span>
+                  ))}
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between text-text-muted text-label-sm mt-3 pt-3 border-t border-outline-variant/10 gap-1">
-                  <span>{t('detail_interest_rate')}: %{content.interest_rate || '3.8'}</span>
-                  <span>{t('detail_term')}: {termMonths} {t('card_months')}</span>
+              )}
+            </div>
+
+            {/* Right: Finanzierungsdetails */}
+            <div className="lg:col-span-5">
+              <div className="glass-panel p-8 rounded-3xl sticky top-28 shadow-xl shadow-surface-container-low/50">
+                <h3 className="font-h3 text-h3 text-primary mb-8">{t('detail_fin_details')}</h3>
+                <div className="space-y-6">
+                  <div className="flex justify-between items-end border-b border-border-subtle pb-4">
+                    <span className="text-secondary font-label-caps text-label-caps">{t('detail_price')}</span>
+                    <span className="font-h2 text-h2 text-primary">{content.price ? `${formatNumber(content.price)} €` : '-'}</span>
+                  </div>
+                  
+                  {/* Calculator sliders */}
+                  <div className="space-y-6 pt-2">
+                    <div>
+                      <div className="flex justify-between text-label-caps font-label-caps text-secondary mb-3">
+                        <span>{t('detail_down_payment')}</span>
+                        <span className="text-primary">{formatNumber(downPayment)} €</span>
+                      </div>
+                      <input
+                        type="range"
+                        min={0}
+                        max={parseFloat(content.price) || 200000}
+                        step={1000}
+                        value={downPayment}
+                        onChange={(e) => handleDownPaymentChange(parseFloat(e.target.value))}
+                        className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-accent-indigo"
+                      />
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-label-caps font-label-caps text-secondary mb-3">
+                        <span>{t('detail_term')}</span>
+                        <span className="text-primary">{termMonths} {t('card_months')}</span>
+                      </div>
+                      <input
+                        type="range"
+                        min={12}
+                        max={84}
+                        step={12}
+                        value={termMonths}
+                        onChange={(e) => handleTermChange(parseInt(e.target.value))}
+                        className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-accent-indigo"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Recalculated Monthly Rate Box */}
+                  <div className="bg-primary text-on-primary p-8 rounded-2xl shadow-lg relative overflow-hidden">
+                    {/* Decorative elements */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
+                    
+                    <p className="font-label-caps text-label-caps mb-2 text-white/80">{t('detail_monthly_rate')}</p>
+                    <div className="flex items-baseline gap-2 relative z-10">
+                      <span className="font-h1 text-5xl md:text-6xl text-white tracking-tight">{formatNumber(monthlyRate)}</span>
+                      <span className="text-h3 text-white/80">€/{t('card_months')}</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row justify-between text-white/70 text-sm mt-6 pt-4 border-t border-white/20 gap-2 relative z-10 font-label-caps">
+                      <span>{t('detail_interest_rate')}: %{content.interest_rate || '3.8'}</span>
+                      <span>{t('detail_term')}: {termMonths} {t('card_months')}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4 mt-8">
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className="w-full bg-accent-indigo hover:bg-accent-indigo/90 text-white py-5 rounded-xl font-label-caps text-label-caps transition-all duration-300 shadow-lg shadow-accent-indigo/20 active:scale-[0.98] text-center"
+                    >
+                      {t('detail_request_btn')}
+                    </button>
+                    <p className="text-center text-sm text-secondary font-label-caps">{t('detail_included_services')}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="space-y-3">
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full bg-primary-container hover:bg-accent-red-bright text-on-primary-container py-5 rounded-lg font-headline-md transition-all duration-300 shadow-lg shadow-primary-container/20 active:scale-[0.98] text-center"
-                >
-                  {t('detail_request_btn')}
-                </button>
-                <p className="text-center text-label-sm text-text-muted">{t('detail_included_services')}</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Sticky Mobile Action (Mobile Only) */}
-      <div className="md:hidden fixed bottom-0 left-0 w-full p-4 glass-card z-40 border-t border-outline-variant/30">
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-label-bold"
-        >
-          {`${t('detail_request_btn')} (${content.monthly_rate ? formatNumber(content.monthly_rate) : '0'}€/${t('card_months')})`}
-        </button>
-      </div>
-
-      {/* Offer Request Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="glass-card max-w-md w-full p-8 rounded-2xl border-primary-container/30 border shadow-2xl relative">
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-text-muted hover:text-white transition-colors material-symbols-outlined"
-            >
-              close
-            </button>
-            <h2 className="text-2xl font-headline-md text-white mb-2">{t('form_title')}</h2>
-            <p className="text-text-muted text-sm mb-6">{t('form_desc')}</p>
-
-            <form onSubmit={handleRequest} className="space-y-4">
-              <div>
-                <label className="block text-label-sm font-label-bold text-text-muted mb-1">{t('form_name')}</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-container transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-label-sm font-label-bold text-text-muted mb-1">{t('form_email')}</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-container transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-label-sm font-label-bold text-text-muted mb-1">{t('form_phone')}</label>
-                <input
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-container transition-colors"
-                />
-              </div>
-
-              <div className="pt-4 flex gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="flex-1 px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors font-label-bold"
-                >
-                  {t('form_cancel')}
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="flex-1 bg-primary-container text-white px-4 py-3 rounded-lg hover:bg-accent-red-bright transition-colors font-label-bold disabled:opacity-50"
-                >
-                  {isSubmitting ? t('detail_sending') : t('form_submit')}
-                </button>
-              </div>
-            </form>
-          </div>
+        {/* Sticky Mobile Action (Mobile Only) */}
+        <div className="md:hidden fixed bottom-0 left-0 w-full p-4 glass-panel border-t border-border-subtle z-40">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="w-full bg-accent-indigo text-white py-4 rounded-xl font-label-caps text-label-caps shadow-lg shadow-accent-indigo/20"
+          >
+            {`${t('detail_request_btn')} (${content.monthly_rate ? formatNumber(content.monthly_rate) : '0'}€/${t('card_months')})`}
+          </button>
         </div>
-      )}
-    </main>
+
+        {/* Offer Request Modal */}
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
+            <div className="glass-panel bg-surface max-w-md w-full p-8 rounded-3xl border border-border-subtle shadow-2xl relative">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-low text-secondary hover:text-primary hover:bg-surface-container transition-all"
+              >
+                <span className="material-symbols-outlined text-sm">close</span>
+              </button>
+              <h2 className="font-h2 text-h2 text-primary mb-2">{t('form_title')}</h2>
+              <p className="text-secondary text-sm mb-8">{t('form_desc')}</p>
+
+              <form onSubmit={handleRequest} className="space-y-5">
+                <div>
+                  <label className="block text-secondary font-label-caps text-label-caps mb-2 pl-1">{t('form_name')}</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full bg-surface-container-low border border-border-subtle rounded-xl px-4 py-3.5 text-primary focus:outline-none focus:border-accent-indigo transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-secondary font-label-caps text-label-caps mb-2 pl-1">{t('form_email')}</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-surface-container-low border border-border-subtle rounded-xl px-4 py-3.5 text-primary focus:outline-none focus:border-accent-indigo transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-secondary font-label-caps text-label-caps mb-2 pl-1">{t('form_phone')}</label>
+                  <input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full bg-surface-container-low border border-border-subtle rounded-xl px-4 py-3.5 text-primary focus:outline-none focus:border-accent-indigo transition-colors"
+                  />
+                </div>
+
+                <div className="pt-6 flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="flex-1 px-4 py-4 rounded-xl border border-border-subtle text-primary hover:bg-surface-container-low transition-colors font-label-caps text-label-caps"
+                  >
+                    {t('form_cancel')}
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-primary text-on-primary px-4 py-4 rounded-xl hover:bg-secondary transition-colors font-label-caps text-label-caps disabled:opacity-50"
+                  >
+                    {isSubmitting ? t('detail_sending') : t('form_submit')}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

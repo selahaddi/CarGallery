@@ -15,75 +15,61 @@ export default function ContentCard({ content }) {
   };
 
   return (
-    <div className="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 active-red-glow">
-      <div className="relative h-48 sm:h-64 overflow-hidden">
-        <Link to={itemUrl} className="block w-full h-full">
-          <img 
-            src={imageUrl} 
-            alt={content.title} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-        </Link>
-        <div className="absolute top-4 right-4 flex flex-col gap-2 pointer-events-none">
-          {content.monthly_rate && (
-            <div className="bg-primary-container text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-label-bold font-label-bold shadow-lg whitespace-nowrap">
-              {t('card_rate')}: {formatNumber(content.monthly_rate)}€ <span className="text-[10px]">/ {t('card_months').toLowerCase()}</span>
-            </div>
-          )}
-          {content.down_payment && (
-            <div className="bg-black/80 backdrop-blur-md text-on-surface px-3 sm:px-4 py-1 rounded-full text-xs sm:text-label-bold font-label-bold border border-outline-variant/20 whitespace-nowrap">
-              {t('card_down')}: {formatNumber(content.down_payment)}€
-            </div>
-          )}
-        </div>
-        {!content.status ? (
-          <div className="absolute bottom-4 left-4">
-            <span className="bg-red-500/80 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded">
-              {t('card_sold')}
-            </span>
-          </div>
-        ) : (
-          <div className="absolute bottom-4 left-4">
-            <span className="bg-white/10 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded">
+    <Link to={itemUrl} className="block group cursor-pointer">
+      <div className="glass-panel rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl relative border border-border-subtle group-hover:border-primary/20">
+        <div className="absolute top-4 right-4 z-10 flex gap-2">
+          {content.status ? (
+            <div className="bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full border border-border-subtle text-label-caps font-label-caps text-primary shadow-sm uppercase">
               {t('card_immediate')}
-            </span>
+            </div>
+          ) : (
+            <div className="bg-error/90 backdrop-blur-md px-3 py-1 rounded-full border border-error text-label-caps font-label-caps text-on-error shadow-sm uppercase">
+              {t('card_sold')}
+            </div>
+          )}
+        </div>
+        <div className="aspect-[4/3] bg-surface-container-low relative overflow-hidden">
+          <img 
+            alt={content.title} 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            src={imageUrl} 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <button className="w-full bg-white text-primary py-3 rounded-lg font-label-caps text-label-caps hover:bg-surface-container transition-colors uppercase">
+              {t('card_configure')}
+            </button>
           </div>
-        )}
-      </div>
-      
-      <div className="p-4 sm:p-6">
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <h2 className="text-lg sm:text-headline-md font-headline-md text-on-surface group-hover:text-primary-container transition-colors line-clamp-1">
-              <Link to={itemUrl}>{content.title}</Link>
-            </h2>
-            <p className="text-label-sm text-text-muted uppercase tracking-wider truncate">
-              {content.category} {content.year && `• ${content.year}`} {content.mileage && `• ${formatNumber(content.mileage)} km`}
+        </div>
+        <div className="p-6">
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <h3 className="font-h3 text-2xl sm:text-h3 text-primary mb-1 line-clamp-1">{content.title}</h3>
+              <p className="font-body-md text-body-md text-secondary truncate">
+                {content.year || ''} {content.year && content.mileage ? '•' : ''} {content.mileage ? `${formatNumber(content.mileage)} km` : ''} {content.category ? `• ${content.category}` : ''}
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 py-4 border-y border-border-subtle">
+            <div>
+              <p className="font-label-caps text-label-caps text-secondary mb-1 uppercase">{t('card_rate')}</p>
+              <p className="font-h3 text-2xl text-primary">{content.monthly_rate ? `€${formatNumber(content.monthly_rate)}` : '-'}</p>
+            </div>
+            <div>
+              <p className="font-label-caps text-label-caps text-secondary mb-1 uppercase">{t('card_down')}</p>
+              <p className="font-h3 text-2xl text-primary">{content.down_payment ? `€${formatNumber(content.down_payment)}` : '-'}</p>
+            </div>
+          </div>
+          <div className="mt-4 flex justify-between items-center">
+            <p className="font-label-caps text-label-caps text-secondary uppercase">
+              {t('card_term')}: {content.term_months ? `${content.term_months} ${t('card_months')}` : t('card_ask')}
             </p>
-          </div>
-          <button className="material-symbols-outlined text-text-muted hover:text-primary-container transition-colors">favorite</button>
-        </div>
-        
-        <div className="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/10">
-          <div>
-            <p className="text-[10px] text-text-muted uppercase">{t('card_term')}</p>
-            <p className="text-on-surface font-label-bold">{content.term_months ? `${content.term_months} ${t('card_months')}` : t('card_ask')}</p>
-          </div>
-          <div>
-            <p className="text-[10px] text-text-muted uppercase">{t('card_interest')}</p>
-            <p className="text-on-surface font-label-bold">{content.interest_rate ? `${formatNumber(content.interest_rate)}% ${t('card_fixed')}` : t('card_ask')}</p>
-          </div>
-        </div>
-        
-        <div className="mt-6 flex gap-3">
-          <Link to={itemUrl} className="flex-1 bg-primary-container text-white py-3 rounded-lg font-label-bold hover:bg-accent-red-bright transition-colors text-center inline-block">
-            {t('card_configure')}
-          </Link>
-          <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors cursor-pointer group-hover:border-primary-container">
-            <span className="material-symbols-outlined">analytics</span>
+            <div className="flex items-center gap-1 text-primary">
+              <span className="font-label-caps text-label-caps uppercase">{t('card_configure')}</span>
+              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

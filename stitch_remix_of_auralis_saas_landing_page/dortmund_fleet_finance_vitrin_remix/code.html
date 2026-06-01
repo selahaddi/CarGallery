@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dortmund Fleet Finance | Dijital Showroom</title>
+<!-- Geist Font for Premium Technical Feel -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#626262",
+                      "surface-container-high": "#e8e8e8",
+                      "surface-container": "#eeeeee",
+                      "surface": "#f9f9f9",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "on-tertiary-fixed-variant": "#474747",
+                      "error-container": "#ffdad6",
+                      "border-subtle": "#E7E7E4",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "page-bg": "#F7F7F5",
+                      "on-primary-fixed-variant": "#474747",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#1b1b1b",
+                      "tertiary": "#000000",
+                      "secondary": "#5e5e5e",
+                      "on-primary-fixed": "#1b1b1b",
+                      "surface-container-lowest": "#ffffff",
+                      "accent-indigo": "#6366F1",
+                      "secondary-fixed": "#e4e2e2",
+                      "surface-dim": "#dadada",
+                      "surface-tint": "#5e5e5e",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "on-primary-container": "#848484",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#1b1b1b",
+                      "secondary-fixed-dim": "#c7c6c6",
+                      "primary-fixed": "#e2e2e2",
+                      "background": "#f9f9f9",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#1b1b1b",
+                      "secondary-container": "#e1dfdf",
+                      "card-bg": "#FCFCFB",
+                      "on-secondary-fixed-variant": "#464747",
+                      "surface-variant": "#e2e2e2",
+                      "panel-bg": "#F3F2EF",
+                      "primary": "#000000",
+                      "on-tertiary-container": "#848484",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "on-surface-variant": "#4c4546",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-surface": "#1b1b1b",
+                      "surface-bright": "#f9f9f9",
+                      "accent-emerald": "#10B981",
+                      "inverse-primary": "#c6c6c6",
+                      "surface-container-highest": "#e2e2e2",
+                      "outline": "#7e7576",
+                      "inverse-on-surface": "#f1f1f1",
+                      "inverse-surface": "#303030",
+                      "outline-variant": "#cfc4c5",
+                      "on-background": "#1b1b1b",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f3f3f3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "nav-height": "72px",
+                      "gutter": "32px",
+                      "unit": "8px",
+                      "section-gap-desktop": "180px",
+                      "section-gap-mobile": "80px"
+              },
+              "fontFamily": {
+                      "body-md": ["Geist"],
+                      "body-lg": ["Geist"],
+                      "h1": ["Geist"],
+                      "label-caps": ["Geist"],
+                      "h1-mobile": ["Geist"],
+                      "h3": ["Geist"],
+                      "h2": ["Geist"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "h1": ["84px", {"lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "h1-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                      "h3": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "h2": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F7F7F5;
+            color: #1b1b1b;
+            font-family: 'Geist', sans-serif;
+        }
+        .bg-card-auralis {
+            background: rgba(252, 252, 251, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E7E7E4;
+        }
+        .rail-system {
+            position: relative;
+            padding-left: 80px;
+        }
+        @media (max-width: 768px) {
+            .rail-system { padding-left: 0; }
+        }
+        .rail-vertical {
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #E7E7E4 20%, #E7E7E4 80%, transparent);
+            z-index: 10;
+        }
+        .density-wave-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .orb {
+            position: fixed;
+            border-radius: 100%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .pill-tab-active {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- Backdrop Orbs -->
+<div class="orb bg-accent-indigo w-[600px] h-[600px] -top-40 -left-40 animate-pulse" style="animation-duration: 8s;"></div>
+<div class="orb bg-accent-emerald w-[500px] h-[500px] bottom-0 right-0 opacity-30"></div>
+<!-- Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-border-subtle dark:border-outline-variant">
+<div class="flex justify-between items-center h-nav-height px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-h3 text-h3 tracking-tighter text-primary" href="#">Dortmund Fleet Finance</a>
+<div class="hidden md:flex gap-8">
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Vitrin</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Hizmetlerimiz</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors" href="#">Panel</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-secondary hover:text-primary">search</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-caps text-label-caps active:scale-95 transition-transform">Giriş</button>
+</div>
+</div>
+</nav>
+<!-- Rail Content Wrapper -->
+<div class="rail-system max-w-container-max mx-auto pt-20">
+<div class="rail-vertical hidden md:block"></div>
+<!-- Hero Section -->
+<section class="min-h-[819px] flex flex-col justify-center px-gutter pt-section-gap-mobile md:pt-section-gap-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-8">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block tracking-[0.2em] uppercase">Premium Filo Finansmanı</span>
+<h1 class="font-h1 text-h1-mobile md:text-h1 mb-8">
+                        Dijital <br/><span class="text-secondary/20">Showroom</span>
+</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl mb-10">
+                        Profesyonel filolar için yüksek performanslı finansman. Agresif oranlar, endüstriyel hassasiyet ve kurumsal ortaklar için anında onay.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-10 py-4 rounded-full font-label-caps text-label-caps hover:bg-secondary transition-colors active:scale-95">Başvuruyu Başlat</button>
+<button class="border border-border-subtle bg-white/50 backdrop-blur-sm px-10 py-4 rounded-full font-label-caps text-label-caps hover:bg-surface-container-low transition-colors">Envanteri İncele</button>
+</div>
+</div>
+<div class="md:col-span-4 grid grid-cols-1 gap-6">
+<!-- Glass Tiles -->
+<div class="bg-card-auralis p-8 rounded-xl">
+<p class="font-label-caps text-label-caps text-secondary mb-2">FİLO DEĞERİ</p>
+<h3 class="font-h3 text-h3">€2.400.000</h3>
+<div class="w-full h-1 bg-surface-container mt-4 overflow-hidden rounded-full">
+<div class="h-full bg-accent-emerald w-2/3"></div>
+</div>
+</div>
+<div class="bg-card-auralis p-8 rounded-xl border-l-4 border-l-accent-indigo">
+<p class="font-label-caps text-label-caps text-secondary mb-2">ORT. FAİZ</p>
+<h3 class="font-h3 text-h3">3.8%</h3>
+<p class="font-body-md text-body-md text-accent-emerald mt-2">
+<span class="material-symbols-outlined text-[18px]">trending_down</span> Piyasa Altı Oranlar
+                        </p>
+</div>
+</div>
+</div>
+<!-- Hero Visual Canvas -->
+<div class="mt-20 w-full h-[400px] rounded-2xl overflow-hidden relative group">
+<img class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" data-alt="A side view of a high-end black sports car parked in a minimalist, futuristic concrete showroom with soft volumetric lighting and ethereal blue and white energy orbs floating in the atmosphere. The lighting is clean and cinematic, emphasizing the metallic curves and industrial precision of the vehicle. Modern, high-key digital aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1XuPCDGI5Ho13PF-C7OOtNDnQwsd-dEHpw1g4VKGfz6yJVA31w4lQ6rWy42U6lh_XMdyn-cZ58wkNdhlbdWu6s6xmMwdEJGNN5LRNqu7pN0jJlgF_3dZr_ZsCAbWkNSb7mkcsvFrCFYoEqL0AlPmDXBPucNLMekix8PFjdQaDzCPXTml3ibsNHitG_W97sJqkWjRsRoqEJTYD1GaOLBRm1ILXqIiQJPXa-rr_IdtWQfMHFYX7d4rGYSnww2esHOVrCBm3iR0ut14v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-page-bg/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<div class="flex items-center gap-3 bg-white/90 backdrop-blur-md py-2 px-4 rounded-full border border-border-subtle">
+<span class="w-2 h-2 bg-accent-emerald rounded-full animate-ping"></span>
+<span class="font-label-caps text-label-caps">LIVE SHOWROOM SESSIONS AVAILABLE</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Density Wave Filter System -->
+<section class="px-gutter pt-section-gap-mobile">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
+<div class="max-w-md">
+<h2 class="font-h2 text-h3 md:text-h2 mb-4">Premium Seçki</h2>
+<p class="font-body-md text-body-md text-secondary">En son teknoloji ve performansın buluştuğu küratörlü araç listemiz.</p>
+</div>
+<!-- Pill Switcher -->
+<div class="bg-surface-container-low p-1.5 rounded-full flex gap-1 border border-border-subtle">
+<button class="pill-tab-active bg-white px-8 py-2.5 rounded-full font-label-caps text-label-caps text-primary shadow-sm transition-all">TÜMÜ</button>
+<button class="px-8 py-2.5 rounded-full font-label-caps text-label-caps text-secondary hover:text-primary transition-all">PERFORMANS</button>
+<button class="px-8 py-2.5 rounded-full font-label-caps text-label-caps text-secondary hover:text-primary transition-all">LÜKS SUV</button>
+<button class="px-8 py-2.5 rounded-full font-label-caps text-label-caps text-secondary hover:text-primary transition-all">EV / HİBRİT</button>
+</div>
+</div>
+<!-- Inventory Grid (Density Wave Pattern) -->
+<div class="density-wave-container">
+<!-- Large Card (Span 8) -->
+<div class="col-span-12 lg:col-span-8 group cursor-pointer">
+<div class="bg-card-auralis rounded-xl overflow-hidden flex flex-col md:flex-row h-full">
+<div class="md:w-1/2 relative overflow-hidden h-[300px] md:h-auto">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close up of a sleek silver Audi RS7 Sportback front grille and matrix LED headlights. The car is situated in a high-tech studio with soft, diffused white lighting and subtle indigo light reflections on the body. Minimalist composition with a focus on engineering detail and premium craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6-N5Or4kRM_MU8kNzuvWZwTQkVvRXJVDIpo6GMliJyKwcxRwN08M76SCuWop36Y38y4M6Wu4liOXJlr6_ZsGrj-2FkXTEtsmsiNPvACFfjdOT3NWsDXLXAFXKyqjCOK39iu8HtYaQ8EyMCATNTsQfZflOnajmCWAAbcHUT--SmngbX0M8U3Dh3-pst89gwfnEcE0BMnvSTqUBV-flJSco7ZGUyA_iTjDMgbCC8U1tIL1NhFxXiess8AjfRVFRnIMbpBpAny_4L7f_"/>
+<div class="absolute top-4 left-4 bg-primary text-white font-label-caps text-[10px] px-3 py-1 rounded-full uppercase tracking-widest">Limited Edition</div>
+</div>
+<div class="md:w-1/2 p-10 flex flex-col justify-between">
+<div>
+<h3 class="font-h3 text-h3 mb-2">Audi RS7 Sportback</h3>
+<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-3">600 PS V8 motorun kükreyişi ile zarif sedan konforu bir arada. Dinamik tasarımıyla dikkat çeken Quattro performans canavarı.</p>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="p-4 rounded-lg bg-surface-container-low border border-border-subtle">
+<p class="font-label-caps text-[10px] text-secondary">AYLIK</p>
+<p class="font-h3 text-h3 text-primary">€2.450</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-border-subtle">
+<p class="font-label-caps text-[10px] text-secondary">FAİZ</p>
+<p class="font-h3 text-h3 text-accent-indigo">1.85%</p>
+</div>
+</div>
+</div>
+<button class="w-full border border-primary text-primary py-4 rounded-full font-label-caps text-label-caps hover:bg-primary hover:text-white transition-all active:scale-95">Yapılandır</button>
+</div>
+</div>
+</div>
+<!-- Regular Card (Span 4) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 group cursor-pointer">
+<div class="bg-card-auralis rounded-xl overflow-hidden h-full flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A rugged but pristine Mercedes-AMG G 63 in matte G Manufaktur olive green color, positioned against a bright, clean minimalist gallery background. The lighting is crisp and detailed, showing every bolt and seam of the iconic off-roader. Atmospheric depth is created with soft warm light leakage and ethereal glows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcAF_Tz_fSQ28A_9KaC3eQbDNXKBPA3_73vmziutdPLt8EcvjOo0SFHuQKK8IR97h3EghNcZLoPEifadY0XyULo5JeQkkjXWaPRmjH21bFSn20FNhHvew8MKVSs_MxJbyPgZcc87_5h4if23EBZa4NDwr09a4t9rv_FwvRL7I_0py682RzYLRu3HG9I7hfM7W10R37TK20Hmz7G1HGD1vZT9Lp65wsaJBr7P0Ojeg0ZREnsejttdQFRs5flDUEa04jo_U1cOVWVRTN"/>
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<h3 class="font-h3 text-[24px] mb-2">Mercedes-AMG G 63</h3>
+<p class="font-body-md text-body-md text-secondary mb-6 flex-1">İkonik tasarım ve 585 beygirlik V8 biturbo motorun gücü bir arada.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-h3 text-[20px]">€3.650<span class="text-secondary text-sm font-normal">/ay</span></span>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Regular Card (Span 4) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 group cursor-pointer">
+<div class="bg-card-auralis rounded-xl overflow-hidden h-full flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A silver Porsche 911 Turbo S captured in a wide-angle, low shot inside a pristine white architectural space. The atmosphere is sophisticated and advanced, with soft reflections on the floor and a bright, modern palette. High-end lifestyle photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApCvFkjXeOW9oy5DXkw7oR9OD2sowVtXA9WDSczIlbYo335pXho68u3iyYw6iwieww4in1Uf8VZroORt8KD8dwgIrsV-HaLdB_CoZDofHXhHt4lZOpEAlGT79pwcUVQRlkrUMA5WQZqCrtGOz-eQ00T6KBxUaziZeJOHaUo4zYlQo__c_c08rqnkocENJtEw4soQ7s1ypEvQtrRvSjDPTDDIT-2Ci_ruiZVVSYWk-bc36zUxW5keog37VEm1ZqTWNMK569GKymTBSf"/>
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<h3 class="font-h3 text-[24px] mb-2">Porsche 911 Turbo S</h3>
+<p class="font-body-md text-body-md text-secondary mb-6 flex-1">650 PS güç ve 0-100 km/s sadece 2.7 saniye. Kusursuz aerodinami.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-h3 text-[20px]">€4.650<span class="text-secondary text-sm font-normal">/ay</span></span>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Asymmetric Large Card (Span 8) -->
+<div class="col-span-12 lg:col-span-8 group cursor-pointer">
+<div class="bg-card-auralis rounded-xl overflow-hidden flex flex-col md:flex-row h-full">
+<div class="md:w-1/2 p-10 flex flex-col justify-between order-2 md:order-1">
+<div>
+<h3 class="font-h3 text-h3 mb-2">Lamborghini Urus</h3>
+<p class="font-body-md text-body-md text-secondary mb-6">Dünyanın ilk Süper SUV'u. 666 beygir güç üreten V8 çift turbolu motor ile yarış pisti ruhunu günlük hayata taşıyor.</p>
+<div class="space-y-3">
+<div class="flex justify-between py-2 border-b border-border-subtle">
+<span class="font-label-caps text-secondary">Peşinat</span>
+<span class="font-body-md font-bold">€315.000</span>
+</div>
+<div class="flex justify-between py-2 border-b border-border-subtle">
+<span class="font-label-caps text-secondary">Vade</span>
+<span class="font-body-md font-bold">48 Ay</span>
+</div>
+</div>
+</div>
+<button class="mt-8 bg-primary text-on-primary py-4 rounded-full font-label-caps text-label-caps active:scale-95 transition-transform">Hemen İncele</button>
+</div>
+<div class="md:w-1/2 relative overflow-hidden h-[300px] md:h-auto order-1 md:order-2">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant yellow Lamborghini Urus Performante parked in a high-key, minimalist garage with sharp shadows and bright white lighting. The atmosphere is clean and premium, relying on a sophisticated black, white, and yellow color palette. Cinematic and aggressive automotive photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuLOkEZE5THVRMORfrQfwBCLfkuP6g84mv5JGAt_LaAdyhtAjHOkUhxPXgMWW6xcfGpCAfQAAeMcUT2EKpiTYT5fqNPlI7sWqv5F3fj0PkPXnbOFELfhtcq3hWI8A_1RmniQq6iVVI0oCrALU-tbnfG3ra5u8ox9ao3FJeBMnDHj9OHNDu_E3od91zcANsf6ruTGFOR4koQH8tQhFGV-wlR3aZyKMwbB53Dr4jE07bT8DXzgSog52RQ0f4OhaYbv9UPapoRn1v-SAK"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="px-gutter pt-section-gap-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-border-subtle pt-24">
+<div class="md:col-span-4">
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase mb-4 block">Hizmetlerimiz</span>
+<h2 class="font-h2 text-h2 mb-6">Hassas <br/>Operasyon</h2>
+<p class="font-body-lg text-body-lg text-secondary">Filo yönetiminden bireysel lüks leasing'e kadar, her aşamada en yüksek kalite standartlarını sunuyoruz.</p>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-card-auralis p-8 rounded-xl hover:border-accent-indigo transition-colors">
+<span class="material-symbols-outlined text-accent-indigo text-4xl mb-6">payments</span>
+<h4 class="font-h3 text-[24px] mb-3">Profesyonel Finansman</h4>
+<p class="font-body-md text-body-md text-secondary">B2B ve kurumsal çözümlerle hızlandırılmış onay süreçleri ve size özel oranlar.</p>
+</div>
+<div class="bg-card-auralis p-8 rounded-xl hover:border-accent-indigo transition-colors">
+<span class="material-symbols-outlined text-accent-indigo text-4xl mb-6">verified_user</span>
+<h4 class="font-h3 text-[24px] mb-3">Hazırlık &amp; Garanti</h4>
+<p class="font-body-md text-body-md text-secondary">Tüm araçlar 100+ nokta kontrolünden geçer ve tam güvence altına alınır.</p>
+</div>
+<div class="bg-card-auralis p-8 rounded-xl hover:border-accent-indigo transition-colors">
+<span class="material-symbols-outlined text-accent-indigo text-4xl mb-6">article</span>
+<h4 class="font-h3 text-[24px] mb-3">Teslimat &amp; Kayıt</h4>
+<p class="font-body-md text-body-md text-secondary">Türkiye genelinde kapıya teslimat ve anahtar teslim tescil yönetimi.</p>
+</div>
+<div class="bg-card-auralis p-8 rounded-xl hover:border-accent-indigo transition-colors">
+<span class="material-symbols-outlined text-accent-indigo text-4xl mb-6">shopping_cart</span>
+<h4 class="font-h3 text-[24px] mb-3">Araç Alımı</h4>
+<p class="font-body-md text-body-md text-secondary">Mevcut aracınızı en iyi piyasa değerinden takas yapın veya nakit satın.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Stepper -->
+<section class="px-gutter pt-section-gap-desktop pb-section-gap-desktop">
+<div class="bg-primary text-on-primary rounded-3xl p-12 md:p-20 relative overflow-hidden">
+<div class="orb bg-accent-indigo w-[400px] h-[400px] -top-20 -right-20 opacity-20"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-5">
+<span class="font-label-caps text-label-caps text-surface-variant mb-4 block tracking-widest">NASIL ÇALIŞIR</span>
+<h2 class="font-h1 text-h2 md:text-h1 mb-8 text-white">Süreç</h2>
+<p class="font-body-lg text-body-lg text-surface-variant mb-10">Sadece 5 adımda hayalinizdeki araca profesyonel finansmanla sahip olun.</p>
+<button class="bg-white text-primary px-10 py-4 rounded-full font-label-caps text-label-caps hover:bg-surface-variant transition-colors">Başvuruyu Başlat</button>
+</div>
+<div class="lg:col-span-7 space-y-12">
+<div class="flex gap-8 group">
+<span class="font-h3 text-h3 text-white/20 group-hover:text-white transition-colors">01</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-2 text-white">Araç Seçimi</h4>
+<p class="font-body-md text-surface-variant">Envanterimizden size en uygun aracı belirleyin.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<span class="font-h3 text-h3 text-white/20 group-hover:text-white transition-colors">02</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-2 text-white">Başvuru Formu</h4>
+<p class="font-body-md text-surface-variant">Online başvuru formunu 2 dakikada doldurun.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<span class="font-h3 text-h3 text-white/20 group-hover:text-white transition-colors">03</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-2 text-white">Değerlendirme</h4>
+<p class="font-body-md text-surface-variant">Uzman ekibimiz başvurunuzu anında incelesin.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<span class="font-h3 text-h3 text-white/20 group-hover:text-white transition-colors">04</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-2 text-white">Evrak Teslimi</h4>
+<p class="font-body-md text-surface-variant">Gerekli belgeleri dijital olarak güvenle gönderin.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Shell -->
+<footer class="bg-panel-bg dark:bg-surface-container-low border-t border-border-subtle">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-unit py-12 px-gutter max-w-container-max mx-auto">
+<div class="md:col-span-4 mb-8 md:mb-0">
+<h3 class="font-h3 text-h3 text-primary mb-4">Dortmund Fleet Finance</h3>
+<p class="font-body-md text-body-md text-secondary">Technical precision in mobility.</p>
+</div>
+<div class="md:col-span-5 flex gap-8">
+<div class="flex flex-col gap-3">
+<p class="font-label-caps text-label-caps text-primary mb-2">KURUMSAL</p>
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">Hizmet Şartları</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">Gizlilik Politikası</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">KVKK</a>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-label-caps text-label-caps text-primary mb-2">İLETİŞİM</p>
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">Destek</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">Künye</a>
+</div>
+</div>
+<div class="md:col-span-3 text-right">
+<p class="font-label-caps text-label-caps text-secondary">© 2024 Dortmund Fleet Finance.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and Atmospheric Effects
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 20;
+                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Sticky Header Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+    </script>
+</body></html>

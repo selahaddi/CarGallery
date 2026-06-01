@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mercedes-AMG G 63 | Dortmund Fleet Finance</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "page-bg": "#F7F7F5",
+                        "on-primary-fixed-variant": "#474747",
+                        "outline-variant": "#cfc4c5",
+                        "inverse-primary": "#c6c6c6",
+                        "surface": "#f9f9f9",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#1b1b1b",
+                        "surface-container-low": "#f3f3f3",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "surface-dim": "#dadada",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary-container": "#848484",
+                        "card-bg": "#FCFCFB",
+                        "surface-container-high": "#e8e8e8",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "error-container": "#ffdad6",
+                        "panel-bg": "#F3F2EF",
+                        "primary-container": "#1b1b1b",
+                        "on-primary-fixed": "#1b1b1b",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container": "#eeeeee",
+                        "on-primary-container": "#848484",
+                        "on-error": "#ffffff",
+                        "background": "#f9f9f9",
+                        "surface-tint": "#5e5e5e",
+                        "secondary-container": "#e1dfdf",
+                        "surface-container-highest": "#e2e2e2",
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "accent-emerald": "#10B981",
+                        "on-secondary-container": "#626262",
+                        "border-subtle": "#E7E7E4",
+                        "accent-indigo": "#6366F1",
+                        "primary": "#000000",
+                        "primary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "outline": "#7e7576",
+                        "surface-variant": "#e2e2e2",
+                        "secondary": "#5e5e5e",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-surface-variant": "#4c4546",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1b1b1b",
+                        "inverse-surface": "#303030",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-surface": "#1b1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "section-gap-desktop": "180px",
+                        "gutter": "32px",
+                        "nav-height": "72px",
+                        "section-gap-mobile": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "h2": ["Geist"],
+                        "h1": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-caps": ["Geist"],
+                        "h3": ["Geist"],
+                        "h1-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "h2": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                        "h1": ["84px", {"lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "h3": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "h1-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist-font@latest/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist-font@latest/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist-font@latest/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
+
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #F7F7F5;
+            color: #1b1b1b;
+        }
+
+        .asymmetrical-rail {
+            border-left: 0.5px solid #E7E7E4;
+            padding-left: 2rem;
+        }
+
+        .glass-panel {
+            background: rgba(252, 252, 251, 0.7);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid #E7E7E4;
+            box-shadow: 0 4px 24px -12px rgba(0,0,0,0.05);
+        }
+
+        .glass-card-hover:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #000000;
+            transition: all 0.3s ease;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .depth-layer-1 { z-index: 10; }
+        .depth-layer-2 { z-index: 20; }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: #e2e2e2;
+            height: 2px;
+            border-radius: 2px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .workstation-shadow {
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 20px 40px -10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-border-subtle dark:border-outline-variant">
+<div class="flex justify-between items-center h-nav-height px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-h3 text-h3 tracking-tighter text-primary dark:text-primary-fixed" href="#">Dortmund Fleet Finance</a>
+<div class="hidden md:flex gap-8">
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Vitrin</a>
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Hizmetlerimiz</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">Panel</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="active:scale-95 transition-transform text-secondary hover:text-primary">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-caps text-label-caps active:scale-95 transition-all">Giriş</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="mt-nav-height max-w-container-max mx-auto px-gutter py-12">
+<!-- Breadcrumbs & Rail Header -->
+<div class="asymmetrical-rail mb-12">
+<nav class="flex gap-2 text-label-caps font-label-caps text-secondary mb-4">
+<a class="hover:text-primary" href="#">ENVANTER</a>
+<span>/</span>
+<a class="hover:text-primary" href="#">MERCEDES-BENZ</a>
+<span>/</span>
+<span class="text-primary">AMG G 63</span>
+</nav>
+<h1 class="font-h1 text-h1 tracking-tighter text-primary">Mercedes-AMG G 63</h1>
+<p class="font-body-lg text-body-lg text-secondary mt-2">V8 Biturbo / 585 HP / Gece Paketi II</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Content Column -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Hero Showcase -->
+<section class="relative aspect-video rounded-xl overflow-hidden glass-panel workstation-shadow group">
+<img class="w-full h-full object-cover" data-alt="A high-end, professional studio photograph of a matte black Mercedes-AMG G 63 parked in a minimalist, concrete architecture setting. The lighting is cold and technical, highlighting the sharp edges and metallic textures of the vehicle. Soft atmospheric haze and subtle lens flares add depth to the composition. The overall mood is sophisticated, echoing a workstation-style aesthetic with monochrome tones and a clean, luxury finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0MYv0qWDKvwZEOnivT6QVzDJUu2K1cx9q3_ImBX80dX9n18n8qNqWnQLSMuOc3tZxcoQ4UPdd5RqH67nMwnxKfqDIo9aJVR30iNiaZI-iV20kdiLSRsjTBm6Wj3elXyOYfBSRmJhlzG9aEZxxf3gzuwTf-JpEcQUGjeEtRavahkge-gSrqu1b1MRcp1ByYxgIEBmMJBANhBxXewWxaIbZ5GbqE5qQJbuccmAJqBdYrW_BmmWVwx3ZAvHdGbAHQw65NDWE7LGkdhs9"/>
+<div class="absolute top-6 left-6 flex flex-col gap-2">
+<span class="bg-primary text-on-primary px-4 py-1 rounded-full font-label-caps text-label-caps">STOKTA</span>
+<span class="bg-white/90 backdrop-blur text-primary px-4 py-1 rounded-full font-label-caps text-label-caps border border-border-subtle">PREMIUM SEÇİM</span>
+</div>
+<!-- Metadata Overlay -->
+<div class="absolute bottom-0 inset-x-0 p-8 bg-gradient-to-t from-black/60 to-transparent">
+<div class="flex justify-between items-end">
+<div class="text-white">
+<p class="font-label-caps text-label-caps opacity-80">ŞASİ NO</p>
+<p class="font-body-md font-bold">W463-AMG-585-2023</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/40 transition-all">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/40 transition-all">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specs Grid -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary">calendar_today</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary">MODEL YILI</p>
+<p class="font-body-md font-bold">2023</p>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary">distance</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary">KİLOMETRE</p>
+<p class="font-body-md font-bold">12.500 km</p>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary">settings_input_component</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary">ŞANZIMAN</p>
+<p class="font-body-md font-bold">Otomatik</p>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary">ev_station</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary">YAKIT</p>
+<p class="font-body-md font-bold">Benzin</p>
+</div>
+</div>
+</section>
+<!-- Description Block -->
+<section class="asymmetrical-rail">
+<h2 class="font-h3 text-h3 text-primary mb-6">Araç Açıklaması</h2>
+<div class="glass-panel p-8 rounded-xl">
+<p class="font-body-lg text-body-lg text-secondary leading-relaxed mb-8">
+                            Aracımız "G Manufaktur" özel serisidir. Özel renk, Nappa deri koltuklar, karbon fiber detaylar ve AMG Gece Paketi (Night Package) mevcuttur. Tüm bakımları yetkili servisinde yapılmıştır. Çiziksiz, kazasız ve masrafsızdır. Arka eğlence paketi ve 360 derece kamera sistemi bulunur.
+                        </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined text-accent-emerald" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md">AMG Gece Paketi</span>
+</div>
+<div class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined text-accent-emerald" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md">Burmester 3D Ses</span>
+</div>
+<div class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined text-accent-emerald" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md">Masajlı Koltuklar</span>
+</div>
+<div class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined text-accent-emerald" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md">360 Kamera</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section class="asymmetrical-rail">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-h3 text-h3 text-primary">Resim Galerisi</h2>
+<button class="font-label-caps text-label-caps text-secondary hover:text-primary flex items-center gap-2">
+                            TÜMÜNÜ GÖR <span class="material-symbols-outlined text-sm">open_in_full</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="aspect-square rounded-lg overflow-hidden glass-panel">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A detailed close-up shot of the matte black exterior paint and carbon fiber details of a luxury Mercedes G 63 SUV. The lighting emphasizes the technical texture of the carbon weave and the smooth, satin finish of the vehicle. The shot is framed in a minimalist, architectural garage with soft, diffused white light, creating a high-end corporate and technical atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6dFSe8bYa5onEHN9LK4ulNxbYSMZM0V03e087y0eQyS67lQ0_ivzm8rk_ZQu_Ke2EJecqJ3qZa2eUKLtFSP140Bh4ZgF0ylgezd7ALAWycDETSto8zN6m9031tuujxszyxw9RAWVBieqSHZVh3k5gZuALoujFa8cygXDTjVJl3ANx2IO6s-BTgfVMWi3ICnPem1lA0nLemYEmEfF6tqPlcLhARXvJjvEgfH-LD5DIv03N7zFjS_qSl2nfnFXIAKuXMTxmjdIWxYc5"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden glass-panel">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A professional interior photograph of a Mercedes-AMG G 63 featuring red Nappa leather seats and a carbon fiber dashboard. The dashboard screen displays technical vehicle data. The lighting is crisp and clean, reflecting off the polished surfaces, highlighting the precision craftsmanship. The environment is dark and focused, emphasizing the premium and engineered feel of the cockpit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ0OtgFz0VYs0bKO6G-4UGVDDiDpjLOsKbq44FerCkL7LePrw0DFPGAdV8Pnpt1L3BGZVF3DPXTank6NEkY9wt2MB6dQpOfp8wD3clBJNTmd8AqMDzy9ndWeknv4TvUljl4qXPb1q9xo3gIkRIoVlpz_y7FKLOwoc2hWiMT7gBK_XayfQlglqCybZCGfA1IKgqJklRAtuYkCKcozf_xa6wlt5xQekLnmrN8PVD7_yRMo4Pkn10f0aO8l9S_GZ9SdFvj6UHulIzqz1h"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden glass-panel">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A low-angle, powerful shot of a Mercedes-AMG G 63 wheel and brake system. The red AMG brake calipers are prominent against the black forged alloy wheels. The lighting is dramatic, coming from the side to create deep shadows and bright highlights on the metallic components. The ground is a clean, reflective polished concrete surface, contributing to the professional workstation aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsytuOCEyqA1BNhCp455WGl25Mhywbdvk5A8rhL_N9CtCRSFvk7HO5kYmf7Fn3fq_iOCBQ3vbp7LFyJJZf8VXWxt8eS-ql-AoH_BgXcrl3e88awnep9haZqIWVzspXBJ-J11ASkeooSj5be-8OoYodmgUFNFqwmvJF4JMUmdMYPyW29rbq3YIzDtFZECRmPPJUvJTBH64shURBSXlh4rnCDUWD7KEnNhqFPpAI88KnC4X7c0eK9gHeVycLR1ZsUPBTOpMana9VxOfF"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar Panel -->
+<div class="lg:col-span-4">
+<aside class="sticky top-[104px] space-y-6">
+<!-- Finance Calculator Card -->
+<div class="glass-panel p-8 rounded-2xl workstation-shadow bg-surface-container-lowest">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-h3 text-primary text-2xl">Finansman</h3>
+<span class="material-symbols-outlined text-secondary">calculate</span>
+</div>
+<div class="space-y-8">
+<div class="flex justify-between items-end border-b border-border-subtle pb-4">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">ARAÇ FİYATI</p>
+<p class="font-h3 text-3xl">€215.000</p>
+</div>
+<span class="bg-accent-emerald/10 text-accent-emerald px-3 py-1 rounded-full font-label-caps text-[10px]">GÜNCEL</span>
+</div>
+<!-- Interactive Inputs -->
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label-caps text-label-caps text-secondary">PEŞİNAT</label>
+<span class="font-body-md font-bold">€60.000</span>
+</div>
+<input class="w-full" max="215000" min="40000" type="range" value="60000"/>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label-caps text-label-caps text-secondary">VADE</label>
+<span class="font-body-md font-bold">48 Ay</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-2 border border-border-subtle rounded-lg text-sm font-bold hover:bg-black hover:text-white transition-all">12</button>
+<button class="py-2 border border-border-subtle rounded-lg text-sm font-bold hover:bg-black hover:text-white transition-all">24</button>
+<button class="py-2 border border-black bg-black text-white rounded-lg text-sm font-bold">48</button>
+<button class="py-2 border border-border-subtle rounded-lg text-sm font-bold hover:bg-black hover:text-white transition-all">60</button>
+</div>
+</div>
+</div>
+<!-- Output Panel -->
+<div class="bg-primary text-on-primary p-6 rounded-xl space-y-4">
+<div>
+<p class="font-label-caps text-label-caps opacity-70">AYLIK TAKSİT</p>
+<div class="flex items-baseline gap-2">
+<span class="font-h2 text-4xl leading-none">€3.650</span>
+<span class="font-body-md opacity-70">/ay</span>
+</div>
+</div>
+<div class="pt-4 border-t border-white/20 flex justify-between text-xs">
+<span class="opacity-70">FAİZ ORANI (EFF.)</span>
+<span class="font-bold">%1.95</span>
+</div>
+</div>
+<button class="w-full py-4 bg-black text-white rounded-full font-label-caps text-label-caps hover:bg-secondary transition-colors active:scale-[0.98]">
+                                KİŞİSEL TEKLİF ALIN
+                            </button>
+<p class="text-center font-label-caps text-[10px] text-secondary">
+                                GAP KORUMASI &amp; ÜCRETSİZ TESLİMAT DAHİL
+                            </p>
+</div>
+</div>
+<!-- Contact & Expert Card -->
+<div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container overflow-hidden border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a senior automotive fleet consultant. The individual is wearing a charcoal grey tailored suit and a crisp white shirt, exuding confidence and expertise. The background is a blurred high-end office environment with soft architectural lighting and glass elements. The style is clean and corporate, consistent with the advanced minimalism of the Dortmund Fleet Finance brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYNPo12cuICWLD3f-wRwC7DHRfRcu_AtCX_q2VrYuDY9ysSyD9Oh3HNBe95SqVAXyACyEgI9pX87SKZFJVzc81dLUKsqvKd15JTAnKUxv7lg38sp-y-HjOsKb9aJ6AkuwdnwE-QZ_XavrZk4f5lE9IYxmLquQz-e0aapLcDPUXWVCebQS6xMheYeSTz7obZNFEmcpItyEZE3l9q5-Fi7B-BQEyTmC3zZ_Ia0xbObfgtULc_inVHUDONAVdhfXg1AClHz8rVcYPTi-D"/>
+</div>
+<div class="flex-1">
+<p class="font-label-caps text-[10px] text-secondary">DANIŞMAN</p>
+<p class="font-body-md font-bold">Markus Weber</p>
+<p class="text-xs text-secondary">Senior Fleet Specialist</p>
+</div>
+<button class="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:bg-black hover:text-white transition-all">
+<span class="material-symbols-outlined text-xl">mail</span>
+</button>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-panel-bg dark:bg-surface-container-low border-t border-border-subtle dark:border-outline-variant">
+<div class="grid grid-cols-12 gap-unit py-12 px-gutter max-w-container-max mx-auto">
+<div class="col-span-12 md:col-span-4">
+<div class="font-h3 text-h3 text-primary dark:text-primary-fixed mb-4">Dortmund Fleet Finance</div>
+<p class="font-label-caps text-label-caps text-secondary">© 2024 Dortmund Fleet Finance. Technical precision in mobility.</p>
+</div>
+<div class="col-span-12 md:col-span-8 flex flex-wrap gap-8 md:justify-end mt-8 md:mt-0">
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-tertiary-fixed-variant hover:text-primary transition-opacity" href="#">Kullanım Koşulları</a>
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-tertiary-fixed-variant hover:text-primary transition-opacity" href="#">Gizlilik Politikası</a>
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-tertiary-fixed-variant hover:text-primary transition-opacity" href="#">KVKK</a>
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-tertiary-fixed-variant hover:text-primary transition-opacity font-bold" href="#">İletişim</a>
+</div>
+</div>
+</footer>
+<!-- Decorative Backdrop Orbs -->
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full -z-10"></div>
+<div class="fixed bottom-0 left-0 w-[300px] h-[300px] bg-accent-emerald/5 blur-[100px] rounded-full -z-10"></div>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('input[type="range"]').forEach(input => {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                // Add calculation logic if needed
+            });
+        });
+
+        // Simple gallery light-box simulation
+        document.querySelectorAll('.aspect-square img').forEach(img => {
+            img.addEventListener('click', () => {
+                // In a real app, this would open a full-screen viewer
+                img.classList.add('scale-110');
+                setTimeout(() => img.classList.remove('scale-110'), 300);
+            });
+        });
+    </script>
+</body></html>

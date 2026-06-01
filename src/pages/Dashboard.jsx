@@ -283,8 +283,6 @@ export default function Dashboard() {
     }
   };
 
-
-
   // Calculate dynamic stats
   const totalVehicles = contents.length;
   const activePortfolioVal = contents
@@ -326,445 +324,450 @@ export default function Dashboard() {
     }
   });
 
-
-
   if (loading && contents.length === 0) {
     return (
-      <div className="flex justify-center items-center min-h-[50vh]">
+      <div className="flex justify-center items-center min-h-[50vh] pt-20">
         <Loader2 className="w-10 h-10 animate-spin text-primary" />
       </div>
     );
   }
 
   return (
-    <main className="pt-20 sm:pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header Stats Panel */}
-        <div className="mb-6 sm:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-4xl font-sora font-extrabold text-white tracking-tight" data-t="dash_title">{t('dash_title')}</h1>
-            <p className="text-text-muted mt-2 max-w-md" data-t="dash_subtitle">Velocity Performance standartlarında araç ve içerik yönetimi.</p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <div className="glass-card px-3 sm:px-4 py-3 rounded-2xl border-white/5 flex flex-col flex-1 min-w-[120px]">
-              <span className="text-[10px] text-text-muted uppercase font-bold tracking-widest">Toplam Araç</span>
-              <span className="text-lg sm:text-xl font-sora font-bold text-white">{totalVehicles}</span>
-            </div>
-            <div className="glass-card px-3 sm:px-4 py-3 rounded-2xl border-white/5 flex flex-col border-l-primary/30 flex-1 min-w-[120px]">
-              <span className="text-[10px] text-text-muted uppercase font-bold tracking-widest">Aktif Portföy</span>
-              <span className="text-lg sm:text-xl font-sora font-bold text-primary">€{activePortfolio}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Grid layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Add / Edit Form Column (lg:col-span-5) */}
-          <div className="lg:col-span-5">
-            <div className="glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:sticky lg:top-24 border-primary/10">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-primary">
-                    {editingId ? 'edit_square' : 'add_circle'}
-                  </span>
+    <>
+      <div className="orb orb-1"></div>
+      <div className="orb orb-2"></div>
+      <main className="pt-nav-height min-h-screen pb-12 relative z-10">
+        <div className="rail-system min-h-screen">
+          <div className="rail-vertical"></div>
+          <div className="max-w-container-max mx-auto px-4 sm:px-gutter pt-8">
+            {/* Header Stats Panel */}
+            <div className="mb-6 sm:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <h1 className="text-h1-mobile sm:text-h1 font-h1 text-primary tracking-tight" data-t="dash_title">{t('dash_title')}</h1>
+                <p className="text-secondary mt-2 max-w-md font-label-caps" data-t="dash_subtitle">Velocity Performance standartlarında araç ve içerik yönetimi.</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col flex-1 min-w-[120px]">
+                  <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">Toplam Araç</span>
+                  <span className="text-xl font-h3 text-primary mt-1">{totalVehicles}</span>
                 </div>
-                <h2 className="text-xl font-sora font-bold text-white">
-                  {editingId ? t('dash_form_edit') : t('dash_form_add')}
-                </h2>
+                <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col flex-1 min-w-[120px]">
+                  <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">Aktif Portföy</span>
+                  <span className="text-xl font-h3 text-accent-indigo mt-1">€{activePortfolio}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              {/* Add / Edit Form Column (lg:col-span-5) */}
+              <div className="lg:col-span-5">
+                <div className="glass-panel rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:sticky lg:top-28">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
+                      <span className="material-symbols-outlined text-primary">
+                        {editingId ? 'edit_square' : 'add_circle'}
+                      </span>
+                    </div>
+                    <h2 className="text-h3 font-h3 text-primary">
+                      {editingId ? t('dash_form_edit') : t('dash_form_add')}
+                    </h2>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Section: Vehicle Details */}
+                    <div className="space-y-4">
+                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">Araç Detayları</p>
+                      <div>
+                        <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_title">{t('dash_label_title')}</label>
+                        <input 
+                          className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                          placeholder="Örn: BMW M8 Competition" 
+                          required 
+                          type="text"
+                          value={form.title}
+                          onChange={(e) => setForm({ ...form, title: e.target.value })}
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_slug">{t('dash_label_slug')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="bmw-m8-competition" 
+                            type="text"
+                            value={form.slug}
+                            onChange={(e) => setForm({ ...form, slug: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_category">{t('dash_label_category')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="Örn: Spor Sedan" 
+                            type="text"
+                            value={form.category}
+                            onChange={(e) => setForm({ ...form, category: e.target.value })}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_year">{t('dash_label_year')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="2024" 
+                            type="number"
+                            value={form.year}
+                            onChange={(e) => setForm({ ...form, year: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_mileage">{t('dash_label_mileage')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="0" 
+                            type="number"
+                            value={form.mileage}
+                            onChange={(e) => setForm({ ...form, mileage: e.target.value })}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_features">{t('dash_label_features')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="Carbon, Burmester" 
+                            type="text"
+                            value={form.features}
+                            onChange={(e) => setForm({ ...form, features: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_phone">{t('dash_label_phone')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="015737641145" 
+                            type="text"
+                            value={form.phone}
+                            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Section: Pricing */}
+                    <div className="space-y-4">
+                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">Finansal Veriler</p>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_price">{t('dash_label_price')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm font-bold text-primary bg-surface-container-low border border-border-subtle focus:border-accent-indigo focus:ring-0 transition-colors" 
+                            placeholder="0.00" 
+                            step="0.01" 
+                            type="number"
+                            value={form.price}
+                            onChange={(e) => setForm({ ...form, price: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_down">{t('dash_label_down')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="0.00" 
+                            step="0.01" 
+                            type="number"
+                            value={form.down_payment}
+                            onChange={(e) => setForm({ ...form, down_payment: e.target.value })}
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_rate">{t('dash_label_rate')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="299" 
+                            type="number"
+                            value={form.monthly_rate}
+                            onChange={(e) => setForm({ ...form, monthly_rate: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_term">{t('dash_label_term')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="48" 
+                            type="number"
+                            value={form.term_months}
+                            onChange={(e) => setForm({ ...form, term_months: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_interest">{t('dash_label_interest')}</label>
+                          <input 
+                            className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                            placeholder="2.99" 
+                            step="0.01" 
+                            type="number"
+                            value={form.interest_rate}
+                            onChange={(e) => setForm({ ...form, interest_rate: e.target.value })}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Section: Media & Description */}
+                    <div className="space-y-4">
+                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">Medya & Açıklama</p>
+                      
+                      {/* Cover Image Upload */}
+                      <div>
+                        <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1">{t('dash_label_image')}</label>
+                        <div className="relative flex gap-2">
+                          <div className="relative flex-grow">
+                            <input
+                              type="text"
+                              value={form.image_url}
+                              onChange={(e) => setForm({ ...form, image_url: e.target.value })}
+                              className="w-full pl-10 pr-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40"
+                              placeholder="https://images.unsplash.com/..."
+                            />
+                            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary/60 text-sm">link</span>
+                          </div>
+                          <div className="relative w-12 flex-shrink-0 h-11">
+                            <input 
+                              type="file" 
+                              accept="image/*"
+                              onChange={handleImageUpload}
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              disabled={uploadingImage}
+                              title="Bilgisayardan resim yükle"
+                            />
+                            <div className={`absolute inset-0 flex items-center justify-center rounded-xl border border-border-subtle transition-all ${uploadingImage ? 'bg-accent-indigo/10 text-accent-indigo' : 'bg-surface-container hover:bg-surface-container-low text-secondary hover:text-primary'}`}>
+                              {uploadingImage ? (
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                              ) : (
+                                <span className="material-symbols-outlined text-lg">upload</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Gallery Upload */}
+                      <div>
+                        <div className="flex justify-between items-end mb-1">
+                          <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1">{t('dash_label_gallery')}</label>
+                          <div className="relative">
+                            <input 
+                              type="file" 
+                              accept="image/*"
+                              multiple
+                              onChange={handleGalleryUpload}
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              disabled={uploadingGallery}
+                              title="Bilgisayardan çoklu resim yükle"
+                            />
+                            <div className={`text-xs px-3 py-1.5 rounded-lg border border-border-subtle transition-all flex items-center justify-center cursor-pointer ${uploadingGallery ? 'bg-accent-indigo/10 text-accent-indigo' : 'bg-surface-container text-secondary hover:text-primary hover:bg-surface-container-low'}`}>
+                              {uploadingGallery ? (
+                                <Loader2 className="w-3.5 h-3.5 animate-spin mr-1" />
+                              ) : (
+                                <span className="material-symbols-outlined text-[14px] mr-1">upload</span>
+                              )}
+                              Resim Seç
+                            </div>
+                          </div>
+                        </div>
+                        <textarea
+                          rows="3"
+                          value={form.images}
+                          onChange={(e) => setForm({ ...form, images: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40 resize-none font-mono text-xs"
+                          placeholder="https://...&#10;https://..."
+                        ></textarea>
+                        <p className="text-[10px] text-secondary mt-1">{t('dash_gallery_hint')}</p>
+                      </div>
+
+                      {/* Summary & Body */}
+                      <div>
+                        <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_summary">{t('dash_label_summary')}</label>
+                        <textarea 
+                          className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40 resize-none" 
+                          placeholder="Vitrin kartı için kısa metin..." 
+                          rows="2"
+                          value={form.summary}
+                          onChange={(e) => setForm({ ...form, summary: e.target.value })}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_body">{t('dash_label_body')}</label>
+                        <textarea 
+                          className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40 resize-none" 
+                          placeholder="Detaylı araç açıklaması..." 
+                          rows="4"
+                          required
+                          value={form.body}
+                          onChange={(e) => setForm({ ...form, body: e.target.value })}
+                        />
+                      </div>
+
+                      {/* Status checkbox */}
+                      <div className="flex items-center gap-3 bg-surface-container p-3 rounded-xl border border-border-subtle">
+                        <input
+                          type="checkbox"
+                          id="status"
+                          checked={form.status}
+                          onChange={(e) => setForm({ ...form, status: e.target.checked })}
+                          className="w-4 h-4 rounded text-accent-indigo focus:ring-accent-indigo bg-surface-container border-border-subtle cursor-pointer"
+                        />
+                        <label htmlFor="status" className="text-sm font-label-caps text-primary cursor-pointer select-none">
+                          {t('dash_label_status')}
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Submit button */}
+                    <div className="pt-2 flex gap-3">
+                      <button 
+                        className="flex-1 bg-primary text-on-primary py-4 px-6 rounded-xl font-label-caps text-label-caps transition-all flex justify-center items-center gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:bg-secondary active:scale-[0.98] disabled:opacity-75" 
+                        type="submit"
+                        disabled={actionLoading}
+                      >
+                        {actionLoading ? (
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                        ) : (
+                          <>
+                            <span className="material-symbols-outlined">save</span>
+                            <span>{editingId ? "GÜNCELLE VE YAYINLA" : "KAYDET VE YAYINLA"}</span>
+                          </>
+                        )}
+                      </button>
+
+                      {editingId && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditingId(null);
+                            setForm({ title: '', slug: '', summary: '', body: '', image_url: '', category: '', tags: '', status: true, year: '', mileage: '', price: '', down_payment: '', monthly_rate: '', interest_rate: '', term_months: '', phone: '', features: '', images: '' });
+                          }}
+                          className="px-6 py-4 rounded-xl bg-surface-container hover:bg-surface-container-low text-primary font-label-caps text-label-caps border border-border-subtle transition-all active:scale-[0.98]"
+                        >
+                          {t('dash_btn_cancel')}
+                        </button>
+                      )}
+                    </div>
+                  </form>
+                </div>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Section: Vehicle Details */}
-                <div className="space-y-4">
-                  <p className="text-xs font-bold text-primary/80 uppercase tracking-widest pb-1 border-b border-white/5">Araç Detayları</p>
-                  <div>
-                    <label className="label-high-contrast" data-t="dash_label_title">{t('dash_label_title')}</label>
-                    <input 
-                      className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted" 
-                      placeholder="Örn: BMW M8 Competition" 
-                      required 
-                      type="text"
-                      value={form.title}
-                      onChange={(e) => setForm({ ...form, title: e.target.value })}
-                    />
-                  </div>
+              {/* List Section Column (lg:col-span-7) */}
+              <div className="lg:col-span-7">
+                <div className="glass-panel rounded-2xl sm:rounded-3xl overflow-hidden">
+                  <div className="p-4 sm:p-8 border-b border-border-subtle flex flex-col gap-4 bg-surface-container">
+                    <h2 className="text-h3 font-h3 text-primary" data-t="dash_list_title">{t('dash_list_title')}</h2>
+                    <div className="flex flex-wrap items-center gap-3">
+                      {/* Manual Sort Button */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (sortBy === 'custom') {
+                            setSortBy('newest');
+                          } else {
+                            setSortBy('custom');
+                            setSearchTerm('');
+                          }
+                        }}
+                        className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-label-caps transition-all border flex-shrink-0 ${
+                          sortBy === 'custom'
+                            ? 'bg-primary text-on-primary border-primary shadow-sm'
+                            : 'bg-surface-container-low text-secondary border-border-subtle hover:text-primary hover:border-border-subtle/80'
+                        }`}
+                      >
+                        <span className="material-symbols-outlined text-[16px] leading-none">drag_indicator</span>
+                        <span className="hidden sm:inline">Tut Sürükle Sırala</span>
+                        <span className="sm:hidden">Sırala</span>
+                      </button>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_slug">{t('dash_label_slug')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted" 
-                        placeholder="bmw-m8-competition" 
-                        type="text"
-                        value={form.slug}
-                        onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_category">{t('dash_label_category')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted" 
-                        placeholder="Örn: Spor Sedan, Süper SUV" 
-                        type="text"
-                        value={form.category}
-                        onChange={(e) => setForm({ ...form, category: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_year">{t('dash_label_year')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted" 
-                        placeholder="2024" 
-                        type="number"
-                        value={form.year}
-                        onChange={(e) => setForm({ ...form, year: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_mileage">{t('dash_label_mileage')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted" 
-                        placeholder="0" 
-                        type="number"
-                        value={form.mileage}
-                        onChange={(e) => setForm({ ...form, mileage: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_features">{t('dash_label_features')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted" 
-                        placeholder="Carbon, Burmester, Panorama" 
-                        type="text"
-                        value={form.features}
-                        onChange={(e) => setForm({ ...form, features: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_phone">{t('dash_label_phone')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted" 
-                        placeholder="015737641145" 
-                        type="text"
-                        value={form.phone}
-                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Section: Pricing */}
-                <div className="space-y-4">
-                  <p className="text-xs font-bold text-primary/80 uppercase tracking-widest pb-1 border-b border-white/5">Finansal Veriler</p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_price">{t('dash_label_price')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-zinc-900/50 border border-white/10 focus:border-primary focus:ring-0 transition-all" 
-                        placeholder="0.00" 
-                        step="0.01" 
-                        type="number"
-                        value={form.price}
-                        onChange={(e) => setForm({ ...form, price: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_down">{t('dash_label_down')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all" 
-                        placeholder="0.00" 
-                        step="0.01" 
-                        type="number"
-                        value={form.down_payment}
-                        onChange={(e) => setForm({ ...form, down_payment: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_rate">{t('dash_label_rate')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all" 
-                        placeholder="299" 
-                        type="number"
-                        value={form.monthly_rate}
-                        onChange={(e) => setForm({ ...form, monthly_rate: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_term">{t('dash_label_term')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all" 
-                        placeholder="48" 
-                        type="number"
-                        value={form.term_months}
-                        onChange={(e) => setForm({ ...form, term_months: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <label className="label-high-contrast" data-t="dash_label_interest">{t('dash_label_interest')}</label>
-                      <input 
-                        className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all" 
-                        placeholder="2.99" 
-                        step="0.01" 
-                        type="number"
-                        value={form.interest_rate}
-                        onChange={(e) => setForm({ ...form, interest_rate: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Section: Media & Description */}
-                <div className="space-y-4">
-                  <p className="text-xs font-bold text-primary/80 uppercase tracking-widest pb-1 border-b border-white/5">Medya & Açıklama</p>
-                  
-                  {/* Cover Image Upload */}
-                  <div>
-                    <label className="label-high-contrast">{t('dash_label_image')}</label>
-                    <div className="relative flex gap-2">
-                      <div className="relative flex-grow">
+                      {/* Search Input */}
+                      <div className="relative flex-1 min-w-[150px]">
                         <input
                           type="text"
-                          value={form.image_url}
-                          onChange={(e) => setForm({ ...form, image_url: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted"
-                          placeholder="https://images.unsplash.com/..."
+                          placeholder="Araç ara..."
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="w-full bg-surface-container-low border border-border-subtle text-xs rounded-lg pl-9 pr-3 py-2 font-medium text-primary placeholder:text-secondary/50 outline-none focus:border-accent-indigo transition-colors"
                         />
-                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-sm">link</span>
+                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary/60 text-[18px]">search</span>
                       </div>
-                      <div className="relative w-12 flex-shrink-0 h-10">
-                        <input 
-                          type="file" 
-                          accept="image/*"
-                          onChange={handleImageUpload}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          disabled={uploadingImage}
-                          title="Bilgisayardan resim yükle"
-                        />
-                        <div className={`absolute inset-0 flex items-center justify-center rounded-xl border border-white/10 transition-all ${uploadingImage ? 'bg-primary/20 text-primary' : 'bg-zinc-900/50 hover:bg-primary/10 text-text-muted hover:text-primary'}`}>
-                          {uploadingImage ? (
-                            <Loader2 className="w-5 h-5 animate-spin" />
-                          ) : (
-                            <span className="material-symbols-outlined text-lg">upload</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Gallery Upload */}
-                  <div>
-                    <div className="flex justify-between items-end mb-1">
-                      <label className="label-high-contrast">{t('dash_label_gallery')}</label>
-                      <div className="relative">
-                        <input 
-                          type="file" 
-                          accept="image/*"
-                          multiple
-                          onChange={handleGalleryUpload}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          disabled={uploadingGallery}
-                          title="Bilgisayardan çoklu resim yükle"
-                        />
-                        <div className={`text-xs px-3 py-1 rounded-lg border border-white/10 transition-all flex items-center justify-center cursor-pointer ${uploadingGallery ? 'bg-primary/20 text-primary' : 'bg-zinc-900/50 text-text-muted hover:text-primary hover:bg-primary/10'}`}>
-                          {uploadingGallery ? (
-                            <Loader2 className="w-3.5 h-3.5 animate-spin mr-1" />
-                          ) : (
-                            <span className="material-symbols-outlined text-[14px] mr-1">upload</span>
-                          )}
-                          Resim Seç
-                        </div>
+                      {/* Sort Select */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-secondary font-label-caps flex-shrink-0 hidden sm:inline-block">SIRALA:</span>
+                        <select 
+                          value={sortBy}
+                          onChange={(e) => setSortBy(e.target.value)}
+                          className="bg-surface-container-low border border-border-subtle text-xs rounded-lg px-3 py-2 font-medium text-primary outline-none cursor-pointer focus:border-accent-indigo transition-colors"
+                        >
+                          <option value="custom">Özel Sıralama (Sürükle)</option>
+                          <option value="newest">En Yeni (Tarih)</option>
+                          <option value="oldest">En Eski (Tarih)</option>
+                          <option value="price_desc">Fiyat: Azalan</option>
+                          <option value="price_asc">Fiyat: Artan</option>
+                          <option value="year_desc">Yıl: En Yeni</option>
+                          <option value="year_asc">Yıl: En Eski</option>
+                          <option value="mileage_asc">Kilometre: En Düşük</option>
+                          <option value="mileage_desc">Kilometre: En Yüksek</option>
+                          <option value="name_asc">İsim: A-Z</option>
+                          <option value="name_desc">İsim: Z-A</option>
+                        </select>
                       </div>
                     </div>
-                    <textarea
-                      rows="3"
-                      value={form.images}
-                      onChange={(e) => setForm({ ...form, images: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted resize-none font-mono text-xs"
-                      placeholder="https://...&#10;https://..."
-                    ></textarea>
-                    <p className="text-[10px] text-text-muted mt-1">{t('dash_gallery_hint')}</p>
                   </div>
-
-                  {/* Summary & Body */}
-                  <div>
-                    <label className="label-high-contrast" data-t="dash_label_summary">{t('dash_label_summary')}</label>
-                    <textarea 
-                      className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted resize-none" 
-                      placeholder="Vitrin kartı için kısa metin..." 
-                      rows="2"
-                      value={form.summary}
-                      onChange={(e) => setForm({ ...form, summary: e.target.value })}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="label-high-contrast" data-t="dash_label_body">{t('dash_label_body')}</label>
-                    <textarea 
-                      className="w-full px-4 py-2.5 rounded-xl text-sm bg-zinc-900/50 border border-white/10 text-white focus:border-primary focus:ring-0 transition-all placeholder:text-text-muted resize-none" 
-                      placeholder="Detaylı araç açıklaması..." 
-                      rows="4"
-                      required
-                      value={form.body}
-                      onChange={(e) => setForm({ ...form, body: e.target.value })}
-                    />
-                  </div>
-
-                  {/* Status checkbox */}
-                  <div className="flex items-center gap-3 bg-zinc-900/30 p-3 rounded-xl border border-white/5">
-                    <input
-                      type="checkbox"
-                      id="status"
-                      checked={form.status}
-                      onChange={(e) => setForm({ ...form, status: e.target.checked })}
-                      className="w-4 h-4 rounded text-primary focus:ring-primary focus:ring-offset-0 bg-zinc-900 border-white/10 cursor-pointer"
-                    />
-                    <label htmlFor="status" className="text-sm font-semibold text-white cursor-pointer select-none">
-                      {t('dash_label_status')}
-                    </label>
-                  </div>
-                </div>
-
-                {/* Submit button */}
-                <div className="pt-2 flex gap-3">
-                  <button 
-                    className="flex-1 bg-primary text-white py-4 px-6 rounded-2xl font-bold transition-all flex justify-center items-center gap-2 shadow-xl shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] disabled:opacity-75" 
-                    type="submit"
-                    disabled={actionLoading}
+                  
+                  <DndContext 
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                    modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
                   >
-                    {actionLoading ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                    ) : (
-                      <>
-                        <span className="material-symbols-outlined">save</span>
-                        <span>{editingId ? "GÜNCELLE VE YAYINLA" : "KAYDET VE YAYINLA"}</span>
-                      </>
-                    )}
-                  </button>
+                    <div className="divide-y divide-border-subtle">
+                      <SortableContext 
+                        items={sortedContents.map(item => item.id)}
+                        strategy={verticalListSortingStrategy}
+                      >
+                        {sortedContents.map((item) => (
+                          <DashboardRow 
+                            key={item.id} 
+                            item={item} 
+                            handleEdit={handleEdit} 
+                            handleDelete={handleDelete}
+                            t={t}
+                            sortBy={sortBy}
+                            searchTerm={searchTerm}
+                          />
+                        ))}
+                      </SortableContext>
 
-                  {editingId && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setEditingId(null);
-                        setForm({ title: '', slug: '', summary: '', body: '', image_url: '', category: '', tags: '', status: true, year: '', mileage: '', price: '', down_payment: '', monthly_rate: '', interest_rate: '', term_months: '', phone: '', features: '', images: '' });
-                      }}
-                      className="px-6 py-4 rounded-2xl bg-zinc-900/50 hover:bg-zinc-800 text-white font-semibold border border-white/10 transition-all active:scale-[0.98]"
-                    >
-                      {t('dash_btn_cancel')}
-                    </button>
-                  )}
-                </div>
-              </form>
-            </div>
-          </div>
-
-          {/* List Section Column (lg:col-span-7) */}
-          <div className="lg:col-span-7">
-            <div className="glass-card rounded-2xl sm:rounded-3xl overflow-hidden">
-              <div className="p-4 sm:p-8 border-b border-white/5 flex flex-col gap-4 bg-white/[0.02]">
-                <h2 className="text-xl font-sora font-bold text-white" data-t="dash_list_title">{t('dash_list_title')}</h2>
-                <div className="flex flex-wrap items-center gap-2">
-                  {/* Manual Sort Button */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (sortBy === 'custom') {
-                        setSortBy('newest');
-                      } else {
-                        setSortBy('custom');
-                        setSearchTerm('');
-                      }
-                    }}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border flex-shrink-0 ${
-                      sortBy === 'custom'
-                        ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20'
-                        : 'bg-zinc-900/80 text-text-muted border-white/10 hover:text-white hover:border-white/20'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-[16px] leading-none">drag_indicator</span>
-                    <span className="hidden sm:inline">Tut Sürükle Sırala</span>
-                    <span className="sm:hidden">Sırala</span>
-                  </button>
-
-                  {/* Search Input */}
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Araç ara..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="bg-zinc-900/80 border border-white/10 text-xs rounded-lg pl-8 pr-3 py-1.5 font-medium text-white placeholder:text-text-muted outline-none w-full sm:w-40 focus:border-primary focus:ring-0 transition-all min-w-0"
-                    />
-                    <span className="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted text-xs leading-none">search</span>
-                  </div>
-
-                  {/* Sort Select */}
-                  <div className="flex items-center gap-2 w-full sm:w-auto">
-                    <span className="text-[10px] text-text-muted font-bold flex-shrink-0">SIRALA:</span>
-                    <select 
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className="bg-zinc-900/80 border-none text-[10px] rounded-lg px-2.5 py-1.5 font-bold text-on-surface outline-none cursor-pointer focus:ring-0 w-full sm:w-auto min-w-0"
-                    >
-                      <option value="custom">Özel Sıralama (Sürükle)</option>
-                      <option value="newest">En Yeni (Tarih)</option>
-                      <option value="oldest">En Eski (Tarih)</option>
-                      <option value="price_desc">Fiyat: Azalan</option>
-                      <option value="price_asc">Fiyat: Artan</option>
-                      <option value="year_desc">Yıl: En Yeni</option>
-                      <option value="year_asc">Yıl: En Eski</option>
-                      <option value="mileage_asc">Kilometre: En Düşük</option>
-                      <option value="mileage_desc">Kilometre: En Yüksek</option>
-                      <option value="name_asc">İsim: A-Z</option>
-                      <option value="name_desc">İsim: Z-A</option>
-                    </select>
-                  </div>
+                      {sortedContents.length === 0 && (
+                        <div className="p-12 text-center text-secondary italic text-sm">
+                          {t('dash_empty_list')}
+                        </div>
+                      )}
+                    </div>
+                  </DndContext>
                 </div>
               </div>
-              
-              <DndContext 
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
-              >
-                <div className="divide-y divide-white/5">
-                  <SortableContext 
-                    items={sortedContents.map(item => item.id)}
-                    strategy={verticalListSortingStrategy}
-                  >
-                    {sortedContents.map((item) => (
-                      <DashboardRow 
-                        key={item.id} 
-                        item={item} 
-                        handleEdit={handleEdit} 
-                        handleDelete={handleDelete}
-                        t={t}
-                        sortBy={sortBy}
-                        searchTerm={searchTerm}
-                      />
-                    ))}
-                  </SortableContext>
-
-                  {sortedContents.length === 0 && (
-                    <div className="p-12 text-center text-text-muted italic text-sm">
-                      {t('dash_empty_list')}
-                    </div>
-                  )}
-                </div>
-              </DndContext>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

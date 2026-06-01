@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Offer Document</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Sora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'sans-serif'],
+            heading: ['Sora', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#e11d48',
+              black: '#111827',
+              gray: '#4b5563',
+              lightGray: '#f3f4f6',
+              border: '#d1d5db'
+            }
+          },
+          boxShadow: {
+            'doc': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="document-layout">
+    body {
+      background-color: #f3f4f6; /* Light gray workspace */
+      display: flex;
+      justify-content: center;
+      padding: 2rem 0;
+      min-height: 100vh;
+    }
+    
+    .a4-document {
+      width: 210mm;
+      min-height: 297mm;
+      background-color: white;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      padding: 2.5rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media print {
+      body {
+        background-color: white;
+        padding: 0;
+      }
+      .a4-document {
+        width: 100%;
+        min-height: auto;
+        box-shadow: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans text-brand-black antialiased">
+<!-- BEGIN: A4 Document Container -->
+<main class="a4-document">
+<!-- BEGIN: Header Section -->
+<header class="mb-6">
+<div class="flex justify-between items-start mb-4">
+<!-- Logo Area -->
+<div class="font-heading font-bold text-2xl leading-tight uppercase tracking-tight">
+<span class="block">Dortmund</span>
+<span class="text-brand-red">Fleet</span> <span class="text-brand-black">Finance</span>
+</div>
+<!-- Offer Number -->
+<div class="font-heading font-bold text-2xl uppercase tracking-wide pt-1">
+          OFFER #DF-2024-001
+        </div>
+</div>
+<!-- Red Accent Line -->
+<div class="h-2 w-full bg-brand-red"></div>
+</header>
+<!-- END: Header Section -->
+<!-- BEGIN: Top Content Grid -->
+<div class="grid grid-cols-2 gap-6 mb-6">
+<!-- BEGIN: Customer Details -->
+<section class="border border-brand-border rounded-xl p-5">
+<h2 class="font-heading font-semibold text-xl mb-6 flex items-center gap-2">
+<span class="w-1.5 h-6 bg-brand-red inline-block"></span>
+          Kunde (Müşteri)
+        </h2>
+<div class="space-y-5">
+<div>
+<p class="text-sm text-brand-gray mb-1">Name:</p>
+<p class="font-medium text-lg uppercase">SELAHADDİN SERTTAŞ</p>
+</div>
+<div>
+<p class="text-sm text-brand-gray mb-1">E-Mail:</p>
+<p class="font-medium text-lg">serttas2001@gmail.com</p>
+</div>
+<div>
+<p class="text-sm text-brand-gray mb-1">Tel:</p>
+<p class="font-medium text-lg">10546513</p>
+</div>
+</div>
+</section>
+<!-- END: Customer Details -->
+<!-- BEGIN: Vehicle Details -->
+<section class="border border-brand-border rounded-xl p-5 flex flex-col">
+<h2 class="font-heading font-semibold text-xl mb-4 flex items-center gap-2">
+<span class="w-1.5 h-6 bg-brand-red inline-block"></span>
+          Fahrzeug (Araç)
+        </h2>
+<div class="mb-3">
+<span class="text-sm text-brand-gray mr-2">Modell:</span>
+<span class="font-bold uppercase tracking-wide">LAMBORGHINI URUS PERFORMANTE</span>
+</div>
+<!-- Vehicle Image -->
+<div class="flex-grow rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+<img alt="Lamborghini Urus Performante" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtvD9yhFfv62xHQ_uJrDVytv6_ilmE9gFe2Me60jmT0ZE97OUeq9K-8uRquHY5m7KMELLSbNCqUms5vP_tKdV6C6Gl4SF-bGsdRIb7A-6cx3JAh-4EJyMlZltQBFbvUmVA9evx1Ev_nLP5d155XV-dZv0FMimYJpMv1yqfwei8hJTz-sHRJHlb8hFhhHwG4ErIXz-LreX0Mcg3zZop15R7qMq6C4UITygecWoisGnYrLPS1fs1BrLfhdUomO9OvM_KJkSrbWadANqu"/>
+</div>
+</section>
+<!-- END: Vehicle Details -->
+</div>
+<!-- END: Top Content Grid -->
+<!-- BEGIN: Financial Details -->
+<section class="border border-brand-border rounded-xl p-6 flex-grow flex flex-col justify-between">
+<div>
+<h2 class="font-heading font-semibold text-xl mb-6 flex items-center gap-2">
+<span class="w-1.5 h-6 bg-brand-red inline-block"></span>
+          Finanzierungsdetails
+        </h2>
+<!-- Data Table -->
+<div class="space-y-0">
+<!-- Row 1 -->
+<div class="flex justify-between items-center py-4 border-b border-brand-border">
+<span class="text-lg">Fahrzeugpreis (Araç Fiyatı):</span>
+<span class="font-medium text-xl">315.000,00 EUR</span>
+</div>
+<!-- Row 2 -->
+<div class="flex justify-between items-center py-4 border-b border-brand-border">
+<span class="text-lg">Anzahlung (Peşinat):</span>
+<span class="font-medium text-xl">225.000,00 EUR</span>
+</div>
+<!-- Row 3 -->
+<div class="flex justify-between items-center py-4 border-b border-brand-border">
+<span class="text-lg">Nettodarlehensbetrag (Net Kredi):</span>
+<span class="font-medium text-xl">90.000,00 EUR</span>
+</div>
+<!-- Row 4 -->
+<div class="flex justify-between items-center py-4 border-b border-brand-border">
+<span class="text-lg">Laufzeit (Vade):</span>
+<span class="font-medium text-xl">48 Monate</span>
+</div>
+<!-- Row 5 -->
+<div class="flex justify-between items-center py-4 border-b border-brand-border">
+<span class="text-lg">Sollzins p.a. (Yıllık Faiz):</span>
+<span class="font-medium text-xl">1.89 %</span>
+</div>
+</div>
+</div>
+<!-- Hero Highlight: Monthly Rate -->
+<div class="bg-brand-red rounded-xl p-8 mt-8 flex justify-between items-center text-white shadow-md">
+<div>
+<h3 class="font-heading font-bold text-3xl tracking-wide uppercase">MONATLICHE RATE</h3>
+<p class="text-xl opacity-90 mt-1 uppercase">(AYLIK TAKSİT)</p>
+</div>
+<div class="text-right">
+<div class="font-heading font-bold text-5xl leading-none">1.948,00</div>
+<div class="font-heading font-bold text-4xl mt-2">EUR</div>
+</div>
+</div>
+</section>
+<!-- END: Financial Details -->
+<!-- BEGIN: Footer -->
+<footer class="mt-8 text-center text-xs text-brand-gray pb-2">
+<p>Alle Preisangaben inklusive Mehrwertsteuer. Dieses Angebot ist unverbindlich. Gültig bis zum Widerruf oder Änderung der Konditionen.</p>
+</footer>
+<!-- END: Footer -->
+</main>
+<!-- END: A4 Document Container -->
+</body></html><!-- MISSING_IMAGES:
+- Lamborghini Urus Performante vehicle image
+-->
