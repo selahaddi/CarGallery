@@ -41,7 +41,7 @@ export default function ContentDetail() {
     const interestRate = parseFloat(content.interest_rate || 3.8);
     const principal = price - downVal;
     if (principal <= 0) return 0;
-    
+
     const monthlyInt = (interestRate / 100) / 12;
     let payment = 0;
     if (monthlyInt > 0) {
@@ -77,7 +77,7 @@ export default function ContentDetail() {
       setLoading(true);
       // Slug ile arama yap (eğer slug yoksa, fallback olarak id de gelmiş olabilir)
       let query = supabase.from('contents').select('*');
-      
+
       // Eğer slug bir UUID ise veya sadece rakamlardan oluşuyorsa (integer ID) id olarak kullanıldıysa fallback için
       if (typeof slug === 'string' && (slug.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i) || /^\d+$/.test(slug))) {
         query = query.eq('id', slug);
@@ -110,22 +110,22 @@ export default function ContentDetail() {
           monthly_rate: monthlyRate
         }
       };
-      
+
       // Webhook isteği
       // Ortam değişkeninden (env) URL al, yoksa varsayılanı kullan
-      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'http://localhost:5678/webhook-test/generate-offer';
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/generate-offer';
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      
+
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Webhook Error:", response.status, errorText);
         throw new Error(`Webhook failed: ${response.status}`);
       }
-      
+
       alert(t('detail_success_alert'));
       setIsModalOpen(false);
       setFormData({ name: '', email: '', phone: '' });
@@ -167,14 +167,14 @@ export default function ContentDetail() {
       {/* Hero Gallery Section */}
       <section className="relative w-full h-[40vh] sm:h-[716px] bg-background-deep overflow-hidden group flex items-center justify-center">
         {/* Arkada bulanık arka plan görseli (boşlukları doldurmak için) */}
-        <img 
-          src={mainImage} 
+        <img
+          src={mainImage}
           alt=""
           className="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none z-0"
         />
         {/* Önde orijinal oranlarında sıkıştırılmamış net görsel */}
-        <img 
-          src={mainImage} 
+        <img
+          src={mainImage}
           alt={content.title}
           className="relative max-w-full max-h-full object-contain z-10 transition-transform duration-500"
         />
@@ -197,12 +197,12 @@ export default function ContentDetail() {
             )}
           </div>
         </div>
-        
+
         {/* Thumbnail Navigation */}
         <div className="absolute right-4 sm:right-gutter bottom-6 sm:bottom-12 flex flex-row sm:flex-col gap-2 z-30">
           {galleryImages.slice(0, 4).map((img, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               onClick={() => setActiveImageIdx(idx)}
               className={`w-14 h-10 sm:w-20 sm:h-12 rounded border-2 overflow-hidden cursor-pointer transition-all ${idx === activeImageIdx ? 'border-primary opacity-100' : 'border-white/20 opacity-60 hover:opacity-100'}`}
             >
@@ -214,7 +214,7 @@ export default function ContentDetail() {
 
       {/* Content Grid */}
       <div className="max-w-container-max mx-auto px-4 sm:px-gutter grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-gutter py-12 sm:py-section-gap">
-        
+
         {/* Left: Technical Specs (Bento Style) */}
         <div className="lg:col-span-7 space-y-gutter">
           <Link to="/" className="inline-flex items-center text-text-muted hover:text-primary transition font-medium mb-4">
@@ -238,13 +238,13 @@ export default function ContentDetail() {
               <p className="text-headline-md font-headline-md">{t('detail_automatic')}</p>
             </div>
           </div>
-          
+
           <div className="glass-card p-8 rounded-xl">
             <h2 className="font-headline-md text-headline-md mb-6 border-l-4 border-primary pl-4">{t('detail_description')}</h2>
             <p className="text-body-lg text-on-surface-variant leading-relaxed whitespace-pre-wrap">
               {content.body || content.summary || t('detail_no_desc')}
             </p>
-            
+
             {content.features && Array.isArray(content.features) && content.features.length > 0 && (
               <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
                 {content.features.map((feature, idx) => (
@@ -260,20 +260,20 @@ export default function ContentDetail() {
           {galleryImages.length > 1 && (
             <div className="glass-card p-8 rounded-xl mt-6">
               <h2 className="font-headline-md text-headline-md mb-6 border-l-4 border-primary pl-4">{t('detail_gallery_tr')}</h2>
-              
+
               {/* Main Preview Box */}
               <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 glass-card border-outline-variant/30 flex items-center justify-center bg-background-deep">
                 {/* Arkada bulanık arka plan görseli */}
-                <img 
-                  src={galleryImages[activeImageIdx]} 
-                  alt="" 
-                  className="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none z-0" 
+                <img
+                  src={galleryImages[activeImageIdx]}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none z-0"
                 />
                 {/* Önde orijinal oranında net görsel */}
-                <img 
-                  src={galleryImages[activeImageIdx]} 
-                  className="relative max-w-full max-h-full object-contain z-10 transition-all duration-500" 
-                  alt={`${content.title || 'Araç'} ${t('detail_preview')}`} 
+                <img
+                  src={galleryImages[activeImageIdx]}
+                  className="relative max-w-full max-h-full object-contain z-10 transition-all duration-500"
+                  alt={`${content.title || 'Araç'} ${t('detail_preview')}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background-deep/40 to-transparent pointer-events-none z-20"></div>
               </div>
@@ -281,22 +281,22 @@ export default function ContentDetail() {
               {/* Gallery Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {galleryImages.map((img, idx) => (
-                  <div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     onClick={() => setActiveImageIdx(idx)}
                     className={`group overflow-hidden rounded-lg cursor-pointer border-2 transition-all ${activeImageIdx === idx ? 'border-primary' : 'border-transparent'}`}
                   >
-                    <img 
-                      src={img} 
-                      className={`w-full h-24 object-cover transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 ${(idx > 2 && activeImageIdx !== idx) ? 'opacity-70' : ''}`} 
-                      alt={`Gallery view ${idx + 1}`} 
+                    <img
+                      src={img}
+                      className={`w-full h-24 object-cover transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 ${(idx > 2 && activeImageIdx !== idx) ? 'opacity-70' : ''}`}
+                      alt={`Gallery view ${idx + 1}`}
                     />
                   </div>
                 ))}
               </div>
             </div>
           )}
-          
+
           {/* Tags */}
           {content.tags && Array.isArray(content.tags) && content.tags.length > 0 && (
             <div className="glass-card p-6 rounded-xl flex flex-wrap gap-2 mt-6">
@@ -309,7 +309,7 @@ export default function ContentDetail() {
             </div>
           )}
         </div>
-        
+
         {/* Right: Finanzierungsdetails */}
         <div className="lg:col-span-5">
           <div className="glass-card p-8 rounded-xl sticky top-28">
@@ -326,10 +326,10 @@ export default function ContentDetail() {
                     <span className="font-label-bold">{t('detail_down_payment')}</span>
                     <span className="text-white font-bold">{formatNumber(downPayment)} €</span>
                   </div>
-                  <input 
-                    type="range" 
-                    min={0} 
-                    max={parseFloat(content.price) || 200000} 
+                  <input
+                    type="range"
+                    min={0}
+                    max={parseFloat(content.price) || 200000}
                     step={1000}
                     value={downPayment}
                     onChange={(e) => handleDownPaymentChange(parseFloat(e.target.value))}
@@ -342,10 +342,10 @@ export default function ContentDetail() {
                     <span className="font-label-bold">{t('detail_term')}</span>
                     <span className="text-white font-bold">{termMonths} {t('card_months')}</span>
                   </div>
-                  <input 
-                    type="range" 
-                    min={12} 
-                    max={84} 
+                  <input
+                    type="range"
+                    min={12}
+                    max={84}
                     step={12}
                     value={termMonths}
                     onChange={(e) => handleTermChange(parseInt(e.target.value))}
@@ -367,7 +367,7 @@ export default function ContentDetail() {
                 </div>
               </div>
               <div className="space-y-3">
-                <button 
+                <button
                   onClick={() => setIsModalOpen(true)}
                   className="w-full bg-primary-container hover:bg-accent-red-bright text-on-primary-container py-5 rounded-lg font-headline-md transition-all duration-300 shadow-lg shadow-primary-container/20 active:scale-[0.98] text-center"
                 >
@@ -382,7 +382,7 @@ export default function ContentDetail() {
 
       {/* Sticky Mobile Action (Mobile Only) */}
       <div className="md:hidden fixed bottom-0 left-0 w-full p-4 glass-card z-40 border-t border-outline-variant/30">
-        <button 
+        <button
           onClick={() => setIsModalOpen(true)}
           className="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-label-bold"
         >
@@ -394,7 +394,7 @@ export default function ContentDetail() {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="glass-card max-w-md w-full p-8 rounded-2xl border-primary-container/30 border shadow-2xl relative">
-            <button 
+            <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-4 right-4 text-text-muted hover:text-white transition-colors material-symbols-outlined"
             >
@@ -402,48 +402,48 @@ export default function ContentDetail() {
             </button>
             <h2 className="text-2xl font-headline-md text-white mb-2">{t('form_title')}</h2>
             <p className="text-text-muted text-sm mb-6">{t('form_desc')}</p>
-            
+
             <form onSubmit={handleRequest} className="space-y-4">
               <div>
                 <label className="block text-label-sm font-label-bold text-text-muted mb-1">{t('form_name')}</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-container transition-colors"
                 />
               </div>
               <div>
                 <label className="block text-label-sm font-label-bold text-text-muted mb-1">{t('form_email')}</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   required
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-container transition-colors"
                 />
               </div>
               <div>
                 <label className="block text-label-sm font-label-bold text-text-muted mb-1">{t('form_phone')}</label>
-                <input 
-                  type="tel" 
+                <input
+                  type="tel"
                   required
                   value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-container transition-colors"
                 />
               </div>
-              
+
               <div className="pt-4 flex gap-3">
-                <button 
+                <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
                   className="flex-1 px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-variant transition-colors font-label-bold"
                 >
                   {t('form_cancel')}
                 </button>
-                <button 
+                <button
                   type="submit"
                   disabled={isSubmitting}
                   className="flex-1 bg-primary-container text-white px-4 py-3 rounded-lg hover:bg-accent-red-bright transition-colors font-label-bold disabled:opacity-50"
