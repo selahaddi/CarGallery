@@ -15,7 +15,7 @@ function Layout() {
   
   return (
     <div className="min-h-screen flex flex-col">
-      {!isDashboard && <Navbar />}
+      <Navbar />
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />

@@ -6,6 +6,7 @@ import { useLanguage } from '../LanguageContext';
 export default function Navbar() {
   const [session, setSession] = useState(null);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
@@ -115,18 +116,63 @@ export default function Navbar() {
           </div>
 
           {session ? (
-            <button onClick={handleSignOut} className="bg-surface-container-low border border-border-subtle text-primary px-4 py-2 rounded-full font-label-caps text-label-caps hover:bg-surface-container-high active:scale-95 transition-all">
+            <button onClick={handleSignOut} className="hidden sm:block bg-surface-container-low border border-border-subtle text-primary px-4 py-2 rounded-full font-label-caps text-label-caps hover:bg-surface-container-high active:scale-95 transition-all">
               Çıkış
             </button>
           ) : (
-            <Link to="/login">
+            <Link to="/login" className="hidden sm:block">
               <button className="bg-primary text-on-primary px-6 py-2 rounded-full font-label-caps text-label-caps active:scale-95 transition-all hover:bg-secondary">
                 Giriş
               </button>
             </Link>
           )}
+
+          {/* Mobile menu toggle */}
+          <button 
+            className="md:hidden flex items-center justify-center p-2 text-primary focus:outline-none" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span className="material-symbols-outlined text-2xl">{mobileMenuOpen ? 'close' : 'menu'}</span>
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-md border-b border-border-subtle shadow-lg py-6 px-gutter flex flex-col gap-6 z-40">
+          <Link 
+            to="/" 
+            onClick={() => setMobileMenuOpen(false)}
+            className={`font-body-md text-lg transition-colors ${isActive('/') ? 'text-primary font-bold' : 'text-secondary'}`}
+          >
+            Vitrin
+          </Link>
+          <Link 
+            to="/services" 
+            onClick={() => setMobileMenuOpen(false)}
+            className={`font-body-md text-lg transition-colors ${isActive('/services') ? 'text-primary font-bold' : 'text-secondary'}`}
+          >
+            Hizmetlerimiz
+          </Link>
+          <Link 
+            to="/dashboard" 
+            onClick={() => setMobileMenuOpen(false)}
+            className={`font-body-md text-lg transition-colors ${isActive('/dashboard') ? 'text-primary font-bold' : 'text-secondary'}`}
+          >
+            Panel
+          </Link>
+          <hr className="border-border-subtle" />
+          {session ? (
+             <button onClick={() => { handleSignOut(); setMobileMenuOpen(false); }} className="text-left font-body-md text-lg text-primary transition-colors">
+               Çıkış
+             </button>
+          ) : (
+             <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="font-body-md text-lg text-primary font-bold transition-colors">
+               Giriş
+             </Link>
+          )}
+        </div>
+      )}
     </nav>
   );
 }
