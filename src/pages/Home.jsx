@@ -90,17 +90,6 @@ export default function Home() {
               <p className="font-body-lg text-body-lg text-secondary max-w-2xl mb-10">
                 {t('showroom_desc')}
               </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl">
-                <div className="glass-panel p-6 rounded-2xl">
-                  <p className="font-label-caps text-label-caps text-secondary mb-2 uppercase">{t('vehicle_count')}</p>
-                  <p className="font-h2 text-h2 text-primary">{formattedFleetValue}</p>
-                </div>
-                <div className="glass-panel p-6 rounded-2xl">
-                  <p className="font-label-caps text-label-caps text-secondary mb-2 uppercase">{t('avg_interest')}</p>
-                  <p className="font-h2 text-h2 text-primary">3.8%</p>
-                </div>
-              </div>
             </header>
 
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">

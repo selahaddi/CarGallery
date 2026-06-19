@@ -54,8 +54,8 @@ export default function Navbar() {
         <div className="flex items-center gap-12">
           <Link to="/" className="font-h3 text-h3 tracking-tighter text-primary flex items-center gap-2">
             <span className="w-2 h-2 bg-primary rounded-full hidden sm:block"></span>
-            <span className="hidden sm:block">Dortmund Fleet Finance</span>
-            <span className="sm:hidden">DFF</span>
+            <span className="hidden sm:block">AutoRaten</span>
+            <span className="sm:hidden">AR</span>
           </Link>
           <div className="hidden md:flex gap-8">
             <Link 

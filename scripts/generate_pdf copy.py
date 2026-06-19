@@ -38,7 +38,7 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     brand_red = "#dc2626" # red-600
     
     # --- BAŞLIK (HEADER) ---
-    draw.text((100, 100), "DORTMUND FLEET FINANCE", font=font_title, fill=text_white)
+    draw.text((100, 100), "AutoRaten", font=font_title, fill=text_white)
     draw.text((100, 170), "FINANZIERUNGSANGEBOT", font=font_heading, fill=brand_red)
     draw.line([(100, 230), (1140, 230)], fill=text_gray, width=2)
     

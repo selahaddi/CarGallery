@@ -1,7 +1,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Yap | AutoRaten</title>
+    <title>Mercedes-Maybach GLS 600 4MATIC | AutoRaten</title>
     <link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
     <!-- Google Fonts & Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
@@ -275,64 +275,370 @@
     <div class="min-h-screen flex flex-col">
       <div class="flex-grow pt-20">
         
-    <div class="flex items-center justify-center py-20 px-4 min-h-[70vh]">
-      <div class="max-w-md w-full glass rounded-3xl p-8 space-y-8">
-        <div>
-          <h2 class="text-center text-3xl font-extrabold text-white" data-t="login_title">
-            Admin Girişi
-          </h2>
-          <p class="mt-2 text-center text-sm text-text-muted" data-t="login_subtitle">
-            İçerikleri yönetmek için oturum açın
-          </p>
+      <main class="bg-background-deep text-on-surface font-body-md selection:bg-primary-container pb-20">
+        <!-- Hero Gallery Section -->
+        <section class="relative w-full h-[60vh] bg-background-deep overflow-hidden group flex items-center justify-center">
+          <img 
+            id="blur-bg"
+            src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385658799-r2qxno.jpg" 
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none z-0"
+          />
+          <img 
+            id="main-car-img"
+            src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385658799-r2qxno.jpg" 
+            alt="Mercedes-Maybach GLS 600 4MATIC"
+            class="relative max-w-full max-h-full object-contain z-10 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 hero-gradient z-20 pointer-events-none"></div>
+          <div class="absolute bottom-12 left-6 z-30">
+            <p class="text-primary font-label-bold mb-2 tracking-widest" data-t="showroom_subtitle">PREMIUM FİLO SEÇİMİ</p>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-md">Mercedes-Maybach GLS 600 4MATIC</h1>
+            <div class="flex flex-wrap gap-4">
+              
+                <div class="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-sm">category</span>
+                  <span class="text-label-bold text-white text-xs">Ultra Lüks SUV</span>
+                </div>
+              
+              
+                <div class="glass-card px-4 py-2 rounded-lg flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-sm">stars</span>
+                  <span class="text-label-bold text-white text-xs">mercedes</span>
+                </div>
+              
+            </div>
+          </div>
+          
+          <!-- Thumbnail Navigation -->
+          <div class="absolute right-6 bottom-12 flex flex-col gap-2 z-30">
+            
+              <div 
+                onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385670012-7wlvc.jpg', 0)"
+                class="thumb-item w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all border-primary opacity-100"
+              >
+                <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385670012-7wlvc.jpg" alt="Gallery 1" class="w-full h-full object-cover" />
+              </div>
+            
+              <div 
+                onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385671078-n6njk.jpg', 1)"
+                class="thumb-item w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all border-white/20 opacity-60 hover:opacity-100"
+              >
+                <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385671078-n6njk.jpg" alt="Gallery 2" class="w-full h-full object-cover" />
+              </div>
+            
+              <div 
+                onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672019-k651x9.jpg', 2)"
+                class="thumb-item w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all border-white/20 opacity-60 hover:opacity-100"
+              >
+                <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672019-k651x9.jpg" alt="Gallery 3" class="w-full h-full object-cover" />
+              </div>
+            
+              <div 
+                onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672703-m84g2h.jpg', 3)"
+                class="thumb-item w-20 h-12 rounded border-2 overflow-hidden cursor-pointer transition-all border-white/20 opacity-60 hover:opacity-100"
+              >
+                <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672703-m84g2h.jpg" alt="Gallery 4" class="w-full h-full object-cover" />
+              </div>
+            
+          </div>
+        </section>
+
+        <!-- Content Grid -->
+        <div class="max-w-container-max mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 mt-12">
+          
+          <!-- Left: Technical Specs -->
+          <div class="lg:col-span-7 space-y-6">
+            <a href="index.html" class="inline-flex items-center text-text-muted hover:text-primary transition font-medium mb-4">
+              <span class="material-symbols-outlined mr-2">arrow_back</span>
+              <span data-t="detail_back">Vitrine Dön</span>
+            </a>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2">calendar_today</span>
+                <p class="text-text-muted text-xs" data-t="detail_first_reg">İlk Tescil</p>
+                <p class="text-xl font-bold text-white mt-1">2024</p>
+              </div>
+              <div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2">distance</span>
+                <p class="text-text-muted text-xs" data-t="detail_mileage">Kilometre</p>
+                <p class="text-xl font-bold text-white mt-1">6.000 km</p>
+              </div>
+              <div class="glass-card p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2">settings_input_component</span>
+                <p class="text-text-muted text-xs" data-t="detail_gear">Şanzıman</p>
+                <p class="text-xl font-bold text-white mt-1" data-t="detail_automatic">Otomatik</p>
+              </div>
+            </div>
+            
+            <div class="glass-card p-8 rounded-xl">
+              <h2 class="text-xl font-bold text-white mb-6 border-l-4 border-primary pl-4" data-t="detail_description">Araç Açıklaması</h2>
+              <p class="text-base text-text-muted leading-relaxed whitespace-pre-wrap">Çift renk dış boya ve özel Maybach krom ızgarasıyla benzersiz bir görünüm. İç mekanda masaj özellikli, ikinci sırada opsiyonel olarak sunulan tam yatar arka "Captain" koltuklar, şampanya kadehi tutucuları ve buzdolabı bulunmaktadır. 48V hafif hibrit sistemle desteklenen EQ Boost teknolojisine sahiptir. Sadece şoförlü kullanılmış, tamamen hatasızdır.</p>
+              
+              
+                <ul class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 border-t border-outline-variant/15 pt-6">
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> mercedes
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> maybach
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> gls600
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> suv
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> ultra lüks
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> v8
+                    </li>
+                  
+                    <li class="flex items-center gap-2 text-text-muted">
+                      <span class="material-symbols-outlined text-primary text-sm">check_circle</span> vip
+                    </li>
+                  
+                </ul>
+              
+            </div>
+
+            <!-- Bildergalerie -->
+            
+              <div class="glass-card p-8 rounded-xl">
+                <h2 class="text-xl font-bold text-white mb-6 border-l-4 border-primary pl-4" data-t="detail_gallery_tr">Resim Galerisi</h2>
+                <div class="grid grid-cols-2 gap-4">
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385670012-7wlvc.jpg', 0)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385670012-7wlvc.jpg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 1" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385671078-n6njk.jpg', 1)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385671078-n6njk.jpg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 2" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672019-k651x9.jpg', 2)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672019-k651x9.jpg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 3" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672703-m84g2h.jpg', 3)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672703-m84g2h.jpg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 4" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385673413-veve2u.png', 4)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385673413-veve2u.png" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 5" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385675373-l68jzx.jpg', 5)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385675373-l68jzx.jpg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 6" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385676232-cqp2n.jpg', 6)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385676232-cqp2n.jpg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 7" />
+                    </div>
+                  
+                    <div 
+                      onclick="changeActiveImage('https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385676976-b6b39b.jpg', 7)"
+                      class="group overflow-hidden rounded-lg cursor-pointer border border-outline-variant/10"
+                    >
+                      <img src="https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385676976-b6b39b.jpg" class="w-full h-32 object-cover transition duration-300 group-hover:scale-105" alt="Gallery View 8" />
+                    </div>
+                  
+                </div>
+              </div>
+            
+          </div>
+          
+          <!-- Right: Finanzierungsdetails -->
+          <div class="lg:col-span-5">
+            <div class="glass-card p-8 rounded-xl sticky top-28 space-y-6">
+              <h3 class="text-xl font-bold text-white border-b border-outline-variant/20 pb-4" data-t="detail_fin_details">Finansman Detayları</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-end border-b border-outline-variant/20 pb-4">
+                  <span class="text-text-muted text-sm font-semibold" data-t="detail_price">Araç Fiyatı</span>
+                  <span class="text-2xl font-bold text-white">€295.000</span>
+                </div>
+                
+                <!-- Calculator sliders for premium dynamic feel! -->
+                <div class="space-y-4 pt-2">
+                  <div>
+                    <div class="flex justify-between text-xs text-text-muted mb-1">
+                      <span data-t="detail_down_payment">Peşinat</span>
+                      <span id="slider-down-val">€90.000</span>
+                    </div>
+                    <input 
+                      type="range" 
+                      id="down-payment-slider" 
+                      min="0" 
+                      max="295000" 
+                      step="5000"
+                      value="90000"
+                      class="w-full accent-primary-container"
+                      oninput="recalculateFinance(295000, 1.95)"
+                    />
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-xs text-text-muted mb-1">
+                      <span data-t="detail_term">Vade</span>
+                      <span id="slider-term-val">48 Ay</span>
+                    </div>
+                    <input 
+                      type="range" 
+                      id="term-slider" 
+                      min="12" 
+                      max="84" 
+                      step="12"
+                      value="48"
+                      class="w-full accent-primary-container"
+                      oninput="recalculateFinance(295000, 1.95)"
+                    />
+                  </div>
+                </div>
+
+                <div class="bg-primary-container/10 p-6 rounded-xl border border-primary/20 mt-6">
+                  <p class="text-primary font-label-bold text-xs uppercase" data-t="detail_monthly_rate">AYLIK TAKSİT</p>
+                  <div class="flex items-baseline mt-1">
+                    <span id="monthly-rate-display" class="text-5xl font-extrabold text-white">€4.950</span>
+                    <span class="text-sm text-white/70 ml-1">/Ay</span>
+                  </div>
+                  <p class="text-text-muted text-xs mt-2"><span data-t="detail_interest_rate">Faiz Oranı</span>: %1.95</p>
+                </div>
+
+                <button 
+                  onclick="openModal()"
+                  class="w-full bg-primary-container hover:bg-accent-red-bright text-white py-4 rounded-xl font-bold transition shadow-lg mt-6"
+                  data-t="detail_request_btn"
+                >
+                  Kişisel Teklif Alın
+                </button>
+                <p class="text-center text-xs text-text-muted" data-t="detail_included_services">GAP Koruması & Ücretsiz Teslimat Dahil</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <form class="mt-8 space-y-6" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
-          <div class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium text-text-muted mb-1" data-t="login_email_label">
-                E-posta Adresi
-              </label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span class="material-symbols-outlined text-text-muted">mail</span>
-                </div>
-                <input
-                  required
-                  type="email"
-                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-outline-variant/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-surface/50 text-white sm:text-sm"
-                  placeholder="admin@ornek.com"
-                />
-              </div>
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-text-muted mb-1" data-t="login_password_label">
-                Şifre
-              </label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span class="material-symbols-outlined text-text-muted">lock</span>
-                </div>
-                <input
-                  required
-                  type="password"
-                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-outline-variant/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-surface/50 text-white sm:text-sm"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <button
-              type="submit"
-              class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-primary-container hover:bg-accent-red-bright focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition shadow-lg"
-              data-t="login_btn"
-            >
-              Giriş Yap
+
+        <!-- Request Offer Modal -->
+        <div id="offer-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+          <div class="glass-card max-w-md w-full p-8 rounded-2xl border-primary border shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-text-muted hover:text-white transition material-symbols-outlined">
+              close
             </button>
+            <h2 class="text-2xl font-bold text-white mb-2" data-t="form_title">Kişisel Teklifinizi Oluşturun</h2>
+            <p class="text-text-muted text-xs mb-6" data-t="form_desc">Bilgilerinizi bırakın, size özel PDF teklifinizi hemen iletelim.</p>
+            
+            <form onsubmit="event.preventDefault(); handleSubmitOffer();" class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-text-muted mb-1" data-t="form_name">Adınız Soyadınız</label>
+                <input required type="text" class="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-text-muted mb-1" data-t="form_email">E-posta Adresi</label>
+                <input required type="email" class="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-text-muted mb-1" data-t="form_phone">Telefon Numarası</label>
+                <input required type="tel" class="w-full bg-surface-zinc/50 border border-outline-variant/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary text-sm" />
+              </div>
+              
+              <div class="pt-4 flex gap-3">
+                <button type="button" onclick="closeModal()" class="flex-1 px-4 py-3 rounded-lg border border-outline-variant/30 text-white hover:bg-surface-variant font-label-bold text-sm" data-t="form_cancel">
+                  İptal
+                </button>
+                <button type="submit" class="flex-1 bg-primary-container text-white px-4 py-3 rounded-lg hover:bg-accent-red-bright transition font-label-bold text-sm" data-t="form_submit">
+                  Teklifi İste
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
-  
+        </div>
+      </main>
+
+      <script>
+        function changeActiveImage(url, idx) {
+          document.getElementById('main-car-img').src = url;
+          document.getElementById('blur-bg').src = url;
+          
+          document.querySelectorAll('.thumb-item').forEach((item, index) => {
+            if (index === idx) {
+              item.classList.add('border-primary', 'opacity-100');
+              item.classList.remove('border-white/20', 'opacity-60');
+            } else {
+              item.classList.remove('border-primary', 'opacity-100');
+              item.classList.add('border-white/20', 'opacity-60');
+            }
+          });
+        }
+
+        function openModal() {
+          document.getElementById('offer-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+          document.getElementById('offer-modal').classList.add('hidden');
+        }
+
+        function handleSubmitOffer() {
+          const lang = localStorage.getItem('lang') || 'tr';
+          alert(translations[lang]['detail_success_alert'] || 'Talebiniz başarıyla iletildi!');
+          closeModal();
+        }
+
+        // Live calculation logic in slider!
+        function recalculateFinance(price, interestRate) {
+          const downVal = parseFloat(document.getElementById('down-payment-slider').value);
+          const termVal = parseInt(document.getElementById('term-slider').value);
+          
+          document.getElementById('slider-down-val').textContent = '€' + downVal.toLocaleString('de-DE');
+          document.getElementById('slider-term-val').textContent = termVal + ' Ay';
+          
+          const principal = price - downVal;
+          if (principal <= 0) {
+            document.getElementById('monthly-rate-display').textContent = '€0';
+            return;
+          }
+          
+          // Simple monthly payment formula with interest rate
+          const monthlyInt = (interestRate / 100) / 12;
+          let payment = 0;
+          if (monthlyInt > 0) {
+            payment = (principal * monthlyInt * Math.pow(1 + monthlyInt, termVal)) / (Math.pow(1 + monthlyInt, termVal) - 1);
+          } else {
+            payment = principal / termVal;
+          }
+          
+          document.getElementById('monthly-rate-display').textContent = '€' + Math.round(payment).toLocaleString('de-DE');
+        }
+      </script>
+    
       </div>
 
       <!-- Footer Section -->

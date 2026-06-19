@@ -54,15 +54,13 @@ def create_offer_pdf_stream(data):
     
     # 1. Header
     y = 180
-    dort_text, fleet_text, fin_text = "DORTMUND ", "FLEET ", "FINANCE"
-    w_dort = draw.textlength(dort_text, font=font_brand)
-    w_fleet = draw.textlength(fleet_text, font=font_brand)
+    auto_text, raten_text = "Auto", "Raten"
+    w_auto = draw.textlength(auto_text, font=font_brand)
     
-    draw.text((200, y), dort_text, font=font_brand, fill=brand_black)
-    draw.text((200 + w_dort, y), fleet_text, font=font_brand, fill=brand_red)
-    draw.text((200 + w_dort + w_fleet, y), fin_text, font=font_brand, fill=brand_black)
+    draw.text((200, y), auto_text, font=font_brand, fill=brand_black)
+    draw.text((200 + w_auto, y), raten_text, font=font_brand, fill=brand_red)
     
-    offer_num = "OFFER #DF-2024-001"
+    offer_num = "OFFER #AR-2024-001"
     w_off = draw.textlength(offer_num, font=font_offer)
     draw.text((2280 - w_off, y + 20), offer_num, font=font_offer, fill=brand_black)
     

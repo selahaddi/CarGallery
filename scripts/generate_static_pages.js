@@ -91,7 +91,7 @@ async function run() {
   const getHead = (title) => `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} | Dortmund Fleet Finance</title>
+    <title>${title} | AutoRaten</title>
     <link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
     <!-- Google Fonts & Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
@@ -327,8 +327,8 @@ async function run() {
             <span class="material-symbols-outlined text-white">person</span>
           </div>
           <div>
-            <h3 class="font-headline-md text-label-bold text-on-surface" data-t="side_fleet_manager">Filo Yöneticisi</h3>
-            <p class="text-label-sm text-text-muted" data-t="side_company">Dortmund Logistics Gmbh</p>
+            <h3 class="font-headline-md text-label-bold text-on-surface" data-t="side_fleet_manager">Yönetici</h3>
+            <p class="text-label-sm text-text-muted" data-t="side_company">AutoRaten Gmbh</p>
           </div>
         </div>
         <button onclick="toggleSidebar()" class="material-symbols-outlined text-text-muted hover:text-white mt-2 lg:hidden">close</button>
@@ -367,7 +367,7 @@ async function run() {
             menu
           </button>
           <a href="index.html" class="text-headline-md font-headline-md font-black tracking-tighter text-primary hover:opacity-80 transition-opacity hidden sm:block" data-t="brand_name">
-            DORTMUND FLEET FINANCE
+            AutoRaten
           </a>
         </div>
         <div class="hidden md:flex gap-6">
@@ -389,7 +389,7 @@ async function run() {
           <input 
             id="search-input-nav"
             class="bg-transparent border-none focus:ring-0 text-label-bold font-label-bold text-on-surface placeholder:text-text-muted w-32 lg:w-48 outline-none" 
-            placeholder="Filoda ara..." 
+            placeholder="Ara..." 
             data-t-placeholder="search_placeholder"
             type="text"
             oninput="if(typeof handleSearch === 'function') handleSearch(this.value)"
@@ -440,10 +440,10 @@ async function run() {
       <footer class="w-full py-12 px-6 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto mt-20 border-t border-outline-variant/20 bg-background-deep z-10 relative">
         <div class="mb-8 md:mb-0 text-center md:text-left">
           <div class="text-label-bold font-label-bold text-primary mb-2" data-t="brand_name">
-            DORTMUND FLEET FINANCE
+            AutoRaten
           </div>
           <p class="text-text-muted text-xs max-w-xs mx-auto md:mx-0 uppercase" data-t="footer_rights">
-            © 2024 DORTMUND FLEET FINANCE. TÜM HAKLARI SAKLIDIR. HASSAS LEASİNG ÇÖZÜMLERİ.
+            © 2024 AutoRaten. TÜM HAKLARI SAKLIDIR. HASSAS LEASİNG ÇÖZÜMLERİ.
           </p>
         </div>
         
@@ -482,24 +482,14 @@ async function run() {
         <div class="flex flex-col md:flex-row justify-between items-end gap-6">
           <div class="space-y-4">
             <span class="text-primary font-label-bold text-label-bold tracking-widest uppercase" data-t="showroom_subtitle">
-              Premium Filo Seçimi
+              Premium Araç Seçimi
             </span>
             <h1 class="text-display-hero font-display-hero text-on-surface leading-none text-5xl md:text-7xl">
               <span data-t="showroom_title_part1">Dijital</span> <span class="text-primary-container" data-t="showroom_title_part2">Showroom</span>
             </h1>
             <p class="text-body-lg font-body-lg text-text-muted max-w-2xl" data-t="showroom_desc">
-              Profesyonel filolar için yüksek performanslı finansman. Agresif oranlar, endüstriyel hassasiyet ve kurumsal ortaklar için anında onay.
+              Premium araçlar için yüksek performanslı finansman. Uygun oranlar, yüksek hassasiyet ve hızlı onay.
             </p>
-          </div>
-          <div class="flex gap-4">
-            <div class="glass-card p-4 rounded-xl text-center min-w-[140px]">
-              <p class="text-label-sm text-text-muted uppercase text-xs" data-t="avg_interest">Ort. Faiz</p>
-              <p class="text-2xl font-bold text-primary">3.8%</p>
-            </div>
-            <div class="glass-card p-4 rounded-xl text-center min-w-[140px]">
-              <p class="text-label-sm text-text-muted uppercase text-xs" data-t="vehicle_count">Filo Değeri</p>
-              <p id="fleet-value-display" class="text-2xl font-bold text-on-surface">€2.400.000</p>
-            </div>
           </div>
         </div>
         
@@ -683,7 +673,10 @@ async function run() {
 
         // Calculate Fleet Value
         const totalVal = filtered.reduce((sum, item) => sum + (item.price || 0), 0);
-        document.getElementById('fleet-value-display').textContent = '€' + totalVal.toLocaleString('de-DE');
+        const fleetValEl = document.getElementById('fleet-value-display');
+        if (fleetValEl) {
+          fleetValEl.textContent = '€' + totalVal.toLocaleString('de-DE');
+        }
 
         if (filtered.length === 0) {
           grid.innerHTML = \`
@@ -813,7 +806,7 @@ async function run() {
             Premium Araç Hizmetleri
           </h1>
           <p class="font-body-lg text-text-muted mb-10 max-w-2xl mx-auto text-sm md:text-base" data-t="hero_services_desc">
-            Kurumsal filo yönetimi ve lüks araç leasing çözümlerinde Alman hassasiyeti. Hız, güven ve profesyonel finansman tek bir çatı altında.
+            Lüks araç leasing çözümlerinde Alman hassasiyeti. Hız, güven ve profesyonel finansman tek bir çatı altında.
           </p>
           <div class="flex flex-wrap justify-center gap-4">
             <a href="index.html" class="bg-primary-container text-white px-8 py-4 rounded-lg font-label-bold active-red-glow hover:bg-red-500 transition-all flex items-center gap-2">
@@ -831,7 +824,7 @@ async function run() {
             <div class="w-24 h-1 bg-primary-container"></div>
           </div>
           <p class="text-text-muted font-body-md max-w-md text-sm" data-t="services_desc">
-            Filo yönetiminden bireysel lüks leasing'e kadar, her aşamada en yüksek kalite standartlarını sunuyoruz.
+            Araç çözümlerinden bireysel lüks leasing'e kadar, her aşamada en yüksek kalite standartlarını sunuyoruz.
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -919,7 +912,7 @@ async function run() {
                 </div>
                 <div>
                   <h4 class="font-headline-md text-white text-lg mb-1" data-t="why2_title">Müşteri Odaklı Hizmet</h4>
-                  <p class="text-text-muted text-sm" data-t="why2_desc">Her müşteriye atanan özel filo danışmanı ile kişiselleştirilmiş deneyim.</p>
+                  <p class="text-text-muted text-sm" data-t="why2_desc">Her müşteriye atanan özel müşteri danışmanı ile kişiselleştirilmiş deneyim.</p>
                 </div>
               </div>
               

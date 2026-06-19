@@ -1,20 +1,20 @@
 export const translations = {
   tr: {
     // General / Navbar
-    brand_name: "DORTMUND FLEET FINANCE",
+    brand_name: "AutoRaten",
     nav_showroom: "Vitrin",
     nav_panel: "Panel",
     nav_n8n: "n8n Ekleme",
     nav_leasing: "Leasing",
     nav_financing: "Finansman",
     nav_contact: "İletişim",
-    search_placeholder: "Filoda ara...",
+    search_placeholder: "Ara...",
     btn_signout: "Çıkış Yap",
     btn_signin: "Giriş",
     
     // Side Navigation
-    side_fleet_manager: "Filo Yöneticisi",
-    side_company: "Dortmund Logistics Gmbh",
+    side_fleet_manager: "Yönetici",
+    side_company: "AutoRaten Gmbh",
     side_new_app: "Yeni Başvuru",
     side_dashboard: "Dashboard",
     side_inventory: "Envanter",
@@ -25,11 +25,11 @@ export const translations = {
 
     // Home Page
     avg_interest: "Ort. Faiz",
-    vehicle_count: "Filo Değeri", // Changed from Araç Sayısı to Fleet Value based on HTML
-    showroom_subtitle: "Premium Filo Seçimi",
+    vehicle_count: "Toplam Değer", // Changed from Araç Sayısı to Fleet Value based on HTML
+    showroom_subtitle: "Premium Araç Seçimi",
     showroom_title_part1: "Dijital",
     showroom_title_part2: "Showroom",
-    showroom_desc: "Profesyonel filolar için yüksek performanslı finansman. Agresif oranlar, endüstriyel hassasiyet ve kurumsal ortaklar için anında onay.",
+    showroom_desc: "Premium araçlar için yüksek performanslı finansman. Uygun oranlar, yüksek hassasiyet ve hızlı onay.",
     all_vehicles: "Tüm Araçlar",
     electric_hybrid: "EV / Hibrit",
     performance: "Performans",
@@ -42,7 +42,7 @@ export const translations = {
     no_vehicles: "Henüz bir araç bulunmuyor.",
     loading_vehicles: "Araçlar Yükleniyor...",
     supabase_failed: "Supabase Bağlantı Başarısız",
-    footer_rights: "© 2024 DORTMUND FLEET FINANCE. TÜM HAKLARI SAKLIDIR. HASSAS LEASİNG ÇÖZÜMLERİ.",
+    footer_rights: "© 2024 AutoRaten. TÜM HAKLARI SAKLIDIR. HASSAS LEASİNG ÇÖZÜMLERİ.",
     legal_notice: "Yasal Uyarı",
     privacy_policy: "Veri Gizliliği",
     terms_of_use: "Hizmet Şartları",
@@ -51,7 +51,7 @@ export const translations = {
     // Services Section
     services_subtitle: "Uzmanlığımız",
     services_title: "Hizmetlerimiz",
-    services_desc: "Filo yönetiminden bireysel lüks leasing'e kadar, her aşamada en yüksek kalite standartlarını sunuyoruz.",
+    services_desc: "Araç çözümlerinden bireysel lüks leasing'e kadar, her aşamada en yüksek kalite standartlarını sunuyoruz.",
     srv1_title: "Profesyonel Finansman",
     srv1_desc: "Hızlandırılmış onay süreçleri ve size özel faiz oranları ile finansal yükünüzü hafifletiyoruz. B2B ve kurumsal çözümler.",
     srv2_title: "Araç Alımı",
@@ -67,7 +67,7 @@ export const translations = {
     // Services Page specific
     hero_services_subtitle: "Velocity Performance",
     hero_services_title: "Premium Araç Hizmetleri",
-    hero_services_desc: "Kurumsal filo yönetimi ve lüks araç leasing çözümlerinde Alman hassasiyeti. Hız, güven ve profesyonel finansman tek bir çatı altında.",
+    hero_services_desc: "Lüks araç leasing çözümlerinde Alman hassasiyeti. Hız, güven ve profesyonel finansman tek bir çatı altında.",
     hero_services_btn1: "HEMEN BAŞVUR",
     hero_services_btn2: "HİZMETLERİ KEŞFET",
 
@@ -75,11 +75,11 @@ export const translations = {
     why1_title: "Maksimum İşlem Süresi",
     why1_desc: "Evrak tesliminden sonra 48 saat içinde sonuçlanan finansman süreçleri.",
     why2_title: "Müşteri Odaklı Hizmet",
-    why2_desc: "Her müşteriye atanan özel filo danışmanı ile kişiselleştirilmiş deneyim.",
+    why2_desc: "Her müşteriye atanan özel müşteri danışmanı ile kişiselleştirilmiş deneyim.",
     why3_title: "Geniş Araç Seçimi",
     why3_desc: "Premium markaların en yeni modelleri ve özel donanım paketli araçlar.",
     stat1_val: "12+", stat1_lbl: "YILLIK DENEYİM",
-    stat2_val: "500+", stat2_lbl: "AKTİF FİLO",
+    stat2_val: "500+", stat2_lbl: "AKTİF ARAÇ",
     stat3_val: "%98", stat3_lbl: "MEMNUNİYET",
     stat4_val: "GLOBAL", stat4_lbl: "STANDART",
 
@@ -142,7 +142,7 @@ export const translations = {
     detail_term: "Vade",
     detail_request_btn: "Kişisel Teklif Alın",
     detail_sending: "Gönderiliyor...",
-    detail_success_alert: "Talebiniz başarıyla iletildi! Filo yöneticimiz sizinle iletişime geçecektir.",
+    detail_success_alert: "Talebiniz başarıyla iletildi! Müşteri temsilcimiz sizinle iletişime geçecektir.",
     detail_error_alert: "Bir hata oluştu.",
     detail_included_services: "GAP Koruması & Ücretsiz Teslimat Dahil",
     detail_loading: "İçerik Yükleniyor...",
@@ -192,20 +192,20 @@ export const translations = {
   },
   en: {
     // General / Navbar
-    brand_name: "DORTMUND FLEET FINANCE",
+    brand_name: "AutoRaten",
     nav_showroom: "Showroom",
     nav_panel: "Dashboard",
     nav_n8n: "n8n Integration",
     nav_leasing: "Leasing",
     nav_financing: "Financing",
     nav_contact: "Contact",
-    search_placeholder: "Search fleet...",
+    search_placeholder: "Search...",
     btn_signout: "Sign Out",
     btn_signin: "Login",
 
     // Side Navigation
-    side_fleet_manager: "Fleet Manager",
-    side_company: "Dortmund Logistics Gmbh",
+    side_fleet_manager: "Manager",
+    side_company: "AutoRaten Gmbh",
     side_new_app: "New Application",
     side_dashboard: "Dashboard",
     side_inventory: "Inventory",
@@ -216,11 +216,11 @@ export const translations = {
 
     // Home Page
     avg_interest: "Avg Rate",
-    vehicle_count: "Fleet Value",
-    showroom_subtitle: "Premium Fleet Selection",
+    vehicle_count: "Total Value",
+    showroom_subtitle: "Premium Vehicle Selection",
     showroom_title_part1: "Digital",
     showroom_title_part2: "Showroom",
-    showroom_desc: "High-performance financing for professional fleets. Aggressive rates, industrial precision, and instant approvals for corporate partners.",
+    showroom_desc: "High-performance financing for premium vehicles. Competitive rates, high precision, and instant approvals.",
     all_vehicles: "All Vehicles",
     electric_hybrid: "EV / Hybrid",
     performance: "Performance",
@@ -233,7 +233,7 @@ export const translations = {
     no_vehicles: "No vehicles available yet.",
     loading_vehicles: "Loading Vehicles...",
     supabase_failed: "Supabase Connection Failed",
-    footer_rights: "© 2024 DORTMUND FLEET FINANCE. ALL RIGHTS RESERVED. PRECISION LEASING SOLUTIONS.",
+    footer_rights: "© 2024 AutoRaten. ALL RIGHTS RESERVED. PRECISION LEASING SOLUTIONS.",
     legal_notice: "Legal Notice",
     privacy_policy: "Data Privacy",
     terms_of_use: "Terms of Service",
@@ -242,7 +242,7 @@ export const translations = {
     // Services Section
     services_subtitle: "Our Expertise",
     services_title: "Services",
-    services_desc: "From fleet management to individual luxury leasing, we provide the highest quality standards at every stage.",
+    services_desc: "From premium vehicle solutions to individual luxury leasing, we provide the highest quality standards at every stage.",
     srv1_title: "Professional Financing",
     srv1_desc: "Accelerated approval processes and customized interest rates to lighten your financial load. B2B and corporate solutions.",
     srv2_title: "Vehicle Acquisition",
@@ -258,7 +258,7 @@ export const translations = {
     // Services Page specific
     hero_services_subtitle: "Velocity Performance",
     hero_services_title: "Premium Vehicle Services",
-    hero_services_desc: "German precision in corporate fleet management and luxury car leasing solutions. Speed, trust, and professional financing under one roof.",
+    hero_services_desc: "German precision in luxury car leasing solutions. Speed, trust, and professional financing under one roof.",
     hero_services_btn1: "APPLY NOW",
     hero_services_btn2: "EXPLORE SERVICES",
 
@@ -266,11 +266,11 @@ export const translations = {
     why1_title: "Maximum Processing Speed",
     why1_desc: "Financing processes finalized within 48 hours after document delivery.",
     why2_title: "Customer-Oriented Service",
-    why2_desc: "Personalized experience with a dedicated fleet consultant assigned to each customer.",
+    why2_desc: "Personalized experience with a dedicated consultant assigned to each customer.",
     why3_title: "Wide Vehicle Selection",
     why3_desc: "The latest models from premium brands and special trim packages.",
     stat1_val: "12+", stat1_lbl: "YEARS EXP",
-    stat2_val: "500+", stat2_lbl: "ACTIVE FLEET",
+    stat2_val: "500+", stat2_lbl: "ACTIVE VEHICLES",
     stat3_val: "98%", stat3_lbl: "SATISFACTION",
     stat4_val: "GLOBAL", stat4_lbl: "STANDARD",
 
@@ -333,7 +333,7 @@ export const translations = {
     detail_term: "Term",
     detail_request_btn: "Request Personal Offer",
     detail_sending: "Sending...",
-    detail_success_alert: "Your request was successfully submitted! Our fleet manager will contact you.",
+    detail_success_alert: "Your request was successfully submitted! Our consultant will contact you.",
     detail_error_alert: "An error occurred.",
     detail_included_services: "GAP Protection & Free Delivery Included",
     detail_loading: "Loading Content...",
@@ -383,20 +383,20 @@ export const translations = {
   },
   de: {
     // General / Navbar
-    brand_name: "DORTMUND FLEET FINANCE",
+    brand_name: "AutoRaten",
     nav_showroom: "Showroom",
     nav_panel: "Dashboard",
     nav_n8n: "n8n Integration",
     nav_leasing: "Leasing",
     nav_financing: "Finanzierung",
     nav_contact: "Kontakt",
-    search_placeholder: "Flotte suchen...",
+    search_placeholder: "Suchen...",
     btn_signout: "Abmelden",
     btn_signin: "Anmelden",
 
     // Side Navigation
-    side_fleet_manager: "Flottenmanager",
-    side_company: "Dortmund Logistics Gmbh",
+    side_fleet_manager: "Manager",
+    side_company: "AutoRaten Gmbh",
     side_new_app: "Neuer Antrag",
     side_dashboard: "Dashboard",
     side_inventory: "Inventar",
@@ -407,11 +407,11 @@ export const translations = {
 
     // Home Page
     avg_interest: "Durchschn. Zins",
-    vehicle_count: "Flottenwert",
-    showroom_subtitle: "Premium-Flottenauswahl",
+    vehicle_count: "Gesamtwert",
+    showroom_subtitle: "Premium-Fahrzeugauswahl",
     showroom_title_part1: "Digitaler",
     showroom_title_part2: "Showroom",
-    showroom_desc: "Leistungsstarke Finanzierung für professionelle Flotten. Aggressive Raten, industrielle Präzision und sofortige Zusagen für Unternehmenspartner.",
+    showroom_desc: "Leistungsstarke Finanzierung für Premium-Fahrzeuge. Attraktive Raten, hohe Präzision und sofortige Zusagen für Unternehmenspartner.",
     all_vehicles: "Alle Fahrzeuge",
     electric_hybrid: "EV / Hybrid",
     performance: "Performance",
@@ -424,7 +424,7 @@ export const translations = {
     no_vehicles: "Noch keine Fahrzeuge vorhanden.",
     loading_vehicles: "Fahrzeuge werden geladen...",
     supabase_failed: "Supabase-Verbindung fehlgeschlagen",
-    footer_rights: "© 2024 DORTMUND FLEET FINANCE. ALLE RECHTE VORBEHALTEN. PRÄZISIONS-LEASINGLÖSUNGEN.",
+    footer_rights: "© 2024 AutoRaten. ALLE RECHTE VORBEHALTEN. PRÄZISIONS-LEASINGLÖSUNGEN.",
     legal_notice: "Impressum",
     privacy_policy: "Datenschutz",
     terms_of_use: "Nutzungsbedingungen",
@@ -433,7 +433,7 @@ export const translations = {
     // Services Section
     services_subtitle: "Unsere Expertise",
     services_title: "Dienstleistungen",
-    services_desc: "Vom Flottenmanagement bis zum individuellen Luxus-Leasing bieten wir auf jeder Stufe höchste Qualitätsstandards.",
+    services_desc: "Von Premium-Fahrzeuglösungen bis zum individuellen Luxus-Leasing bieten wir auf jeder Stufe höchste Qualitätsstandards.",
     srv1_title: "Professionelle Finanzierung",
     srv1_desc: "Beschleunigte Genehmigungsverfahren und maßgeschneiderte Zinssätze zur Entlastung Ihrer Finanzen. B2B und Unternehmenslösungen.",
     srv2_title: "Fahrzeugbeschaffung",
@@ -449,7 +449,7 @@ export const translations = {
     // Services Page specific
     hero_services_subtitle: "Velocity Performance",
     hero_services_title: "Premium-Fahrzeugdienste",
-    hero_services_desc: "Deutsche Präzision im Corporate Fleet Management und bei Luxusauto-Leasinglösungen. Geschwindigkeit, Vertrauen und professionelle Finanzierung unter einem Dach.",
+    hero_services_desc: "Deutsche Präzision bei Luxusauto-Leasinglösungen. Geschwindigkeit, Vertrauen und professionelle Finanzierung unter einem Dach.",
     hero_services_btn1: "JETZT BEWERBEN",
     hero_services_btn2: "DIENSTLEISTUNGEN ENTDECKEN",
 
@@ -457,11 +457,11 @@ export const translations = {
     why1_title: "Maximale Bearbeitungsgeschwindigkeit",
     why1_desc: "Finanzierungsprozesse werden innerhalb von 48 Stunden nach Dokumentenabgabe abgeschlossen.",
     why2_title: "Kundenorientierter Service",
-    why2_desc: "Personalisierte Erfahrung mit einem engagierten Flottenberater für jeden Kunden.",
+    why2_desc: "Personalisierte Erfahrung mit einem engagierten Berater für jeden Kunden.",
     why3_title: "Große Fahrzeugauswahl",
     why3_desc: "Die neuesten Modelle von Premium-Marken und speziellen Ausstattungspaketen.",
     stat1_val: "12+", stat1_lbl: "JAHRE ERFAHRUNG",
-    stat2_val: "500+", stat2_lbl: "AKTIVE FLOTTE",
+    stat2_val: "500+", stat2_lbl: "AKTIVE FAHRZEUGE",
     stat3_val: "98%", stat3_lbl: "ZUFRIEDENHEIT",
     stat4_val: "GLOBAL", stat4_lbl: "STANDARD",
 
@@ -524,7 +524,7 @@ export const translations = {
     detail_term: "Laufzeit",
     detail_request_btn: "Individuelles Angebot anfordern",
     detail_sending: "Wird gesendet...",
-    detail_success_alert: "Ihre Anfrage wurde erfolgreich übermittelt! Unser Fuhrparkleiter wird sich mit Ihnen in Verbindung setzen.",
+    detail_success_alert: "Ihre Anfrage wurde erfolgreich übermittelt! Unser Berater wird sich mit Ihnen in Verbindung setzen.",
     detail_error_alert: "Ein Fehler ist aufgetreten.",
     detail_included_services: "Inklusive GAP-Schutz & Kostenfreier Lieferung",
     detail_loading: "Inhalt wird geladen...",
