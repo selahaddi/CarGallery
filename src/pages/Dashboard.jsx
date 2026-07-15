@@ -224,13 +224,13 @@ export default function Dashboard() {
       category: content.category || '',
       tags: content.tags ? content.tags.join(', ') : '',
       status: content.status ?? true,
-      year: content.year || '',
-      mileage: content.mileage || '',
-      price: content.price || '',
-      down_payment: content.down_payment || '',
-      monthly_rate: content.monthly_rate || '',
-      interest_rate: content.interest_rate || '',
-      term_months: content.term_months || '',
+      year: content.year ?? '',
+      mileage: content.mileage ?? '',
+      price: content.price ?? '',
+      down_payment: content.down_payment ?? '',
+      monthly_rate: content.monthly_rate ?? '',
+      interest_rate: content.interest_rate ?? '',
+      term_months: content.term_months ?? '',
       phone: content.phone || '',
       features: content.features ? content.features.join(', ') : '',
       images: content.images ? content.images.join('\n') : ''
@@ -344,15 +344,15 @@ export default function Dashboard() {
             <div className="mb-6 sm:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <h1 className="text-h1-mobile sm:text-h1 font-h1 text-primary tracking-tight" data-t="dash_title">{t('dash_title')}</h1>
-                <p className="text-secondary mt-2 max-w-md font-label-caps" data-t="dash_subtitle">Velocity Performance standartlarında araç ve içerik yönetimi.</p>
+                <p className="text-secondary mt-2 max-w-md font-label-caps" data-t="dash_subtitle">{t('dash_panel_desc')}</p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col flex-1 min-w-[120px]">
-                  <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">Toplam Araç</span>
+                  <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">{t('dash_stat_total')}</span>
                   <span className="text-xl font-h3 text-primary mt-1">{totalVehicles}</span>
                 </div>
                 <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col flex-1 min-w-[120px]">
-                  <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">Aktif Portföy</span>
+                  <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">{t('dash_stat_portfolio')}</span>
                   <span className="text-xl font-h3 text-accent-indigo mt-1">€{activePortfolio}</span>
                 </div>
               </div>
@@ -377,7 +377,7 @@ export default function Dashboard() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Section: Vehicle Details */}
                     <div className="space-y-4">
-                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">Araç Detayları</p>
+                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">{t('dash_section_vehicle')}</p>
                       <div>
                         <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_title">{t('dash_label_title')}</label>
                         <input 
@@ -420,6 +420,8 @@ export default function Dashboard() {
                             className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
                             placeholder="2024" 
                             type="number"
+                            min="1900"
+                            max={new Date().getFullYear() + 1}
                             value={form.year}
                             onChange={(e) => setForm({ ...form, year: e.target.value })}
                           />
@@ -430,6 +432,7 @@ export default function Dashboard() {
                             className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
                             placeholder="0" 
                             type="number"
+                            min="0"
                             value={form.mileage}
                             onChange={(e) => setForm({ ...form, mileage: e.target.value })}
                           />
@@ -460,9 +463,21 @@ export default function Dashboard() {
                       </div>
                     </div>
 
+                    {/* Section: Tags */}
+                    <div>
+                      <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1">{t('dash_label_tags')}</label>
+                      <input 
+                        className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
+                        placeholder="BMW, M8, Sedan" 
+                        type="text"
+                        value={form.tags}
+                        onChange={(e) => setForm({ ...form, tags: e.target.value })}
+                      />
+                    </div>
+
                     {/* Section: Pricing */}
                     <div className="space-y-4">
-                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">Finansal Veriler</p>
+                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">{t('dash_section_finance')}</p>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label className="block font-label-caps text-label-caps text-secondary mb-1 pl-1" data-t="dash_label_price">{t('dash_label_price')}</label>
@@ -471,6 +486,7 @@ export default function Dashboard() {
                             placeholder="0.00" 
                             step="0.01" 
                             type="number"
+                            min="0"
                             value={form.price}
                             onChange={(e) => setForm({ ...form, price: e.target.value })}
                           />
@@ -482,6 +498,7 @@ export default function Dashboard() {
                             placeholder="0.00" 
                             step="0.01" 
                             type="number"
+                            min="0"
                             value={form.down_payment}
                             onChange={(e) => setForm({ ...form, down_payment: e.target.value })}
                           />
@@ -494,6 +511,7 @@ export default function Dashboard() {
                             className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
                             placeholder="299" 
                             type="number"
+                            min="0"
                             value={form.monthly_rate}
                             onChange={(e) => setForm({ ...form, monthly_rate: e.target.value })}
                           />
@@ -504,6 +522,8 @@ export default function Dashboard() {
                             className="w-full px-4 py-3 rounded-xl text-sm bg-surface-container-low border border-border-subtle text-primary focus:border-accent-indigo focus:ring-0 transition-colors placeholder:text-secondary/40" 
                             placeholder="48" 
                             type="number"
+                            min="1"
+                            max="120"
                             value={form.term_months}
                             onChange={(e) => setForm({ ...form, term_months: e.target.value })}
                           />
@@ -515,6 +535,8 @@ export default function Dashboard() {
                             placeholder="2.99" 
                             step="0.01" 
                             type="number"
+                            min="0"
+                            max="100"
                             value={form.interest_rate}
                             onChange={(e) => setForm({ ...form, interest_rate: e.target.value })}
                           />
@@ -524,7 +546,7 @@ export default function Dashboard() {
 
                     {/* Section: Media & Description */}
                     <div className="space-y-4">
-                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">Medya & Açıklama</p>
+                      <p className="text-xs font-label-caps text-secondary uppercase tracking-widest pb-1 border-b border-border-subtle">{t('dash_section_media')}</p>
                       
                       {/* Cover Image Upload */}
                       <div>
@@ -580,7 +602,7 @@ export default function Dashboard() {
                               ) : (
                                 <span className="material-symbols-outlined text-[14px] mr-1">upload</span>
                               )}
-                              Resim Seç
+                              {t('dash_btn_select_img')}
                             </div>
                           </div>
                         </div>
@@ -645,7 +667,7 @@ export default function Dashboard() {
                         ) : (
                           <>
                             <span className="material-symbols-outlined">save</span>
-                            <span>{editingId ? "GÜNCELLE VE YAYINLA" : "KAYDET VE YAYINLA"}</span>
+                            <span>{editingId ? t('dash_btn_update') : t('dash_btn_publish')}</span>
                           </>
                         )}
                       </button>
@@ -691,15 +713,15 @@ export default function Dashboard() {
                         }`}
                       >
                         <span className="material-symbols-outlined text-[16px] leading-none">drag_indicator</span>
-                        <span className="hidden sm:inline">Tut Sürükle Sırala</span>
-                        <span className="sm:hidden">Sırala</span>
+                        <span className="hidden sm:inline">{t('dash_sort_drag')}</span>
+                        <span className="sm:hidden">{t('dash_sort_drag_short')}</span>
                       </button>
 
                       {/* Search Input */}
                       <div className="relative flex-1 min-w-[150px]">
                         <input
                           type="text"
-                          placeholder="Araç ara..."
+                          placeholder={t('dash_search_placeholder')}
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
                           className="w-full bg-surface-container-low border border-border-subtle text-xs rounded-lg pl-9 pr-3 py-2 font-medium text-primary placeholder:text-secondary/50 outline-none focus:border-accent-indigo transition-colors"
@@ -709,23 +731,23 @@ export default function Dashboard() {
 
                       {/* Sort Select */}
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-secondary font-label-caps flex-shrink-0 hidden sm:inline-block">SIRALA:</span>
+                        <span className="text-[10px] text-secondary font-label-caps flex-shrink-0 hidden sm:inline-block">{t('dash_sort_label')}</span>
                         <select 
                           value={sortBy}
                           onChange={(e) => setSortBy(e.target.value)}
                           className="bg-surface-container-low border border-border-subtle text-xs rounded-lg px-3 py-2 font-medium text-primary outline-none cursor-pointer focus:border-accent-indigo transition-colors"
                         >
-                          <option value="custom">Özel Sıralama (Sürükle)</option>
-                          <option value="newest">En Yeni (Tarih)</option>
-                          <option value="oldest">En Eski (Tarih)</option>
-                          <option value="price_desc">Fiyat: Azalan</option>
-                          <option value="price_asc">Fiyat: Artan</option>
-                          <option value="year_desc">Yıl: En Yeni</option>
-                          <option value="year_asc">Yıl: En Eski</option>
-                          <option value="mileage_asc">Kilometre: En Düşük</option>
-                          <option value="mileage_desc">Kilometre: En Yüksek</option>
-                          <option value="name_asc">İsim: A-Z</option>
-                          <option value="name_desc">İsim: Z-A</option>
+                          <option value="custom">{t('dash_sort_custom')}</option>
+                          <option value="newest">{t('dash_sort_newest')}</option>
+                          <option value="oldest">{t('dash_sort_oldest')}</option>
+                          <option value="price_desc">{t('dash_sort_price_desc')}</option>
+                          <option value="price_asc">{t('dash_sort_price_asc')}</option>
+                          <option value="year_desc">{t('dash_sort_year_desc')}</option>
+                          <option value="year_asc">{t('dash_sort_year_asc')}</option>
+                          <option value="mileage_asc">{t('dash_sort_mileage_asc')}</option>
+                          <option value="mileage_desc">{t('dash_sort_mileage_desc')}</option>
+                          <option value="name_asc">{t('dash_sort_name_asc')}</option>
+                          <option value="name_desc">{t('dash_sort_name_desc')}</option>
                         </select>
                       </div>
                     </div>

@@ -138,6 +138,9 @@ export const translations = {
     detail_price: "Araç Fiyatı",
     detail_down_payment: "Peşinat",
     detail_interest_rate: "Faiz Oranı (eff.)",
+    detail_total_interest: "Toplam Faiz",
+    detail_total_cost: "Toplam Ödenecek",
+    detail_price_on_request: "Fiyat bilgisi ve teklif için lütfen iletişime geçin.",
     detail_monthly_rate: "Aylık Taksit",
     detail_term: "Vade",
     detail_request_btn: "Kişisel Teklif Alın",
@@ -188,7 +191,41 @@ export const translations = {
     dash_empty_list: "Henüz veri bulunmuyor. Sol taraftan ekleme yapabilirsiniz.",
     dash_confirm_delete: "Bu içeriği silmek istediğinize emin misiniz?",
     dash_save_error: "Kaydetme hatası: ",
-    dash_add_error: "Ekleme hatası: "
+    dash_add_error: "Ekleme hatası: ",
+    dash_upload_error: "Resim yüklenirken hata oluştu.",
+
+    // Navbar extra
+    nav_services: "Hizmetlerimiz",
+
+    // Dashboard hardcoded texts
+    dash_panel_desc: "Velocity Performance standartlarında araç ve içerik yönetimi.",
+    dash_stat_total: "Toplam Araç",
+    dash_stat_portfolio: "Aktif Portföy",
+    dash_section_vehicle: "Araç Detayları",
+    dash_section_finance: "Finansal Veriler",
+    dash_section_media: "Medya & Açıklama",
+    dash_btn_select_img: "Resim Seç",
+    dash_btn_update: "GÜNCELLE VE YAYINLA",
+    dash_btn_publish: "KAYDET VE YAYINLA",
+    dash_sort_drag: "Tut Sürükle Sırala",
+    dash_sort_drag_short: "Sırala",
+    dash_search_placeholder: "Araç ara...",
+    dash_sort_label: "SIRALA:",
+    dash_sort_custom: "Özel Sıralama (Sürükle)",
+    dash_sort_newest: "En Yeni (Tarih)",
+    dash_sort_oldest: "En Eski (Tarih)",
+    dash_sort_price_desc: "Fiyat: Azalan",
+    dash_sort_price_asc: "Fiyat: Artan",
+    dash_sort_year_desc: "Yıl: En Yeni",
+    dash_sort_year_asc: "Yıl: En Eski",
+    dash_sort_mileage_asc: "Kilometre: En Düşük",
+    dash_sort_mileage_desc: "Kilometre: En Yüksek",
+    dash_sort_name_asc: "İsim: A-Z",
+    dash_sort_name_desc: "İsim: Z-A",
+
+    // DashboardRow
+    dash_row_sold: "Satıldı / Stokta Yok",
+    dash_row_per_month: "/ Ay"
   },
   en: {
     // General / Navbar
@@ -329,6 +366,9 @@ export const translations = {
     detail_price: "Vehicle Price",
     detail_down_payment: "Down Payment",
     detail_interest_rate: "Interest Rate (eff.)",
+    detail_total_interest: "Total Interest",
+    detail_total_cost: "Total Repayment",
+    detail_price_on_request: "Please contact us for pricing and offers.",
     detail_monthly_rate: "Monthly Rate",
     detail_term: "Term",
     detail_request_btn: "Request Personal Offer",
@@ -379,7 +419,41 @@ export const translations = {
     dash_empty_list: "No data available yet. You can add elements using the form on the left.",
     dash_confirm_delete: "Are you sure you want to delete this content?",
     dash_save_error: "Save error: ",
-    dash_add_error: "Add error: "
+    dash_add_error: "Add error: ",
+    dash_upload_error: "Error uploading image.",
+
+    // Navbar extra
+    nav_services: "Services",
+
+    // Dashboard hardcoded texts
+    dash_panel_desc: "Vehicle and content management at Velocity Performance standards.",
+    dash_stat_total: "Total Vehicles",
+    dash_stat_portfolio: "Active Portfolio",
+    dash_section_vehicle: "Vehicle Details",
+    dash_section_finance: "Financial Data",
+    dash_section_media: "Media & Description",
+    dash_btn_select_img: "Select Image",
+    dash_btn_update: "UPDATE & PUBLISH",
+    dash_btn_publish: "SAVE & PUBLISH",
+    dash_sort_drag: "Drag to Sort",
+    dash_sort_drag_short: "Sort",
+    dash_search_placeholder: "Search vehicles...",
+    dash_sort_label: "SORT:",
+    dash_sort_custom: "Custom Order (Drag)",
+    dash_sort_newest: "Newest (Date)",
+    dash_sort_oldest: "Oldest (Date)",
+    dash_sort_price_desc: "Price: Descending",
+    dash_sort_price_asc: "Price: Ascending",
+    dash_sort_year_desc: "Year: Newest",
+    dash_sort_year_asc: "Year: Oldest",
+    dash_sort_mileage_asc: "Mileage: Lowest",
+    dash_sort_mileage_desc: "Mileage: Highest",
+    dash_sort_name_asc: "Name: A-Z",
+    dash_sort_name_desc: "Name: Z-A",
+
+    // DashboardRow
+    dash_row_sold: "Sold / Out of Stock",
+    dash_row_per_month: "/ Mo"
   },
   de: {
     // General / Navbar
@@ -520,6 +594,9 @@ export const translations = {
     detail_price: "Fahrzeugpreis",
     detail_down_payment: "Anzahlung",
     detail_interest_rate: "Zinssatz (eff.)",
+    detail_total_interest: "Zinskosten gesamt",
+    detail_total_cost: "Gesamtbetrag",
+    detail_price_on_request: "Bitte kontaktieren Sie uns für Preise und Angebote.",
     detail_monthly_rate: "Monatliche Rate",
     detail_term: "Laufzeit",
     detail_request_btn: "Individuelles Angebot anfordern",
@@ -570,6 +647,40 @@ export const translations = {
     dash_empty_list: "Noch keine Daten vorhanden. Sie können auf der linken Seite Elemente hinzufügen.",
     dash_confirm_delete: "Sind Sie sicher, dass Sie diesen Inhalt löschen möchten?",
     dash_save_error: "Fehler beim Speichern: ",
-    dash_add_error: "Fehler beim Hinzufügen: "
+    dash_add_error: "Fehler beim Hinzufügen: ",
+    dash_upload_error: "Fehler beim Hochladen des Bildes.",
+
+    // Navbar extra
+    nav_services: "Dienstleistungen",
+
+    // Dashboard hardcoded texts
+    dash_panel_desc: "Fahrzeug- und Inhaltsverwaltung nach Velocity Performance Standards.",
+    dash_stat_total: "Fahrzeuge Gesamt",
+    dash_stat_portfolio: "Aktives Portfolio",
+    dash_section_vehicle: "Fahrzeugdetails",
+    dash_section_finance: "Finanzdaten",
+    dash_section_media: "Medien & Beschreibung",
+    dash_btn_select_img: "Bild auswählen",
+    dash_btn_update: "AKTUALISIEREN & VERÖFFENTLICHEN",
+    dash_btn_publish: "SPEICHERN & VERÖFFENTLICHEN",
+    dash_sort_drag: "Ziehen zum Sortieren",
+    dash_sort_drag_short: "Sortieren",
+    dash_search_placeholder: "Fahrzeug suchen...",
+    dash_sort_label: "SORTIEREN:",
+    dash_sort_custom: "Eigene Reihenfolge (Ziehen)",
+    dash_sort_newest: "Neueste (Datum)",
+    dash_sort_oldest: "Älteste (Datum)",
+    dash_sort_price_desc: "Preis: Absteigend",
+    dash_sort_price_asc: "Preis: Aufsteigend",
+    dash_sort_year_desc: "Jahr: Neueste",
+    dash_sort_year_asc: "Jahr: Älteste",
+    dash_sort_mileage_asc: "Kilometerstand: Niedrigste",
+    dash_sort_mileage_desc: "Kilometerstand: Höchste",
+    dash_sort_name_asc: "Name: A-Z",
+    dash_sort_name_desc: "Name: Z-A",
+
+    // DashboardRow
+    dash_row_sold: "Verkauft / Nicht auf Lager",
+    dash_row_per_month: "/ Monat"
   }
 };

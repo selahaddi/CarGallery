@@ -90,11 +90,11 @@ export default function DashboardRow({ item, handleEdit, handleDelete, t, sortBy
               {item.status ? (
                 item.monthly_rate && (
                   <div className="bg-accent-indigo/5 px-3 py-1.5 rounded-lg border border-accent-indigo/10">
-                    <span className="text-[10px] text-accent-indigo font-bold">€{parseFloat(item.monthly_rate).toLocaleString('de-DE')} / Ay</span>
+                    <span className="text-[10px] text-accent-indigo font-bold">€{parseFloat(item.monthly_rate).toLocaleString('de-DE')} {t('dash_row_per_month')}</span>
                   </div>
                 )
               ) : (
-                <span className="text-[10px] text-secondary italic">Satıldı / Stokta Yok</span>
+                <span className="text-[10px] text-secondary italic">{t('dash_row_sold')}</span>
               )}
             </div>
             <div className="flex gap-2 items-center">

@@ -23,7 +23,7 @@ export default function SideNavBar() {
   // Close sidebar on route change
   useEffect(() => {
     setIsSidebarOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, setIsSidebarOpen]);
 
   return (
     <>

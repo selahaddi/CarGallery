@@ -1,16 +1,43 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useLanguage } from '../LanguageContext';
 
 export default function Navbar() {
   const [session, setSession] = useState(null);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
   const langDropdownRef = useRef(null);
+  const lastScrollY = useRef(0);
+
+  // Hide/show navbar on scroll direction + detect if scrolled past top
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      
+      // Show/hide based on scroll direction
+      if (currentY > lastScrollY.current && currentY > 100) {
+        // Scrolling down & past 100px → hide
+        setNavVisible(false);
+      } else {
+        // Scrolling up → show
+        setNavVisible(true);
+      }
+      
+      // Track if page is scrolled (for glass intensity)
+      setScrolled(currentY > 10);
+      
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close language dropdown when clicking outside
   useEffect(() => {
@@ -28,6 +55,21 @@ export default function Navbar() {
       document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [langDropdownOpen]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -49,7 +91,12 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-border-subtle">
+    <nav 
+      className={`fixed top-0 w-full liquid-glass-nav transition-all duration-300 ease-in-out ${
+        navVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      } ${scrolled ? 'liquid-glass-nav--scrolled' : ''}`}
+      style={{ zIndex: 9999 }}
+    >
       <div className="flex justify-between items-center h-nav-height px-gutter max-w-container-max mx-auto">
         <div className="flex items-center gap-12">
           <Link to="/" className="font-h3 text-h3 tracking-tighter text-primary flex items-center gap-2">
@@ -62,19 +109,19 @@ export default function Navbar() {
               to="/" 
               className={`font-body-md text-body-md transition-colors ${isActive('/') ? 'text-primary font-bold border-b border-primary pb-1' : 'text-secondary hover:text-primary'}`}
             >
-              Vitrin
+              {t('nav_showroom')}
             </Link>
             <Link 
               to="/services" 
               className={`font-body-md text-body-md transition-colors ${isActive('/services') ? 'text-primary font-bold border-b border-primary pb-1' : 'text-secondary hover:text-primary'}`}
             >
-              Hizmetlerimiz
+              {t('nav_services')}
             </Link>
             <Link 
               to="/dashboard" 
               className={`font-body-md text-body-md transition-colors ${isActive('/dashboard') ? 'text-primary font-bold border-b border-primary pb-1' : 'text-secondary hover:text-primary'}`}
             >
-              Panel
+              {t('nav_panel')}
             </Link>
           </div>
         </div>
@@ -92,7 +139,7 @@ export default function Navbar() {
             </button>
             
             {langDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-28 rounded-xl bg-white/90 backdrop-blur-xl border border-border-subtle shadow-xl overflow-hidden z-50">
+              <div className="absolute right-0 mt-2 w-28 rounded-xl bg-surface/90 backdrop-blur-xl border border-border-subtle shadow-xl overflow-hidden z-50">
                 <button 
                   onClick={() => { setLanguage('tr'); setLangDropdownOpen(false); }}
                   className={`w-full text-left px-4 py-2 text-sm font-body-md transition-colors ${language === 'tr' ? 'text-primary font-bold bg-surface-container-low' : 'text-secondary hover:bg-surface-container-low'}`}
@@ -117,12 +164,12 @@ export default function Navbar() {
 
           {session ? (
             <button onClick={handleSignOut} className="hidden sm:block bg-surface-container-low border border-border-subtle text-primary px-4 py-2 rounded-full font-label-caps text-label-caps hover:bg-surface-container-high active:scale-95 transition-all">
-              Çıkış
+              {t('btn_signout')}
             </button>
           ) : (
             <Link to="/login" className="hidden sm:block">
               <button className="bg-primary text-on-primary px-6 py-2 rounded-full font-label-caps text-label-caps active:scale-95 transition-all hover:bg-secondary">
-                Giriş
+                {t('btn_signin')}
               </button>
             </Link>
           )}
@@ -137,42 +184,44 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-md border-b border-border-subtle shadow-lg py-6 px-gutter flex flex-col gap-6 z-40">
-          <Link 
-            to="/" 
-            onClick={() => setMobileMenuOpen(false)}
-            className={`font-body-md text-lg transition-colors ${isActive('/') ? 'text-primary font-bold' : 'text-secondary'}`}
-          >
-            Vitrin
-          </Link>
-          <Link 
-            to="/services" 
-            onClick={() => setMobileMenuOpen(false)}
-            className={`font-body-md text-lg transition-colors ${isActive('/services') ? 'text-primary font-bold' : 'text-secondary'}`}
-          >
-            Hizmetlerimiz
-          </Link>
-          <Link 
-            to="/dashboard" 
-            onClick={() => setMobileMenuOpen(false)}
-            className={`font-body-md text-lg transition-colors ${isActive('/dashboard') ? 'text-primary font-bold' : 'text-secondary'}`}
-          >
-            Panel
-          </Link>
-          <hr className="border-border-subtle" />
-          {session ? (
-             <button onClick={() => { handleSignOut(); setMobileMenuOpen(false); }} className="text-left font-body-md text-lg text-primary transition-colors">
-               Çıkış
-             </button>
-          ) : (
-             <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="font-body-md text-lg text-primary font-bold transition-colors">
-               Giriş
-             </Link>
-          )}
-        </div>
-      )}
+      {/* Mobile Menu with animation */}
+      <div 
+        className={`md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-md border-b border-border-subtle shadow-lg px-gutter flex flex-col gap-6 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileMenuOpen ? 'max-h-96 py-6 opacity-100' : 'max-h-0 py-0 opacity-0'
+        }`}
+      >
+        <Link 
+          to="/" 
+          onClick={() => setMobileMenuOpen(false)}
+          className={`font-body-md text-lg transition-colors ${isActive('/') ? 'text-primary font-bold' : 'text-secondary'}`}
+        >
+          {t('nav_showroom')}
+        </Link>
+        <Link 
+          to="/services" 
+          onClick={() => setMobileMenuOpen(false)}
+          className={`font-body-md text-lg transition-colors ${isActive('/services') ? 'text-primary font-bold' : 'text-secondary'}`}
+        >
+          {t('nav_services')}
+        </Link>
+        <Link 
+          to="/dashboard" 
+          onClick={() => setMobileMenuOpen(false)}
+          className={`font-body-md text-lg transition-colors ${isActive('/dashboard') ? 'text-primary font-bold' : 'text-secondary'}`}
+        >
+          {t('nav_panel')}
+        </Link>
+        <hr className="border-border-subtle" />
+        {session ? (
+           <button onClick={() => { handleSignOut(); setMobileMenuOpen(false); }} className="text-left font-body-md text-lg text-primary transition-colors">
+             {t('btn_signout')}
+           </button>
+        ) : (
+           <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="font-body-md text-lg text-primary font-bold transition-colors">
+             {t('btn_signin')}
+           </Link>
+        )}
+      </div>
     </nav>
   );
 }

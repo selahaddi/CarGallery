@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 py-12 px-gutter max-w-container-max mx-auto">
         <div className="md:col-span-4">
           <div className="font-h3 text-h3 text-primary mb-4">AutoRaten</div>
-          <p className="font-label-caps text-label-caps text-secondary">© 2024 AutoRaten. Technical precision in mobility.</p>
+          <p className="font-label-caps text-label-caps text-secondary">© {new Date().getFullYear()} AutoRaten. Technical precision in mobility.</p>
         </div>
         <div className="md:col-span-8 flex flex-wrap gap-8 md:justify-end mt-8 md:mt-0">
           <a href="#" className="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity">

@@ -66,8 +66,8 @@ export default function Home() {
     );
   }
 
-  const fleetValue = contents.reduce((acc, val) => acc + (val.price || 0), 0);
-  const formattedFleetValue = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(fleetValue || 2400000);
+
+
 
   return (
     <>

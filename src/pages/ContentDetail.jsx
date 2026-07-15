@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { Loader2, ArrowLeft } from 'lucide-react';
@@ -12,6 +12,13 @@ export default function ContentDetail() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIdx, setLightboxIdx] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [panPosition, setPanPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0 });
+  const panStart = useRef({ x: 0, y: 0 });
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const { language, t } = useLanguage();
 
@@ -178,7 +185,7 @@ export default function ContentDetail() {
               alt={content.title}
               className="relative max-w-full max-h-full object-contain z-10 transition-transform duration-500 drop-shadow-xl p-8"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-20 pointer-events-none opacity-80"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-surface to-transparent z-20 pointer-events-none"></div>
             
             <div className="absolute bottom-6 sm:bottom-12 left-4 sm:left-gutter z-30 max-w-container-max w-full">
               <p className="text-accent-indigo font-label-caps text-label-caps mb-2 tracking-widest">{t('showroom_subtitle').toUpperCase()}</p>
@@ -278,8 +285,9 @@ export default function ContentDetail() {
                     />
                     <img
                       src={galleryImages[activeImageIdx]}
-                      className="relative max-w-full max-h-full object-contain z-10 transition-all duration-500"
+                      className="relative max-w-full max-h-full object-contain z-10 transition-all duration-500 cursor-pointer hover:scale-[1.02]"
                       alt={`${content.title || 'Araç'} ${t('detail_preview')}`}
+                      onClick={() => { setLightboxIdx(activeImageIdx); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); setLightboxOpen(true); }}
                     />
                   </div>
 
@@ -325,66 +333,93 @@ export default function ContentDetail() {
                     <span className="font-h2 text-h2 text-primary">{content.price ? `${formatNumber(content.price)} €` : '-'}</span>
                   </div>
                   
-                  {/* Calculator sliders */}
-                  <div className="space-y-6 pt-2">
-                    <div>
-                      <div className="flex justify-between text-label-caps font-label-caps text-secondary mb-3">
-                        <span>{t('detail_down_payment')}</span>
-                        <span className="text-primary">{formatNumber(downPayment)} €</span>
-                      </div>
-                      <input
-                        type="range"
-                        min={0}
-                        max={parseFloat(content.price) || 200000}
-                        step={1000}
-                        value={downPayment}
-                        onChange={(e) => handleDownPaymentChange(parseFloat(e.target.value))}
-                        className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-accent-indigo"
-                      />
-                    </div>
+                  {parseFloat(content.price) > 0 ? (
+                    <>
+                      {/* Calculator sliders */}
+                      <div className="space-y-6 pt-2">
+                        <div>
+                          <div className="flex justify-between text-label-caps font-label-caps text-secondary mb-3">
+                            <span>{t('detail_down_payment')}</span>
+                            <span className="text-primary">{formatNumber(downPayment)} €</span>
+                          </div>
+                          <input
+                            type="range"
+                            min={0}
+                            max={parseFloat(content.price)}
+                            step={1000}
+                            value={downPayment}
+                            onChange={(e) => handleDownPaymentChange(parseFloat(e.target.value))}
+                            className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-accent-indigo"
+                          />
+                        </div>
 
-                    <div>
-                      <div className="flex justify-between text-label-caps font-label-caps text-secondary mb-3">
-                        <span>{t('detail_term')}</span>
-                        <span className="text-primary">{termMonths} {t('card_months')}</span>
+                        <div>
+                          <div className="flex justify-between text-label-caps font-label-caps text-secondary mb-3">
+                            <span>{t('detail_term')}</span>
+                            <span className="text-primary">{termMonths} {t('card_months')}</span>
+                          </div>
+                          <input
+                            type="range"
+                            min={12}
+                            max={120}
+                            step={12}
+                            value={termMonths}
+                            onChange={(e) => handleTermChange(parseInt(e.target.value))}
+                            className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-accent-indigo"
+                          />
+                        </div>
                       </div>
-                      <input
-                        type="range"
-                        min={12}
-                        max={84}
-                        step={12}
-                        value={termMonths}
-                        onChange={(e) => handleTermChange(parseInt(e.target.value))}
-                        className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-accent-indigo"
-                      />
-                    </div>
-                  </div>
 
-                  {/* Recalculated Monthly Rate Box */}
-                  <div className="bg-primary text-on-primary p-8 rounded-2xl shadow-lg relative overflow-hidden">
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
-                    
-                    <p className="font-label-caps text-label-caps mb-2 text-white/80">{t('detail_monthly_rate')}</p>
-                    <div className="flex items-baseline gap-2 relative z-10">
-                      <span className="font-h1 text-5xl md:text-6xl text-white tracking-tight">{formatNumber(monthlyRate)}</span>
-                      <span className="text-h3 text-white/80">€/{t('card_months')}</span>
+                      {/* Recalculated Monthly Rate Box */}
+                      <div className="bg-primary text-on-primary p-8 rounded-2xl shadow-lg relative overflow-hidden">
+                        {/* Decorative elements */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
+                        
+                        <p className="font-label-caps text-label-caps mb-2 text-white/80">{t('detail_monthly_rate')}</p>
+                        <div className="flex items-baseline gap-2 relative z-10">
+                          <span className="font-h1 text-5xl md:text-6xl text-white tracking-tight">{formatNumber(monthlyRate)}</span>
+                          <span className="text-h3 text-white/80">€/{t('card_months')}</span>
+                        </div>
+                        <div className="flex flex-col justify-between text-white/70 text-sm mt-6 pt-4 border-t border-white/20 gap-2 relative z-10 font-label-caps">
+                          <div className="flex justify-between">
+                            <span>{t('detail_interest_rate')}: %{content.interest_rate || '3.8'}</span>
+                            <span>{t('detail_term')}: {termMonths} {t('card_months')}</span>
+                          </div>
+                          <div className="flex justify-between border-t border-white/10 pt-2 mt-2">
+                            <span>{t('detail_total_interest')}:</span>
+                            <span>{formatNumber(Math.max(0, (monthlyRate * termMonths) - (parseFloat(content.price) - downPayment)))} €</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>{t('detail_total_cost')}:</span>
+                            <span className="font-bold text-white">{formatNumber((monthlyRate * termMonths) + downPayment)} €</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4 mt-8">
+                        <button
+                          onClick={() => setIsModalOpen(true)}
+                          className="w-full bg-accent-indigo hover:bg-accent-indigo/90 text-white py-5 rounded-xl font-label-caps text-label-caps transition-all duration-300 shadow-lg shadow-accent-indigo/20 active:scale-[0.98] text-center"
+                        >
+                          {t('detail_request_btn')}
+                        </button>
+                        <p className="text-center text-sm text-secondary font-label-caps">{t('detail_included_services')}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="space-y-4 mt-8">
+                      <div className="bg-surface-container-low p-6 rounded-2xl border border-border-subtle text-center text-secondary">
+                        <span className="material-symbols-outlined text-4xl mb-2 opacity-50">request_quote</span>
+                        <p className="font-label-caps text-sm">{t('detail_price_on_request')}</p>
+                      </div>
+                      <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="w-full bg-accent-indigo hover:bg-accent-indigo/90 text-white py-5 rounded-xl font-label-caps text-label-caps transition-all duration-300 shadow-lg shadow-accent-indigo/20 active:scale-[0.98] text-center"
+                      >
+                        {t('detail_request_btn')}
+                      </button>
                     </div>
-                    <div className="flex flex-col sm:flex-row justify-between text-white/70 text-sm mt-6 pt-4 border-t border-white/20 gap-2 relative z-10 font-label-caps">
-                      <span>{t('detail_interest_rate')}: %{content.interest_rate || '3.8'}</span>
-                      <span>{t('detail_term')}: {termMonths} {t('card_months')}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4 mt-8">
-                    <button
-                      onClick={() => setIsModalOpen(true)}
-                      className="w-full bg-accent-indigo hover:bg-accent-indigo/90 text-white py-5 rounded-xl font-label-caps text-label-caps transition-all duration-300 shadow-lg shadow-accent-indigo/20 active:scale-[0.98] text-center"
-                    >
-                      {t('detail_request_btn')}
-                    </button>
-                    <p className="text-center text-sm text-secondary font-label-caps">{t('detail_included_services')}</p>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -397,7 +432,9 @@ export default function ContentDetail() {
             onClick={() => setIsModalOpen(true)}
             className="w-full bg-accent-indigo text-white py-4 rounded-xl font-label-caps text-label-caps shadow-lg shadow-accent-indigo/20"
           >
-            {`${t('detail_request_btn')} (${content.monthly_rate ? formatNumber(content.monthly_rate) : '0'}€/${t('card_months')})`}
+            {parseFloat(content.price) > 0 
+              ? `${t('detail_request_btn')} (${monthlyRate ? formatNumber(monthlyRate) : '0'}€/${t('card_months')})`
+              : t('detail_request_btn')}
           </button>
         </div>
 
@@ -464,6 +501,144 @@ export default function ContentDetail() {
                 </div>
               </form>
             </div>
+          </div>
+        )}
+
+        {/* Image Lightbox / Zoom Modal */}
+        {lightboxOpen && (
+          <div
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+            style={{ zIndex: 10000 }}
+            onClick={(e) => { if (e.target === e.currentTarget) { setLightboxOpen(false); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); } }}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') { setLightboxOpen(false); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }
+              if (e.key === 'ArrowRight') { setLightboxIdx(prev => (prev + 1) % galleryImages.length); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }
+              if (e.key === 'ArrowLeft') { setLightboxIdx(prev => (prev - 1 + galleryImages.length) % galleryImages.length); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }
+              if (e.key === '+' || e.key === '=') setZoomLevel(prev => Math.min(prev + 0.5, 3));
+              if (e.key === '-') setZoomLevel(prev => Math.max(prev - 0.5, 1));
+            }}
+            tabIndex={0}
+            ref={(el) => el && el.focus()}
+          >
+            {/* Top Controls */}
+            <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+              {/* Zoom Controls */}
+              <div className="flex items-center gap-1 bg-black/50 backdrop-blur-md rounded-full px-2 py-1 border border-white/10">
+                <button
+                  onClick={() => { setZoomLevel(prev => Math.max(prev - 0.5, 1)); setPanPosition({ x: 0, y: 0 }); }}
+                  className="w-8 h-8 flex items-center justify-center text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/10"
+                  title="Zoom Out"
+                >
+                  <span className="material-symbols-outlined text-lg">remove</span>
+                </button>
+                <span className="text-white/70 text-xs font-label-caps min-w-[40px] text-center">{Math.round(zoomLevel * 100)}%</span>
+                <button
+                  onClick={() => setZoomLevel(prev => Math.min(prev + 0.5, 3))}
+                  className="w-8 h-8 flex items-center justify-center text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/10"
+                  title="Zoom In"
+                >
+                  <span className="material-symbols-outlined text-lg">add</span>
+                </button>
+                {zoomLevel > 1 && (
+                  <button
+                    onClick={() => { setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }}
+                    className="w-8 h-8 flex items-center justify-center text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/10"
+                    title="Reset"
+                  >
+                    <span className="material-symbols-outlined text-lg">fit_screen</span>
+                  </button>
+                )}
+              </div>
+              {/* Close */}
+              <button
+                onClick={() => { setLightboxOpen(false); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }}
+                className="w-10 h-10 flex items-center justify-center bg-black/50 backdrop-blur-md text-white/80 hover:text-white rounded-full border border-white/10 hover:bg-white/10 transition-all"
+              >
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+
+            {/* Image Counter */}
+            <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md rounded-full px-4 py-2 border border-white/10 z-10">
+              <span className="text-white/70 text-xs font-label-caps">{lightboxIdx + 1} / {galleryImages.length}</span>
+            </div>
+
+            {/* Prev/Next Arrows */}
+            {galleryImages.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setLightboxIdx(prev => (prev - 1 + galleryImages.length) % galleryImages.length); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 backdrop-blur-md text-white/70 hover:text-white rounded-full border border-white/10 hover:bg-white/10 transition-all z-10"
+                >
+                  <span className="material-symbols-outlined text-2xl">chevron_left</span>
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setLightboxIdx(prev => (prev + 1) % galleryImages.length); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 backdrop-blur-md text-white/70 hover:text-white rounded-full border border-white/10 hover:bg-white/10 transition-all z-10"
+                >
+                  <span className="material-symbols-outlined text-2xl">chevron_right</span>
+                </button>
+              </>
+            )}
+
+            {/* Main Image with Zoom & Pan */}
+            <div
+              className="relative max-w-[90vw] max-h-[85vh] overflow-hidden select-none"
+              style={{ cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'zoom-in' }}
+              onClick={(e) => { if (zoomLevel === 1) { e.stopPropagation(); setZoomLevel(2); } }}
+              onMouseDown={(e) => {
+                if (zoomLevel > 1) {
+                  e.preventDefault();
+                  setIsDragging(true);
+                  dragStart.current = { x: e.clientX, y: e.clientY };
+                  panStart.current = { ...panPosition };
+                }
+              }}
+              onMouseMove={(e) => {
+                if (isDragging && zoomLevel > 1) {
+                  const dx = e.clientX - dragStart.current.x;
+                  const dy = e.clientY - dragStart.current.y;
+                  setPanPosition({ x: panStart.current.x + dx, y: panStart.current.y + dy });
+                }
+              }}
+              onMouseUp={() => setIsDragging(false)}
+              onMouseLeave={() => setIsDragging(false)}
+              onWheel={(e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? -0.25 : 0.25;
+                const newZoom = Math.max(1, Math.min(3, zoomLevel + delta));
+                if (newZoom === 1) setPanPosition({ x: 0, y: 0 });
+                setZoomLevel(newZoom);
+              }}
+            >
+              <img
+                src={galleryImages[lightboxIdx]}
+                alt={`${content.title || ''} - ${lightboxIdx + 1}`}
+                className="max-w-[90vw] max-h-[85vh] object-contain select-none"
+                style={{
+                  transform: `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)`,
+                  transition: isDragging ? 'none' : 'transform 0.3s ease',
+                }}
+                draggable={false}
+              />
+            </div>
+
+            {/* Bottom Thumbnails */}
+            {galleryImages.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black/50 backdrop-blur-md rounded-2xl px-3 py-2 border border-white/10 z-10 max-w-[90vw] overflow-x-auto scrollbar-hide">
+                {galleryImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    onClick={(e) => { e.stopPropagation(); setLightboxIdx(idx); setZoomLevel(1); setPanPosition({ x: 0, y: 0 }); }}
+                    className={`w-14 h-10 rounded-lg overflow-hidden cursor-pointer transition-all flex-shrink-0 border-2 ${
+                      idx === lightboxIdx ? 'border-white opacity-100 shadow-lg' : 'border-transparent opacity-50 hover:opacity-80'
+                    }`}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover" draggable={false} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

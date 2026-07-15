@@ -5,7 +5,7 @@
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     position: relative;
-    z-index: 50; /* Ensure it stays above other content */
+    z-index: 1; /* Lowered from 50 to prevent z-index clash with Navbar (z-50) */
     width: 100vw;
     margin-left: calc(-50vw + 50%); /* Full width hack if inside a container */
     margin-bottom: -100vh; /* Sitenin geri kalanını videonun altına çeker */
@@ -16,7 +16,7 @@
 .scroll-test-wrapper .scroll-container {
     height: 800vh; 
     position: relative;
-    pointer-events: auto; /* Scroll bar'ın düzgün çalışması için */
+    pointer-events: none; /* Scroll hala window scroll ile çalışır, burada pointer-events gerekmez */
 }
 
 /* Canvas'ı ekranın görünür kısmında sabit tutar */
@@ -31,6 +31,7 @@
     align-items: center;
     background-color: #000;
     will-change: opacity;
+    pointer-events: none; /* Video tıklanabilir olmamalı */
 }
 
 .scroll-test-wrapper #video-canvas {
