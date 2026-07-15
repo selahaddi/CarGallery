@@ -146,7 +146,7 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     y += box_h + 60
     
     # 3. Finance Details Box
-    fin_h = 1300
+    fin_h = 1600
     draw.rounded_rectangle([(200, y), (2280, y + fin_h)], radius=24, outline=brand_border, width=3)
     
     fy = y + 60
@@ -159,17 +159,26 @@ def create_offer_pdf(json_file_path, output_pdf_path):
         price = float(car.get('price', 0) or 0)
         down_payment = float(car.get('down_payment', 0) or 0)
         monthly_rate = float(car.get('monthly_rate', 0) or 0)
+        term_months = int(car.get('term_months', 48) or 48)
+        interest_rate = float(car.get('interest_rate', 3.8) or 3.8)
     except:
         price = down_payment = monthly_rate = 0.0
+        term_months = 48
+        interest_rate = 3.8
         
     net_loan = price - down_payment
+    total_loan_payment = monthly_rate * term_months
+    total_interest = max(0.0, total_loan_payment - net_loan) if price > 0 else 0.0
+    total_cost = total_loan_payment + down_payment if price > 0 else 0.0
     
     rows = [
         ("Fahrzeugpreis (Araç Fiyatı):", f"{price:,.2f} EUR"),
         ("Anzahlung (Peşinat):", f"{down_payment:,.2f} EUR"),
         ("Nettodarlehensbetrag (Net Kredi):", f"{net_loan:,.2f} EUR"),
-        ("Laufzeit (Vade):", f"{car.get('term_months', 48)} Monate"),
-        ("Sollzins p.a. (Yıllık Faiz):", f"{car.get('interest_rate', 1.89)} %")
+        ("Laufzeit (Vade):", f"{term_months} Monate"),
+        ("Sollzins p.a. (Yıllık Faiz):", f"{interest_rate} %"),
+        ("Gesamtzins (Toplam Faiz):", f"{total_interest:,.2f} EUR"),
+        ("Gesamtkosten (Toplam Ödenecek):", f"{total_cost:,.2f} EUR")
     ]
     
     for lbl, val in rows:

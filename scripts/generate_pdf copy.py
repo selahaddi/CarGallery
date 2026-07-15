@@ -77,13 +77,29 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     y_offset = 800
     line_spacing = 60
     
+    try:
+        term_months = int(car.get('term_months', 48) or 48)
+    except:
+        term_months = 48
+        
+    try:
+        interest_rate = float(car.get('interest_rate', 3.8) or 3.8)
+    except:
+        interest_rate = 3.8
+        
+    total_loan_payment = monthly_rate * term_months
+    total_interest = max(0.0, total_loan_payment - net_loan) if price > 0 else 0.0
+    total_cost = total_loan_payment + down_payment if price > 0 else 0.0
+    
     # Sol kolon etiketleri, Sağ kolon değerleri
     details = [
         ("Fahrzeugpreis (Araç Fiyatı):", f"{price:,.2f} EUR"),
         ("Anzahlung (Peşinat):", f"{down_payment:,.2f} EUR"),
         ("Nettodarlehensbetrag (Net Kredi):", f"{net_loan:,.2f} EUR"),
-        ("Laufzeit (Vade):", f"{car.get('term_months', 48)} Monate"),
-        ("Sollzins p.a. (Yıllık Faiz):", f"{car.get('interest_rate', 3.8)} %")
+        ("Laufzeit (Vade):", f"{term_months} Monate"),
+        ("Sollzins p.a. (Yıllık Faiz):", f"{interest_rate} %"),
+        ("Gesamtzins (Toplam Faiz):", f"{total_interest:,.2f} EUR"),
+        ("Gesamtkosten (Toplam Ödenecek):", f"{total_cost:,.2f} EUR")
     ]
     
     for label, value in details:
