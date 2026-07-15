@@ -66,6 +66,35 @@ def create_offer_pdf(json_file_path, output_pdf_path):
 
     # 2. Grid (Customer & Vehicle)
     box_h = 900
+    # Pre-calculate model name lines
+    vx = 1280
+    mod_w = draw.textlength("Modell: ", font=font_label_sm)
+    car_title = car.get('title', 'N/A').upper()
+    max_title_w = 2230 - (vx + 50 + mod_w + 10)
+    
+    title_words = car_title.split()
+    title_lines = []
+    curr_line = ""
+    for w in title_words:
+        test_line = curr_line + w + " "
+        if draw.textlength(test_line, font=font_val_lg) <= max_title_w:
+            curr_line = test_line
+        else:
+            if curr_line:
+                title_lines.append(curr_line.strip())
+            curr_line = w + " "
+    if curr_line:
+        title_lines.append(curr_line.strip())
+        
+    if not title_lines:
+        title_lines = [""]
+        
+    num_lines = len(title_lines)
+    extra_h = 0
+    if num_lines > 1:
+        extra_h = (num_lines - 1) * 45
+        box_h += extra_h
+
     # Customer Box
     draw.rounded_rectangle([(200, y), (1200, y + box_h)], radius=24, outline=brand_border, width=3)
     
@@ -86,7 +115,6 @@ def create_offer_pdf(json_file_path, output_pdf_path):
         cy += 100
 
     # Vehicle Box
-    vx = 1280
     draw.rounded_rectangle([(vx, y), (2280, y + box_h)], radius=24, outline=brand_border, width=3)
     
     vy = y + 50
@@ -95,10 +123,13 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     
     vy += 100
     draw.text((vx + 50, vy), "Modell: ", font=font_label_sm, fill=brand_gray)
-    mod_w = draw.textlength("Modell: ", font=font_label_sm)
-    draw.text((vx + 50 + mod_w + 10, vy - 6), car.get('title', 'N/A').upper(), font=font_val_lg, fill=brand_black)
     
-    vy += 80
+    text_y = vy - 6
+    for t_line in title_lines:
+        draw.text((vx + 50 + mod_w + 10, text_y), t_line, font=font_val_lg, fill=brand_black)
+        text_y += 45
+    
+    vy += 80 + extra_h
     # Image Area
     img_box_x1, img_box_y1 = vx + 50, vy
     img_box_x2, img_box_y2 = 2230, y + box_h - 50

@@ -50,11 +50,32 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     
     # --- ARAÇ BİLGİLERİ ---
     draw.text((100, 530), "Fahrzeug (Araç):", font=font_heading, fill=text_white)
-    draw.text((100, 580), f"Modell: {car.get('title', 'N/A')}", font=font_body, fill=brand_red)
+    
+    car_title = car.get('title', 'N/A').upper()
+    title_words = car_title.split()
+    title_lines = []
+    curr_line = "Modell: "
+    for w in title_words:
+        test_line = curr_line + w + " "
+        if draw.textlength(test_line, font=font_body) <= 1040:
+            curr_line = test_line
+        else:
+            if curr_line:
+                title_lines.append(curr_line.strip())
+            curr_line = w + " "
+    if curr_line:
+        title_lines.append(curr_line.strip())
+        
+    y_car = 580
+    for t_line in title_lines:
+        draw.text((100, y_car), t_line, font=font_body, fill=brand_red)
+        y_car += 40
+        
+    y_fin_table = y_car + 60
     
     # --- FİNANSMAN TABLOSU ---
-    draw.line([(100, 680), (1140, 680)], fill=text_gray, width=2)
-    draw.text((100, 720), "Ihre Finanzierungsdetails:", font=font_heading, fill=text_white)
+    draw.line([(100, y_fin_table), (1140, y_fin_table)], fill=text_gray, width=2)
+    draw.text((100, y_fin_table + 40), "Ihre Finanzierungsdetails:", font=font_heading, fill=text_white)
     
     # Satır satır hesaplamalar ve yazdırma
     try:
@@ -74,7 +95,7 @@ def create_offer_pdf(json_file_path, output_pdf_path):
         
     net_loan = price - down_payment
     
-    y_offset = 800
+    y_offset = y_fin_table + 120
     line_spacing = 60
     
     try:
@@ -114,9 +135,10 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     draw.text((800, y_offset), f"{monthly_rate:,.2f} EUR", font=font_highlight, fill=brand_red)
     
     # --- ALT BİLGİ (FOOTER) ---
-    draw.line([(100, 1500), (1140, 1500)], fill=text_gray, width=2)
+    footer_y = y_offset + 180
+    draw.line([(100, footer_y), (1140, footer_y)], fill=text_gray, width=2)
     footer_text = "Alle Preisangaben inklusive Mehrwertsteuer. Dieses Angebot ist unverbindlich."
-    draw.text((100, 1530), footer_text, font=ImageFont.truetype("Montserrat-Regular.ttf", 25), fill=text_gray)
+    draw.text((100, footer_y + 30), footer_text, font=ImageFont.truetype("Montserrat-Regular.ttf", 25), fill=text_gray)
     
     # 4. Resmi PDF olarak kaydet
     img.save(output_pdf_path, "PDF", resolution=100.0)
