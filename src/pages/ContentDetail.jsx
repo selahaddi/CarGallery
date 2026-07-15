@@ -358,15 +358,21 @@ export default function ContentDetail() {
                             <span>{t('detail_term')}</span>
                             <span className="text-primary">{termMonths} {t('card_months')}</span>
                           </div>
-                          <input
-                            type="range"
-                            min={12}
-                            max={120}
-                            step={12}
-                            value={termMonths}
-                            onChange={(e) => handleTermChange(parseInt(e.target.value))}
-                            className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-accent-indigo"
-                          />
+                          <div className="flex flex-wrap gap-2">
+                            {[12, 24, 36, 48, 60, 72, 84].map((term) => (
+                              <button
+                                key={term}
+                                onClick={() => handleTermChange(term)}
+                                className={`flex-1 min-w-[50px] py-2 rounded-lg text-sm font-label-caps transition-all border ${
+                                  termMonths === term
+                                    ? 'bg-accent-indigo text-white border-accent-indigo shadow-md shadow-accent-indigo/20'
+                                    : 'bg-surface-container text-secondary border-border-subtle hover:border-accent-indigo/50 hover:text-primary'
+                                }`}
+                              >
+                                {term}
+                              </button>
+                            ))}
+                          </div>
                         </div>
                       </div>
 
