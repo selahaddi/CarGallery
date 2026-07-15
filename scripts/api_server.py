@@ -70,6 +70,35 @@ def create_offer_pdf_stream(data):
 
     # 2. Grid (Customer & Vehicle)
     box_h = 900
+    # Pre-calculate model name lines
+    vx = 1280
+    mod_w = draw.textlength("Modell: ", font=font_label_sm)
+    car_title = car.get('title', 'N/A').upper()
+    max_title_w = 2230 - (vx + 50 + mod_w + 10)
+    
+    title_words = car_title.split()
+    title_lines = []
+    curr_line = ""
+    for w in title_words:
+        test_line = curr_line + w + " "
+        if draw.textlength(test_line, font=font_val_lg) <= max_title_w:
+            curr_line = test_line
+        else:
+            if curr_line:
+                title_lines.append(curr_line.strip())
+            curr_line = w + " "
+    if curr_line:
+        title_lines.append(curr_line.strip())
+        
+    if not title_lines:
+        title_lines = [""]
+        
+    num_lines = len(title_lines)
+    extra_h = 0
+    if num_lines > 1:
+        extra_h = (num_lines - 1) * 45
+        box_h += extra_h
+
     # Customer Box
     draw.rounded_rectangle([(200, y), (1200, y + box_h)], radius=24, outline=brand_border, width=3)
     
@@ -90,7 +119,6 @@ def create_offer_pdf_stream(data):
         cy += 100
 
     # Vehicle Box
-    vx = 1280
     draw.rounded_rectangle([(vx, y), (2280, y + box_h)], radius=24, outline=brand_border, width=3)
     
     vy = y + 50
@@ -99,10 +127,13 @@ def create_offer_pdf_stream(data):
     
     vy += 100
     draw.text((vx + 50, vy), "Modell: ", font=font_label_sm, fill=brand_gray)
-    mod_w = draw.textlength("Modell: ", font=font_label_sm)
-    draw.text((vx + 50 + mod_w + 10, vy - 6), car.get('title', 'N/A').upper(), font=font_val_lg, fill=brand_black)
     
-    vy += 80
+    text_y = vy - 6
+    for t_line in title_lines:
+        draw.text((vx + 50 + mod_w + 10, text_y), t_line, font=font_val_lg, fill=brand_black)
+        text_y += 45
+    
+    vy += 80 + extra_h
     # Image Area
     img_box_x1, img_box_y1 = vx + 50, vy
     img_box_x2, img_box_y2 = 2230, y + box_h - 50
@@ -149,7 +180,7 @@ def create_offer_pdf_stream(data):
     y += box_h + 60
     
     # 3. Finance Details Box
-    fin_h = 1300
+    fin_h = 1600
     draw.rounded_rectangle([(200, y), (2280, y + fin_h)], radius=24, outline=brand_border, width=3)
     
     fy = y + 60
@@ -162,17 +193,26 @@ def create_offer_pdf_stream(data):
         price = float(car.get('price', 0) or 0)
         down_payment = float(car.get('down_payment', 0) or 0)
         monthly_rate = float(car.get('monthly_rate', 0) or 0)
+        term_months = int(car.get('term_months', 48) or 48)
+        interest_rate = float(car.get('interest_rate', 3.8) or 3.8)
     except:
         price = down_payment = monthly_rate = 0.0
+        term_months = 48
+        interest_rate = 3.8
         
     net_loan = price - down_payment
+    total_loan_payment = monthly_rate * term_months
+    total_interest = max(0.0, total_loan_payment - net_loan) if price > 0 else 0.0
+    total_cost = total_loan_payment + down_payment if price > 0 else 0.0
     
     rows = [
         ("Fahrzeugpreis (Araç Fiyatı):", f"{price:,.2f} EUR"),
         ("Anzahlung (Peşinat):", f"{down_payment:,.2f} EUR"),
         ("Nettodarlehensbetrag (Net Kredi):", f"{net_loan:,.2f} EUR"),
-        ("Laufzeit (Vade):", f"{car.get('term_months', 48)} Monate"),
-        ("Sollzins p.a. (Yıllık Faiz):", f"{car.get('interest_rate', 1.89)} %")
+        ("Laufzeit (Vade):", f"{term_months} Monate"),
+        ("Sollzins p.a. (Yıllık Faiz):", f"{interest_rate} %"),
+        ("Gesamtzins (Toplam Faiz):", f"{total_interest:,.2f} EUR"),
+        ("Gesamtkosten (Toplam Ödenecek):", f"{total_cost:,.2f} EUR")
     ]
     
     for lbl, val in rows:
