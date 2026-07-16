@@ -92,12 +92,12 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-0 w-full liquid-glass-nav transition-all duration-300 ease-in-out ${
-        navVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-7xl liquid-glass-nav rounded-full transition-all duration-300 ease-in-out ${
+        navVisible ? 'translate-y-0 opacity-100' : '-translate-y-[150%] opacity-0'
       } ${scrolled ? 'liquid-glass-nav--scrolled' : ''}`}
       style={{ zIndex: 9999 }}
     >
-      <div className="flex justify-between items-center h-nav-height px-gutter max-w-container-max mx-auto">
+      <div className="flex justify-between items-center h-14 md:h-16 px-4 md:px-8 w-full">
         <div className="flex items-center gap-12">
           <Link to="/" className="font-h3 text-h3 tracking-tighter text-primary flex items-center gap-2">
             <span className="w-2 h-2 bg-primary rounded-full hidden sm:block"></span>
@@ -186,8 +186,8 @@ export default function Navbar() {
 
       {/* Mobile Menu with animation */}
       <div 
-        className={`md:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-md border-b border-border-subtle shadow-lg px-gutter flex flex-col gap-6 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileMenuOpen ? 'max-h-96 py-6 opacity-100' : 'max-h-0 py-0 opacity-0'
+        className={`md:hidden absolute top-full mt-2 left-0 w-full bg-surface/95 backdrop-blur-xl border border-border-subtle shadow-lg rounded-2xl px-6 flex flex-col gap-6 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileMenuOpen ? 'max-h-96 py-6 opacity-100' : 'max-h-0 py-0 opacity-0 border-transparent'
         }`}
       >
         <Link 

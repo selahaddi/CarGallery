@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Selahaddin Serttaş — AI Developer &amp; Astronomer</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+
+                "on-primary-container": "var(--on-primary-container)",
+                "surface": "var(--surface)",
+                "primary-fixed-dim": "var(--primary-fixed-dim)",
+                "surface-bright": "var(--surface-bright)",
+                "error": "var(--error)",
+                "surface-tint": "var(--surface-tint)",
+                "primary": "var(--primary)",
+                "outline": "var(--outline)",
+                "on-secondary-fixed": "var(--on-secondary-fixed)",
+                "surface-dim": "var(--surface-dim)",
+                "tertiary-container": "var(--tertiary-container)",
+                "outline-variant": "var(--outline-variant)",
+                "on-tertiary-fixed": "var(--on-tertiary-fixed)",
+                "on-primary": "var(--on-primary)",
+                "secondary-fixed-dim": "var(--secondary-fixed-dim)",
+                "on-tertiary-container": "var(--on-tertiary-container)",
+                "inverse-on-surface": "var(--inverse-on-surface)",
+                "tertiary": "var(--tertiary)",
+                "surface-container": "var(--surface-container)",
+                "secondary": "var(--secondary)",
+                "on-secondary-container": "var(--on-secondary-container)",
+                "on-error": "var(--on-error)",
+                "on-secondary-fixed-variant": "var(--on-secondary-fixed-variant)",
+                "on-primary-fixed-variant": "var(--on-primary-fixed-variant)",
+                "surface-container-highest": "var(--surface-container-highest)",
+                "on-secondary": "var(--on-secondary)",
+                "inverse-surface": "var(--inverse-surface)",
+                "inverse-primary": "var(--inverse-primary)",
+                "tertiary-fixed-dim": "var(--tertiary-fixed-dim)",
+                "on-background": "var(--on-background)",
+                "surface-variant": "var(--surface-variant)",
+                "surface-container-high": "var(--surface-container-high)",
+                "on-error-container": "var(--on-error-container)",
+                "secondary-container": "var(--secondary-container)",
+                "on-primary-fixed": "var(--on-primary-fixed)",
+                "primary-container": "var(--primary-container)",
+                "tertiary-fixed": "var(--tertiary-fixed)",
+                "surface-container-lowest": "var(--surface-container-lowest)",
+                "error-container": "var(--error-container)",
+                "secondary-fixed": "var(--secondary-fixed)",
+                "on-surface": "var(--on-surface)",
+                "on-tertiary": "var(--on-tertiary)",
+                "primary-fixed": "var(--primary-fixed)",
+                "on-tertiary-fixed-variant": "var(--on-tertiary-fixed-variant)",
+                "surface-container-low": "var(--surface-container-low)",
+                "background": "var(--background)",
+                "on-surface-variant": "var(--on-surface-variant)",
+        
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "2xl": "2rem",
+                "3xl": "2.5rem",
+                "4xl": "3.5rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "grid-columns": "12",
+                "section-gap": "140px",
+                "element-gap": "32px",
+                "base": "8px",
+                "grid-gutter": "32px",
+                "container-padding": "48px"
+        }
+      },
+    },
+  }
+</script>
+<style>
+:root {
+  --on-primary-container: #fbfcff;
+  --surface: #ffffff;
+  --primary-fixed-dim: #1c6e8c;
+  --surface-bright: #ffffff;
+  --error: #ba1a1a;
+  --surface-tint: #1c6e8c;
+  --primary: #1c6e8c;
+  --outline: #605856;
+  --on-secondary-fixed: #fbfcff;
+  --surface-dim: #d0ccd0;
+  --tertiary-container: #d0ccd0;
+  --outline-variant: #d0ccd0;
+  --on-tertiary-fixed: #605856;
+  --on-primary: #ffffff;
+  --secondary-fixed-dim: #274156;
+  --on-tertiary-container: #605856;
+  --inverse-on-surface: #fbfcff;
+  --tertiary: #d0ccd0;
+  --surface-container: #fbfcff;
+  --secondary: #274156;
+  --on-secondary-container: #fbfcff;
+  --on-error: #ffffff;
+  --on-secondary-fixed-variant: #fbfcff;
+  --on-primary-fixed-variant: #fbfcff;
+  --surface-container-highest: #d0ccd0;
+  --on-secondary: #ffffff;
+  --inverse-surface: #605856;
+  --inverse-primary: #274156;
+  --tertiary-fixed-dim: #d0ccd0;
+  --on-background: #605856;
+  --surface-variant: #d0ccd0;
+  --surface-container-high: #d0ccd0;
+  --on-error-container: #93000a;
+  --secondary-container: #274156;
+  --on-primary-fixed: #fbfcff;
+  --primary-container: #1c6e8c;
+  --tertiary-fixed: #d0ccd0;
+  --surface-container-lowest: #ffffff;
+  --error-container: #ffdad6;
+  --secondary-fixed: #274156;
+  --on-surface: #605856;
+  --on-tertiary: #605856;
+  --primary-fixed: #1c6e8c;
+  --on-tertiary-fixed-variant: #605856;
+  --surface-container-low: #fbfcff;
+  --background: #fdfbf7;
+  --on-surface-variant: #605856;
+}
+
+.dark {
+  --on-primary-container: #fbfcff;
+  --surface: #042425;
+  --primary-fixed-dim: #1c6e8c;
+  --surface-bright: #042425;
+  --error: #ba1a1a;
+  --surface-tint: #1c6e8c;
+  --primary: #1c6e8c;
+  --outline: #605856;
+  --on-secondary-fixed: #fbfcff;
+  --surface-dim: #042425;
+  --tertiary-container: #605856;
+  --outline-variant: #605856;
+  --on-tertiary-fixed: #fbfcff;
+  --on-primary: #fbfcff;
+  --secondary-fixed-dim: #274156;
+  --on-tertiary-container: #fbfcff;
+  --inverse-on-surface: #fbfcff;
+  --tertiary: #605856;
+  --surface-container: #042425;
+  --secondary: #274156;
+  --on-secondary-container: #fbfcff;
+  --on-error: #fbfcff;
+  --on-secondary-fixed-variant: #fbfcff;
+  --on-primary-fixed-variant: #fbfcff;
+  --surface-container-highest: #042425;
+  --on-secondary: #fbfcff;
+  --inverse-surface: #201d20;
+  --inverse-primary: #1c6e8c;
+  --tertiary-fixed-dim: #605856;
+  --on-background: #fbfcff;
+  --surface-variant: #042425;
+  --surface-container-high: #042425;
+  --on-error-container: #93000a;
+  --secondary-container: #274156;
+  --on-primary-fixed: #fbfcff;
+  --primary-container: #1c6e8c;
+  --tertiary-fixed: #605856;
+  --surface-container-lowest: #201d20;
+  --error-container: #ffdad6;
+  --secondary-fixed: #274156;
+  --on-surface: #fbfcff;
+  --on-tertiary: #fbfcff;
+  --primary-fixed: #1c6e8c;
+  --on-tertiary-fixed-variant: #fbfcff;
+  --surface-container-low: #191716;
+  --background: #191716;
+  --on-surface-variant: #fbfcff;
+}
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--background);
+    color: var(--on-background);
+    overflow-x: hidden;
+  }
+
+  /* 3D TACTILE CARDS */
+  .tactile-card {
+    background: #ffffff;
+    border-radius: 2rem;
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.05),
+      0 1px 3px rgba(0, 0, 0, 0.02),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) translateZ(0);
+    will-change: transform, box-shadow;
+  }
+  .dark .tactile-card {
+    background: #191716;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.2),
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  .tactile-card:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.08);
+  }
+  .dark .tactile-card:hover {
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+  }
+
+  /* VOLUMETRIC BUTTONS */
+  .volumetric-btn {
+    position: relative;
+    background: linear-gradient(180deg, var(--primary) 0%, var(--primary-fixed-dim) 100%);
+    box-shadow: 
+      0 10px 20px rgba(28, 110, 140, 0.2),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  .volumetric-btn:active {
+    transform: translateY(2px);
+    box-shadow: 
+      0 4px 8px rgba(1, 75, 61, 0.2),
+      inset 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .volumetric-btn-secondary {
+    background: linear-gradient(180deg, #ffffff 0%, #f0ede9 100%);
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+    color: #1a1c1d;
+  }
+
+  /* PREMIUM GLASSMORPHISM */
+  .premium-glass {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  /* LIQUID GLASS NAV */
+  .liquid-glass-nav {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 10px 30px -10px rgba(0, 0, 0, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  }
+  .dark .liquid-glass-nav {
+    background: linear-gradient(135deg, rgba(4, 36, 37, 0.4) 0%, rgba(4, 36, 37, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 10px 30px -10px rgba(0, 0, 0, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+
+  /* ORGANIC BACKGROUND */
+  .bg-blob {
+    position: fixed;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.4;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .blob-orange { top: -10%; right: -5%; width: 600px; height: 600px; background: var(--secondary); animation: float 15s infinite alternate; }
+  .blob-mint { bottom: -10%; left: -5%; width: 500px; height: 500px; background: var(--primary); animation: float 18s infinite alternate-reverse; }
+  .blob-cream { top: 30%; left: 10%; width: 400px; height: 400px; background: var(--tertiary); }
+
+  @keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+  }
+
+  /* 3D DECOR */
+  .decor-shape {
+    position: absolute;
+    background: white;
+    box-shadow: 
+      20px 20px 40px rgba(0,0,0,0.05),
+      inset -10px -10px 20px rgba(0,0,0,0.02),
+      inset 10px 10px 20px rgba(255,255,255,0.8);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .sphere { border-radius: 50%; }
+  .torus { 
+    border-radius: 50%;
+    border: 40px solid white;
+    background: transparent;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 40s linear infinite;
+    width: max-content;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* PROJECT MODAL */
+  .project-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 24px;
+  }
+  .project-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Mobile: make overlay itself scrollable so full modal is reachable */
+  @media (max-width: 767px) {
+    .project-modal-overlay {
+      align-items: flex-start !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px !important;
+      padding-top: 24px !important;
+      padding-bottom: 40px !important;
+    }
+    .project-modal {
+      max-height: none !important;
+      overflow-y: visible !important;
+      margin-top: 0 !important;
+      margin-bottom: 24px !important;
+    }
+  }
+  .project-modal {
+    background: #ffffff;
+    border-radius: 2rem;
+    box-shadow:
+      0 40px 80px rgba(0, 0, 0, 0.15),
+      0 1px 3px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.92) translateY(30px);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(28,110,140,0.3) transparent;
+  }
+  .dark .project-modal {
+    background: #191716;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 40px 80px rgba(0, 0, 0, 0.5),
+      0 1px 3px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    scrollbar-color: rgba(28,110,140,0.4) transparent;
+  }
+  .project-modal-overlay.active .project-modal {
+    transform: scale(1) translateY(0);
+  }
+  .project-modal::-webkit-scrollbar { width: 6px; }
+  .project-modal::-webkit-scrollbar-track { background: transparent; }
+  .project-modal::-webkit-scrollbar-thumb { background: rgba(28,110,140,0.3); border-radius: 3px; }
+  .dark .project-modal::-webkit-scrollbar-thumb { background: rgba(28,110,140,0.5); }
+
+  /* MOBILE RESPONSIVE OVERRIDES */
+  @media (max-width: 767px) {
+    .tactile-card { transform: none !important; }
+    .tactile-card:hover { transform: translateY(-4px) !important; }
+    /* Slider arrows & PDF buttons always visible on touch devices */
+    .aspect-video > button,
+    .aspect-video > a {
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+    .space-y-section-gap > * + * {
+      margin-top: 60px !important;
+    }
+    /* Reduce blob sizes for mobile */
+    .blob-orange { width: 250px !important; height: 250px !important; right: -15% !important; }
+    .blob-mint { width: 200px !important; height: 200px !important; left: -15% !important; }
+    .blob-cream { width: 150px !important; height: 150px !important; }
+    /* Hide decorative 3D shapes on mobile */
+    .decor-shape { display: none !important; }
+    /* Fix research canvas: use shorter aspect ratio */
+    #research .aspect-square { aspect-ratio: 4/3 !important; }
+    /* Fix modal slider arrows - always visible */
+    .project-modal-overlay .aspect-video > button {
+      opacity: 1 !important;
+    }
+    /* Fix modal padding & border radius */
+    .project-modal { padding: 20px !important; border-radius: 1.25rem !important; }
+    /* Modal close button: smaller on mobile */
+    .project-modal .shrink-0.w-12.h-12 { width: 2.5rem; height: 2.5rem; }
+    /* Modal title: allow more space */
+    .project-modal .pr-8 { padding-right: 3rem !important; }
+    /* Contact buttons: stack vertically */
+    #contact .flex.justify-center.gap-6 {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+    #contact .flex.justify-center.gap-6 > a {
+      width: 100% !important;
+      max-width: 320px !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+    /* Footer: stack and center */
+    footer .flex.gap-10 {
+      gap: 1.5rem !important;
+    }
+    /* Expertise heading fix */
+    #skills h2.text-5xl {
+      font-size: 1.875rem !important;
+      line-height: 2.25rem !important;
+    }
+  }
+
+  /* Tablet (768px – 1023px) refinements */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .blob-orange { width: 400px !important; height: 400px !important; }
+    .blob-mint { width: 350px !important; height: 350px !important; }
+    .blob-cream { width: 280px !important; height: 280px !important; }
+  }
+
+  /* Mobile menu */
+  .mobile-menu-overlay {
+    position: fixed; inset: 0; z-index: 45;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+  .mobile-menu-panel {
+    position: fixed; top: 0; right: 0; z-index: 46;
+    width: 280px; height: 100%; background: var(--surface);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow-y: auto;
+  }
+  .dark .mobile-menu-panel {
+    box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+  }
+  .mobile-menu-panel.active { transform: translateX(0); }
+</style>
+
+<style>
+  body.lang-en .lang-tr { display: none !important; }
+  body:not(.lang-en) .lang-en { display: none !important; }
+</style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+<!-- BACKGROUND BLOBS -->
+<div class="bg-blob blob-orange"></div>
+<div class="bg-blob blob-mint"></div>
+<div class="bg-blob blob-cream"></div>
+<!-- NAV -->
+<nav class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-6xl liquid-glass-nav rounded-full z-50 flex justify-between items-center px-4 md:px-10 py-2.5 md:py-4">
+<a href="#hero" class="text-sm md:text-xl font-bold text-primary tracking-tighter hover:opacity-80 transition-opacity">SELAHADDİN SERTTAŞ</a>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#about"><span class="lang-tr">Hakkımda</span><span class="lang-en">About</span></a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#projects"><span class="lang-tr">Projeler</span><span class="lang-en">Projects</span></a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#skills"><span class="lang-tr">Deneyim</span><span class="lang-en">Experience</span></a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#contact"><span class="lang-tr">İletişim</span><span class="lang-en">Contact</span></a>
+<a class="text-primary font-bold transition-colors text-sm" href="ai-bulten.html"><span class="lang-tr">Ai Bülten</span><span class="lang-en">Ai News</span></a>
+<a class="text-primary font-bold transition-colors text-sm" href="https://wwallspacee.vercel.app/" target="_blank"><span class="lang-tr">Space Wall</span><span class="lang-en">Space Wall</span></a>
+</div>
+<div class="flex items-center gap-2 md:gap-4">
+<button id="themeToggle" onclick="toggleTheme()" class="volumetric-btn-secondary px-3 py-2 rounded-full text-xs font-bold flex items-center gap-2 border border-surface-variant hover:bg-surface-dim transition-colors">
+  <span class="material-symbols-outlined text-[16px]" id="themeIcon">dark_mode</span>
+</button>
+<button id="langToggle"  onclick="toggleLanguage()" class="volumetric-btn-secondary px-3 py-2 rounded-full text-xs font-bold flex items-center gap-2 border border-surface-variant hover:bg-surface-dim transition-colors">
+  <span class="material-symbols-outlined text-[16px]">language</span>
+  <span id="langLabel">EN</span>
+</button>
+<a class="volumetric-btn text-white px-7 py-2.5 rounded-full text-sm font-semibold hidden md:inline-flex" href="mailto:serttas2001@gmail.com"><span class="lang-tr">İletişime Geç</span><span class="lang-en">Get in Touch</span></a>
+<button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+  <span class="material-symbols-outlined text-[22px]" id="mobileMenuIcon">menu</span>
+</button>
+</div>
+</nav>
+<!-- MOBILE MENU -->
+<div class="mobile-menu-overlay md:hidden" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+<div class="mobile-menu-panel md:hidden" id="mobileMenuPanel">
+  <div class="p-8 pt-24">
+    <div class="flex flex-col gap-1">
+      <a href="#about" onclick="toggleMobileMenu()" class="text-on-surface font-semibold text-lg py-3 px-4 rounded-xl hover:bg-surface-container transition-colors"><span class="lang-tr">Hakkımda</span><span class="lang-en">About</span></a>
+      <a href="#projects" onclick="toggleMobileMenu()" class="text-on-surface font-semibold text-lg py-3 px-4 rounded-xl hover:bg-surface-container transition-colors"><span class="lang-tr">Projeler</span><span class="lang-en">Projects</span></a>
+      <a href="#skills" onclick="toggleMobileMenu()" class="text-on-surface font-semibold text-lg py-3 px-4 rounded-xl hover:bg-surface-container transition-colors"><span class="lang-tr">Deneyim</span><span class="lang-en">Experience</span></a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="text-on-surface font-semibold text-lg py-3 px-4 rounded-xl hover:bg-surface-container transition-colors"><span class="lang-tr">İletişim</span><span class="lang-en">Contact</span></a>
+      <a href="ai-bulten.html" class="text-primary font-bold text-lg py-3 px-4 rounded-xl bg-primary/5 transition-colors"><span class="lang-tr">Ai Bülten</span><span class="lang-en">Ai News</span></a>
+      <a href="https://wwallspacee.vercel.app/" target="_blank" class="text-primary font-bold text-lg py-3 px-4 rounded-xl bg-primary/5 transition-colors"><span class="lang-tr">Space Wall</span><span class="lang-en">Space Wall</span></a>
+    </div>
+    <div class="mt-8 pt-8 border-t border-surface-variant">
+      <a class="volumetric-btn text-white px-7 py-3 rounded-full text-sm font-semibold flex items-center justify-center gap-2 w-full" href="mailto:serttas2001@gmail.com">
+        <span class="material-symbols-outlined text-[18px]">mail</span>
+        <span class="lang-tr">İletişime Geç</span><span class="lang-en">Get in Touch</span>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- HERO -->
+<section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 md:px-container-padding overflow-hidden" id="hero">
+<!-- Floating 3D Shapes -->
+<div class="decor-shape sphere w-32 h-32 top-[20%] left-[15%] opacity-40 blur-[2px]"></div>
+<div class="decor-shape torus w-48 h-48 bottom-[15%] right-[10%] opacity-30 rotate-12"></div>
+<div class="decor-shape sphere w-12 h-12 top-[40%] right-[20%] opacity-60"></div>
+<div class="relative z-10 max-w-5xl mx-auto pt-20">
+<div class="inline-flex items-center gap-2 px-5 py-2 rounded-full premium-glass mb-10 text-on-surface-variant reveal">
+<span class="material-symbols-outlined text-[18px] text-secondary">public</span>
+<span class="text-xs font-bold uppercase tracking-[0.2em] text-primary"><span class="lang-tr">Yapay Zeka Geliştiricisi &amp; Astronom — Türkiye</span><span class="lang-en">AI Developer &amp; Astronomer — Turkey</span></span>
+</div>
+<h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-on-background mb-8 tracking-tight reveal">
+<span class="opacity-30 font-light">Selahaddin</span><br/>
+<strong class="text-primary">Serttaş</strong>
+</h1>
+<p class="text-base md:text-xl lg:text-2xl text-on-surface-variant max-w-2xl mx-auto mb-10 md:mb-16 leading-relaxed reveal">
+<span class="lang-tr">Hassas ve geniş ölçekli süreçleri <strong>insan müdahalesi gerektirmeden</strong> yöneten, tam otonom otomasyon sistemleri inşa ediyorum.</span><span class="lang-en">I build <strong>zero-touch</strong> automation systems that operate entirely independent of human input.</span>
+</p>
+<div class="flex justify-center gap-8 md:gap-16 reveal">
+<div class="group">
+<div class="text-3xl md:text-5xl font-bold text-primary mb-2 transition-transform group-hover:scale-110">7+</div>
+<div class="text-[11px] font-bold text-outline uppercase tracking-widest"><span class="lang-tr">Yapay Zeka Projeleri</span><span class="lang-en">AI Projects</span></div>
+</div>
+<div class="group">
+<div class="text-3xl md:text-5xl font-bold text-primary mb-2 transition-transform group-hover:scale-110">4</div>
+<div class="text-[11px] font-bold text-outline uppercase tracking-widest"><span class="lang-tr">Sertifikalar</span><span class="lang-en">Certifications</span></div>
+</div>
+<div class="group">
+<div class="text-3xl md:text-5xl font-bold text-primary mb-2 transition-transform group-hover:scale-110">1</div>
+<div class="text-[11px] font-bold text-outline uppercase tracking-widest"><span class="lang-tr">Yayın</span><span class="lang-en">Publication</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- MARQUEE -->
+<div class="w-full premium-glass py-8 border-y border-white/40 overflow-hidden mb-section-gap">
+<div class="marquee-track flex gap-16 items-center">
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-tertiary"></span> Python</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-secondary"></span> Go / Golang</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-primary"></span> n8n Automation</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-tertiary"></span> GPT-4o Vision</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-secondary"></span> Computer Vision</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-primary"></span> React &amp; Vite</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-tertiary"></span> Astronomical Data</div>
+<!-- Duplicate -->
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-secondary"></span> Go / Golang</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-primary"></span> n8n Automation</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-tertiary"></span> GPT-4o Vision</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-secondary"></span> Computer Vision</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-primary"></span> React & Vite</div>
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-tertiary"></span> Astronomical Data</div>
+</div>
+</div>
+<main class="max-w-7xl mx-auto px-4 md:px-container-padding space-y-section-gap pb-section-gap">
+<!-- ABOUT -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-start" id="about">
+<div class="reveal">
+<div class="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-8 flex items-center gap-5">
+      <span class="lang-tr">01 — Profil</span><span class="lang-en">01 — Profile</span>
+      <div class="h-[1px] bg-primary/20 w-24"></div>
+</div>
+<h2 class="text-3xl md:text-3xl md:text-5xl font-bold text-on-background mb-6 md:mb-10 leading-tight"><span class="lang-tr">Analiz ve Otomasyonun <em class="text-primary not-italic opacity-40 font-light">Mimarisi</em></span><span class="lang-en">The <em class="text-primary not-italic opacity-40 font-light">Architecture</em> of Analysis and Automation</span></h2>
+<div class="text-lg text-on-surface-variant space-y-8 leading-relaxed">
+<p>
+        <span class="lang-tr">Yüksek hassasiyetli veri analizi ve yapay zeka destekli otomasyon konularına güçlü bir şekilde odaklanan bir Astronomi ve Uzay Bilimleri öğrencisiyim. N8N ve Python kullanarak otonom iş akışları inşa etme konusunda uzmanım; aynı zamanda büyük dil modelleri (LLM) ve görüntü işleme (Vision AI) gibi yapay zeka çıktılarını doğruluk ve kültürel uygunluk açısından değerlendirip geliştirme yeteneğine sahibim. Ana dili Türkçe olan ve B1 seviyesinde İngilizce bilen biri olarak, içerik değerlendirmesi ve multimedya analizlerinde hassas ve detaylı analizler sunabiliyorum.</span><span class="lang-en">I am an Astronomy and Space Sciences student with a strong focus on high-precision data analysis and AI-powered automation. I specialize in building autonomous workflows using n8n and Python; I also possess the ability to evaluate and improve AI outputs such as Large Language Models (LLMs) and Vision AI for accuracy and cultural relevance. As a native Turkish speaker with B1 level English, I provide precise and detailed analyses in content evaluation and multimedia processing.</span>
+</p>
+</div>
+</div>
+<div class="tactile-card p-6 md:p-12 reveal">
+<h3 class="text-2xl font-bold text-on-background mb-10"><span class="lang-tr">Sertifikalar</span><span class="lang-en">Certifications</span></h3>
+<div class="space-y-8">
+<div class="flex gap-6 items-start pb-8 border-b border-surface-variant">
+<div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-surface-container-high flex items-center justify-center text-xl md:text-2xl shadow-inner shrink-0">🏆</div>
+<div>
+<div class="font-bold text-on-background mb-1">Microsoft Certified Software Developer</div>
+<div class="text-xs text-outline font-medium uppercase tracking-wider">C# · SQL · ASP.NET · 2021</div>
+</div>
+</div>
+<div class="flex gap-6 items-start pb-8 border-b border-surface-variant">
+<div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-surface-container-high flex items-center justify-center text-xl md:text-2xl shadow-inner shrink-0">🧠</div>
+<div>
+<div class="font-bold text-on-background mb-1">Machine Learning Workshop</div>
+<div class="text-xs text-outline font-medium uppercase tracking-wider">BTK Akademi — 48 hours — 2023</div>
+</div>
+</div>
+<div class="flex gap-6 items-start pb-8 border-b border-surface-variant">
+<div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-surface-container-high flex items-center justify-center text-xl md:text-2xl shadow-inner shrink-0">🐍</div>
+<div>
+<div class="font-bold text-on-background mb-1">Python Programming Certificate</div>
+<div class="text-xs text-outline font-medium uppercase tracking-wider">MEB Vektörel Group — 2021</div>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-surface-container-high flex items-center justify-center text-xl md:text-2xl shadow-inner shrink-0">📜</div>
+<div>
+<div class="font-bold text-on-background mb-1"><span class="lang-tr">.NET Yazılım Uzmanlığı</span><span class="lang-en">.NET Software Expertise</span></div>
+<div class="text-xs text-outline font-medium uppercase tracking-wider">THK University — 200 hours — 2021</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROJECTS -->
+<section id="projects">
+<div class="text-center max-w-3xl mx-auto mb-20 reveal">
+<div class="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-8 flex items-center justify-center gap-5">
+<div class="h-[1px] bg-primary/20 w-12"></div>
+      <span class="lang-tr">02 — Projeler</span><span class="lang-en">02 — Projects</span>
+      <div class="h-[1px] bg-primary/20 w-12"></div>
+</div>
+<h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-on-background"><span class="lang-tr">Yapay zeka odaklı <em class="text-primary not-italic opacity-40 font-light">sistemler</em></span><span class="lang-en">AI-powered <em class="text-primary not-italic opacity-40 font-light">builds</em></span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-Rag_Python_Proje_Detayi" data-slide="0">
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Rag_Python_Proje_Detayi/page_10.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('Rag_Python_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('Rag_Python_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/Rag_Python_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">Rag Python: Esnek Kurumsal RAG (Retrieval-Augmented Generation) Sistemi</span><span class="lang-en">Rag Python: Flexible Enterprise RAG (Retrieval-Augmented Generation) System</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, her türlü şirket ortamına ve farklı kurumsal departman ihtiyaçlarına (İK, Hukuk, Teknik Destek, Yönetim) anında uyarlanabilen esnek bir RAG altyapısıdır. Şirketlere ait özel dokümanların (kılavuzlar, pdf'ler) güvenli bir şekilde okunarak vektörel veritabanlarına kaydedilmesini ve ardından n8n üzerinden yönetilen yapay zeka ajanlarının bu verileri referans alarak halüsinasyonsuz, kuruma özel ve %100 doğru cevaplar üretmesini sağlar."><span class="lang-tr">Bu proje, her türlü şirket ortamına ve farklı kurumsal departman ihtiyaçlarına (İK, Hukuk, Teknik Destek, Yönetim) anında uyarlanabilen esnek bir RAG altyapısıdır. Şirketlere ait özel dokümanların (kılavuzlar, pdf'ler) güvenli bir şekilde okunarak vektörel veritabanlarına kaydedilmesini ve ardından n8n üzerinden yönetilen yapay zeka ajanlarının bu verileri referans alarak halüsinasyonsuz, kuruma özel ve %100 doğru cevaplar üretmesini sağlar.</span><span class="lang-en">A flexible RAG infrastructure instantly adaptable to any corporate environment and department (HR, Legal, Technical Support, Management). It securely reads company-specific documents (manuals, PDFs) into vector databases, allowing AI agents managed via n8n to produce hallucination-free, company-specific, 100% accurate answers.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Veri Yükleme ve İşleme</span><span class="lang-en">Data Ingestion and Processing</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Vektör Veritabanı</span><span class="lang-en">Vector Database</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">İş Akışı ve Orkestrasyon</span><span class="lang-en">Workflow & Orchestration</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Yapay Zeka Modelleri</span><span class="lang-en">AI Models</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Her türlü şirket ortamına uyarlanabilen esnek bir RAG altyapısıdır. Şirketlere ait özel dokümanların (kılavuzlar, PDF'ler) güvenli bir şekilde okunarak vektörel veritabanlarına kaydedilmesini ve ardından n8n üzerinden yönetilen yapay zeka ajanlarının bu verileri referans alarak kuruma özel ve halüsinasyonsuz %100 doğru cevaplar üretmesini sağlar.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Kesintisiz ve akıllı metin parçalama (Chunking) ile veri yükleme.</li><li>Kelime tabanlı değil, anlamsal (Semantic) arama.</li><li>Rol tabanlı LLM ile duruma özel uzman danışmanlık.</li><li>Yanıtların entegrasyona hazır JSON (Structured Output) formatında verilmesi.</li></ul></span>
+<span class="lang-en">A flexible RAG infrastructure adaptable to any corporate environment. It enables the secure processing of company-specific documents (manuals, PDFs) into vector databases, allowing AI agents managed via n8n to reference this data and produce hallucination-free, company-specific, and 100% accurate answers.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Uninterrupted data ingestion with smart text chunking.</li><li>Semantic search instead of keyword-based search.</li><li>Role-based LLMs for situation-specific expert consulting.</li><li>Structured output (JSON) for seamless integration.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-N8N_SatışDanışmanı_Proje_Detayi" data-slide="0">
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_SatışDanışmanı_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('N8N_SatışDanışmanı_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('N8N_SatışDanışmanı_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/N8N_Sat%C4%B1%C5%9FDan%C4%B1%C5%9Fman%C4%B1_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">N8N Satış Danışmanı: Akıllı B2B Teklif Hazırlama ve Takip Sistemi</span><span class="lang-en">N8N Sales Advisor: Intelligent B2B Quote Preparation & Follow-up System</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje; B2B (İşletmeden İşletmeye) formatında çalışan firmaların web üzerinden aldıkları sipariş veya fiyat teklifi taleplerini tamamen otomatize eden bir sistemdir. Gelen müşteri taleplerini otomatik olarak hesaplar, kurumsal bir PDF teklifine dönüştürür, müşteriye e-posta ile iletir ve yanıt alınamayan teklifler için (örneğin 3 gün sonra) satış temsilcisine Telegram üzerinden "satışı kapatması" için uyarı gönderir."><span class="lang-tr">Bu proje; B2B (İşletmeden İşletmeye) formatında çalışan firmaların web üzerinden aldıkları sipariş veya fiyat teklifi taleplerini tamamen otomatize eden bir sistemdir. Gelen müşteri taleplerini otomatik olarak hesaplar, kurumsal bir PDF teklifine dönüştürür, müşteriye e-posta ile iletir ve yanıt alınamayan teklifler için (örneğin 3 gün sonra) satış temsilcisine Telegram üzerinden "satışı kapatması" için uyarı gönderir.</span><span class="lang-en">A fully automated system for B2B companies, handling web-based orders and price quote requests. It automatically calculates incoming customer requests, converts them into corporate PDF quotes, emails them to the client, and sends follow-up alerts via Telegram to the sales rep (e.g. after 3 days) to close the deal.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">İş Akışı ve Otomasyon</span><span class="lang-en">Workflow & Automation</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Arka Plan Servisleri</span><span class="lang-en">Background Services</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Veritabanı</span><span class="lang-en">Database</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Döküman Üretimi</span><span class="lang-en">Document Generation</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">İletişim Servisleri</span><span class="lang-en">Communication Services</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">B2B formatında çalışan firmaların web üzerinden aldıkları sipariş veya fiyat teklifi taleplerini otomatize eden bir sistemdir. Gelen talepleri otomatik hesaplar, kurumsal bir PDF teklifine dönüştürür, e-posta ile iletir ve yanıt alınamayan teklifler için (ör. 3 gün sonra) satış temsilcisine Telegram üzerinden uyarı gönderir.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Web formundan gelen verileri anında işleme ve kaydetme.</li><li>Dinamik, arka planda Python ile hesaplanıp oluşturulan kurumsal PDF üretimi.</li><li>Otomatik teklif gönderimi ve durum güncellemesi.</li><li>Zamanlanmış görevler ile Telegram üzerinden satış personeline takip uyarıları.</li></ul></span>
+<span class="lang-en">An automated system for B2B companies to handle web-based order or quote requests. It calculates incoming requests automatically, converts them into corporate PDF quotes, emails them to clients, and sends follow-up alerts via Telegram to sales reps for unanswered quotes (e.g., after 3 days).<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Instant processing and saving of web form data.</li><li>Dynamic corporate PDF generation powered by Python.</li><li>Automated quote delivery and status updates.</li><li>Scheduled follow-up alerts for sales staff via Telegram.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-N8N_Stok_Proje_Detayi" data-slide="0">
+    <img src="project_slides/N8N_Stok_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Stok_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Stok_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Stok_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Stok_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Stok_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Stok_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('N8N_Stok_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('N8N_Stok_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/N8N_Stok_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">N8N Stok: Süpermarket Stok Analiz Otomasyonu</span><span class="lang-en">N8N Stock: Supermarket Inventory Analysis Automation</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, perakende işletmeleri ve süpermarketler için tasarlanmış yapay zeka destekli bir stok analiz otomasyonudur. N8n üzerinden kurulan bu sistem; buluta (Google Drive) yüklenen güncel stok verilerini otomatik olarak okur, verileri parçalara bölerek (batch processing) yapay zekaya (OpenAI) analiz ettirir ve "Hangi üründen kaç adet sipariş edilmeli?" sorusunun cevabını içeren yepyeni bir Excel raporu üreterek ilgili klasöre kaydeder."><span class="lang-tr">Bu proje, perakende işletmeleri ve süpermarketler için tasarlanmış yapay zeka destekli bir stok analiz otomasyonudur. N8n üzerinden kurulan bu sistem; buluta (Google Drive) yüklenen güncel stok verilerini otomatik olarak okur, verileri parçalara bölerek (batch processing) yapay zekaya (OpenAI) analiz ettirir ve "Hangi üründen kaç adet sipariş edilmeli?" sorusunun cevabını içeren yepyeni bir Excel raporu üreterek ilgili klasöre kaydeder.</span><span class="lang-en">An AI-powered inventory analysis automation designed for retail businesses and supermarkets. Built on n8n, it automatically reads the latest stock data uploaded to the cloud (Google Drive), sends it to OpenAI in batches for analysis, and generates a new Excel report answering "How many units of each product should be ordered?"</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Otomasyon Motoru</span><span class="lang-en">Automation Engine</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Bulut Depolama ve Tetikleyici</span><span class="lang-en">Cloud Storage & Triggers</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Veri Biçimlendirme</span><span class="lang-en">Data Formatting</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Yapay Zeka</span><span class="lang-en">Artificial Intelligence</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Test Aracı</span><span class="lang-en">Testing Tool</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Perakende işletmeleri ve süpermarketler için tasarlanmış yapay zeka destekli stok analiz otomasyonudur. N8n üzerinden Google Drive'daki stok verilerini okur, parçalara (batch) bölerek yapay zekaya (OpenAI) analiz ettirir ve sipariş miktarlarını içeren yeni bir Excel raporu üretir.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Google Drive'a dosya yüklendiğinde tam otomatik tetiklenme.</li><li>Büyük veri setleri için toplu veri işleme (Batch/Loop) stratejisi.</li><li>Satış hızı ve stok eşiklerine göre AI destekli akıllı sipariş önerileri.</li><li>Mağaza müdürleri için anında kullanılabilir Excel çıktıları.</li></ul></span>
+<span class="lang-en">An AI-powered stock analysis automation designed for retail businesses and supermarkets. Using n8n, it reads stock data from Google Drive, processes it in batches via OpenAI, and generates a new Excel report with precise order quantity recommendations.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Fully automated trigger upon file upload to Google Drive.</li><li>Batch/Loop processing strategy for large datasets.</li><li>AI-driven smart order suggestions based on sales velocity and thresholds.</li><li>Ready-to-use Excel reports for store managers.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-N8N_Muhasebe_Proje_Detayi" data-slide="0">
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Muhasebe_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('N8N_Muhasebe_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('N8N_Muhasebe_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/N8N_Muhasebe_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">N8N Muhasebe: Fatura ve Gider Otomasyonu (OCR)</span><span class="lang-en">N8N Accounting: Invoice & Expense Automation (OCR)</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, işletmelerin ve mali müşavirlerin fatura giriş süreçlerini tamamen otomatize etmek için tasarlanmış akıllı bir muhasebe çözümüdür. E-posta yoluyla gelen fatura dosyalarını (PDF, görsel vb.) yakalar, OCR (Optik Karakter Tanıma) ve yapay zeka (LLM) kullanarak içeriğini okur ve anlamlandırılmış verileri anında Google Sheets gibi tablolara kaydeder."><span class="lang-tr">Bu proje, işletmelerin ve mali müşavirlerin fatura giriş süreçlerini tamamen otomatize etmek için tasarlanmış akıllı bir muhasebe çözümüdür. E-posta yoluyla gelen fatura dosyalarını (PDF, görsel vb.) yakalar, OCR (Optik Karakter Tanıma) ve yapay zeka (LLM) kullanarak içeriğini okur ve anlamlandırılmış verileri anında Google Sheets gibi tablolara kaydeder.</span><span class="lang-en">An intelligent accounting solution designed to fully automate invoice entry for businesses and financial advisors. It captures invoice files (PDFs, images) arriving via email, reads their content using OCR and AI (LLM), and instantly saves the structured data into spreadsheets like Google Sheets.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Otomasyon Platformu</span><span class="lang-en">Automation Platform</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">OCR ve Dosya İşleme</span><span class="lang-en">OCR & File Processing</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Yapay Zeka</span><span class="lang-en">Artificial Intelligence</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Veritabanı / Çıktı</span><span class="lang-en">Database / Output</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Sunucu & Altyapı</span><span class="lang-en">Server & Infrastructure</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">İşletmelerin ve mali müşavirlerin fatura giriş süreçlerini otomatize eden akıllı bir muhasebe çözümüdür. E-posta ile gelen fatura dosyalarını yakalar, OCR ve yapay zeka (LLM) kullanarak içeriğini okur, ayıklanan verileri Google Sheets gibi tablolara anında kaydeder.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>E-posta eklentilerini (PDF, görsel) saniyeler içinde otomatik yakalama.</li><li>Gelişmiş OCR motorları ile faturaları dijital metne dönüştürme.</li><li>AI ile Fatura No, Tarih, KDV, Toplam Tutar gibi spesifik verileri hatasız ayıklama.</li><li>Verilerin doğrudan Google Sheets'e veya ERP sistemlerine aktarımı.</li></ul></span>
+<span class="lang-en">A smart accounting solution that automates the invoice entry process for businesses and financial advisors. It captures invoice files received via email, reads their content using OCR and AI (LLM), and instantly saves the extracted data to spreadsheets like Google Sheets.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Automatic detection of email attachments (PDFs, images) within seconds.</li><li>Conversion of invoices to digital text using advanced OCR engines.</li><li>Flawless extraction of specific data (Invoice No, Date, VAT, Total) via AI.</li><li>Direct data transfer to Google Sheets or ERP systems.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-N8N_Mağaza_Proje_Detayi" data-slide="0">
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Mağaza_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('N8N_Mağaza_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('N8N_Mağaza_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/N8N_Ma%C4%9Faza_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">N8N Mağaza: Kişiselleştirilmiş Satış Hunisi Optimizasyon Ajanı</span><span class="lang-en">N8N Store: Personalized Sales Funnel Optimization Agent</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, e-ticaret siteleri için geliştirilmiş, n8n (otomasyon platformu) üzerinde çalışan yapay zeka destekli bir satış ve pazarlama aracıdır. Sistem, müşterilerin e-ticaret sitesindeki davranışlarını (özellikle sepette bırakılan ürünler ve gezilen kategoriler) analiz ederek, onları satın almaya ikna edecek "hiper-kişiselleştirilmiş" e-posta içerikleri üretir."><span class="lang-tr">Bu proje, e-ticaret siteleri için geliştirilmiş, n8n (otomasyon platformu) üzerinde çalışan yapay zeka destekli bir satış ve pazarlama aracıdır. Sistem, müşterilerin e-ticaret sitesindeki davranışlarını (özellikle sepette bırakılan ürünler ve gezilen kategoriler) analiz ederek, onları satın almaya ikna edecek "hiper-kişiselleştirilmiş" e-posta içerikleri üretir.</span><span class="lang-en">An AI-powered sales and marketing tool for e-commerce sites, running on n8n. The system analyzes customer behavior (especially abandoned cart items and browsed categories) and generates hyper-personalized email content designed to persuade them to complete their purchase.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Otomasyon Motoru</span><span class="lang-en">Automation Engine</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Yapay Zeka ve Zincirleme</span><span class="lang-en">AI & Chaining</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Dil Modeli</span><span class="lang-en">Language Model</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Veri Ayrıştırma</span><span class="lang-en">Data Parsing</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">JavaScript</span><span class="lang-en">JavaScript</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">E-ticaret siteleri için n8n üzerinde çalışan yapay zeka destekli satış ve pazarlama aracıdır. Müşterilerin davranışlarını analiz ederek (sepette bırakılan ürünler vb.), onları satın almaya ikna edecek hiper-kişiselleştirilmiş e-posta içerikleri üretir.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Müşterinin satın alma döngüsündeki (Karar, İlgi vb.) aşamasını otomatik tespit.</li><li>Terk edilmiş sepetler için yüksek dönüşümlü hatırlatıcı metinler.</li><li>Bütçe ve ilgi alanına göre stratejik tamamlayıcı ürün tavsiyesi (Cross-Sell).</li><li>Psikolojik satış taktikleri içeren profesyonel dijital asistan personeli.</li></ul></span>
+<span class="lang-en">An AI-powered sales and marketing tool for e-commerce sites, running on n8n. By analyzing customer behavior (like abandoned carts), it generates hyper-personalized email content designed to persuade customers to complete their purchases.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Automatic detection of the customer's stage in the sales funnel.</li><li>High-conversion reminder texts for abandoned carts.</li><li>Strategic complementary product recommendations (Cross-Sell) based on budget.</li><li>Professional digital assistant persona employing psychological sales tactics.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-2kyap_Proje_Detayi" data-slide="0">
+    <img src="project_slides/2kyap_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/2kyap_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('2kyap_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('2kyap_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/2kyap_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">2kyap Projesi: AI Image Upscaler (Yapay Zeka Destekli Görüntü Büyütme)</span><span class="lang-en">2kyap Project: AI Image Upscaler (AI-Powered Image Enlargement)</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, düşük çözünürlüklü görüntüleri yapay zeka kullanarak 4 katına (4x) kadar kaliteden ödün vermeden büyüten ve detaylandıran masaüstü tabanlı bir uygulamadır. Görüntü işleme motoru olarak **RealESRGAN** ve yüz iyileştirme işlemleri için **GFPGAN** modellerini kullanır. Arayüzü modern ve kullanıcı dostu olması adına `customtkinter` ile geliştirilmiştir."><span class="lang-tr">Bu proje, düşük çözünürlüklü görüntüleri yapay zeka kullanarak 4 katına (4x) kadar kaliteden ödün vermeden büyüten ve detaylandıran masaüstü tabanlı bir uygulamadır. Görüntü işleme motoru olarak **RealESRGAN** ve yüz iyileştirme işlemleri için **GFPGAN** modellerini kullanır. Arayüzü modern ve kullanıcı dostu olması adına `customtkinter` ile geliştirilmiştir.</span><span class="lang-en">A desktop application that enlarges and enhances low-resolution images up to 4x without quality loss using AI. It uses **RealESRGAN** as its image processing engine and **GFPGAN** for face restoration. The interface is built with `customtkinter` for a modern and user-friendly experience.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Düşük çözünürlüklü görüntüleri yapay zeka kullanarak kaliteden ödün vermeden 4 katına kadar büyüten masaüstü uygulamasıdır. RealESRGAN ve GFPGAN modellerini barındırır, donanım ivmelendirmesi (GPU) ve customtkinter ile modern bir arayüz sunar.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Tekli ve çoklu (Batch) fotoğraf işleme desteği.</li><li>Anime/çizim ve gerçek hayat fotoğrafları için ayrı optimize edilmiş modeller.</li><li>GFPGAN entegrasyonuyla bulanık yüzleri otomatik netleştirme ve onarma.</li><li>Düşük VRAM'li sistemler için Tile (kare) parçalama ve FP16 optimizasyonları.</li></ul></span>
+<span class="lang-en">A desktop application that upscales low-resolution images by up to 4x without losing quality using AI. It incorporates RealESRGAN and GFPGAN models, offers hardware acceleration (GPU), and features a modern UI built with customtkinter.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Support for single and batch photo processing.</li><li>Optimized models specifically for anime/illustrations and real-life photos.</li><li>Automatic deblurring and restoration of faces with GFPGAN integration.</li><li>Tile splitting and FP16 optimizations for systems with low VRAM.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-AiÜrün_Proje_Detayi" data-slide="0">
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/AiÜrün_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('AiÜrün_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('AiÜrün_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/Ai%C3%9Cr%C3%BCn_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">AiÜrün: AI Destekli Profesyonel Reklam Görseli Oluşturma Sistemi</span><span class="lang-en">AiÜrün: AI-Powered Professional Advertisement Image Generation System</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, kullanıcıların sıradan ürün fotoğraflarını yükleyerek yapay zeka desteğiyle profesyonel, stüdyo kalitesinde reklam görsellerine dönüştürmelerini sağlayan tam kapsamlı bir web uygulamasıdır. Sistem; Next.js tabanlı modern bir arayüz, Supabase destekli veritabanı, n8n otomasyonu, Google Gemini ve OpenAI DALL-E 3 yapay zeka modellerinin entegrasyonuyla çalışır."><span class="lang-tr">Bu proje, kullanıcıların sıradan ürün fotoğraflarını yükleyerek yapay zeka desteğiyle profesyonel, stüdyo kalitesinde reklam görsellerine dönüştürmelerini sağlayan tam kapsamlı bir web uygulamasıdır. Sistem; Next.js tabanlı modern bir arayüz, Supabase destekli veritabanı, n8n otomasyonu, Google Gemini ve OpenAI DALL-E 3 yapay zeka modellerinin entegrasyonuyla çalışır.</span><span class="lang-en">A full-stack web application that lets users upload ordinary product photos and transform them into professional, studio-quality advertisement visuals with AI. The system combines a Next.js interface, Supabase database, n8n automation, and the Google Gemini & OpenAI DALL-E 3 AI models.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Frontend</span><span class="lang-en">Frontend</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Backend & Storage</span><span class="lang-en">Backend & Storage</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Otomasyon Motoru</span><span class="lang-en">Automation Engine</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Yapay Zeka Modelleri</span><span class="lang-en">AI Models</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Google Gemini 2.0</span><span class="lang-en">Google Gemini 2.0</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Kullanıcıların sıradan ürün fotoğraflarını yapay zeka ile profesyonel stüdyo kalitesinde reklam görsellerine dönüştüren web uygulamasıdır. Next.js, Supabase, n8n, Google Gemini ve OpenAI DALL-E 3 entegrasyonuyla tam otonom çalışır.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Gemini 2.0 ile otomatik görsel analizi ve prompt mühendisliği.</li><li>DALL-E 3 ile yüksek çözünürlüklü profesyonel reklam görseli üretimi.</li><li>Supabase ve n8n webhook'ları ile el değmeden işleyen uçtan uca otomasyon.</li><li>Next.js ve Tailwind CSS ile geliştirilmiş modern ve hızlı arayüz.</li></ul></span>
+<span class="lang-en">A web application that transforms ordinary product photos into professional studio-quality advertisement visuals using AI. It operates fully autonomously through the integration of Next.js, Supabase, n8n, Google Gemini, and OpenAI DALL-E 3.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Automatic visual analysis and prompt engineering with Gemini 2.0.</li><li>Generation of high-res professional ad visuals using DALL-E 3.</li><li>Hands-free end-to-end automation via Supabase and n8n webhooks.</li><li>Modern and fast interface developed with Next.js and Tailwind CSS.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-FlyStory_Proje_Detayi" data-slide="0">
+    <img src="project_slides/FlyStory_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/FlyStory_Proje_Detayi/page_10.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('FlyStory_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('FlyStory_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/FlyStory_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">FlyStory: Modern Havacılık Keşif Platformu</span><span class="lang-en">FlyStory: Modern Aviation Discovery Platform</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="FlyStory, havacılık meraklıları için özel olarak geliştirilmiş, uçak modellerini, teknik verilerini ve anlık telemetri bilgilerini sunan görsel odaklı, tam donanımlı (Full-Stack) bir web uygulamasıdır. Arka planda yüksek performanslı Go (Golang) kullanılırken, ön yüzde React ve Tailwind CSS ile son derece modern, estetik ve akıcı bir kullanıcı deneyimi sunulmaktadır."><span class="lang-tr">FlyStory, havacılık meraklıları için özel olarak geliştirilmiş, uçak modellerini, teknik verilerini ve anlık telemetri bilgilerini sunan görsel odaklı, tam donanımlı (Full-Stack) bir web uygulamasıdır. Arka planda yüksek performanslı Go (Golang) kullanılırken, ön yüzde React ve Tailwind CSS ile son derece modern, estetik ve akıcı bir kullanıcı deneyimi sunulmaktadır.</span><span class="lang-en">FlyStory is a visually-focused, full-stack web application built for aviation enthusiasts, presenting aircraft models, technical data and real-time telemetry. A high-performance Go (Golang) backend powers a strikingly modern, fluid frontend built with React and Tailwind CSS.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Frontend</span><span class="lang-en">Frontend</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">React & Vite</span><span class="lang-en">React & Vite</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Tailwind CSS v4</span><span class="lang-en">Tailwind CSS v4</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Framer Motion</span><span class="lang-en">Framer Motion</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Backend</span><span class="lang-en">Backend</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Havacılık meraklıları için uçak modellerini, teknik verilerini ve anlık telemetri bilgilerini sunan görsel odaklı bir web platformudur. Go (Golang) tabanlı yüksek performanslı arka yüzü ve React + Tailwind CSS ile hazırlanmış estetik ön yüzü bulunur.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Gerçek zamanlı uçak telemetri (irtifa, hız, koordinat) simülasyonu.</li><li>Cam efekti (Glassmorphism) barındıran şık ve animasyonlu tasarım.</li><li>Hızlı gezinme için gelişmiş komut paleti (Command Palette).</li><li>Uçuş numaralarından uçak modelini tahmin eden akıllı arama ve dış API entegrasyonu.</li></ul></span>
+<span class="lang-en">A visually-focused web platform for aviation enthusiasts that presents aircraft models, technical data, and real-time telemetry. It features a high-performance Go (Golang) backend and an aesthetic frontend built with React + Tailwind CSS.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Real-time simulation of aircraft telemetry (altitude, speed, coordinates).</li><li>Elegant, animated design featuring glassmorphism.</li><li>Advanced command palette for rapid navigation.</li><li>Smart search that guesses aircraft models from flight numbers and external API integration.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-N8N_Borsa_Proje_Detayi" data-slide="0">
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/N8N_Borsa_Proje_Detayi/page_10.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('N8N_Borsa_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('N8N_Borsa_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/N8N_Borsa_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">N8N Borsa: AI Destekli Hisse Senedi Analiz Platformu</span><span class="lang-en">N8N Stock Market: AI-Powered Stock Analysis Platform</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="N8N Borsa projesi; borsa verilerini takip eden, teknik göstergeleri (RSI, MACD vb.) hesaplayan ve yapay zeka (Google Gemini) yardımıyla hisseleri yorumlayan gelişmiş bir finansal otomasyon sistemidir. Proje gücünü N8N'in sunduğu otomasyon yeteneklerinden alırken, kullanıcılara Next.js ile geliştirilmiş modern bir web paneli sunmaktadır. Ek olarak, detaylı borsa analiz raporlarını periyodik olarak e-posta üzerinden de iletebilmektedir."><span class="lang-tr">N8N Borsa projesi; borsa verilerini takip eden, teknik göstergeleri (RSI, MACD vb.) hesaplayan ve yapay zeka (Google Gemini) yardımıyla hisseleri yorumlayan gelişmiş bir finansal otomasyon sistemidir. Proje gücünü N8N'in sunduğu otomasyon yeteneklerinden alırken, kullanıcılara Next.js ile geliştirilmiş modern bir web paneli sunmaktadır. Ek olarak, detaylı borsa analiz raporlarını periyodik olarak e-posta üzerinden de iletebilmektedir.</span><span class="lang-en">An advanced financial automation system that tracks stock market data, calculates technical indicators (RSI, MACD, etc.) and interprets stocks with Google Gemini AI. It offers a modern Next.js web dashboard and can periodically deliver detailed stock analysis reports via email.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Frontend</span><span class="lang-en">Frontend</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Backend & Otomasyon Süreçleri</span><span class="lang-en">Backend & Automation</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">API ve Servisler</span><span class="lang-en">API & Services</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Google Gemini API</span><span class="lang-en">Google Gemini API</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">NewsAPI</span><span class="lang-en">NewsAPI</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Borsa verilerini takip eden, RSI ve MACD gibi teknik göstergeleri hesaplayan ve Google Gemini yardımıyla hisseleri yorumlayan finansal otomasyon sistemidir. Next.js web paneli ve otomatik e-posta raporlama yeteneklerine sahiptir.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>31 farklı hisse senedi için detaylı piyasa takibi ve teknik gösterge hesabı.</li><li>Sayısal verileri ve haberleri harmanlayan yapay zeka destekli hisse yorumları.</li><li>QuickChart servisi ile hareketlerin ve analizlerin görsel grafiklere dönüştürülmesi.</li><li>Yatırımcılar için n8n üzerinden otomatik olarak gönderilen e-posta bültenleri.</li></ul></span>
+<span class="lang-en">A financial automation system that tracks stock market data, calculates technical indicators like RSI and MACD, and interprets stocks with the help of Google Gemini. It includes a Next.js web dashboard and automated email reporting.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Detailed market tracking and technical indicator calculation for 31 stocks.</li><li>AI-powered stock interpretations blending numerical data and news.</li><li>Visual charting of movements and analyses using the QuickChart service.</li><li>Automated email newsletters delivered via n8n for investors.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-ocr_tarayici_Proje_Detayi" data-slide="0">
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/ocr_tarayici_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('ocr_tarayici_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('ocr_tarayici_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/ocr_tarayici_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">OCR Tarayıcı: Yapay Zeka Destekli Not Derleyici</span><span class="lang-en">OCR Scanner: AI-Powered Note Compiler</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, telefonla çekilmiş dağınık el yazısı notlarını, karışık ders fotoğraflarını veya taranmış PDF belgelerini dijital, düzenlenebilir ve net bir dokümana dönüştüren bir masaüstü yazılımıdır. "Stellar OCR & Note Compiler" olarak adlandırılan bu araç, kullanıcıya iki farklı motor seçeneği sunar: Karmaşık el yazıları için yüksek doğruluklu Google Gemini AI veya internetsiz ücretsiz kullanım için Tesseract OCR."><span class="lang-tr">Bu proje, telefonla çekilmiş dağınık el yazısı notlarını, karışık ders fotoğraflarını veya taranmış PDF belgelerini dijital, düzenlenebilir ve net bir dokümana dönüştüren bir masaüstü yazılımıdır. "Stellar OCR & Note Compiler" olarak adlandırılan bu araç, kullanıcıya iki farklı motor seçeneği sunar: Karmaşık el yazıları için yüksek doğruluklu Google Gemini AI veya internetsiz ücretsiz kullanım için Tesseract OCR.</span><span class="lang-en">A desktop application that converts messy handwritten notes from phone photos, mixed lecture images, or scanned PDFs into clean, editable digital documents. Named "Stellar OCR & Note Compiler", it offers two engine options: high-accuracy Google Gemini AI for complex handwriting, or Tesseract OCR for free offline use.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Görsel Arayüz</span><span class="lang-en">Visual Interface</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Metin Tanıma</span><span class="lang-en">Text Recognition</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Görüntü ve Belge İşleme</span><span class="lang-en">Image & Document Processing</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">`Pillow`</span><span class="lang-en">`Pillow`</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">`PyMuPDF`</span><span class="lang-en">`PyMuPDF`</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Telefonla çekilmiş dağınık el yazısı notlarını veya taranmış PDF'leri düzenlenebilir dijital metne dönüştüren masaüstü yazılımıdır. Gemini AI ve Tesseract motorlarıyla çalışarak çıktıları PDF ve Markdown olarak derler.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Karmaşık yazılar için bulut tabanlı Gemini 1.5 Flash veya çevrimdışı kullanım için Tesseract motoru seçimi.</li><li>Toplu belge ve görsel taraması ile otomatik tek bir PDF raporu derleme.</li><li>Türkçe karakterlerdeki tipik okuma hatalarını düzelten akıllı hata tespit filtresi.</li><li>Kullanıcı arayüzünü dondurmayan asenkron arka plan işlemleri (Threading).</li></ul></span>
+<span class="lang-en">A desktop software that converts messy handwritten notes from photos or scanned PDFs into editable digital text. Powered by Gemini AI and Tesseract engines, it compiles the outputs into clean PDF and Markdown files.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Choice between cloud-based Gemini 1.5 Flash for complex handwriting or Tesseract for offline use.</li><li>Batch scanning of documents and images to compile a single automated PDF report.</li><li>Smart error-correction filter to fix typical Turkish character recognition mistakes.</li><li>Asynchronous background processing (threading) to prevent UI freezing.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-TTS_Proje_Detayi" data-slide="0">
+    <img src="project_slides/TTS_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/TTS_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('TTS_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('TTS_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/TTS_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">TTS: Piper TTS Ses Oluşturucu (Text-to-Speech)</span><span class="lang-en">TTS: Piper TTS Voice Generator (Text-to-Speech)</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, yazılı metinleri (Text) yüksek kaliteli insan sesine (Speech) dönüştüren yerel bir masaüstü uygulamasıdır. Arka planda açık kaynaklı, hızlı ve düşük donanım gereksinimli **Piper TTS** motorunu kullanır. Modern ve kullanıcı dostu arayüzü sayesinde herkesin bilgisayarında, internet bağlantısına ihtiyaç duymadan (API maliyeti olmadan) profesyonel seslendirmeler yapabilmesini sağlar."><span class="lang-tr">Bu proje, yazılı metinleri (Text) yüksek kaliteli insan sesine (Speech) dönüştüren yerel bir masaüstü uygulamasıdır. Arka planda açık kaynaklı, hızlı ve düşük donanım gereksinimli **Piper TTS** motorunu kullanır. Modern ve kullanıcı dostu arayüzü sayesinde herkesin bilgisayarında, internet bağlantısına ihtiyaç duymadan (API maliyeti olmadan) profesyonel seslendirmeler yapabilmesini sağlar.</span><span class="lang-en">A local desktop application that converts written text into high-quality human-like speech. Powered by the open-source, fast and lightweight **Piper TTS** engine, it lets anyone create professional voice-overs on their computer without an internet connection or API costs.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Kullanıcı Arayüzü</span><span class="lang-en">User Interface</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Yapay Zeka Ses Motoru</span><span class="lang-en">AI Voice Engine</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Sistem İletişimi</span><span class="lang-en">System Communication</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Dosya ve Medya</span><span class="lang-en">File & Media</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Yazılı metinleri yüksek kaliteli insan sesine (Speech) dönüştüren yerel masaüstü uygulamasıdır. Hızlı ve düşük donanım gereksinimli Piper TTS motoru sayesinde internete ihtiyaç duymadan veri gizliliği sağlayarak çalışır.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Buluta veri göndermeden tamamen yerel ve çevrimdışı (offline) ses oluşturma.</li><li>Yeni ses modellerini (ONNX formatında) tek tıkla indirebilen dahili model yöneticisi.</li><li>Asenkron yapı sayesinde donma yaşamadan arka planda kesintisiz render.</li><li>Modern Dark/Light tema destekli customtkinter arayüzü ve anında ses dinleme özelliği.</li></ul></span>
+<span class="lang-en">A local desktop application that converts written text into high-quality human speech. Powered by the fast and lightweight Piper TTS engine, it operates entirely offline, ensuring data privacy without needing an internet connection.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Completely local and offline voice generation without sending data to the cloud.</li><li>Built-in model manager to download new voice models (ONNX format) with one click.</li><li>Asynchronous architecture for uninterrupted background rendering without freezing.</li><li>Modern customtkinter interface with Dark/Light theme support and instant audio playback.</li></ul></span>
+</div>
+</article>
+<article class="tactile-card p-5 md:p-10 reveal flex flex-col">
+<div class="aspect-video rounded-2xl md:rounded-3xl mb-5 md:mb-8 relative overflow-hidden group shadow-lg border border-black/5">
+  <div class="w-full h-full flex transition-transform duration-500 ease-in-out slider-track" id="slider-Şablon_Oluşturma_Proje_Detayi" data-slide="0">
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_1.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_2.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_3.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_4.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_5.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_6.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_7.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_8.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_9.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+    <img src="project_slides/Şablon_Oluşturma_Proje_Detayi/page_10.webp" class="w-full h-full object-contain bg-white shrink-0" loading="lazy" alt="Slide" />
+
+  </div>
+  <!-- Navigation arrows -->
+  <button onclick="prevSlide('Şablon_Oluşturma_Proje_Detayi')" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+  </button>
+  <button onclick="nextSlide('Şablon_Oluşturma_Proje_Detayi')" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white shadow-md z-10">
+    <span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+  </button>
+  <!-- Open PDF button -->
+  <a href="Slaytlar%20ve%20a%C3%A7%C4%B1klamalar/%C5%9Eablon_Olu%C5%9Fturma_Proje_Detayi.pdf" target="_blank" class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-transform scale-90 group-hover:scale-100 hover:bg-primary-fixed-variant flex items-center justify-center z-10" title="PDF'yi Aç">
+    <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+  </a>
+</div>
+<h3 class="text-lg md:text-2xl font-bold text-on-background mb-3 md:mb-4 line-clamp-2"><span class="lang-tr">Şablon Oluşturma: Duvar Kağıdı (Wallpaper) Otomasyonu ve Satış Botu</span><span class="lang-en">Template Creator: Wallpaper Automation & Sales Bot</span></h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed text-sm line-clamp-3 flex-grow" title="Bu proje, dijital sanatçıların veya içerik üreticilerinin tasarladığı yüzlerce duvar kağıdını (wallpaper) otomatik olarak estetik sunum şablonlarına (mockup) dönüştüren ve bunları "Buy Me a Coffee" platformuna dijital ürün olarak kendi kendine yükleyen çift yönlü bir otomasyon sistemidir. Görüntü işleme (Python PIL) ve tarayıcı otomasyonunu (Playwright) birleştirerek saatler sürecek manuel ürün yükleme işlemlerini dakikalara indirir."><span class="lang-tr">Bu proje, dijital sanatçıların veya içerik üreticilerinin tasarladığı yüzlerce duvar kağıdını (wallpaper) otomatik olarak estetik sunum şablonlarına (mockup) dönüştüren ve bunları "Buy Me a Coffee" platformuna dijital ürün olarak kendi kendine yükleyen çift yönlü bir otomasyon sistemidir. Görüntü işleme (Python PIL) ve tarayıcı otomasyonunu (Playwright) birleştirerek saatler sürecek manuel ürün yükleme işlemlerini dakikalara indirir.</span><span class="lang-en">A two-way automation system that converts hundreds of wallpapers created by digital artists into aesthetic mockup templates and automatically uploads them as digital products to the "Buy Me a Coffee" platform. By combining image processing (Python PIL) and browser automation (Playwright), it reduces hours of manual work to minutes.</span></p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Görüntü İşleme</span><span class="lang-en">Image Processing</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Tarayıcı Otomasyonu</span><span class="lang-en">Browser Automation</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Veri Okuma</span><span class="lang-en">Data Reading</span></span>
+<span class="px-4 py-1.5 rounded-full bg-surface-variant text-[10px] font-bold text-on-surface-variant uppercase tracking-wider"><span class="lang-tr">Dosya İşlemleri</span><span class="lang-en">File Operations</span></span>
+</div>
+<div class="hidden modal-full-desc">
+<span class="lang-tr">Dijital duvar kağıtlarını estetik sunum şablonlarına (mockup) dönüştüren ve 'Buy Me a Coffee' platformuna dijital ürün olarak otomatik yükleyen otomasyon sistemidir. Görüntü işleme ve tarayıcı otomasyonunu birleştirir.<br><br><b>Öne Çıkan Özellikler:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Ham görselleri bulanık arka planlı ve çerçeveli profesyonel sunumlara dönüştürme.</li><li>ZIP teslimat dosyalarını ve kapak görsellerini otomatik hazırlama.</li><li>Playwright botu ile platforma CSV verilerinden başlık, fiyat, açıklama ve etiketlerin otomatik girişi.</li><li>Kontrolü elden bırakmayan, yayın öncesi 'İnsan Onayı' bekleyen güvenli mimari.</li></ul></span>
+<span class="lang-en">An automation system that transforms digital wallpapers into aesthetic presentation mockups and automatically uploads them as digital products to 'Buy Me a Coffee'. It seamlessly combines image processing and browser automation.<br><br><b>Key Features:</b><br><ul class="list-disc pl-5 space-y-1 mt-2"><li>Batch converts raw images into professional mockups with blurred backgrounds and frames.</li><li>Automatically prepares ZIP delivery files and cover images.</li><li>Uses a Playwright bot to input titles, prices, descriptions, and tags from CSV data automatically.</li><li>Secure architecture that pauses for 'Human Approval' before publishing.</li></ul></span>
+</div>
+</article>
+</div>
+</section>
+<!-- RESEARCH -->
+<section class="tactile-card p-6 md:p-12 lg:p-20 overflow-hidden relative reveal" id="research">
+<div class="decor-shape sphere w-64 h-64 -top-20 -left-20 opacity-10"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center relative z-10">
+<div class="tactile-card aspect-[4/3] md:aspect-square bg-primary/5 flex flex-col items-center justify-center relative overflow-hidden group p-4 md:p-6">
+<div class="text-[10px] font-black text-primary uppercase tracking-widest mb-4 opacity-60"><span class="lang-tr">Geçiş Zamanı (Transit) Işık Eğrisi</span><span class="lang-en">Transit Light Curve</span></div>
+<canvas class="w-full flex-1 rounded-xl" id="lightcurveCanvas"></canvas>
+<div class="flex justify-between w-full mt-3 text-[10px] text-outline font-bold uppercase tracking-widest opacity-50">
+  <span><span class="lang-tr">Zaman / Evre</span><span class="lang-en">Time / Phase</span></span>
+  <span><span class="lang-tr">Göreceli Akı</span><span class="lang-en">Relative Flux</span></span>
+</div>
+<div class="absolute bottom-6 right-6 volumetric-btn-secondary px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest">
+        TÜBITAK FUNDED
+      </div>
+</div>
+<div>
+<div class="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-8 flex items-center gap-5">
+        <span class="lang-tr">03 — Araştırmalar</span><span class="lang-en">03 — Research</span>
+        <div class="h-[1px] bg-primary/20 w-16"></div>
+</div>
+<h2 class="text-3xl md:text-5xl font-bold text-on-background mb-6 md:mb-8 leading-tight"><span class="lang-tr">Yeni <em class="text-primary not-italic opacity-40 font-light">dünyalar</em> keşfediyorum</span><span class="lang-en">Hunting <em class="text-primary not-italic opacity-40 font-light">worlds</em></span></h2>
+<p class="text-lg text-on-surface-variant mb-12 leading-relaxed">
+        <span class="lang-tr">TÜBİTAK tarafından desteklenen araştırmam kapsamında, NASA'nın TESS uydusundan elde edilen geniş çaplı astronomik verileri işleyerek 33 aday ötegezegenin yörünge dinamiklerini inceledim. Bu karmaşık veri setleri üzerinde Python programlama dili ile MCMC (Monte Carlo - Markov Chain) optimizasyon algoritmaları ve istatistiksel frekans analizleri uygulayarak gezegenlerin geçiş zamanlarındaki sapmaları yüksek hassasiyetle modelledim. Bu bilimsel çalışma; büyük veri işleme, matematiksel modelleme ve algoritmik problem çözme yeteneklerimin pratik bir göstergesidir.</span><span class="lang-en">As part of my research supported by TÜBİTAK, I processed large-scale astronomical data from NASA's TESS satellite to investigate the orbital dynamics of 33 exoplanet candidates. By applying MCMC (Monte Carlo - Markov Chain) optimization algorithms and statistical frequency analyses using Python on these complex datasets, I modeled transit timing variations with high precision. This scientific work is a practical demonstration of my expertise in big data processing, mathematical modeling, and algorithmic problem-solving.</span>
+      </p>
+<div class="tactile-card p-8 bg-surface-container-low border-white/60">
+<h4 class="text-xl font-bold text-on-background mb-3"><span class="lang-tr">Çift Yıldızlarda Ötegezegen O-C Analizi</span><span class="lang-en">Exoplanet O-C Analysis in Binary Stars</span></h4>
+<div class="text-[10px] text-outline font-black uppercase tracking-widest mb-4">Tübitak 2209-A · 2023–2024 · TJAA Journal</div>
+<p class="text-sm text-on-surface-variant mb-8 leading-relaxed opacity-80">
+          <span class="lang-tr">Çift yıldız sistemlerindeki 33 aday ötegezegenin ışık eğrileri üzerinde gerçekleştirilen analiz.</span><span class="lang-en">Analysis performed on light curves of 33 candidate exoplanets in double star systems.</span>
+        </p>
+<a class="volumetric-btn-secondary inline-flex items-center gap-3 px-6 py-3 rounded-full text-xs font-bold" href="https://dergipark.org.tr/tr/pub/tjaa/article/1592945" target="_blank">
+          <span class="lang-tr">Yayını Oku</span><span class="lang-en">Read Publication</span> <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- EXPERTISE -->
+<section class="reveal" id="skills">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<div class="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-8 flex items-center justify-center gap-5">
+<div class="h-[1px] bg-primary/20 w-12"></div>
+      <span class="lang-tr">04 — Uzmanlık</span><span class="lang-en">04 — Expertise</span>
+      <div class="h-[1px] bg-primary/20 w-12"></div>
+</div>
+<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-on-background"><span class="lang-tr">Teknoloji <em class="text-primary not-italic opacity-40 font-light">yığını</em></span><span class="lang-en">Technical <em class="text-primary not-italic opacity-40 font-light">stack</em></span></h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="tactile-card p-6 md:p-10 hover:translate-y-[-4px]">
+<div class="text-xs font-black text-primary uppercase tracking-[0.2em] mb-8 pb-4 border-b border-surface-variant"><span class="lang-tr">Diller</span><span class="lang-en">Languages</span></div>
+<ul class="space-y-5">
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#5AF5C8]"></span> Python</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FFB86C]"></span> Go / Golang</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FF653F]"></span> C#</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#452E5A]"></span> React</li>
+</ul>
+</div>
+<div class="tactile-card p-6 md:p-10 hover:translate-y-[-4px]">
+<div class="text-xs font-black text-primary uppercase tracking-[0.2em] mb-8 pb-4 border-b border-surface-variant"><span class="lang-tr">Yapay Zeka &amp; Makine Öğrenimi</span><span class="lang-en">AI &amp; ML</span></div>
+<ul class="space-y-5">
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#5AF5C8]"></span> GPT-4o Vision</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FFB86C]"></span> Gemini AI</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FF653F]"></span> DeepFace</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#452E5A]"></span> LangChain</li>
+</ul>
+</div>
+<div class="tactile-card p-6 md:p-10 hover:translate-y-[-4px]">
+<div class="text-xs font-black text-primary uppercase tracking-[0.2em] mb-8 pb-4 border-b border-surface-variant"><span class="lang-tr">Araçlar</span><span class="lang-en">Tools</span></div>
+<ul class="space-y-5">
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#5AF5C8]"></span> n8n Automation</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FFB86C]"></span> OpenCV</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FF653F]"></span> Streamlit</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#452E5A]"></span> Git / GitHub</li>
+</ul>
+</div>
+<div class="tactile-card p-6 md:p-10 hover:translate-y-[-4px]">
+<div class="text-xs font-black text-primary uppercase tracking-[0.2em] mb-8 pb-4 border-b border-surface-variant"><span class="lang-tr">Astronomi</span><span class="lang-en">Astronomy</span></div>
+<ul class="space-y-5">
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#5AF5C8]"></span> TESS Data</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FFB86C]"></span> O-C Analysis</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#FF653F]"></span> Light Curves</li>
+<li class="flex items-center gap-4 text-sm font-bold text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-[#452E5A]"></span> Stellarium</li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<!-- CONTACT & FOOTER -->
+<footer id="contact" class="w-full pt-section-gap pb-12 mt-auto relative overflow-hidden">
+<div class="decor-shape torus w-64 h-64 -bottom-32 -left-32 opacity-20 rotate-45"></div>
+<div class="max-w-4xl mx-auto text-center px-4 md:px-8 mb-16 md:mb-32 reveal">
+<h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-on-background mb-8 md:mb-10 leading-tight"><span class="lang-tr">Birlikte<br/><em class="text-primary not-italic opacity-40 font-light">harika</em> bir şeyler inşa edelim.</span><span class="lang-en">Let's build<br/>something <em class="text-primary not-italic opacity-40 font-light">remarkable.</em></span></h2>
+<p class="text-base md:text-xl text-on-surface-variant mb-8 md:mb-14"><span class="lang-tr">Yapay zeka otomasyon projelerine, freelance çalışmalara ve işbirliklerine açığım.</span><span class="lang-en">Open to AI automation projects, freelance work, and collaboration.</span></p>
+<div class="flex justify-center gap-4 md:gap-6 flex-wrap px-4">
+<a class="volumetric-btn text-white px-6 md:px-10 py-3 md:py-4 rounded-full text-xs md:text-sm font-bold flex items-center justify-center gap-3 w-full sm:w-auto" href="mailto:serttas2001@gmail.com">
+<span class="material-symbols-outlined text-[18px] md:text-[20px]">mail</span> serttas2001@gmail.com
+      </a>
+<a class="volumetric-btn-secondary px-6 md:px-10 py-3 md:py-4 rounded-full text-xs md:text-sm font-bold flex items-center justify-center gap-3 w-full sm:w-auto" href="tel:+905452340502">
+<span class="material-symbols-outlined text-[18px] md:text-[20px]">call</span> +90 545 234 0502
+      </a>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12 border-t border-surface-variant flex flex-col md:flex-row justify-between items-center gap-4 md:gap-10">
+<div class="font-black text-primary text-xl tracking-tighter">SELAHADDİN SERTTAŞ</div>
+<div class="flex gap-6 md:gap-10 flex-wrap justify-center">
+<a class="text-outline hover:text-primary transition-colors text-sm font-bold" href="https://www.linkedin.com/in/selahaddin-sertta%C5%9F-14a99a1aa/" target="_blank">LinkedIn</a>
+<a class="text-outline hover:text-primary transition-colors text-sm font-bold" href="https://github.com/selahaddi" target="_blank">GitHub</a>
+<a class="text-outline hover:text-primary transition-colors text-sm font-bold" href="https://dergipark.org.tr/tr/pub/tjaa/article/1592945" target="_blank"><span class="lang-tr">Yayın</span><span class="lang-en">Publication</span></a>
+</div>
+<div class="text-outline text-xs font-medium">
+      © 2024 <span class="lang-tr">Vizyoner bir hassasiyetle kodlandı.</span><span class="lang-en">Crafted with visionary precision.</span>
+    </div>
+</div>
+</footer>
+<script>
+// SCROLL REVEAL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// LIGHTCURVE ANIMATION
+(function() {
+  const lcCanvas = document.getElementById('lightcurveCanvas');
+  if (!lcCanvas) return;
+
+  function lcResize() {
+    lcCanvas.width = lcCanvas.offsetWidth * (window.devicePixelRatio || 1);
+    lcCanvas.height = lcCanvas.offsetHeight * (window.devicePixelRatio || 1);
+  }
+  lcResize();
+  window.addEventListener('resize', () => { lcResize(); lcStart(); });
+
+  const lcCtx = lcCanvas.getContext('2d');
+  let lcPoints = [];
+  let lcIdx = 0;
+  let lcAnim = null;
+
+  function lcGenerate() {
+    lcPoints = [];
+    const w = lcCanvas.width, h = lcCanvas.height;
+    const n = 400;
+    const base = h * 0.2;
+    const depth = h * 0.6;
+    const center = n / 2;
+    const dw = 35;
+    for (let i = 0; i < n; i++) {
+      const noise = (Math.random() - 0.5) * 15 * (window.devicePixelRatio || 1);
+      const dip = depth * Math.exp(-Math.pow(i - center, 2) / (2 * Math.pow(dw, 2)));
+      lcPoints.push({ x: i * (w / n), y: base + dip + noise });
+    }
+  }
+
+  function lcGrid() {
+    const w = lcCanvas.width, h = lcCanvas.height;
+    lcCtx.strokeStyle = 'rgba(1,75,61,0.15)';
+    lcCtx.lineWidth = 1;
+    for (let i = 0; i < w; i += 50) { lcCtx.beginPath(); lcCtx.moveTo(i,0); lcCtx.lineTo(i,h); lcCtx.stroke(); }
+    for (let j = 0; j < h; j += 50) { lcCtx.beginPath(); lcCtx.moveTo(0,j); lcCtx.lineTo(w,j); lcCtx.stroke(); }
+  }
+
+  function lcDraw() {
+    if (lcIdx === 0) { lcCtx.clearRect(0, 0, lcCanvas.width, lcCanvas.height); lcGrid(); }
+    if (lcIdx > 0) {
+      lcCtx.beginPath();
+      lcCtx.strokeStyle = '#5AF5C8';
+      lcCtx.lineWidth = 2 * (window.devicePixelRatio || 1);
+      lcCtx.moveTo(lcPoints[lcIdx - 1].x, lcPoints[lcIdx - 1].y);
+      lcCtx.lineTo(lcPoints[lcIdx].x, lcPoints[lcIdx].y);
+      lcCtx.stroke();
+    }
+    lcIdx++;
+    if (lcIdx < lcPoints.length) {
+      setTimeout(() => { lcAnim = requestAnimationFrame(lcDraw); }, 10);
+    } else {
+      lcHighlight();
+      setTimeout(lcStart, 3500);
+    }
+  }
+
+  function lcHighlight() {
+    let min = lcPoints[0];
+    for (const p of lcPoints) { if (p.y > min.y) min = p; }
+    const pr = window.devicePixelRatio || 1;
+    lcCtx.beginPath();
+    lcCtx.arc(min.x, min.y, 8 * pr, 0, Math.PI * 2);
+    lcCtx.fillStyle = '#ff3b30';
+    lcCtx.fill();
+    lcCtx.strokeStyle = '#fff';
+    lcCtx.lineWidth = 2 * pr;
+    lcCtx.stroke();
+    lcCtx.setLineDash([5, 5]);
+    lcCtx.beginPath();
+    lcCtx.moveTo(min.x, min.y);
+    lcCtx.lineTo(min.x, lcCanvas.height);
+    lcCtx.strokeStyle = '#ff3b30';
+    lcCtx.stroke();
+    lcCtx.setLineDash([]);
+    lcCtx.fillStyle = 'rgba(0,0,0,0.7)';
+    const tw = 140 * pr, th = 28 * pr;
+    lcCtx.fillRect(min.x - tw/2, min.y + 15*pr, tw, th);
+    lcCtx.fillStyle = '#ff3b30';
+    lcCtx.font = `bold ${14*pr}px Inter, sans-serif`;
+    lcCtx.textAlign = 'center';
+    lcCtx.fillText('Minimum', min.x, min.y + 15*pr + th*0.72);
+  }
+
+  function lcStart() {
+    if (lcAnim) cancelAnimationFrame(lcAnim);
+    lcResize();
+    lcGenerate();
+    lcIdx = 0;
+    lcDraw();
+  }
+
+  // Start when section becomes visible
+  const researchSection = document.getElementById('research');
+  if (researchSection) {
+    const lcObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { lcStart(); lcObserver.disconnect(); } });
+    }, { threshold: 0.2 });
+    lcObserver.observe(researchSection);
+  } else {
+    lcStart();
+  }
+})();
+</script>
+
+<script>
+  function nextSlide(id) {
+    const track = document.getElementById('slider-' + id);
+    if(!track) return;
+    const maxSlides = track.children.length;
+    let current = parseInt(track.getAttribute('data-slide') || '0');
+    current = (current + 1) % maxSlides;
+    track.setAttribute('data-slide', current);
+    track.style.transform = `translateX(-${current * 100}%)`;
+  }
+  function prevSlide(id) {
+    const track = document.getElementById('slider-' + id);
+    if(!track) return;
+    const maxSlides = track.children.length;
+    let current = parseInt(track.getAttribute('data-slide') || '0');
+    current = (current - 1 + maxSlides) % maxSlides;
+    track.setAttribute('data-slide', current);
+    track.style.transform = `translateX(-${current * 100}%)`;
+  }
+</script>
+
+
+<script>
+  function toggleLanguage() {
+    const isEn = document.body.classList.toggle('lang-en');
+    const label = document.getElementById('langLabel');
+    if(label) label.innerText = isEn ? 'TR' : 'EN';
+  }
+</script>
+
+<script>
+// Mobile menu toggle
+function toggleMobileMenu() {
+  var overlay = document.getElementById('mobileMenuOverlay');
+  var panel = document.getElementById('mobileMenuPanel');
+  var icon = document.getElementById('mobileMenuIcon');
+  if (!panel) return;
+  var isOpen = panel.classList.contains('active');
+  if (isOpen) {
+    overlay.classList.remove('active');
+    panel.classList.remove('active');
+    icon.textContent = 'menu';
+    document.body.style.overflow = '';
+  } else {
+    overlay.classList.add('active');
+    panel.classList.add('active');
+    icon.textContent = 'close';
+    document.body.style.overflow = 'hidden';
+  }
+}
+</script>
+
+<script>
+// Touch swipe support for sliders
+(function() {
+  document.querySelectorAll('.aspect-video').forEach(function(container) {
+    var startX = 0;
+    container.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    container.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) {
+        var track = container.querySelector('.slider-track, [id^="modal-slider"]');
+        if (!track) return;
+        var id = track.id.replace('slider-', '');
+        if (dx < 0) nextSlide(id);
+        else prevSlide(id);
+      }
+    }, { passive: true });
+  });
+  // Modal slider swipe
+  var modalSlider = document.querySelector('#projectModal .aspect-video');
+  if (modalSlider) {
+    var sx = 0;
+    modalSlider.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, { passive: true });
+    modalSlider.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) modalNextSlide();
+        else modalPrevSlide();
+      }
+    }, { passive: true });
+  }
+})();
+</script>
+
+<!-- PROJECT DETAIL MODAL -->
+<div class="project-modal-overlay" id="projectModal">
+  <div class="project-modal p-5 sm:p-8 md:p-12">
+    <div class="flex justify-between items-start mb-8">
+      <h2 class="text-xl sm:text-3xl md:text-4xl font-bold text-on-background leading-tight pr-8" id="modalTitle"></h2>
+      <button onclick="closeProjectModal()" class="shrink-0 w-12 h-12 rounded-full bg-surface-variant hover:bg-surface-dim flex items-center justify-center transition-colors">
+        <span class="material-symbols-outlined text-[24px] text-on-surface-variant">close</span>
+      </button>
+    </div>
+    <!-- Modal Slider -->
+    <div class="aspect-video rounded-2xl mb-8 relative overflow-hidden group shadow-lg border border-black/5 bg-white">
+      <div class="w-full h-full flex transition-transform duration-500 ease-in-out" id="modal-slider-track" data-slide="0"></div>
+      <button onclick="prevSlide('modal-slider'); event.stopPropagation();" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all hover:bg-white shadow-lg z-10">
+        <span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span>
+      </button>
+      <button onclick="nextSlide('modal-slider'); event.stopPropagation();" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all hover:bg-white shadow-lg z-10">
+        <span class="material-symbols-outlined text-[22px]">arrow_forward_ios</span>
+      </button>
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-bold px-4 py-1.5 rounded-full backdrop-blur-sm z-10" id="modalSlideCounter"></div>
+    </div>
+    <!-- Full Description -->
+    <div class="mb-8">
+      <h4 class="text-xs font-black text-primary uppercase tracking-[0.2em] mb-4"><span class="lang-tr">Proje Açıklaması</span><span class="lang-en">Project Description</span></h4>
+      <p class="text-on-surface-variant leading-relaxed" id="modalDescription"></p>
+    </div>
+    <!-- Tech Stack -->
+    <div class="mb-8">
+      <h4 class="text-xs font-black text-primary uppercase tracking-[0.2em] mb-4"><span class="lang-tr">Kullanılan Teknolojiler</span><span class="lang-en">Technologies Used</span></h4>
+      <div class="flex flex-wrap gap-2" id="modalTech"></div>
+    </div>
+    <!-- Actions -->
+    <div class="flex gap-4 flex-wrap">
+      <a id="modalPdfLink" href="#" target="_blank" class="volumetric-btn text-white px-8 py-3 rounded-full text-sm font-bold flex items-center gap-3">
+        <span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+        <span class="lang-tr">Sunumu İndir</span><span class="lang-en">Download Presentation</span>
+      </a>
+      <button onclick="closeProjectModal()" class="volumetric-btn-secondary px-8 py-3 rounded-full text-sm font-bold flex items-center gap-3">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+        <span class="lang-tr">Kapat</span><span class="lang-en">Close</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// PROJECT MODAL LOGIC
+(function() {
+  const modal = document.getElementById('projectModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDescription');
+  const modalTech = document.getElementById('modalTech');
+  const modalPdf = document.getElementById('modalPdfLink');
+  const modalTrack = document.getElementById('modal-slider-track');
+  const modalCounter = document.getElementById('modalSlideCounter');
+
+  // Make nextSlide/prevSlide work with modal slider
+  // The modal slider uses id="modal-slider-track" with a lookup key "modal-slider"
+  // We need to register it so the existing nextSlide/prevSlide functions find it
+  // Those functions look for 'slider-' + id, so id="modal-slider" maps to element id="slider-modal-slider"
+  // Let's just override with a dedicated approach:
+
+  let modalSlideIdx = 0;
+  let modalSlideCount = 0;
+
+  window.modalNextSlide = function() {
+    modalSlideIdx = (modalSlideIdx + 1) % modalSlideCount;
+    modalTrack.style.transform = `translateX(-${modalSlideIdx * 100}%)`;
+    modalCounter.textContent = `${modalSlideIdx + 1} / ${modalSlideCount}`;
+  };
+  window.modalPrevSlide = function() {
+    modalSlideIdx = (modalSlideIdx - 1 + modalSlideCount) % modalSlideCount;
+    modalTrack.style.transform = `translateX(-${modalSlideIdx * 100}%)`;
+    modalCounter.textContent = `${modalSlideIdx + 1} / ${modalSlideCount}`;
+  };
+
+  window.openProjectModal = function(article) {
+    // Extract data from the card
+    const title = article.querySelector('h3');
+    const desc = article.querySelector('p');
+    const techDiv = article.querySelector('.flex.flex-wrap.gap-2');
+    const pdfLink = article.querySelector('a[href*=".pdf"]');
+    const sliderTrack = article.querySelector('.slider-track');
+
+    // Set title (clone to preserve lang spans)
+    modalTitle.innerHTML = title ? title.innerHTML : '';
+
+    // Set description (full text from hidden div, title attribute, or innerHTML)
+    const fullDescDiv = article.querySelector('.modal-full-desc');
+    if (fullDescDiv) {
+      modalDesc.innerHTML = fullDescDiv.innerHTML;
+    } else if (desc) {
+      const fullText = desc.getAttribute('title') || '';
+      if (fullText) {
+        modalDesc.textContent = fullText;
+      } else {
+        modalDesc.innerHTML = desc.innerHTML;
+      }
+    }
+
+    // Set tech
+    modalTech.innerHTML = techDiv ? techDiv.innerHTML : '';
+
+    // Set PDF link
+    if (pdfLink) {
+      modalPdf.href = pdfLink.href;
+      modalPdf.style.display = '';
+    } else {
+      modalPdf.style.display = 'none';
+    }
+
+    // Clone slides into modal
+    modalTrack.innerHTML = '';
+    modalSlideIdx = 0;
+    if (sliderTrack) {
+      const imgs = sliderTrack.querySelectorAll('img');
+      modalSlideCount = imgs.length;
+      imgs.forEach(img => {
+        const clone = img.cloneNode(true);
+        clone.className = 'w-full h-full object-contain bg-white shrink-0';
+        clone.loading = 'eager';
+        modalTrack.appendChild(clone);
+      });
+      modalCounter.textContent = `1 / ${modalSlideCount}`;
+    } else {
+      modalSlideCount = 0;
+      modalCounter.textContent = '';
+    }
+    modalTrack.style.transform = 'translateX(0)';
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // Scroll overlay to top so modal starts at the beginning (important for mobile)
+    modal.scrollTop = 0;
+    // Prevent wheel scroll from leaking to Lenis/body
+    if (window.lenis) window.lenis.stop();
+  };
+
+  window.closeProjectModal = function() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    if (window.lenis) window.lenis.start();
+  };
+
+  // Prevent wheel events from propagating out of the modal to Lenis
+  modal.addEventListener('wheel', function(e) {
+    // On mobile the overlay scrolls, on desktop the modal scrolls
+    const isMobile = window.innerWidth < 768;
+    const scrollEl = isMobile ? modal : modal.querySelector('.project-modal');
+    if (!scrollEl) return;
+    const atTop = scrollEl.scrollTop === 0;
+    const atBottom = scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 1;
+    if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) {
+      e.preventDefault();
+    }
+    e.stopPropagation();
+  }, { passive: false });
+
+  // Prevent body touch-scroll while modal is open (mobile)
+  // The overlay itself handles the scrolling on mobile
+  modal.addEventListener('touchmove', function(e) {
+    e.stopPropagation();
+  }, { passive: true });
+
+  // Close on overlay click
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeProjectModal();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeProjectModal();
+    }
+  });
+
+  // Update modal slider buttons
+  const modalSliderBtns = modal.querySelectorAll('button[onclick*="Slide"]');
+  if (modalSliderBtns.length >= 2) {
+    modalSliderBtns[0].setAttribute('onclick', 'modalPrevSlide(); event.stopPropagation();');
+    modalSliderBtns[1].setAttribute('onclick', 'modalNextSlide(); event.stopPropagation();');
+  }
+
+  // Attach click handlers to all project articles
+  document.querySelectorAll('#projects article.tactile-card').forEach(article => {
+    article.addEventListener('click', function(e) {
+      // Don't trigger if clicking inside the slider area (the aspect-video div)
+      const sliderArea = article.querySelector('.aspect-video');
+      if (sliderArea && sliderArea.contains(e.target)) return;
+      // Don't trigger if clicking a link or button
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      openProjectModal(article);
+    });
+
+    // Add cursor pointer to the text area
+    const h3 = article.querySelector('h3');
+    const p = article.querySelector('p');
+    const techDiv = article.querySelector('.flex.flex-wrap.gap-2');
+    [h3, p, techDiv].forEach(el => {
+      if (el) el.style.cursor = 'pointer';
+    });
+  });
+})();
+</script>
+
+
+<script>
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const icon = document.getElementById('themeIcon');
+    if(icon) icon.innerText = isDark ? 'light_mode' : 'dark_mode';
+  }
+  
+  // Set initial theme
+  if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    const icon = document.getElementById('themeIcon');
+    if(icon) icon.innerText = isDark ? 'light_mode' : 'dark_mode';
+  });
+</script>
+
+<!-- SMOOTH SCROLLING (LENIS) -->
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+  window.lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth easing curve
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: false,
+    touchMultiplier: 2,
+    infinite: false,
+  });
+
+  function raf(time) {
+    window.lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+
+  // Handle anchor links for smooth scrolling with Lenis
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = this.getAttribute('href');
+      if (target && target !== '#') {
+        window.lenis.scrollTo(target, { offset: -80 }); // offset for fixed navbar
+      }
+    });
+  });
+</script>
+</body>
+</html>
