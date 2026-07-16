@@ -68,7 +68,7 @@ export default function Navbar() {
 
   return (
     <nav 
-      className="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-6xl liquid-glass-nav rounded-full transition-all duration-300 ease-in-out translate-y-0 opacity-100"
+      className="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-6xl liquid-glass-nav rounded-full transition-all duration-300 ease-in-out translate-y-0 opacity-100 backdrop-blur-lg bg-white/30 shadow-sm"
       style={{ zIndex: 9999 }}
     >
       <div className="flex justify-between items-center px-4 md:px-10 py-2.5 md:py-4 w-full">
