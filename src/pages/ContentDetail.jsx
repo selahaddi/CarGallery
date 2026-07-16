@@ -116,6 +116,24 @@ export default function ContentDetail() {
         }
       };
 
+      // Teklifi Supabase'e kaydet (Satıcı bildirimleri için)
+      const { error: insertError } = await supabase.from('offers').insert([{
+        customer_name: formData.name,
+        customer_email: formData.email,
+        customer_phone: formData.phone,
+        car_id: content.id,
+        car_title: content.title,
+        price: content.price,
+        down_payment: downPayment,
+        term_months: termMonths,
+        monthly_rate: monthlyRate
+      }]);
+
+      if (insertError) {
+        console.error("Supabase Insert Error:", insertError);
+        // İsteğe bağlı olarak hata yönetimi eklenebilir, şimdilik webhook'a devam etmesine izin veriyoruz
+      }
+
       const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/generate-offer';
       const response = await fetch(webhookUrl, {
         method: 'POST',

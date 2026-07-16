@@ -92,7 +92,7 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     num_lines = len(title_lines)
     extra_h = 0
     if num_lines > 1:
-        extra_h = (num_lines - 1) * 45
+        extra_h = (num_lines - 1) * 85
         box_h += extra_h
 
     # Customer Box
@@ -127,7 +127,7 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     text_y = vy - 6
     for t_line in title_lines:
         draw.text((vx + 50 + mod_w + 10, text_y), t_line, font=font_val_lg, fill=brand_black)
-        text_y += 45
+        text_y += 85
     
     vy += 80 + extra_h
     # Image Area
@@ -149,28 +149,30 @@ def create_offer_pdf(json_file_path, output_pdf_path):
                 img_data = response.read()
             pic = Image.open(io.BytesIO(img_data)).convert('RGB')
             
-            # Cover mode resize
+            # Contain mode resize (Orijinal boyutu koru, kirpma)
             pic_ratio = pic.width / pic.height
             box_ratio = img_w / img_h
             if pic_ratio > box_ratio:
-                new_h = img_h
-                new_w = int(img_h * pic_ratio)
-            else:
+                # Genislige sigdir
                 new_w = img_w
                 new_h = int(img_w / pic_ratio)
+            else:
+                # Yukseklige sigdir
+                new_h = img_h
+                new_w = int(img_h * pic_ratio)
                 
             pic_resized = pic.resize((new_w, new_h), Image.Resampling.LANCZOS)
-            # Crop to center
-            left = (new_w - img_w) // 2
-            top = (new_h - img_h) // 2
-            pic_cropped = pic_resized.crop((left, top, left + img_w, top + img_h))
             
-            # Create rounded mask
-            mask = Image.new("L", (img_w, img_h), 0)
+            # Create rounded mask for the new dimensions
+            mask = Image.new("L", (new_w, new_h), 0)
             mask_draw = ImageDraw.Draw(mask)
-            mask_draw.rounded_rectangle([(0, 0), (img_w, img_h)], radius=16, fill=255)
+            mask_draw.rounded_rectangle([(0, 0), (new_w, new_h)], radius=16, fill=255)
             
-            img.paste(pic_cropped, (img_box_x1, img_box_y1), mask)
+            # Center the image inside the border box
+            paste_x = img_box_x1 + (img_w - new_w) // 2
+            paste_y = img_box_y1 + (img_h - new_h) // 2
+            
+            img.paste(pic_resized, (paste_x, paste_y), mask)
         except Exception as e:
             print(f"Resim indirilemedi: {first_img_url} Hata: {e}")
             
@@ -224,7 +226,7 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     ry = y + fin_h - 350
     draw.rounded_rectangle([(250, ry), (2230, ry + 280)], radius=24, fill=brand_red)
     
-    draw.text((320, ry + 70), "MONATLICHE RATE", font=font_rate_lbl, fill="#ffffff")
+    draw.text((320, ry + 50), "MONATLICHE RATE", font=font_rate_lbl, fill="#ffffff")
     draw.text((320, ry + 160), "(AYLIK TAKSİT)", font=font_rate_sub, fill="#fcd34d") # Soft yellow/white for subtitle
     
     rate_val = f"{monthly_rate:,.2f}"
@@ -232,7 +234,7 @@ def create_offer_pdf(json_file_path, output_pdf_path):
     rv_w = draw.textlength(rate_val, font=font_rate_val)
     rc_w = draw.textlength(rate_currency, font=font_rate_lbl)
     
-    draw.text((2160 - rv_w, ry + 60), rate_val, font=font_rate_val, fill="#ffffff")
+    draw.text((2160 - rv_w, ry + 40), rate_val, font=font_rate_val, fill="#ffffff")
     draw.text((2160 - rc_w, ry + 180), rate_currency, font=font_rate_lbl, fill="#ffffff")
     
     # 4. Footer

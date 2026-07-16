@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Bell, X } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import {
   DndContext,
@@ -22,6 +22,8 @@ import DashboardRow from '../components/DashboardRow';
 
 export default function Dashboard() {
   const [contents, setContents] = useState([]);
+  const [offers, setOffers] = useState([]);
+  const [toastMessage, setToastMessage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({ 
     title: '', 
@@ -67,7 +69,43 @@ export default function Dashboard() {
   useEffect(() => {
     checkUser();
     fetchContents();
+    fetchOffers();
+
+    // Subscribe to realtime offers
+    const channel = supabase
+      .channel('schema-db-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'offers'
+        },
+        (payload) => {
+          const newOffer = payload.new;
+          setToastMessage(`Yeni Teklif Geldi: ${newOffer.customer_name} (${newOffer.car_title || 'Araç'})`);
+          setOffers((prev) => [newOffer, ...prev].slice(0, 10)); // Keep only 10
+          setTimeout(() => setToastMessage(null), 5000); // Hide toast after 5s
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
+
+  const fetchOffers = async () => {
+    const { data, error } = await supabase
+      .from('offers')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(10);
+    
+    if (!error) {
+      setOffers(data || []);
+    }
+  };
 
   const checkUser = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -337,6 +375,20 @@ export default function Dashboard() {
       <div className="orb orb-1"></div>
       <div className="orb orb-2"></div>
       <main className="pt-nav-height min-h-screen pb-12 relative z-10">
+        {toastMessage && (
+          <div className="fixed top-24 right-4 z-50 bg-surface-container/80 backdrop-blur-xl border border-accent-indigo/30 p-4 rounded-2xl shadow-[0_8px_32px_rgba(99,102,241,0.15)] flex items-start gap-3 w-80 animate-in fade-in slide-in-from-top-4 duration-500">
+            <div className="mt-1 w-8 h-8 rounded-full bg-accent-indigo/20 flex items-center justify-center flex-shrink-0">
+              <Bell className="w-4 h-4 text-accent-indigo" />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-sm font-label-caps text-primary mb-1">Yeni Bildirim</h4>
+              <p className="text-xs text-secondary leading-relaxed">{toastMessage}</p>
+            </div>
+            <button onClick={() => setToastMessage(null)} className="text-secondary hover:text-primary transition-colors">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
         <div className="rail-system min-h-screen">
           <div className="rail-vertical"></div>
           <div className="max-w-container-max mx-auto px-4 sm:px-gutter pt-8">
@@ -354,6 +406,51 @@ export default function Dashboard() {
                 <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col flex-1 min-w-[120px]">
                   <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">{t('dash_stat_portfolio')}</span>
                   <span className="text-xl font-h3 text-accent-indigo mt-1">€{activePortfolio}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Recent Offers Panel */}
+            <div className="glass-panel rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-8 overflow-hidden relative">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
+                  <span className="material-symbols-outlined text-accent-indigo">receipt_long</span>
+                </div>
+                <h2 className="text-h3 font-h3 text-primary">Son Gelen Teklifler</h2>
+              </div>
+              <div className="overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+                <div className="inline-block min-w-full align-middle">
+                  {offers.length === 0 ? (
+                    <p className="text-sm text-secondary italic">Henüz bir teklif bulunmamaktadır.</p>
+                  ) : (
+                    <table className="min-w-full divide-y divide-border-subtle">
+                      <thead>
+                        <tr>
+                          <th className="py-3 px-4 text-left text-xs font-label-caps text-secondary uppercase tracking-wider whitespace-nowrap">Tarih</th>
+                          <th className="py-3 px-4 text-left text-xs font-label-caps text-secondary uppercase tracking-wider whitespace-nowrap">Müşteri</th>
+                          <th className="py-3 px-4 text-left text-xs font-label-caps text-secondary uppercase tracking-wider whitespace-nowrap">Araç</th>
+                          <th className="py-3 px-4 text-right text-xs font-label-caps text-secondary uppercase tracking-wider whitespace-nowrap">Peşinat</th>
+                          <th className="py-3 px-4 text-right text-xs font-label-caps text-secondary uppercase tracking-wider whitespace-nowrap">Aylık</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border-subtle/50">
+                        {offers.map(offer => (
+                          <tr key={offer.id} className="hover:bg-surface-container/30 transition-colors">
+                            <td className="py-3 px-4 text-sm text-secondary whitespace-nowrap">
+                              {new Date(offer.created_at).toLocaleDateString('tr-TR')} {new Date(offer.created_at).toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'})}
+                            </td>
+                            <td className="py-3 px-4 text-sm text-primary whitespace-nowrap">
+                              <div>{offer.customer_name}</div>
+                              <div className="text-xs text-secondary/70">{offer.customer_phone || offer.customer_email}</div>
+                            </td>
+                            <td className="py-3 px-4 text-sm text-secondary whitespace-nowrap">{offer.car_title}</td>
+                            <td className="py-3 px-4 text-sm text-primary font-medium text-right whitespace-nowrap">€{offer.down_payment || 0}</td>
+                            <td className="py-3 px-4 text-sm text-accent-indigo font-medium text-right whitespace-nowrap">€{offer.monthly_rate || 0}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
                 </div>
               </div>
             </div>
