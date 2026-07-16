@@ -123,10 +123,10 @@ export default function ContentDetail() {
         customer_phone: formData.phone,
         car_id: content.id,
         car_title: content.title,
-        price: content.price,
-        down_payment: downPayment,
-        term_months: termMonths,
-        monthly_rate: monthlyRate
+        price: content.price ? parseFloat(content.price) : null,
+        down_payment: downPayment ? parseFloat(downPayment) : null,
+        term_months: termMonths ? parseInt(termMonths, 10) : null,
+        monthly_rate: monthlyRate ? parseFloat(monthlyRate) : null
       }]);
 
       if (insertError) {
