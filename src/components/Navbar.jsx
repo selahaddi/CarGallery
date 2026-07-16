@@ -7,37 +7,13 @@ export default function Navbar() {
   const [session, setSession] = useState(null);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [navVisible, setNavVisible] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
   const langDropdownRef = useRef(null);
   const lastScrollY = useRef(0);
 
-  // Hide/show navbar on scroll direction + detect if scrolled past top
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      
-      // Show/hide based on scroll direction
-      if (currentY > lastScrollY.current && currentY > 100) {
-        // Scrolling down & past 100px → hide
-        setNavVisible(false);
-      } else {
-        // Scrolling up → show
-        setNavVisible(true);
-      }
-      
-      // Track if page is scrolled (for glass intensity)
-      setScrolled(currentY > 10);
-      
-      lastScrollY.current = currentY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Scroll event removed as navbar is always visible
 
   // Close language dropdown when clicking outside
   useEffect(() => {
@@ -92,12 +68,10 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-7xl liquid-glass-nav rounded-full transition-all duration-300 ease-in-out ${
-        navVisible ? 'translate-y-0 opacity-100' : '-translate-y-[150%] opacity-0'
-      } ${scrolled ? 'liquid-glass-nav--scrolled' : ''}`}
+      className="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-6xl liquid-glass-nav rounded-full transition-all duration-300 ease-in-out translate-y-0 opacity-100"
       style={{ zIndex: 9999 }}
     >
-      <div className="flex justify-between items-center h-14 md:h-16 px-4 md:px-8 w-full">
+      <div className="flex justify-between items-center px-4 md:px-10 py-2.5 md:py-4 w-full">
         <div className="flex items-center gap-12">
           <Link to="/" className="font-h3 text-h3 tracking-tighter text-primary flex items-center gap-2">
             <span className="w-2 h-2 bg-primary rounded-full hidden sm:block"></span>
