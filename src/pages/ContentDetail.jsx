@@ -116,25 +116,21 @@ export default function ContentDetail() {
         }
       };
 
-      // Teklifi Supabase'e kaydet (Satıcı bildirimleri için)
-      const { error: insertError } = await supabase.from('offers').insert([{
-        customer_name: formData.name,
-        customer_email: formData.email,
-        customer_phone: formData.phone,
-        car_id: content.id,
-        car_title: content.title,
-        price: content.price ? parseFloat(content.price) : null,
-        down_payment: downPayment ? parseFloat(downPayment) : null,
-        term_months: termMonths ? parseInt(termMonths, 10) : null,
-        monthly_rate: monthlyRate ? parseFloat(monthlyRate) : null
-      }]);
-
-      if (insertError) {
-        console.error("Supabase Insert Error:", insertError);
-        // İsteğe bağlı olarak hata yönetimi eklenebilir, şimdilik webhook'a devam etmesine izin veriyoruz
+      // Basic Validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        alert("Lütfen geçerli bir e-posta adresi giriniz.");
+        setIsSubmitting(false);
+        return;
+      }
+      
+      if (formData.phone.length < 10) {
+        alert("Lütfen geçerli bir telefon numarası giriniz.");
+        setIsSubmitting(false);
+        return;
       }
 
-      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/generate-offer';
+      const webhookUrl = '/api/generate-offer';
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -143,8 +139,8 @@ export default function ContentDetail() {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("Webhook Error:", response.status, errorText);
-        throw new Error(`Webhook failed: ${response.status}`);
+        console.error("API Error:", response.status, errorText);
+        throw new Error(`API failed: ${response.status}`);
       }
 
       alert(t('detail_success_alert'));
@@ -152,7 +148,7 @@ export default function ContentDetail() {
       setFormData({ name: '', email: '', phone: '' });
     } catch (e) {
       console.error("Form Submit Error:", e);
-      alert(t('detail_error_alert') + " Lütfen konsolu (F12) kontrol edin.");
+      alert(t('detail_error_alert') + " Lütfen daha sonra tekrar deneyin veya telefonla iletişime geçin.");
     } finally {
       setIsSubmitting(false);
     }
