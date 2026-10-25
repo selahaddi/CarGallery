@@ -407,6 +407,10 @@ export default function Dashboard() {
                   <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">{t('dash_stat_portfolio')}</span>
                   <span className="text-xl font-h3 text-accent-indigo mt-1">€{activePortfolio}</span>
                 </div>
+                <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col flex-1 min-w-[120px]">
+                  <span className="text-[10px] text-secondary font-label-caps uppercase tracking-widest">Gelen Teklif</span>
+                  <span className="text-xl font-h3 text-accent-emerald mt-1">{offers.length > 0 ? offers.length : '0'}</span>
+                </div>
               </div>
             </div>
 

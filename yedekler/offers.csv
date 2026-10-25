@@ -1,0 +1,13 @@
+id,created_at,customer_name,customer_email,customer_phone,car_id,car_title,price,down_payment,term_months,monthly_rate
+"192aee7e-768a-4305-a4a8-eafd1b84d336","2026-07-16T07:13:52.343335+00:00","ahmet","serttas2001@gmail.com","24547657","15","Mercedes-Benz S 580 4MATIC","185000","55000","24","3100"
+"087118c9-86bc-4a38-be46-ef767add4c7e","2026-07-16T07:15:39.790765+00:00","Selahaddin Serttaş","serttas2001@gmail.com","05452340502","9","Mercedes-AMG G 63","215000","96000","48","2579"
+"ecf78750-2ee1-449c-ab8f-4955cc204647","2026-07-16T07:17:28.980494+00:00","Mustafa Kaya","serttas2001@gmail.com","05489875617","12","Lamborghini Urus Performante","315000","157000","48","3420"
+"776c4a51-0b43-4a9a-81d2-6fe874dfd938","2026-07-16T08:46:32.883625+00:00","Selahaddin Serttaş","serttas2001@gmail.com","05453240502","9","Mercedes-AMG G 63","215000","115000","60","1751"
+"1117f934-5b14-4cab-9d60-03293e8fe423","2026-07-31T03:20:44.327039+00:00","seladasd","serttas2001@gmail.com","05452","9","Mercedes-AMG G 63","215000","60000","48","3650"
+"6d1b4053-2f0a-40ef-916a-fe33742dc05b","2026-07-31T22:45:00.139371+00:00","selahaddin ","serttas2001@gmail.com","465465","8","Porsche 911 Turbo S","285000","85000","48","4650"
+"ee95b8fc-4f28-4f12-b309-96c8358c4d46","2026-08-15T10:57:29.292485+00:00","selaahd","serttas2001@gmail.com","65464563","15","Mercedes-Benz S 580 4MATIC","185000","55000","24","3100"
+"86ce4e4a-4548-454d-bdf2-855cfabb0e97","2026-08-15T11:08:36.215354+00:00","selahaddin","serttas2001@gmail.com","05452340502","16","Mercedes-AMG SL 63","235000","70000","48","3950"
+"7589f568-48d2-42f8-be6c-9f89bffb16fa","2026-08-15T14:40:08.973996+00:00","Selahaddin ","serttas2001@gmail.com","54525","16","Mercedes-AMG SL 63","235000","70000","48","3572"
+"57488732-655d-43f5-b356-bcd7264d9d64","2026-09-04T09:17:04.571969+00:00","SELAHADDİN SERTTAŞ","serttas2001@gmail.com","05452340502","16","Mercedes-AMG SL 63","235000","76000","48","3442"
+"d669a7c5-db49-4e64-a0d9-381380d3e234","2026-09-04T09:17:10.164875+00:00","SELAHADDİN SERTTAŞ","serttas2001@gmail.com","05452340502","16","Mercedes-AMG SL 63","235000","76000","48","3442"
+"6fdf6a07-bf8d-48be-bfe6-fa9a4aaffc3a","2026-09-04T09:26:40.37393+00:00","SELAHADDİN SERTTAŞ","serttas2001@gmail.com","05452340502","16","Mercedes-AMG SL 63","235000","70000","48","3950"

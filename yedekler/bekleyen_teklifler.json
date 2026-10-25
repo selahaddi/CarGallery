@@ -1,0 +1,24 @@
+[
+  {
+    "id": "c9aab2ad-06e8-4773-9f40-eb35beedfb2b",
+    "created_at": "2026-04-29T15:42:13.879927+00:00",
+    "firma_adi": "ONSPET",
+    "talep_edilen_urun": "Otomasyon Paneli V2",
+    "adet": 3,
+    "iletisim_email": "serttas2001@gmail.com",
+    "telefon": "05452340502",
+    "durum": "Cevap Bekleniyor",
+    "teklif_gonderim_tarihi": "2026-04-29T15:42:17.959376+00:00"
+  },
+  {
+    "id": "877fee85-8312-4481-9d84-4c10602da3f0",
+    "created_at": "2026-06-01T18:47:57.475359+00:00",
+    "firma_adi": "adads",
+    "talep_edilen_urun": "Soğutma Sistemi 500W",
+    "adet": 1,
+    "iletisim_email": "serttas2001@gmail.com",
+    "telefon": "",
+    "durum": "Cevap Bekleniyor",
+    "teklif_gonderim_tarihi": "2026-06-01T18:48:09.186036+00:00"
+  }
+]

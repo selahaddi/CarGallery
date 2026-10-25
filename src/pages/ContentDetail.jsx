@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { Helmet } from 'react-helmet-async';
 
 export default function ContentDetail() {
   const { slug } = useParams();
@@ -143,6 +144,26 @@ export default function ContentDetail() {
         throw new Error(`API failed: ${response.status}`);
       }
 
+      // Supabase'e müşteri talebini (lead/offer) kaydet
+      try {
+        await supabase.from('offers').insert([
+          {
+            car_id: content.id,
+            car_title: content.title,
+            customer_name: formData.name,
+            customer_email: formData.email,
+            customer_phone: formData.phone,
+            price: content.price || null,
+            down_payment: downPayment || null,
+            term_months: termMonths || null,
+            monthly_rate: monthlyRate || null
+          }
+        ]);
+      } catch (dbErr) {
+        console.error("Supabase insert error (offers):", dbErr);
+        // Hata fırlatmıyoruz, ana webhook çalıştıysa kullanıcıya success mesajı gitsin.
+      }
+
       alert(t('detail_success_alert'));
       setIsModalOpen(false);
       setFormData({ name: '', email: '', phone: '' });
@@ -181,6 +202,14 @@ export default function ContentDetail() {
 
   return (
     <>
+      <Helmet>
+        <title>{content.title} | Araba Galerisi</title>
+        <meta name="description" content={content.summary || t('showroom_desc')} />
+        <meta property="og:title" content={content.title} />
+        <meta property="og:description" content={content.summary || t('showroom_desc')} />
+        <meta property="og:image" content={mainImage} />
+        <meta property="twitter:card" content="summary_large_image" />
+      </Helmet>
       <div className="orb orb-1"></div>
       <div className="orb orb-2"></div>
       <div className="pt-nav-height min-h-screen pb-24 md:pb-0">

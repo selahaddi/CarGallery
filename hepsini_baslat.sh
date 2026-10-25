@@ -13,11 +13,32 @@ if [ ! -t 0 ]; then
 fi
 
 echo "=================================================="
-echo "    AutoRaten - Tüm Servisler Başlatılıyor"
+echo "    AutoRaten - Yerel Sistem Başlatılıyor"
 echo "=================================================="
 echo ""
 
-# Python kontrolü ve PDF API sunucusunu başlatma
+PIDS=()
+
+cleanup() {
+  echo ""
+  echo "Sunucular durduruluyor..."
+  for pid in "${PIDS[@]}"; do
+    kill "$pid" 2>/dev/null
+  done
+  if [ -n "$VENV_ACTIVE" ]; then
+    deactivate 2>/dev/null
+  fi
+}
+trap cleanup EXIT INT TERM
+
+# 1. Yerel Veritabanı & API Sunucusu (Port 5005)
+echo "[1/3] Yerel SQLite API Sunucusu başlatılıyor (Port 5005)..."
+node server/index.js &
+API_PID=$!
+PIDS+=($API_PID)
+sleep 1
+
+# 2. Python kontrolü ve PDF API sunucusunu başlatma (Port 8000)
 if command -v python3 &> /dev/null; then
     PYTHON_CMD="python3"
 elif command -v python &> /dev/null; then
@@ -27,7 +48,7 @@ else
 fi
 
 if [ -n "$PYTHON_CMD" ]; then
-    echo "[1/2] Python Sanal Ortam (venv) kontrol ediliyor..."
+    echo "[2/3] Python Sanal Ortam (venv) kontrol ediliyor..."
     if [ ! -d "venv" ]; then
         echo "[INFO] Sanal ortam (venv) oluşturuluyor..."
         $PYTHON_CMD -m venv venv
@@ -35,35 +56,31 @@ if [ -n "$PYTHON_CMD" ]; then
     
     # Sanal ortamı aktifleştir
     source venv/bin/activate
+    VENV_ACTIVE=1
     
-    echo "[INFO] Kütüphaneler kuruluyor (Flask, Pillow)..."
+    echo "[INFO] Kütüphaneler kontrol ediliyor (Flask, Pillow)..."
     pip install flask pillow >/dev/null 2>&1
     
-    echo "[1/2] PDF API Sunucusu arka planda başlatılıyor (Port 8000)..."
+    echo "[2/3] PDF API Sunucusu arka planda başlatılıyor (Port 8000)..."
     python scripts/api_server.py &
     PDF_PID=$!
-    
-    # Betik sonlandığında PDF sunucusunu da kapat
-    trap "echo 'Sunucular durduruluyor...'; kill $PDF_PID 2>/dev/null; deactivate" EXIT INT TERM
-    sleep 2
+    PIDS+=($PDF_PID)
+    sleep 1
 else
-    echo "[UYARI] Python bulunamadı! PDF API sunucusu başlatılamadı."
+    echo "[UYARI] Python bulunamadı! PDF API sunucusu atlandı."
 fi
 
 echo ""
-echo "[2/2] Web Uygulaması ve n8n Paneli başlatılıyor..."
+echo "[3/3] Web Uygulaması başlatılıyor..."
+echo "Uygulama: http://localhost:5173"
 echo "Durdurmak için Ctrl+C basabilirsiniz."
 echo "=================================================="
 echo ""
 
 # Node.js (npm) yüklü mü kontrol et
 if command -v npm &> /dev/null; then
-    # Web uygulamasını ve n8n panelini başlat
-    npm run n8n
+    npm run dev
 else
     echo "[HATA] Sisteminizde Node.js (npm) kurulu değil!"
-    echo "Web uygulaması ve n8n paneli başlatılamadı."
-    echo "Lütfen Node.js yükleyin: https://nodejs.org/"
+    read -p "Kapatmak için Enter'a basın..."
 fi
-
-read -p "Kapatmak için Enter'a basın..."
