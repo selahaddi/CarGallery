@@ -4,6 +4,8 @@
  * Mevcut frontend kodunu bozmadan yerel SQLite API'sine yönlendirir.
  */
 
+import fallbackContents from '../yedekler/contents.json';
+
 const API_BASE = '/api';
 
 class LocalQueryBuilder {
@@ -85,12 +87,29 @@ class LocalQueryBuilder {
         // Tekil kayıt sorgusu (slug veya id ile)
         const slugOrIdFilter = this.filters.find(f => f.column === 'slug' || f.column === 'id');
         if (slugOrIdFilter) {
-          const resp = await fetch(`${API_BASE}/contents/${encodeURIComponent(slugOrIdFilter.value)}`, { headers });
-          if (!resp.ok) {
-            return { data: null, error: { code: resp.status, message: 'İçerik bulunamadı' } };
+          try {
+            const resp = await fetch(`${API_BASE}/contents/${encodeURIComponent(slugOrIdFilter.value)}`, { headers });
+            if (resp.ok) {
+              const cType = resp.headers.get('content-type');
+              if (cType && cType.includes('application/json')) {
+                const item = await resp.json();
+                return { data: this.isSingle ? item : [item], error: null };
+              }
+            }
+          } catch (e) {
+            console.warn('API fetch failed, using fallback:', e);
           }
-          const item = await resp.json();
-          return { data: this.isSingle ? item : [item], error: null };
+
+          // Fallback: Yerel JSON verisinden tekil kayıt bul
+          const target = String(slugOrIdFilter.value).toLowerCase();
+          const found = fallbackContents.find(c => 
+            (c.slug && c.slug.toLowerCase() === target) || 
+            String(c.id) === target
+          );
+          if (found) {
+            return { data: this.isSingle ? found : [found], error: null };
+          }
+          return { data: null, error: { code: 404, message: 'İçerik bulunamadı' } };
         }
 
         // Liste sorgusu
@@ -102,15 +121,35 @@ class LocalQueryBuilder {
           params.append('status', 'all');
         }
 
-        const resp = await fetch(`${API_BASE}/contents?${params.toString()}`, { headers });
-        if (!resp.ok) {
-          return { data: this.isSingle ? null : [], error: { code: resp.status, message: 'Veri çekilemedi' } };
+        try {
+          const resp = await fetch(`${API_BASE}/contents?${params.toString()}`, { headers });
+          if (resp.ok) {
+            const cType = resp.headers.get('content-type');
+            if (cType && cType.includes('application/json')) {
+              const data = await resp.json();
+              if (Array.isArray(data)) {
+                if (this.isSingle) {
+                  return { data: data.length > 0 ? data[0] : null, error: null };
+                }
+                return { data, error: null };
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('API list fetch failed, using fallback:', e);
         }
-        const data = await resp.json();
+
+        // Fallback: Yerel JSON verisinden listele
+        let list = [...fallbackContents];
+        if (statusFilter !== undefined && statusFilter.value !== 'all') {
+          const isStatusTrue = statusFilter.value === true || statusFilter.value === 'true' || statusFilter.value === 1 || statusFilter.value === '1';
+          list = list.filter(c => Boolean(c.status) === isStatusTrue);
+        }
+        list.sort((a, b) => (a.sort_order ?? 999) - (b.sort_order ?? 999));
         if (this.isSingle) {
-          return { data: Array.isArray(data) && data.length > 0 ? data[0] : null, error: null };
+          return { data: list.length > 0 ? list[0] : null, error: null };
         }
-        return { data: Array.isArray(data) ? data : [], error: null };
+        return { data: list, error: null };
       }
 
       if (this.table === 'offers') {
