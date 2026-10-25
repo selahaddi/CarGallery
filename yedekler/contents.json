@@ -1,5 +1,85 @@
 [
   {
+    "id": 8,
+    "title": "Porsche 911 Turbo S",
+    "slug": "porsche-911-turbo-s",
+    "summary": "650 PS güç ve 0-100 km/s sadece 2.7 saniye. Kusursuz aerodinamik tasarıma sahip, hatasız garaj arabası.",
+    "body": "Araç tamamen yetkili servis bakımlı olup nokta hatasızdır. Sport Chrono Paketi, Porsche Seramik Kompozit Frenler (PCCB) ve Burmester High-End Surround ses sistemi ile donatılmıştır. Seramik kaplaması yeni yapılmış olup, sürekli kapalı garajda muhafaza edilmektedir. ",
+    "image_url": "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1080",
+    "category": "Lüks Spor",
+    "status": true,
+    "tags": [
+      "porsche",
+      "911",
+      "turbo s",
+      "spor",
+      "lüks",
+      "performans"
+    ],
+    "created_at": "2026-05-23T14:52:24.470682+00:00",
+    "year": 2024,
+    "mileage": 3200,
+    "price": 285000,
+    "down_payment": 85000,
+    "monthly_rate": 4650,
+    "interest_rate": 1.89,
+    "term_months": 48,
+    "phone": "015737641145",
+    "features": [
+      "Karbon Seramik Fren",
+      "Sport Chrono",
+      "Burmester Ses Sistemi",
+      "Karbon İç Trim",
+      "Koltuk Soğutma"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1080",
+      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1080"
+    ],
+    "sort_order": 6
+  },
+  {
+    "id": 9,
+    "title": "Mercedes-AMG G 63",
+    "slug": "mercedes-amg-g-63",
+    "summary": "İkonik tasarım ve 585 beygirlik V8 biturbo motorun gücü bir arada. Tam donanımlı, hatasız lüks SUV.",
+    "body": "Aracımız \"G Manufaktur\" özel serisidir. Özel renk, Nappa deri koltuklar, karbon fiber detaylar ve AMG Gece Paketi (Night Package) mevcuttur. Tüm bakımları yetkili servisinde yapılmıştır. Çiziksiz, kazasız ve masrafsızdır. Arka eğlence paketi ve 360 derece kamera sistemi bulunur.",
+    "image_url": "https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1080",
+    "category": "Lüks SUV",
+    "status": true,
+    "tags": [
+      "mercedes",
+      "amg",
+      "g63",
+      "suv",
+      "lüks",
+      "4x4",
+      "offroad"
+    ],
+    "created_at": "2026-05-23T15:18:34.153492+00:00",
+    "year": 2023,
+    "mileage": 12500,
+    "price": 215000,
+    "down_payment": 60000,
+    "monthly_rate": 3650,
+    "interest_rate": 1.95,
+    "term_months": 48,
+    "phone": "015737641145",
+    "features": [
+      "AMG Gece Paketi",
+      "Burmester 3D Ses",
+      "Masajlı Koltuklar",
+      "360 Kamera",
+      "Arka Eğlence Sistemi"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1080",
+      "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-AMG_G_63_(W_463A)_IMG_6241.jpg",
+      "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-AMG_G_63_(W_463A)_IMG_6242.jpg"
+    ],
+    "sort_order": 1
+  },
+  {
     "id": 10,
     "title": "Audi RS7 Sportback",
     "slug": "audi-rs7-sportback",
@@ -40,160 +120,43 @@
     "sort_order": 7
   },
   {
-    "id": 9,
-    "title": "Mercedes-AMG G 63",
-    "slug": "mercedes-amg-g-63",
-    "summary": "İkonik tasarım ve 585 beygirlik V8 biturbo motorun gücü bir arada. Tam donanımlı, hatasız lüks SUV.",
-    "body": "Aracımız \"G Manufaktur\" özel serisidir. Özel renk, Nappa deri koltuklar, karbon fiber detaylar ve AMG Gece Paketi (Night Package) mevcuttur. Tüm bakımları yetkili servisinde yapılmıştır. Çiziksiz, kazasız ve masrafsızdır. Arka eğlence paketi ve 360 derece kamera sistemi bulunur.",
-    "image_url": "https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1080",
-    "category": "Lüks SUV",
+    "id": 11,
+    "title": "Bentley Continental GT V8",
+    "slug": "bentley-continental-gt-v8",
+    "summary": "İngiliz zarafeti ve üstün mühendisliğin buluştuğu nokta. 542 beygirlik V8 motoruyla eşsiz bir Grand Tourer deneyimi.",
+    "body": "Araç Mulliner sürüş spesifikasyonuna sahip, özel sipariş bir modeldir. İç mekanda çift tonlu özel deri döşeme, el işçiliği ahşap kaplamalar ve Naim for Bentley yüksek sadakatli ses sistemi bulunmaktadır. İkonik Bentley Dönen Ekran (Rotating Display) ve tam kapsamlı sürücü asistan paketleri mevcuttur. Tamamen kapalı garajda muhafaza edilmiş olup, adeta showroom kondisyonundadır.",
+    "image_url": "https://en.wikipedia.org/wiki/Special:FilePath/2019_Bentley_Continental_GT_V8.jpg",
+    "category": "Ultra Lüks",
     "status": true,
     "tags": [
-      "mercedes",
-      "amg",
-      "g63",
-      "suv",
+      "bentley",
+      "continental gt",
       "lüks",
-      "4x4",
-      "offroad"
-    ],
-    "created_at": "2026-05-23T15:18:34.153492+00:00",
-    "year": 2023,
-    "mileage": 12500,
-    "price": 215000,
-    "down_payment": 60000,
-    "monthly_rate": 3650,
-    "interest_rate": 1.95,
-    "term_months": 48,
-    "phone": "015737641145",
-    "features": [
-      "AMG Gece Paketi",
-      "Burmester 3D Ses",
-      "Masajlı Koltuklar",
-      "360 Kamera",
-      "Arka Eğlence Sistemi"
-    ],
-    "images": [
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549741418-89x9cc.jpeg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743034-fln81.jpeg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1779549743841-dmawx7.jpeg"
-    ],
-    "sort_order": 1
-  },
-  {
-    "id": 8,
-    "title": "Porsche 911 Turbo S",
-    "slug": "porsche-911-turbo-s",
-    "summary": "650 PS güç ve 0-100 km/s sadece 2.7 saniye. Kusursuz aerodinamik tasarıma sahip, hatasız garaj arabası.",
-    "body": "Araç tamamen yetkili servis bakımlı olup nokta hatasızdır. Sport Chrono Paketi, Porsche Seramik Kompozit Frenler (PCCB) ve Burmester High-End Surround ses sistemi ile donatılmıştır. Seramik kaplaması yeni yapılmış olup, sürekli kapalı garajda muhafaza edilmektedir. ",
-    "image_url": "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1080",
-    "category": "Lüks Spor",
-    "status": true,
-    "tags": [
-      "porsche",
-      "911",
-      "turbo s",
-      "spor",
-      "lüks",
-      "performans"
-    ],
-    "created_at": "2026-05-23T14:52:24.470682+00:00",
-    "year": 2024,
-    "mileage": 3200,
-    "price": 285000,
-    "down_payment": 85000,
-    "monthly_rate": 4650,
-    "interest_rate": 1.89,
-    "term_months": 48,
-    "phone": "015737641145",
-    "features": [
-      "Karbon Seramik Fren",
-      "Sport Chrono",
-      "Burmester Ses Sistemi",
-      "Karbon İç Trim",
-      "Koltuk Soğutma"
-    ],
-    "images": [
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1080",
-      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1080"
-    ],
-    "sort_order": 6
-  },
-  {
-    "id": 16,
-    "title": "Mercedes-AMG SL 63",
-    "slug": "mercedes-amg-sl-63",
-    "summary": "585 beygirlik V8 biturbo motor ve 4MATIC+ dört çeker sistemiyle saf üstü açık sürüş keyfi.",
-    "body": "Metal tavan yerine geleneksel kumaş tenteye dönüş yapan yeni nesil aerodinamik SL serisi. Araç \"Manufaktur Alp Grisi\" rengindedir. İçi kırmızı/siyah Nappa deridir. AMG Aerodinamik paketi, arka aks yönlendirme ve Burmester surround ses sistemi mevcuttur. Nokta hatasız ve yetkili bayi çıkışlıdır.",
-    "image_url": "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385461048-fvsn1.jpg",
-    "category": "Cabriolet / Roadster",
-    "status": true,
-    "tags": [],
-    "created_at": "2026-06-02T07:29:10.120601+00:00",
-    "year": 2024,
-    "mileage": 3500,
-    "price": 235000,
-    "down_payment": 70000,
-    "monthly_rate": 3950,
-    "interest_rate": 1.89,
-    "term_months": 48,
-    "phone": "015737641145",
-    "features": [
-      "mercedes",
-      "amg",
-      "sl63",
-      "cabrio",
-      "roadster",
+      "coupe",
       "v8",
-      "spor"
+      "grand tourer"
     ],
-    "images": [
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385471380-e2jsnl.png",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385474202-ad7jkv.png",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385475485-pvr6yd.jpg"
-    ],
-    "sort_order": 3
-  },
-  {
-    "id": 13,
-    "title": "BMW M8 Competition Gran Coupé",
-    "slug": "bmw-m8-competition-gran-coupe",
-    "summary": "625 beygir gücündeki V8 motoruyla sınırları zorlayan, 4 kapılı lüks ve performans canavarı.",
-    "body": "Aracımız lansman rengi olan \"Marina Bay Blue\" metalik dış renge ve \"Silverstone\" tam deri merinos iç döşemeye sahiptir. M Karbon dış paket, Bowers & Wilkins Diamond ses sistemi ve lazer farlar mevcuttur. Yetkili bayi çıkışlı olup garantisi devam etmektedir. Kapalı garajda muhafaza edilmiş, kusursuz temizliktedir.",
-    "image_url": "https://i.pinimg.com/736x/ce/92/51/ce9251d8edeea5d3f24a59bd18e96bc8.jpg",
-    "category": "Spor Sedan",
-    "status": true,
-    "tags": [
-      "bmw",
-      "m8",
-      "competition",
-      "gran coupe",
-      "spor",
-      "lüks",
-      "v8"
-    ],
-    "created_at": "2026-05-23T15:39:31.191336+00:00",
-    "year": 2024,
-    "mileage": 5200,
-    "price": 175000,
-    "down_payment": 50000,
-    "monthly_rate": 2950,
-    "interest_rate": 1.85,
+    "created_at": "2026-05-23T15:29:03.005837+00:00",
+    "year": 2023,
+    "mileage": 4500,
+    "price": 245000,
+    "down_payment": 75000,
+    "monthly_rate": 4100,
+    "interest_rate": 1.9,
     "term_months": 48,
     "phone": "015737641145",
     "features": [
-      "M Karbon Paket",
-      "Bowers & Wilkins Ses",
-      "Lazer Farlar",
-      "Merinos Deri",
-      "Koltuk Havalandırma"
+      "Mulliner Paket",
+      "Bentley Dönen Ekran",
+      "Naim Ses Sistemi",
+      "Masajlı Koltuklar",
+      "Gece Görüş Asistanı"
     ],
     "images": [
-      "https://i.pinimg.com/736x/ce/92/51/ce9251d8edeea5d3f24a59bd18e96bc8.jpg",
-      "https://i.pinimg.com/1200x/ee/d9/98/eed9988e5ff254251db0bb35444866a7.jpg",
-      "https://i.pinimg.com/736x/ca/7b/b9/ca7bb90cb8ac9427d4f92c536a43655a.jpg"
+      "https://en.wikipedia.org/wiki/Special:FilePath/Bentley_Continental_GT_V8_S_(front).jpg",
+      "https://en.wikipedia.org/wiki/Special:FilePath/Bentley_Continental_GT_V8_S_(side).jpg"
     ],
-    "sort_order": 10
+    "sort_order": 9
   },
   {
     "id": 12,
@@ -237,82 +200,85 @@
     "sort_order": 8
   },
   {
-    "id": 11,
-    "title": "Bentley Continental GT V8",
-    "slug": "bentley-continental-gt-v8",
-    "summary": "İngiliz zarafeti ve üstün mühendisliğin buluştuğu nokta. 542 beygirlik V8 motoruyla eşsiz bir Grand Tourer deneyimi.",
-    "body": "Araç Mulliner sürüş spesifikasyonuna sahip, özel sipariş bir modeldir. İç mekanda çift tonlu özel deri döşeme, el işçiliği ahşap kaplamalar ve Naim for Bentley yüksek sadakatli ses sistemi bulunmaktadır. İkonik Bentley Dönen Ekran (Rotating Display) ve tam kapsamlı sürücü asistan paketleri mevcuttur. Tamamen kapalı garajda muhafaza edilmiş olup, adeta showroom kondisyonundadır.",
-    "image_url": "https://en.wikipedia.org/wiki/Special:FilePath/2019_Bentley_Continental_GT_V8.jpg",
-    "category": "Ultra Lüks",
+    "id": 13,
+    "title": "BMW M8 Competition Gran Coupé",
+    "slug": "bmw-m8-competition-gran-coupe",
+    "summary": "625 beygir gücündeki V8 motoruyla sınırları zorlayan, 4 kapılı lüks ve performans canavarı.",
+    "body": "Aracımız lansman rengi olan \"Marina Bay Blue\" metalik dış renge ve \"Silverstone\" tam deri merinos iç döşemeye sahiptir. M Karbon dış paket, Bowers & Wilkins Diamond ses sistemi ve lazer farlar mevcuttur. Yetkili bayi çıkışlı olup garantisi devam etmektedir. Kapalı garajda muhafaza edilmiş, kusursuz temizliktedir.",
+    "image_url": "https://i.pinimg.com/736x/ce/92/51/ce9251d8edeea5d3f24a59bd18e96bc8.jpg",
+    "category": "Spor Sedan",
     "status": true,
     "tags": [
-      "bentley",
-      "continental gt",
+      "bmw",
+      "m8",
+      "competition",
+      "gran coupe",
+      "spor",
       "lüks",
-      "coupe",
-      "v8",
-      "grand tourer"
+      "v8"
     ],
-    "created_at": "2026-05-23T15:29:03.005837+00:00",
-    "year": 2023,
-    "mileage": 4500,
-    "price": 245000,
-    "down_payment": 75000,
-    "monthly_rate": 4100,
-    "interest_rate": 1.9,
+    "created_at": "2026-05-23T15:39:31.191336+00:00",
+    "year": 2024,
+    "mileage": 5200,
+    "price": 175000,
+    "down_payment": 50000,
+    "monthly_rate": 2950,
+    "interest_rate": 1.85,
     "term_months": 48,
     "phone": "015737641145",
     "features": [
-      "Mulliner Paket",
-      "Bentley Dönen Ekran",
-      "Naim Ses Sistemi",
-      "Masajlı Koltuklar",
-      "Gece Görüş Asistanı"
+      "M Karbon Paket",
+      "Bowers & Wilkins Ses",
+      "Lazer Farlar",
+      "Merinos Deri",
+      "Koltuk Havalandırma"
     ],
     "images": [
-      "https://en.wikipedia.org/wiki/Special:FilePath/Bentley_Continental_GT_V8_S_(front).jpg",
-      "https://en.wikipedia.org/wiki/Special:FilePath/Bentley_Continental_GT_V8_S_(side).jpg"
+      "https://i.pinimg.com/736x/ce/92/51/ce9251d8edeea5d3f24a59bd18e96bc8.jpg",
+      "https://i.pinimg.com/1200x/ee/d9/98/eed9988e5ff254251db0bb35444866a7.jpg",
+      "https://i.pinimg.com/736x/ca/7b/b9/ca7bb90cb8ac9427d4f92c536a43655a.jpg"
     ],
-    "sort_order": 9
+    "sort_order": 10
   },
   {
-    "id": 18,
-    "title": "Bentley continnental GT Speed",
-    "slug": "Bentley-continental-gt-speed",
-    "summary": "659 beydirlik devasa W12 motoruyla .....",
-    "body": "Bentley continental GT Speed markanın bugüne kadar ürettiği en dinamik yol otomobilidir. .....",
-    "image_url": "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1784190966679-a4zx8i.png",
-    "category": "ultra lüks coupe",
-    "status": false,
+    "id": 14,
+    "title": "Aston Martin DBX",
+    "slug": "aston-martin-dbx",
+    "summary": "İngiliz asaletini sportif ruhla birleştiren, 550 beygirlik V8 motoruyla sınırları aşan ilk Aston Martin SUV modeli.",
+    "body": "Araç özel sipariş \"Xenon Grey\" dış renge ve \"Oxford Tan\" tam deri iç döşemeye sahiptir. Panoramik cam tavan, ısıtmalı/soğutmalı koltuklar ve Aston Martin premium ses sistemi mevcuttur. Yetkili servis bakımlı olup hiçbir kazası, boyası veya tramer kaydı bulunmamaktadır. Kapalı garajda özenle muhafaza edilmiştir.",
+    "image_url": "https://en.wikipedia.org/wiki/Special:FilePath/Aston_Martin_DBX_Auto_Zuerich_2021_IMG_0169.jpg",
+    "category": "Lüks SUV",
+    "status": true,
     "tags": [
-      "Bentley",
-      "continental",
-      "GT Speed",
-      "Coupe",
-      "W12"
+      "aston martin",
+      "dbx",
+      "suv",
+      "lüks",
+      "v8",
+      "ingiliz",
+      "performans"
     ],
-    "created_at": "2026-07-16T08:41:28.661934+00:00",
+    "created_at": "2026-05-23T17:10:01.177257+00:00",
     "year": 2024,
-    "mileage": 1200,
-    "price": 365000,
-    "down_payment": 115000,
-    "monthly_rate": 5250,
-    "interest_rate": 2.99,
+    "mileage": 6500,
+    "price": 265000,
+    "down_payment": 80000,
+    "monthly_rate": 4250,
+    "interest_rate": 1.89,
     "term_months": 48,
-    "phone": "05321256897",
+    "phone": "015737641145",
     "features": [
-      "naim ses sistemi",
-      "mullınner sürüş spesifikasyonu",
-      "karbon seramik frenler"
+      "Panoramik Tavan",
+      "Premium Ses Sistemi",
+      "Oxford Deri",
+      "360 Kamera",
+      "Kör Nokta Asistanı"
     ],
     "images": [
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1784191196943-i1rsc.png",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1784191199484-cdq9jg.png",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1784191200993-vxff77.png",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1784191202214-u75kal.png",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1784191203510-ogwvvm.png"
+      "https://en.wikipedia.org/wiki/Special:FilePath/Aston_Martin_DBX_IMG_6348.jpg",
+      "https://en.wikipedia.org/wiki/Special:FilePath/Aston_Martin_DBX_Retro_Classics_2020_IMG_0218.jpg"
     ],
-    "sort_order": 2
+    "sort_order": 4
   },
   {
     "id": 15,
@@ -323,7 +289,15 @@
     "image_url": "https://i.pinimg.com/736x/57/d5/cf/57d5cf290867ab665f8169a5d166f063.jpg",
     "category": "Lüks Sedan",
     "status": true,
-    "tags": [],
+    "tags": [
+      "mercedes",
+      "s580",
+      "s serisi",
+      "sedan",
+      "lüks",
+      "v8",
+      "makam"
+    ],
     "created_at": "2026-05-23T17:13:26.668484+00:00",
     "year": 2024,
     "mileage": 14999,
@@ -348,47 +322,65 @@
     "sort_order": 0
   },
   {
-    "id": 14,
-    "title": "Aston Martin DBX",
-    "slug": "aston-martin-dbx",
-    "summary": "İngiliz asaletini sportif ruhla birleştiren, 550 beygirlik V8 motoruyla sınırları aşan ilk Aston Martin SUV modeli.",
-    "body": "Araç özel sipariş \"Xenon Grey\" dış renge ve \"Oxford Tan\" tam deri iç döşemeye sahiptir. Panoramik cam tavan, ısıtmalı/soğutmalı koltuklar ve Aston Martin premium ses sistemi mevcuttur. Yetkili servis bakımlı olup hiçbir kazası, boyası veya tramer kaydı bulunmamaktadır. Kapalı garajda özenle muhafaza edilmiştir.",
-    "image_url": "https://en.wikipedia.org/wiki/Special:FilePath/Aston_Martin_DBX_Auto_Zuerich_2021_IMG_0169.jpg",
-    "category": "Lüks SUV",
-    "status": false,
-    "tags": [],
-    "created_at": "2026-05-23T17:10:01.177257+00:00",
+    "id": 16,
+    "title": "Mercedes-AMG SL 63 4MATIC+",
+    "slug": "mercedes-amg-sl-63",
+    "summary": "585 beygirlik V8 biturbo motor ve 4MATIC+ dört çeker sistemiyle saf üstü açık sürüş keyfi ve AMG yarış genleri.",
+    "body": "Geleneksel kumaş tenteye dönüş yapan yeni nesil hafif ve aerodinamik SL serisi. Araç Manufaktur Alp Grisi renginde olup, içi iki tonlu kırmızı/siyah Nappa deridir. AMG Aerodinamik paketi, arka aks yönlendirme ve Burmester 3D Surround ses sistemiyle donatılmıştır. Nokta hatasız ve yetkili bayi çıkışlıdır.",
+    "image_url": "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-AMG_SL_63_4MATIC%2B_(R_232)_IMG_5757.jpg",
+    "category": "Cabriolet",
+    "status": true,
+    "tags": [
+      "mercedes",
+      "amg",
+      "sl63",
+      "cabrio",
+      "roadster",
+      "v8",
+      "spor"
+    ],
+    "created_at": "2026-06-02T07:29:10.120601+00:00",
     "year": 2024,
-    "mileage": 6500,
-    "price": 265000,
-    "down_payment": 80000,
-    "monthly_rate": 4250,
+    "mileage": 3500,
+    "price": 235000,
+    "down_payment": 70000,
+    "monthly_rate": 3950,
     "interest_rate": 1.89,
     "term_months": 48,
     "phone": "015737641145",
     "features": [
-      "Panoramik Tavan",
-      "Premium Ses Sistemi",
-      "Oxford Deri",
-      "360 Kamera",
-      "Kör Nokta Asistanı"
+      "AMG 4.0L V8 Biturbo (585 PS)",
+      "AMG Performance 4MATIC+",
+      "Arka Aks Yönlendirme",
+      "Burmester 3D Surround Ses",
+      "AMG Aerodinamik Paket",
+      "Airscarf Koltuk Isıtma"
     ],
     "images": [
-      "https://en.wikipedia.org/wiki/Special:FilePath/Aston_Martin_DBX_IMG_6348.jpg",
-      "https://en.wikipedia.org/wiki/Special:FilePath/Aston_Martin_DBX_Retro_Classics_2020_IMG_0218.jpg"
+      "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-AMG_SL_63_4MATIC%2B_(R_232)_IMG_5757.jpg",
+      "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-AMG_SL_63_4MATIC%2B_(R_232)_IMG_5758.jpg",
+      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1080"
     ],
-    "sort_order": 4
+    "sort_order": 3
   },
   {
     "id": 17,
     "title": "Mercedes-Maybach GLS 600 4MATIC",
     "slug": "mercedes-maybach-gls-600",
-    "summary": "Birinci sınıf uçak kabini konforunu SUV pratikliğiyle sunan, V8 motora sahip Maybach şaheseri.\n",
-    "body": "Çift renk dış boya ve özel Maybach krom ızgarasıyla benzersiz bir görünüm. İç mekanda masaj özellikli, ikinci sırada opsiyonel olarak sunulan tam yatar arka \"Captain\" koltuklar, şampanya kadehi tutucuları ve buzdolabı bulunmaktadır. 48V hafif hibrit sistemle desteklenen EQ Boost teknolojisine sahiptir. Sadece şoförlü kullanılmış, tamamen hatasızdır.",
-    "image_url": "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385658799-r2qxno.jpg",
+    "summary": "Birinci sınıf özel jet kabini konforunu SUV ferahlığıyla sunan, 557 beygirlik V8 çift turbo motorlu Maybach başyapıtı.",
+    "body": "Çift renk özel Maybach gövde boyası ve krom panjuruyla benzersiz bir zarafet. Arka bölümde elektrikli uzayan yan basamaklar, masaj özellikli tam yatar Executive koltuklar, şampanya soğutucu buzdolabı ve kadeh tutucuları yer alır. E-Active Body Control havalı süspansiyon ile adeta havada süzülür.",
+    "image_url": "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-Maybach_GLS_600_Auto_Zuerich_2021_IMG_0190.jpg",
     "category": "Ultra Lüks SUV",
-    "status": false,
-    "tags": [],
+    "status": true,
+    "tags": [
+      "mercedes",
+      "maybach",
+      "gls600",
+      "suv",
+      "ultra lüks",
+      "v8",
+      "makam"
+    ],
     "created_at": "2026-06-02T07:33:02.816743+00:00",
     "year": 2024,
     "mileage": 6000,
@@ -397,26 +389,61 @@
     "monthly_rate": 4950,
     "interest_rate": 1.95,
     "term_months": 48,
-    "phone": null,
+    "phone": "",
     "features": [
-      "mercedes",
-      "maybach",
-      "gls600",
-      "suv",
-      "ultra lüks",
-      "v8",
-      "vip"
+      "Executive First-Class Koltuklar",
+      "Şampanya Soğutucu Buzdolabı",
+      "E-Active Body Control Süspansiyon",
+      "Burmester High-End 3D Ses",
+      "Elektrikli Otomatik Yan Basamaklar",
+      "Maybach Özel Çift Renk Boya"
     ],
     "images": [
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385670012-7wlvc.jpg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385671078-n6njk.jpg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672019-k651x9.jpg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385672703-m84g2h.jpg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385673413-veve2u.png",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385675373-l68jzx.jpg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385676232-cqp2n.jpg",
-      "https://pqwvloxinvbxiaiwalcg.supabase.co/storage/v1/object/public/images/1780385676976-b6b39b.jpg"
+      "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-Maybach_GLS_600_Auto_Zuerich_2021_IMG_0190.jpg",
+      "https://en.wikipedia.org/wiki/Special:FilePath/Mercedes-Maybach_GLS_600_Auto_Zuerich_2021_IMG_0191.jpg",
+      "https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1080"
     ],
     "sort_order": 5
+  },
+  {
+    "id": 18,
+    "title": "Bentley Continental GT Speed",
+    "slug": "bentley-continental-gt-speed",
+    "summary": "659 beygirlik devasa 6.0 litre çift turbolu W12 motoru ve 900 Nm torkuyla lüks Grand Tourer segmentinin tartışmasız zirvesi.",
+    "body": "Bentley Continental GT Speed, markanın bugüne kadar ürettiği en dinamik ve güçlü yol otomobilidir. 0-100 km/s hızlanmasını sadece 3.5 saniyede tamamlayan bu başyapıt, dört tekerlekten yönlendirme ve elektronik sınırlı kaydırmalı diferansiyel (eLSD) teknolojisiyle virajlarda rakipsiz bir çeviklik sunar. İç mekanda el işçiliği Mulliner çift dikişli Alcantara/Deri kombinasyonu, döner gösterge paneli (Bentley Rotating Display) ve Naim for Bentley 2.200W ses sistemi mevcuttur. Nokta hatasız kondisyondadır.",
+    "image_url": "https://en.wikipedia.org/wiki/Special:FilePath/2021_Bentley_Continental_GT_Speed_4.0_Front.jpg",
+    "category": "Ultra Lüks",
+    "status": true,
+    "tags": [
+      "bentley",
+      "continental",
+      "gt speed",
+      "w12",
+      "coupe",
+      "ultra lüks"
+    ],
+    "created_at": "2026-07-16T08:41:28.661934+00:00",
+    "year": 2024,
+    "mileage": 1200,
+    "price": 365000,
+    "down_payment": 115000,
+    "monthly_rate": 5250,
+    "interest_rate": 2.99,
+    "term_months": 48,
+    "phone": "05321256897",
+    "features": [
+      "6.0L Çift Turbo W12 (659 PS)",
+      "Naim for Bentley 2200W Ses",
+      "Mulliner Sürüş Spesifikasyonu",
+      "Karbon Seramik Frenler",
+      "Dört Tekerlekten Yönlendirme",
+      "Bentley Döner Gösterge Ekranı"
+    ],
+    "images": [
+      "https://en.wikipedia.org/wiki/Special:FilePath/2021_Bentley_Continental_GT_Speed_4.0_Front.jpg",
+      "https://en.wikipedia.org/wiki/Special:FilePath/2019_Bentley_Continental_GT_V8.jpg",
+      "https://en.wikipedia.org/wiki/Special:FilePath/Bentley_Continental_GT_V8_S_(front).jpg"
+    ],
+    "sort_order": 2
   }
 ]
