@@ -53,6 +53,11 @@ class LocalQueryBuilder {
     return this;
   }
 
+  single() {
+    this.isSingle = true;
+    return this;
+  }
+
   // Promise arayüzü (await desteği için)
   async then(resolve, reject) {
     try {
@@ -82,10 +87,10 @@ class LocalQueryBuilder {
         if (slugOrIdFilter) {
           const resp = await fetch(`${API_BASE}/contents/${encodeURIComponent(slugOrIdFilter.value)}`, { headers });
           if (!resp.ok) {
-            return { data: [], error: { code: resp.status, message: 'İçerik bulunamadı' } };
+            return { data: null, error: { code: resp.status, message: 'İçerik bulunamadı' } };
           }
           const item = await resp.json();
-          return { data: [item], error: null };
+          return { data: this.isSingle ? item : [item], error: null };
         }
 
         // Liste sorgusu
@@ -99,9 +104,12 @@ class LocalQueryBuilder {
 
         const resp = await fetch(`${API_BASE}/contents?${params.toString()}`, { headers });
         if (!resp.ok) {
-          return { data: [], error: { code: resp.status, message: 'Veri çekilemedi' } };
+          return { data: this.isSingle ? null : [], error: { code: resp.status, message: 'Veri çekilemedi' } };
         }
         const data = await resp.json();
+        if (this.isSingle) {
+          return { data: Array.isArray(data) && data.length > 0 ? data[0] : null, error: null };
+        }
         return { data: Array.isArray(data) ? data : [], error: null };
       }
 

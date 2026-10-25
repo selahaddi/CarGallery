@@ -188,11 +188,12 @@ app.get('/api/contents', (req, res) => {
 app.get('/api/contents/:slugOrId', (req, res) => {
   try {
     const { slugOrId } = req.params;
-    let row;
-    if (!isNaN(slugOrId)) {
+    let row = null;
+    if (/^\d+$/.test(slugOrId)) {
       row = db.prepare('SELECT * FROM contents WHERE id = ?').get(Number(slugOrId));
-    } else {
-      row = db.prepare('SELECT * FROM contents WHERE slug = ?').get(slugOrId);
+    }
+    if (!row) {
+      row = db.prepare('SELECT * FROM contents WHERE LOWER(slug) = LOWER(?)').get(slugOrId);
     }
 
     if (!row) {
