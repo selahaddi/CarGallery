@@ -51,18 +51,6 @@ db.exec(`
     created_at TEXT
   );
 
-  CREATE TABLE IF NOT EXISTS bekleyen_teklifler (
-    id TEXT PRIMARY KEY,
-    firma_adi TEXT,
-    talep_edilen_urun TEXT,
-    adet INTEGER,
-    iletisim_email TEXT,
-    telefon TEXT,
-    durum TEXT,
-    teklif_gonderim_tarihi TEXT,
-    created_at TEXT
-  );
-
   CREATE TABLE IF NOT EXISTS admins (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE,

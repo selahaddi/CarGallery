@@ -102,43 +102,7 @@ async function seed() {
     console.log(`✅ ${offers.length} teklif kaydı başarıyla aktarıldı.`);
   }
 
-  // 3. Bekleyen Teklifler
-  const bekleyenPath = path.join(yedekDir, 'bekleyen_teklifler.json');
-  if (fs.existsSync(bekleyenPath)) {
-    const raw = fs.readFileSync(bekleyenPath, 'utf8');
-    const bekleyen = JSON.parse(raw);
-
-    const insertBekleyen = db.prepare(`
-      INSERT OR REPLACE INTO bekleyen_teklifler (
-        id, firma_adi, talep_edilen_urun, adet, iletisim_email, telefon,
-        durum, teklif_gonderim_tarihi, created_at
-      ) VALUES (
-        @id, @firma_adi, @talep_edilen_urun, @adet, @iletisim_email, @telefon,
-        @durum, @teklif_gonderim_tarihi, @created_at
-      )
-    `);
-
-    const insertManyBekleyen = db.transaction((items) => {
-      for (const item of items) {
-        insertBekleyen.run({
-          id: item.id,
-          firma_adi: item.firma_adi || '',
-          talep_edilen_urun: item.talep_edilen_urun || '',
-          adet: item.adet || 1,
-          iletisim_email: item.iletisim_email || '',
-          telefon: item.telefon || '',
-          durum: item.durum || '',
-          teklif_gonderim_tarihi: item.teklif_gonderim_tarihi || '',
-          created_at: item.created_at || new Date().toISOString()
-        });
-      }
-    });
-
-    insertManyBekleyen(bekleyen);
-    console.log(`✅ ${bekleyen.length} bekleyen teklif kaydı aktarıldı.`);
-  }
-
-  // 4. Varsayılan Admin Kullanıcısı
+  // 3. Varsayılan Admin Kullanıcısı
   const defaultPassword = 'admin'; // Şifre: admin
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(defaultPassword, salt);
